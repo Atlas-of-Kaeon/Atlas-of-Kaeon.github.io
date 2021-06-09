@@ -1,0 +1,213 @@
+-
+	Use
+-
+	-
+		https://raw.githubusercontent.com/Library-of-Kaeon/Library-of-Kaeon/master/Library%20of%20Kaeon/3%20-%20Collection/1%20-%20Computation/1%20-%20APIs/3%20-%20Kaeon%20Series/1%20-%20Kaeon%20FUSION/1%20-%20Modules/1%20-%20Standard/1%20-%20JavaScript/1%20-%20Source/Standard.js
+	-
+-
+	Log Line
+-
+	-
+		Welcome to Battle!
+	-
+-
+	player
+-
+	-
+		100
+	-
+-
+	foe
+-
+	-
+		100
+	-
+-
+	Scope
+-
+	-
+		Log Line
+	-
+		-
+			"You: "
+		-
+		-
+			player
+		-
+		-
+			" Opponent: "
+		-
+		-
+			foe
+		-
+	-
+		answer
+	-
+		-
+			Input
+		-
+			-
+				What move will you use?\n
+			-
+			-
+				1. Tackle\n
+			-
+			-
+				2. Scratch\n
+			-
+	-
+		Scope
+	-
+		-
+			Break
+		-
+			-
+				Not
+			-
+				-
+					Equal
+				-
+					-
+						answer
+					-
+					-
+						1
+					-
+		-
+			foe
+		-
+			-
+				Subtract
+			-
+				-
+					foe
+				-
+				-
+					20
+				-
+		-
+			Log Line
+		-
+			-
+				Opponent took 20 damage.
+			-
+	-
+		Else
+	-
+		-
+			foe
+		-
+			-
+				Subtract
+			-
+				-
+					foe
+				-
+				-
+					10
+				-
+		-
+			Log Line
+		-
+			-
+				Opponent took 10 damage.
+			-
+	-
+		Scope
+	-
+		-
+			Break
+		-
+			-
+				Less or Equal
+			-
+				-
+					foe
+				-
+				-
+					0
+				-
+		-
+			player
+		-
+			-
+				Subtract
+			-
+				-
+					player
+				-
+				-
+					15
+				-
+		-
+			Log Line
+		-
+			-
+				Opponent used bite. You took 15 damage.
+			-
+	-
+		Loop
+	-
+		-
+			And
+		-
+			-
+				Greater
+			-
+				-
+					player
+				-
+				-
+					0
+				-
+			-
+				Greater
+			-
+				-
+					foe
+				-
+				-
+					0
+				-
+-
+	Scope
+-
+	-
+		Break
+	-
+		-
+			Less
+		-
+			-
+				player
+			-
+			-
+				foe
+			-
+	-
+		Log Line
+	-
+		-
+			Opponent fainted.
+		-
+		-
+			\n
+		-
+		-
+			You Win!
+		-
+-
+	Else
+-
+	-
+		Log Line
+	-
+		-
+			You fainted.
+		-
+		-
+			\n
+		-
+		-
+			You Lose!
+		-
