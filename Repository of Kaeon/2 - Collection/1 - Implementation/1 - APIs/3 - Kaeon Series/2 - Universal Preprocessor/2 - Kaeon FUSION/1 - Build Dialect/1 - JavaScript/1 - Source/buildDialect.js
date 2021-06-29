@@ -1,8 +1,8 @@
 var moduleDependencies = {
-	one: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Repository-of-Kaeon/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20APIs/1%20-%20ONE/1%20-%20ONE/1%20-%20JavaScript/1%20-%20Source/ONE.js",
-	philosophersStone: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Repository-of-Kaeon/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20APIs/2%20-%20Philosopher's%20Stone/1%20-%20Philosopher's%20Stone/1%20-%20JavaScript/1%20-%20Source/PhilosophersStone.js",
-	onePlus: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Repository-of-Kaeon/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20APIs/1%20-%20ONE/4%20-%20ONE%2B/1%20-%20JavaScript/1%20-%20Source/ONEPlus.js",
-	io: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Repository-of-Kaeon/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20APIs/4%20-%20Utilities/1%20-%20Data/1%20-%20IO/1%20-%20JavaScript/1%20-%20Source/io.js",
+	one: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/1%20-%20ONE/1%20-%20ONE/1%20-%20JavaScript/1%20-%20Source/ONE.js",
+	philosophersStone: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/2%20-%20Philosopher's%20Stone/1%20-%20Philosopher's%20Stone/1%20-%20JavaScript/1%20-%20Source/PhilosophersStone.js",
+	onePlus: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/1%20-%20ONE/4%20-%20ONE%2B/1%20-%20JavaScript/1%20-%20Source/ONEPlus.js",
+	io: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Data/1%20-%20IO/1%20-%20JavaScript/1%20-%20Source/io.js",
 };
 
 var one = require(moduleDependencies.one);

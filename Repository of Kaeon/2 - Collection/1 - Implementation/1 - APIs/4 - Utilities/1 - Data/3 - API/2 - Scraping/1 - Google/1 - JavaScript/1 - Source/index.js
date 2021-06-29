@@ -1,5 +1,5 @@
 var moduleDependencies = {
-	io: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Repository-of-Kaeon/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20APIs/4%20-%20Utilities/1%20-%20Data/1%20-%20IO/1%20-%20JavaScript/1%20-%20Source/io.js"
+	io: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Data/1%20-%20IO/1%20-%20JavaScript/1%20-%20Source/io.js"
 };
 
 var puppeteer = require("puppeteer");
