@@ -5244,7 +5244,22 @@ function setUI() {
 	}
 
 	this.process = function(element, processed) {
-		// STUB
+		
+		let elements = [];
+
+		processed.forEach((item, index) => {
+
+			if(index == 0)
+				return;
+
+			elements = elements.concat(Array.from(document.querySelectorAll("" + item)));
+		});
+
+		let settings = JSON.parse(formatConverter.dynamicListToJSON(processed[0]));
+
+		elements.forEach((item) => {
+			ui.set(item, settings);
+		});
 	}
 }
 
@@ -5282,7 +5297,10 @@ function deleteUI() {
 	}
 
 	this.process = function(element, processed) {
-		// STUB
+
+		processed.forEach((item) => {
+			ui.remove("" + item);
+		});
 	}
 }
 
@@ -5295,7 +5313,10 @@ function specifyUI() {
 	}
 
 	this.process = function(element, processed) {
-		// STUB
+		
+		processed.forEach((list) => {
+			ui.selectorRules["" + list[0]] = JSON.parse(formatConverter.dynamicListToJSON(list[1]));
+		})
 	}
 }
 
@@ -5342,13 +5363,15 @@ function kaeonACECommand() {
 
 	philosophersStone.abide(this, new fusion.FUSIONUnit());
 
+	var reference = this;
+
 	this.verify = function(element) {
 		return element.content.toLowerCase() == "kaeon ace";
 	}
 
 	this.process = function(element, processed) {
 
-		var fusionRef = this.fusion;
+		var fusionRef = reference.fusion;
 
 		let ace = element;
 
@@ -5750,4 +5773,7 @@ module.exports = function(fusion) {
 	philosophersStone.connect(fusion, new DOMToHTML(), [], true);
 	
 	philosophersStone.connect(fusion, new kaeonACECommand(), [], true);
+
+	if(platform == "Browser")
+		ui.startScriptEngine();
 };
