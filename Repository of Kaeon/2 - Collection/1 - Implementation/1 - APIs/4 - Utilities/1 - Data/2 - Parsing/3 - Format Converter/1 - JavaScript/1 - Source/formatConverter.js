@@ -64,18 +64,72 @@ function getObject(element) {
 	return getContent(element.content);
 }
 
-function processONEJson(data) {
+function oneToJSON(data) {
 	return JSON.stringify(getObject(onePlus.readONEPlus(data)));
 }
 
-module.exports = function(item) {
+function jsonToDynamicList(data, child) {
 
-	try {
+	if(!child)
+		data = JSON.parse(json);
 
-	if(typeof item == "string")
-		return processONEJson(item);
+	if(typeof data == "object") {
 
-	item.returnValue = processONEJson(process.argv[2]);
+		let keys = Object.keys(data);
 
-	} catch(error) { return item.returnValue = error.stack; }
-};
+		data = Object.values(data);
+		data.dynamicAliases = [];
+	
+		keys.forEach((key, index) => {
+			data.dynamicAliases[index] = key;
+		});
+	}
+
+	if(Array.isArray(data)) {
+
+		data.forEach((value, index) => {
+			data[index] = jsonToDynamicList(value, true);
+		});
+	}
+
+	return data;
+}
+
+function dynamicListToJSON(data, child) {
+
+	if(typeof data == "object") {
+
+		if(data.dynamicAliases != null) {
+			
+			let object = data;
+	
+			let data = { };
+	
+			Object.values(object).forEach((value, index) => {
+	
+				let alias = index < object.dynamicAliases.length ?
+					(object.dynamicAliases[index] != null ?
+						"" + object.dynamicAliases[index] :
+						"" + index) :
+					"" + index;
+				
+				data[alias] = dynamicListToJSON(value, true);
+			});
+		}
+
+		else {
+
+			data.forEach((value, index) => {
+				data[index] = dynamicListToJSON(value, true);
+			});
+		}
+	}
+
+	return child ? data : JSON.stringify(data);
+}
+
+module.exports = {
+	oneToJSON,
+	jsonToDynamicList,
+	dynamicListToJSON
+}
