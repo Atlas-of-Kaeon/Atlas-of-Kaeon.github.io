@@ -143,7 +143,7 @@ http.createServer(function(req, res) {
 		data = { };
 	}
 
-	console.log("RECIEVED:", data);
+	console.log("RECEIVED:", data);
 
 	Object.keys(data).forEach((key) => {
 		processData(key, data[key]);
