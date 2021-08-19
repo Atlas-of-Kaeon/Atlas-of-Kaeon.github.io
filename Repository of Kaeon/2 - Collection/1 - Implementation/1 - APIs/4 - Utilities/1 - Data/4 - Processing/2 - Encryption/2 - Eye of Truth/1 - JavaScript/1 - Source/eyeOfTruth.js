@@ -4,16 +4,22 @@ let encryption = new cryptr(require('readline-sync').question("Enter the passwor
 let data = require('fs').readFileSync(process.argv[2], 'utf8');
 
 try {
-	console.log(encryption.decrypt(data));
+
+	let decrypted = encryption.decrypt(data);
+
+	console.log(decrypted);
+
+	if(process.argv[3] != null)
+		require('fs').writeFileSync(process.argv[3], decrypted);
 }
 
 catch(error) {
 
 	if(error.message != "Unsupported state or unable to authenticate data") {
 
-		console.log(data);
-
 		require('fs').writeFileSync(process.argv[2], encryption.encrypt(data));
+
+		console.log("DATA ENCRYPTED SUCCESSFULLY.");
 	}
 
 	else
