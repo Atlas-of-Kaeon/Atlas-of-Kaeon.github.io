@@ -1,5 +1,5 @@
 var moduleDependencies = {
-	cors_api_url: "https://stormy-beach-14823.herokuapp.com/"
+	cors_api_url: "https://cors.bridged.cc/"
 };
 
 var platform = "browser";
@@ -19,8 +19,6 @@ function getXMLHTTP(url) {
 	var rawFile = new XMLHttpRequest();
 
 	rawFile.open("GET", url, false);
-
-	rawFile.setRequestHeader("Origin", "https://www.abc_" + Math.random() + ".com");
 
 	var allText = "";
 
