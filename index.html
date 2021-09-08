@@ -75,7 +75,7 @@ function makeOnlineRequest(path, cors) {
 
 		rawFile.open("GET", path, false);
 
-		rawFile.setRequestHeader("Origin", "https://www.abc_" + Math.random() + ".com");
+		rawFile.setRequestHeader("Origin", window.location.origin);
 
 		let allText = "";
 
