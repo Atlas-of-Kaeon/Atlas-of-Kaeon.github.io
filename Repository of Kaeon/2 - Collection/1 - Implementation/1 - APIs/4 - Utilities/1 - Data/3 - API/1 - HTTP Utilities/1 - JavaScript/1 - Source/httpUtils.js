@@ -147,9 +147,6 @@ function sendRequest(request, callback) {
 
 			if(request.headers == null)
 				request.headers = { };
-				
-			if(request.headers["Origin"] == null)
-				request.headers["Origin"] = "https://www.abc_" + Math.random() + ".com";
 		}
 	}
 
@@ -203,7 +200,7 @@ function sendRequest(request, callback) {
 }
 
 module.exports = {
-	CORSProxy: "https://stormy-beach-14823.herokuapp.com/",
+	CORSProxy: "https://cors.bridged.cc/",
 	getURLArguments,
 	toHTTP,
 	toJSON,
