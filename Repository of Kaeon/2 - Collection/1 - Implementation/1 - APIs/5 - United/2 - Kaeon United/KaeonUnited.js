@@ -3,7 +3,7 @@
 // <script> document.documentElement.innerHTML = "";
 
 var moduleDependencies = {
-	cors: "https://stormy-beach-14823.herokuapp.com/",
+	cors: "https://cors.bridged.cc/",
 	csb: "https://raw.githubusercontent.com/Gallery-of-Kaeon/United-C/main/United%20C/Source/CSB.js",
 	documentation: "https://raw.githubusercontent.com/Gallery-of-Kaeon/Gallery-of-Kaeon.github.io/master/GhostHost/Documentation/index.html",
 	io: "https://raw.githubusercontent.com/Gallery-of-Kaeon/JavaScript-Utilities/master/JavaScript%20Utilities/Utilities/Data/io.js",
@@ -74,8 +74,6 @@ function makeOnlineRequest(path, cors) {
 		let rawFile = new XMLHttpRequest();
 
 		rawFile.open("GET", path, false);
-
-		rawFile.setRequestHeader("Origin", "https://www.abc_" + Math.random() + ".com");
 
 		let allText = "";
 
