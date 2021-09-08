@@ -75,8 +75,6 @@ function makeOnlineRequest(path, cors) {
 
 		rawFile.open("GET", path, false);
 
-		rawFile.setRequestHeader("Origin", window.location.origin);
-
 		let allText = "";
 
 		rawFile.onreadystatechange = function() {
