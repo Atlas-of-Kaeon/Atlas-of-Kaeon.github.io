@@ -1,9 +1,9 @@
 var SerialPort = require('serialport');
 var Readline = require('@serialport/parser-readline');
 
-function connect(port, onMessage) {
+function connect(path, onMessage) {
 
-	var port = new SerialPort(port, { baudRate: 9600 });
+	var port = new SerialPort(path != null ? path : "COM3", { baudRate: 9600 });
 	
 	port.pipe(new Readline({ delimiter: '\n' })).on('data', data => {
 	
