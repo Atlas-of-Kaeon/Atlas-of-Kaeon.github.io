@@ -1,7 +1,7 @@
 char receivedChar;
 String message = "";
 
-int myPins[] = {
+bool myPins[] = {
 	false,
 	false,
 	false,
@@ -17,98 +17,106 @@ int myPins[] = {
 };
 
 void setup() {
+	
+	pinMode(2, INPUT);
+	pinMode(3, OUTPUT);
+	pinMode(4, INPUT);
+	pinMode(5, OUTPUT);
+	pinMode(6, OUTPUT);
+	pinMode(7, INPUT);
+	pinMode(8, INPUT);
+	pinMode(9, OUTPUT);
+	pinMode(10, OUTPUT);
+	pinMode(11, OUTPUT);
+	pinMode(12, INPUT);
+	pinMode(13, INPUT);
+	
 	Serial.begin(9600);
 }
 
 void loop() {
 	
-	if(Serial.available() > 0)
-		Serial.println(getInput());
-		
+	Serial.println("GHI: ARDUINO: UNO");
+	
 	getChar();
 }
 
 String getInput() {
 	
-	String input = "{\"protocol\":[\"ghi\",\"serial\"],\"device\":[\"arduino\",\"uno\"],\"data\":[";
+	String input = "";
 	
-	for(int i = 2; i < strlen(message); i++) {
+	for(int i = 2; i <= 13; i++) {
 		
-		if((i == 2 || i == 4 || i = 7 || i == 8 || i == 12 || i == 13) && !myPins[i - 2])
-			input = String(input + (48 + digitalRead(i) + ","));
+		char write = 0;
 		
-		else
-			input = String(input + "0,");
+		if((i == 2 || i == 4 || i == 7 || i == 8 || i == 12 || i == 13) && !myPins[i - 2])
+			write = digitalRead(i);
+		
+		input = String(input + write);
 	}
 	
-	return String(
-		input +
-		analogRead(A0) +
-		"," +
-		analogRead(A1) +
-		"," +
-		analogRead(A2) +
-		"," +
-		analogRead(A3) +
-		"," +
-		analogRead(A4) +
-		"," +
-		analogRead(A5) +
-		"]}"
-	);
+	char writeA0 = analogRead(A0);
+	char writeA1 = analogRead(A0);
+	char writeA2 = analogRead(A0);
+	char writeA3 = analogRead(A0);
+	char writeA4 = analogRead(A0);
+	char writeA5 = analogRead(A0);
+	
+	return String(input + writeA0 + writeA1 + writeA2 + writeA3 + writeA4 + writeA5);
 }
 
 void getChar() {
 	
 	if(Serial.available() > 0) {
 		
-		receivedChar = Serial.read();
+		char read = Serial.read();
 		
-		if(receivedChar == 0) {
+		message = String(message + read);
+		
+		if(message.length() == 12) {
 			
 			execute(message);
 			
 			message = "";
 		}
-		
-		else
-			message = String(message + receivedChar);
 	}
 }
 
 void execute(String message) {
 	
-	for(int i = 2; i < strlen(message); i++) {
+	for(int i = 0; i < message.length(); i++) {
 		
-		char c = message[i - 2];
+		int pin = i + 2;
 		
-		if(i == 2 || i == 4 || i = 7 || i == 8 || i == 12 || i == 13) {
+		if(pin == 2 || pin == 4 || pin == 7 || pin == 8 || pin == 12 || pin == 13) {
 			
-			if(c != 0) {
+			if(message[i] != 0) {
 				
-				if(!myPins[i - 2]) {
+				if(!myPins[i]) {
 					
-					pinMode(i, OUTPUT);
-					digitalWrite(i, HIGH);
+					pinMode(pin, OUTPUT);
+					digitalWrite(pin, HIGH);
 					
-					myPins[i - 2] = true;
+					myPins[i] = true;
 				}
 			}
 			
 			else {
 				
-				if(myPins[i - 2]) {
+				if(myPins[i]) {
 					
-					digitalWrite(i, LOW);
-					pinMode(i, INPUT);
+					digitalWrite(pin, LOW);
+					pinMode(pin, INPUT);
 					
-					myPins[i - 2] = false;
+					myPins[i] = false;
 				}
 			}
 		}
 		
 		else {
-			analogWrite(i, c);
+			analogWrite(pin, message[i]);
 		}
 	}
+	
+	Serial.println(getInput());
 }
