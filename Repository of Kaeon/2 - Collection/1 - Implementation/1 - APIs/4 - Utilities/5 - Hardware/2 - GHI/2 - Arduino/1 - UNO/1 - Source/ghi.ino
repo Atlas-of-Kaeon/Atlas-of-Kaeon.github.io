@@ -35,9 +35,6 @@ void setup() {
 }
 
 void loop() {
-	
-	Serial.println("GHI: ARDUINO: UNO");
-	
 	getChar();
 }
 
