@@ -56,11 +56,11 @@ String getInput() {
 	}
 	
 	char writeA0 = analogRead(A0);
-	char writeA1 = analogRead(A0);
-	char writeA2 = analogRead(A0);
-	char writeA3 = analogRead(A0);
-	char writeA4 = analogRead(A0);
-	char writeA5 = analogRead(A0);
+	char writeA1 = analogRead(A1);
+	char writeA2 = analogRead(A2);
+	char writeA3 = analogRead(A3);
+	char writeA4 = analogRead(A4);
+	char writeA5 = analogRead(A5);
 	
 	return String(input + writeA0 + writeA1 + writeA2 + writeA3 + writeA4 + writeA5);
 }
