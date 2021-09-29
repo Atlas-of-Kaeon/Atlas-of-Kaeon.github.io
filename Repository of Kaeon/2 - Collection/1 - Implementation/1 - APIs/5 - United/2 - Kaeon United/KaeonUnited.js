@@ -179,7 +179,7 @@ function executeCommand(args) {
 					console.log(
 						await eval(
 							"(async () => {\n" +
-							oneSuite.preprocess(input) +
+							ONESuite.preprocess(input) +
 							"\n})();"
 						)
 					);
