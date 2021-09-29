@@ -104,6 +104,19 @@ function executeCommand(args) {
 	(async () => {
 
 		let operation = args[0].toLowerCase();
+		
+		if(operation != "parse" &&
+			operation != "preprocess" &&
+			operation != "process" &&
+			operation != "js" &&
+			operation != "ucc" &&
+			operation != "assemble" &&
+			operation != "disassemble") {
+
+			require(moduleDependencies.kaeonUtilities)(operation)(args.slice(1));
+
+			return;
+		}
 
 		let data = null;
 
