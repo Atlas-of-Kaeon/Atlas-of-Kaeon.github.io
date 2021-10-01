@@ -438,6 +438,15 @@ function executeCDN() {
 
 	let args = getURLArguments();
 
+	if(args["unitedjs"] != null ||
+		args["unitedjsraw"] != null ||
+		args["unitedop"] != null ||
+		args["unitedopraw"] != null ||
+		args["app"] != null) {
+
+		executeScript();
+	}
+
 	if(args["app"] != null) {
 
 		let redirect = "" + require(moduleDependencies.kaeonUtilities)(args["app"]);
@@ -459,14 +468,6 @@ function executeCDN() {
 		});
 
 		window.location.href = redirect;
-	}
-
-	if(args["unitedjs"] != null ||
-		args["unitedjsraw"] != null ||
-		args["unitedop"] != null ||
-		args["unitedopraw"] != null) {
-
-		executeScript();
 	}
 
 	if(args["unitedjs"] != null)
