@@ -493,7 +493,8 @@ function executeCDN() {
 		args["unitedop"] == null &&
 		args["unitedopraw"] == null &&
 		args["html"] == null &&
-		args["htmlraw"] == null) {
+		args["htmlraw"] == null &&
+		args["app"] == null) {
 
 		if(moduleDependencies.documentation != null)
 			executeHTML(makeOnlineRequest(moduleDependencies.documentation, true));
