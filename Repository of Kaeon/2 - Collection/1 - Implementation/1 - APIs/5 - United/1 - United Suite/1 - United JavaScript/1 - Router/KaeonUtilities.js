@@ -73,7 +73,7 @@ var moduleDependencies = {
 		}
 	},
 	applications: {
-		kaeonOrigin: "https://atlas-of-kaeon.github.io/?unitedjs=https://raw.githubusercontent.com/Gallery-of-Kaeon/Kaeon-Origin/master/Kaeon%20Origin/Application/kaeonOrigin.js"
+		kaeonOrigin: "https://atlas-of-kaeon.github.io/?unitedjs=https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/3%20-%20Applications/1%20-%20Kaeon%20Origin/2%20-%20Monolith/kaeonOrigin.js"
 	},
 	kaeonUnited: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/5%20-%20United/2%20-%20Kaeon%20United/KaeonUnited.js"
 }
