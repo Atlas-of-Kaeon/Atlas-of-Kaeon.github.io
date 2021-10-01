@@ -72,6 +72,9 @@ var moduleDependencies = {
 			}
 		}
 	},
+	applications: {
+		kaeonOrigin: "https://atlas-of-kaeon.github.io/?unitedjs=https://raw.githubusercontent.com/Gallery-of-Kaeon/Kaeon-Origin/master/Kaeon%20Origin/Application/kaeonOrigin.js"
+	},
 	kaeonUnited: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/5%20-%20United/2%20-%20Kaeon%20United/KaeonUnited.js"
 }
 
@@ -112,12 +115,16 @@ module.exports = (item) => {
 
 	if(typeof item == "string") {
 
-		let path = getModule(moduleDependencies, item);
+		let path = getModule(moduleDependencies.modules, item);
 
-		return path != null ? require(path) : null;
+		return path != null ?
+			require(path) :
+			getModule(moduleDependencies.applications, item);
 	}
 
-	Object.values(moduleDependencies.modules.one.interfaces).forEach((value) => {
+	Object.values(
+		moduleDependencies.modules.one.interfaces
+	).forEach((value) => {
 		require(value)(item);
 	});
 }

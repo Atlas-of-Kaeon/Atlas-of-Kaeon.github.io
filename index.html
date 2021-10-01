@@ -50,14 +50,19 @@ function getPlatform(environment) {
 	}
 }
 
-function getURLArguments() {
+function getURLArguments(raw) {
 
 	let vars = {};
 
 	window.location.href.replace(
 		/[?&]+([^=&]+)=([^&]*)/gi,
 		function(m, key, value) {
-			vars[decodeURIComponent(key).toLowerCase()] = decodeURIComponent(value);
+		
+			vars[
+				raw ?
+					decodeURIComponent(key) :
+					decodeURIComponent(key).toLowerCase()
+			] = decodeURIComponent(value);
 		}
 	);
 
@@ -432,6 +437,29 @@ function executeHTML(code) {
 function executeCDN() {
 
 	let args = getURLArguments();
+
+	if(args["app"] != null) {
+
+		let redirect = "" + require(moduleDependencies.kaeonUtilities)(args["app"]);
+
+		if(redirect.includes("?") && args.length > 1)
+			redirect += "?";
+
+		let rawArgs = getURLArguments(raw);
+
+		Object.keys(rawArgs).forEach((key) => {
+
+			if(key.toLowerCase() == "app")
+				return;
+
+			if(!redirect.endsWith("?"))
+				redirect += "?";
+
+			redirect += rawArgs[key];
+		});
+
+		window.location.href = redirect;
+	}
 
 	if(args["unitedjs"] != null ||
 		args["unitedjsraw"] != null ||
