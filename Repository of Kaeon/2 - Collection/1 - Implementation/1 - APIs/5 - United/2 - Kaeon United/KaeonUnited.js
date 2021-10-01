@@ -454,7 +454,7 @@ function executeCDN() {
 		if(redirect.includes("?") && args.length > 1)
 			redirect += "?";
 
-		let rawArgs = getURLArguments(raw);
+		let rawArgs = getURLArguments(true);
 
 		Object.keys(rawArgs).forEach((key) => {
 
