@@ -5,13 +5,13 @@ var moduleDependencies = {
 	fusion: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/1%20-%20ONE/2%20-%20FUSION/1%20-%20JavaScript/1%20-%20Source/FUSION.js",
 	philosophersStone: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/2%20-%20Philosopher's%20Stone/1%20-%20Philosopher's%20Stone/1%20-%20JavaScript/1%20-%20Source/PhilosophersStone.js",
 	oneSuite: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/1%20-%20ONE/6%20-%20ONE%20Suite/1%20-%20JavaScript/1%20-%20Source/ONESuite.js",
-	io: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Data/1%20-%20IO/1%20-%20JavaScript/1%20-%20Source/io.js",
+	io: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/1%20-%20General/1%20-%20Data/1%20-%20IO/1%20-%20JavaScript/1%20-%20Source/io.js",
 	kaeonACE: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/3%20-%20Kaeon%20Series/3%20-%20Kaeon%20ACE/1%20-%20APIs/1%20-%20Babylon/1%20-%20Core/1%20-%20Source/KaeonACE.js",
-	tokenizer: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Data/2%20-%20Parsing/1%20-%20Tokenizer/1%20-%20JavaScript/1%20-%20Source/tokenizer.js",
-	formatConverter: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Data/2%20-%20Parsing/3%20-%20Format%20Converter/1%20-%20JavaScript/1%20-%20Source/formatConverter.js",
-	httpUtils: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Data/3%20-%20API/1%20-%20HTTP%20Utilities/1%20-%20JavaScript/1%20-%20Source/httpUtils.js",
-	widgets: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/3%20-%20UI/1%20-%20Visual/3%20-%20Widgets/1%20-%20General/1%20-%20JavaScript/1%20-%20Source/widgets.js",
-	ui: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/3%20-%20UI/1%20-%20Visual/1%20-%20General/1%20-%20UI/1%20-%20JavaScript/1%20-%20Source/ui.js"
+	tokenizer: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/1%20-%20General/1%20-%20Data/2%20-%20Parsing/1%20-%20Tokenizer/1%20-%20JavaScript/1%20-%20Source/tokenizer.js",
+	formatConverter: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/1%20-%20General/1%20-%20Data/2%20-%20Parsing/3%20-%20Format%20Converter/1%20-%20JavaScript/1%20-%20Source/formatConverter.js",
+	httpUtils: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/1%20-%20General/1%20-%20Data/3%20-%20API/1%20-%20HTTP%20Utilities/1%20-%20JavaScript/1%20-%20Source/httpUtils.js",
+	widgets: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/2%20-%20Frameworks/1%20-%20Vision/2%20-%20Visual/2%20-%20Widgets/1%20-%20General/1%20-%20JavaScript/1%20-%20Source/widgets.js",
+	vision: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/2%20-%20Frameworks/1%20-%20Vision/1%20-%20Core/1%20-%20JavaScript/1%20-%20Source/vision.js"
 };
 
 var one = require(moduleDependencies.one);
@@ -25,8 +25,8 @@ var io = require(moduleDependencies.io);
 var tokenizer = require(moduleDependencies.tokenizer);
 var formatConverter = require(moduleDependencies.formatConverter);
 var httpUtils = require(moduleDependencies.httpUtils);
-var ui = require(moduleDependencies.ui);
 var widgets = require(moduleDependencies.widgets);
+var vision = require(moduleDependencies.vision);
 
 var fs = {};
 var path = {};
@@ -5228,7 +5228,7 @@ function getUI() {
 		});
 
 		return elements.map((item) => {
-			formatConverter.jsonToDynamicList(JSON.stringify(ui.get(item)));
+			formatConverter.jsonToDynamicList(JSON.stringify(vision.get(item)));
 		});
 	}
 }
@@ -5256,7 +5256,7 @@ function setUI() {
 		let settings = JSON.parse(formatConverter.dynamicListToJSON(processed[0]));
 
 		elements.forEach((item) => {
-			ui.set(item, settings);
+			vision.set(item, settings);
 		});
 	}
 }
@@ -5281,7 +5281,7 @@ function extendUI() {
 			if(typeof processed[0] == "string" && index == 0)
 				return;
 
-			ui.extend(dom, ui.create(JSON.parse(formatConverter.dynamicListToJSON(item))));
+			vision.extend(dom, vision.create(JSON.parse(formatConverter.dynamicListToJSON(item))));
 		});
 	}
 }
@@ -5297,7 +5297,7 @@ function deleteUI() {
 	this.process = function(element, processed) {
 
 		processed.forEach((item) => {
-			ui.remove("" + item);
+			vision.remove("" + item);
 		});
 	}
 }
@@ -5313,7 +5313,7 @@ function specifyUI() {
 	this.process = function(element, processed) {
 		
 		processed.forEach((list) => {
-			ui.selectorRules["" + list[0]] = JSON.parse(formatConverter.dynamicListToJSON(list[1]));
+			vision.selectorRules["" + list[0]] = JSON.parse(formatConverter.dynamicListToJSON(list[1]));
 		})
 	}
 }
@@ -5327,7 +5327,7 @@ function loadUI() {
 	}
 
 	this.process = function(element, processed) {
-		ui.load(processed);
+		vision.load(processed);
 	}
 }
 
@@ -5340,7 +5340,7 @@ function HTMLToDOM() {
 	}
 
 	this.process = function(element, processed) {
-		return formatConverter.jsonToDynamicList(JSON.stringify(ui.toElement("" + processed[0])));
+		return formatConverter.jsonToDynamicList(JSON.stringify(vision.toElement("" + processed[0])));
 	}
 }
 
@@ -5353,7 +5353,7 @@ function DOMToHTML() {
 	}
 
 	this.process = function(element, processed) {
-		return ui.toHTML(JSON.parse(formatConverter.dynamicListToJSON(processed[0])));
+		return vision.toHTML(JSON.parse(formatConverter.dynamicListToJSON(processed[0])));
 	}
 }
 
@@ -5773,5 +5773,5 @@ module.exports = function(fusion) {
 	philosophersStone.connect(fusion, new kaeonACECommand(), [], true);
 
 	if(platform == "Browser")
-		ui.startScriptEngine();
+		vision.startScriptEngine();
 };

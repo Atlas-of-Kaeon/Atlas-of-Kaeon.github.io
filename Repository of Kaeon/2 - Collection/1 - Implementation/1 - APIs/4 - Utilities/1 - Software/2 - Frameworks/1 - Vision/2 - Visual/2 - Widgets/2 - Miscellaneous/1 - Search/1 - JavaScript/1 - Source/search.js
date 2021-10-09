@@ -1,14 +1,14 @@
 // item = { item: "...", action: { type: "...", ... (url: "...") } }
 
 var moduleDependencies = {
-	ui: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/3%20-%20UI/1%20-%20Visual/1%20-%20General/1%20-%20UI/1%20-%20JavaScript/1%20-%20Source/ui.js"
+	vision: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/2%20-%20Frameworks/1%20-%20Vision/1%20-%20Core/1%20-%20JavaScript/1%20-%20Source/vision.js"
 };
 
-var ui = require(moduleDependencies.ui);
+var vision = require(moduleDependencies.vision);
 
 function getDropItem(input, dropdown, value, onSelect) {
 	
-	let item = ui.create(
+	let item = vision.create(
 		{
 			attributes: { class: "search-option" },
 			style: {
@@ -25,7 +25,7 @@ function getDropItem(input, dropdown, value, onSelect) {
 
 		input.value = value;
 
-		ui.set(
+		vision.set(
 			dropdown,
 			{
 				style: {
@@ -44,7 +44,7 @@ function drop(input, dropdown, options, onSelect) {
 
 	dropdown.innerHTML = "";
 
-	ui.set(
+	vision.set(
 		dropdown,
 		{
 			style: {
@@ -55,19 +55,19 @@ function drop(input, dropdown, options, onSelect) {
 	);
 
 	for(let i = 0; i < options.length; i++)
-		ui.extend(dropdown, getDropItem(input, dropdown, options[i], onSelect));
+		vision.extend(dropdown, getDropItem(input, dropdown, options[i], onSelect));
 }
 
 function createSearch(getOptions, onSelect) {
 	
-	let input = ui.create(
+	let input = vision.create(
 		{
 			tag: "input",
 			attributes: { class: "search-input", type: "text" }
 		}
 	);
 	
-	let go = ui.create(
+	let go = vision.create(
 		{
 			tag: "button",
 			attributes: { class: "search-button" },
@@ -77,7 +77,7 @@ function createSearch(getOptions, onSelect) {
 		}
 	);
 
-	let dropdown = ui.create(
+	let dropdown = vision.create(
 		{
 			style: {
 				display: "none",
@@ -88,7 +88,7 @@ function createSearch(getOptions, onSelect) {
 
 	go.onclick = function() {
 
-		ui.set(
+		vision.set(
 			dropdown,
 			{
 				style: {
@@ -108,7 +108,7 @@ function createSearch(getOptions, onSelect) {
 		
 		if(event.keyCode == 13) {
 
-			ui.set(
+			vision.set(
 				dropdown,
 				{
 					style: {
@@ -121,7 +121,7 @@ function createSearch(getOptions, onSelect) {
 		}
 	}
 	
-	let search = ui.create(
+	let search = vision.create(
 		{
 			attributes: { class: "search-container" },
 			content: [input, go, dropdown]

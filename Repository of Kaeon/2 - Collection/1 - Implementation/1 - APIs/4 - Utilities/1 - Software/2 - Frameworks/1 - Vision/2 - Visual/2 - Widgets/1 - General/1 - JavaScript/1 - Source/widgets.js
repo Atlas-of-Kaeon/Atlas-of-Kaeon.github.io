@@ -1,12 +1,12 @@
 var moduleDependencies = {
-	ui: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/3%20-%20UI/1%20-%20Visual/1%20-%20General/1%20-%20UI/1%20-%20JavaScript/1%20-%20Source/ui.js"
+	vision: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/2%20-%20Frameworks/1%20-%20Vision/1%20-%20Core/1%20-%20JavaScript/1%20-%20Source/vision.js"
 };
 
-var ui = require(moduleDependencies.ui);
+var vision = require(moduleDependencies.vision);
 
 function createStartScreen(element, text, callback) {
 
-	let button = ui.create(
+	let button = vision.create(
 		{
 			tag: "button",
 			style: {
@@ -33,9 +33,9 @@ function createStartScreen(element, text, callback) {
 		callback(element);
 	}
 	
-	ui.extend(
+	vision.extend(
 		element,
-		ui.create(
+		vision.create(
 			{
 				tag: "div",
 				style: {
@@ -69,7 +69,7 @@ function getTextbox(options) {
 	if(!options.wrap)
 		data.style["white-space"] = "pre";
 
-	let text = ui.create(data);
+	let text = vision.create(data);
 
 	if(options.readOnly)
 		text.readOnly = true;
@@ -164,8 +164,8 @@ function getTextbox(options) {
 
 function addTab(tabs, name, content) {
 
-	let tab = ui.create({ content: name, style: { display: "inline" } });
-	let pane = ui.create({ content: content, style: { display: "none" } });
+	let tab = vision.create({ content: name, style: { display: "inline" } });
+	let pane = vision.create({ content: content, style: { display: "none" } });
 	
 	pane.tab_id = name;
 
@@ -173,8 +173,8 @@ function addTab(tabs, name, content) {
 		setTab(tabs, name);
 	}
 	
-	ui.extend(tabs.children[0], tab);
-	ui.extend(tabs.children[1], pane);
+	vision.extend(tabs.children[0], tab);
+	vision.extend(tabs.children[1], pane);
 }
 
 function setTab(tabs, id) {
@@ -182,10 +182,10 @@ function setTab(tabs, id) {
 	Array.from(tabs.children[1].children).forEach((child) => {
 		
 		if(child.tab_id == id)
-			ui.set(child, { style: { display: "block" } });
+			vision.set(child, { style: { display: "block" } });
 		
 		else
-			ui.set(child, { style: { display: "none" } });
+			vision.set(child, { style: { display: "none" } });
 	});
 }
 
@@ -194,12 +194,12 @@ function getTabs(content, config) {
 	content = content != null ? content : [];
 	config = config != null ? config : { };
 
-	let menuTabs = ui.create({ style: { position: "absolute", left: "0%", top: "0%", "overflow-x": "auto" } });
-	let menu = ui.create({ content: menuTabs, style: { position: "absolute", left: "0%", top: "0%", height: "5%", width: "100%" } });
+	let menuTabs = vision.create({ style: { position: "absolute", left: "0%", top: "0%", "overflow-x": "auto" } });
+	let menu = vision.create({ content: menuTabs, style: { position: "absolute", left: "0%", top: "0%", height: "5%", width: "100%" } });
 
-	let pane = ui.create({ style: { position: "absolute", left: "0%", top: "5%", height: "95%", width: "100%" } });
+	let pane = vision.create({ style: { position: "absolute", left: "0%", top: "5%", height: "95%", width: "100%" } });
 
-	let tabs = ui.create({
+	let tabs = vision.create({
 		content: [menu, pane]
 	});
 

@@ -1,12 +1,12 @@
 var moduleDependencies = {
 	one: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/1%20-%20ONE/1%20-%20ONE/1%20-%20JavaScript/1%20-%20Source/ONE.js",
 	philosophersStone: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/2%20-%20Philosopher's%20Stone/1%20-%20Philosopher's%20Stone/1%20-%20JavaScript/1%20-%20Source/PhilosophersStone.js",
-	ui: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/3%20-%20UI/1%20-%20Visual/1%20-%20General/1%20-%20UI/1%20-%20JavaScript/1%20-%20Source/ui.js"
+	vision: ""
 };
 
 var one = require(moduleDependencies.one);
 var philosophersStone = require(moduleDependencies.philosophersStone);
-var ui = require(moduleDependencies.ui);
+var vision = require(moduleDependencies.vision);
 
 function loadComponent(core, ace, entity) {
 	
@@ -77,12 +77,12 @@ function run(core, ace, element) {
 		}
 	);
 
-	ui.load("https://preview.babylonjs.com/babylon.js");
-	ui.load("https://preview.babylonjs.com/loaders/babylonjs.loaders.min.js");
-	ui.load("https://code.jquery.com/pep/0.4.3/pep.js");
+	vision.load("https://preview.babylonjs.com/babylon.js");
+	vision.load("https://preview.babylonjs.com/loaders/babylonjs.loaders.min.js");
+	vision.load("https://code.jquery.com/pep/0.4.3/pep.js");
 	
-	ui.extend(
-		ui.set(
+	vision.extend(
+		vision.set(
 			core.element,
 			{
 				style: {
@@ -92,7 +92,7 @@ function run(core, ace, element) {
 				}
 			}
 		),
-		ui.create(
+		vision.create(
 			{
 				tag: "canvas",
 				attributes: {
