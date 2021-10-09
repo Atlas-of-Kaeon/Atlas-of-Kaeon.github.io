@@ -31,34 +31,43 @@ var moduleDependencies = {
 				ucc: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/5%20-%20United/1%20-%20United%20Suite/2%20-%20United%20C/2%20-%20UCC/1%20-%20JavaScript/1%20-%20Source/UCC.js"
 			},
 			utilities: {
-				data: {
-					io: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Data/1%20-%20IO/1%20-%20JavaScript/1%20-%20Source/io.js",
-					tokenizer: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Data/2%20-%20Parsing/1%20-%20Tokenizer/1%20-%20JavaScript/1%20-%20Source/tokenizer.js",
-					httpUtils: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Data/3%20-%20API/1%20-%20HTTP%20Utilities/1%20-%20JavaScript/1%20-%20Source/httpUtils.js"
+				software: {
+					general: {
+						data: {
+							io: "",
+							tokenizer: "",
+							httpUtils: ""
+						},
+						application: {
+							management: {
+								network: {
+									server: "",
+									wifi: ""
+								},
+								process: {
+									override: "",
+									platform: ""
+								}
+							},
+							virtualSystem: ""
+						}
+					}
 				},
-				application: {
-					management: {
-						override: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/2%20-%20Application/1%20-%20Management/4%20-%20Override/1%20-%20JavaScript/override.js",
-						platform: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/2%20-%20Application/1%20-%20Management/1%20-%20Platform/1%20-%20JavaScript/1%20-%20Source/platform.js",
-						server: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/2%20-%20Application/1%20-%20Management/2%20-%20Server/1%20-%20JavaScript/1%20-%20Source/server.js",
-					},
-					virtualSystem: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/2%20-%20Application/2%20-%20Virtual%20System/1%20-%20JavaScript/1%20-%20Source/virtualSystem.js"
-				},
-				ui: {
+				vision: {
+					core: "",
 					visual: {
 						general: {
-							ui: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/3%20-%20UI/1%20-%20Visual/1%20-%20General/1%20-%20UI/1%20-%20JavaScript/1%20-%20Source/ui.js",
-							input: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/3%20-%20UI/1%20-%20Visual/1%20-%20General/2%20-%20Input/1%20-%20JavaScript/1%20-%20Source/input.js",
-							dimensions: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/3%20-%20UI/1%20-%20Visual/1%20-%20General/3%20-%20Dimensions/1%20-%20JavaScript/1%20-%20Source/Dimensions.js"
+							input: "",
+							dimensions: ""
 						},
 						widgets: {
-							widgets: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/3%20-%20UI/1%20-%20Visual/3%20-%20Widgets/1%20-%20General/1%20-%20JavaScript/1%20-%20Source/widgets.js",
-							search: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/3%20-%20UI/1%20-%20Visual/3%20-%20Widgets/2%20-%20Miscellaneous/1%20-%20Search/1%20-%20JavaScript/1%20-%20Source/search.js"
+							widgets: "",
+							search: ""
 						}
 					},
 					audio: {
-						speech: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/3%20-%20UI/2%20-%20Audio/1%20-%20Speech/1%20-%20JavaScript/1%20-%20Source/speech.js",
-						playYoutubeAudio: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/3%20-%20UI/2%20-%20Audio/2%20-%20YouTube/1%20-%20JavaScript/1%20-%20Source/PlayYoutubeAudio.js"
+						speech: "",
+						playYoutubeAudio: ""
 					}
 				}
 			}
