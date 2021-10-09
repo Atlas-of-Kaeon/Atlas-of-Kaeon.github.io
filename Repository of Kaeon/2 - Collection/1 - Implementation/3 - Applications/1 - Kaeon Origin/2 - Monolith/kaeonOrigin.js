@@ -1,13 +1,13 @@
 var moduleDependencies = {
 	bootstrap: "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css",
 	cors: "https://stormy-beach-14823.herokuapp.com/",
-	io: "https://raw.githubusercontent.com/Gallery-of-Kaeon/JavaScript-Utilities/master/JavaScript%20Utilities/Utilities/Data/io.js",
-	one: "https://raw.githubusercontent.com/Gallery-of-Kaeon/Kaeon-FUSION/master/Kaeon%20FUSION/Source/Engine/ONE.js",
-	onePlus: "https://raw.githubusercontent.com/Gallery-of-Kaeon/Kaeon-FUSION/master/Kaeon%20FUSION/Source/Engine/ONEPlus.js",
-	override: "https://raw.githubusercontent.com/Gallery-of-Kaeon/JavaScript-Utilities/master/JavaScript%20Utilities/Utilities/Application/Management/override.js",
-	oneSuite: "https://raw.githubusercontent.com/Gallery-of-Kaeon/Kaeon-FUSION/master/Kaeon%20FUSION/Source/Engine/ONESuite.js",
-	ui: "https://raw.githubusercontent.com/Gallery-of-Kaeon/JavaScript-Utilities/master/JavaScript%20Utilities/Utilities/UI/Visual/General/ui.js",
-	widgets: "https://raw.githubusercontent.com/Gallery-of-Kaeon/JavaScript-Utilities/master/JavaScript%20Utilities/Utilities/UI/Visual/Widgets/widgets.js"
+	io: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/1%20-%20General/1%20-%20Data/1%20-%20IO/1%20-%20JavaScript/1%20-%20Source/io.js",
+	one: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/1%20-%20ONE/1%20-%20ONE/1%20-%20JavaScript/1%20-%20Source/ONE.js",
+	onePlus: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/1%20-%20ONE/4%20-%20ONE%2B/1%20-%20JavaScript/1%20-%20Source/ONEPlus.js",
+	override: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/1%20-%20General/2%20-%20Application/1%20-%20Management/2%20-%20Process/2%20-%20Override/1%20-%20JavaScript/1%20-%20Source/override.js",
+	oneSuite: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/1%20-%20ONE/6%20-%20ONE%20Suite/1%20-%20JavaScript/1%20-%20Source/ONESuite.js",
+	vision: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/2%20-%20Frameworks/1%20-%20Vision/1%20-%20Core/1%20-%20JavaScript/1%20-%20Source/vision.js",
+	widgets: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/2%20-%20Frameworks/1%20-%20Vision/2%20-%20Visual/2%20-%20Widgets/1%20-%20General/1%20-%20JavaScript/1%20-%20Source/widgets.js"
 };
 
 var io = require(moduleDependencies.io);
@@ -15,7 +15,7 @@ var one = require(moduleDependencies.one);
 var onePlus = require(moduleDependencies.onePlus);
 var override = require(moduleDependencies.override);
 var oneSuite = require(moduleDependencies.oneSuite);
-var ui = require(moduleDependencies.ui);
+var vision = require(moduleDependencies.vision);
 var widgets = require(moduleDependencies.widgets);
 
 let urlArgs = {};
@@ -36,7 +36,7 @@ if(urlArgs.kaeonoriginjs != null ||
 	urlArgs.kaeonoriginfusion != null ||
 	urlArgs.kaeonoriginhtml != null) {
 
-	ui.set(
+	vision.set(
 		document.documentElement,
 		{
 			style: {
@@ -143,7 +143,7 @@ if(urlArgs.kaeonoriginjs != null ||
 		}
 	}
 
-	var outputField = ui.create({
+	var outputField = vision.create({
 		tag: "textarea",
 		style: {
 			position: "fixed",
@@ -167,7 +167,7 @@ if(urlArgs.kaeonoriginjs != null ||
 		function() {
 
 			if(!document.documentElement.contains(outputField))
-				ui.extend(outputField);
+				vision.extend(outputField);
 			
 			outputField.style.display =
 				window.localStorage.getItem("kaeonOriginConsole") == "true" &&
@@ -178,7 +178,7 @@ if(urlArgs.kaeonoriginjs != null ||
 		1000 / 60
 	);
 
-	ui.extend(outputField);
+	vision.extend(outputField);
 
 	console.log = function() {
 
@@ -250,9 +250,9 @@ if(urlArgs.kaeonoriginjs != null ||
 
 var currentTab = 0;
 
-let inputPanel = ui.create();
+let inputPanel = vision.create();
 
-var oneText = ui.create({
+var oneText = vision.create({
 	tag: "textarea",
 	attributes: { spellcheck: "false" },
 	style: {
@@ -270,7 +270,7 @@ var oneText = ui.create({
 
 var outTabs = [];
 
-let outputPanel = ui.create();
+let outputPanel = vision.create();
 
 var tabs = [];
 
@@ -279,11 +279,11 @@ function addTab(tab) {
 	if(tab == null)
 		tab = createTab();
 
-	tab.line = ui.create({ tag: "br" });
+	tab.line = vision.create({ tag: "br" });
 
 	tabs.push(tab);
 
-	ui.extend(ui.get("#files")[0], [tab, tab.line]);
+	vision.extend(vision.get("#files")[0], [tab, tab.line]);
 
 	saveData();
 }
@@ -293,9 +293,9 @@ function createTab(data, index, name) {
 	if(index == null)
 		index = tabs.length;
 
-	let check = ui.create({ tag: "input", fields: { type: "checkbox" } });
+	let check = vision.create({ tag: "input", fields: { type: "checkbox" } });
 
-	let button = ui.create({
+	let button = vision.create({
 		tag: "button",
 		content: name == null ? ("File " + (index + 1)) : name,
 		fields: {
@@ -306,7 +306,7 @@ function createTab(data, index, name) {
 		}
 	});
 
-	let nameButton = ui.create({
+	let nameButton = vision.create({
 		tag: "button",
 		content: "Set Name",
 		fields: {
@@ -326,7 +326,7 @@ function createTab(data, index, name) {
 		}
 	});
 
-	let tab =  ui.create({
+	let tab =  vision.create({
 		fields: {
 			named: name != null,
 			button: button,
@@ -334,7 +334,7 @@ function createTab(data, index, name) {
 		}
 	});
 
-	ui.extend(tab, [check, button, nameButton]);
+	vision.extend(tab, [check, button, nameButton]);
 
 	return tab;
 }
@@ -343,7 +343,7 @@ function load() {
 
 	tabs = [];
 
-	ui.get("#files")[0].innerHTML = "";
+	vision.get("#files")[0].innerHTML = "";
 
 	let data = window.localStorage.getItem("kaeonOriginData");
 
@@ -368,7 +368,7 @@ function load() {
 		addTab(createTab(data.children[i].content, i, name));
 	}
 
-	ui.get("#text")[0].value = data.children[0].content;
+	vision.get("#text")[0].value = data.children[0].content;
 
 	setTab(0);
 }
@@ -385,7 +385,7 @@ function manageScreen() {
 
 			manageScreen.mode = mode;
 
-			ui.set(
+			vision.set(
 				inputPanel,
 				{
 					style: {
@@ -398,7 +398,7 @@ function manageScreen() {
 				}
 			);
 
-			ui.set(
+			vision.set(
 				outputPanel,
 				{
 					style: {
@@ -421,9 +421,9 @@ function onRun(type) {
 
 	onRun.count++;
 
-	ui.set(ui.get("#display")[0], { style: { overflow: "auto" } });
+	vision.set(vision.get("#display")[0], { style: { overflow: "auto" } });
 
-	let frame = ui.create({
+	let frame = vision.create({
 		tag: "iframe",
 		attributes: {
 			"src": window.location.href +
@@ -444,23 +444,23 @@ function onRun(type) {
 	});
 
 	try {
-		ui.get("#display")[0].removeChild(oneText);
+		vision.get("#display")[0].removeChild(oneText);
 	}
 
 	catch(error) {
 
 	}
 
-	ui.extend(ui.get("#display")[0], frame);
+	vision.extend(vision.get("#display")[0], frame);
 
-	var outItem = ui.create();
+	var outItem = vision.create();
 
 	outItem.frame = frame;
 
-	let check = ui.create({ tag: "input" });
+	let check = vision.create({ tag: "input" });
 	check.type = "checkbox";
 
-	let button = ui.create({
+	let button = vision.create({
 		tag: "button",
 		content: tabs[currentTab].button.innerHTML + ": " + onRun.count
 	});
@@ -470,7 +470,7 @@ function onRun(type) {
 	button.onclick = function() {
 
 		try {
-			ui.get("#display")[0].removeChild(oneText);
+			vision.get("#display")[0].removeChild(oneText);
 		}
 
 		catch(error) {
@@ -486,10 +486,10 @@ function onRun(type) {
 		outItem.frame.style.display = "block";
 	};
 
-	ui.extend(outItem, check);
-	ui.extend(outItem, button);
+	vision.extend(outItem, check);
+	vision.extend(outItem, button);
 
-	ui.extend(ui.get("#output-tabs")[0], outItem);
+	vision.extend(vision.get("#output-tabs")[0], outItem);
 
 	outTabs.push(outItem);
 
@@ -558,29 +558,29 @@ function setTab(index) {
 	}
 
 	currentTab = index;
-	ui.get("#text")[0].value = tabs[index].data;
+	vision.get("#text")[0].value = tabs[index].data;
 }
 
 function showText(mode) {
 
-	ui.set(ui.get("#display")[0], { style: { overflow: "hidden" } });
+	vision.set(vision.get("#display")[0], { style: { overflow: "hidden" } });
 
 	for(let i = 0; i < outTabs.length; i++)
 		outTabs[i].frame.style.display = "none";
 
-	ui.extend(ui.get("#display")[0], oneText);
+	vision.extend(vision.get("#display")[0], oneText);
 
 	try {
 
 		if(mode == "one") {
 
 			oneText.value = oneSuite.write(
-				oneSuite.parse(ui.get("#text")[0].value)
+				oneSuite.parse(vision.get("#text")[0].value)
 			);
 		}
 
 		else if(mode == "preprocess")
-			oneText.value = oneSuite.preprocess(ui.get("#text")[0].value);
+			oneText.value = oneSuite.preprocess(vision.get("#text")[0].value);
 
 		else
 			oneText.value = window.localStorage.getItem("kaeonOriginData");
@@ -593,9 +593,9 @@ function showText(mode) {
 
 document.title = "Kaeon Origin";
 
-ui.load(moduleDependencies.bootstrap);
+vision.load(moduleDependencies.bootstrap);
 
-ui.set(
+vision.set(
 	document.documentElement,
 	{
 		style: {
@@ -607,9 +607,9 @@ ui.set(
 	}
 );
 
-ui.extend(document.documentElement, [inputPanel, outputPanel]);
+vision.extend(document.documentElement, [inputPanel, outputPanel]);
 
-ui.extend(inputPanel, [
+vision.extend(inputPanel, [
 	{
 		tag: "button",
 		content: "Open All",
@@ -790,8 +790,8 @@ ui.extend(inputPanel, [
 		
 					if(tabs[i].childNodes[0].checked) {
 		
-						ui.get("#files")[0].removeChild(tabs[i]);
-						ui.get("#files")[0].removeChild(tabs[i].line);
+						vision.get("#files")[0].removeChild(tabs[i]);
+						vision.get("#files")[0].removeChild(tabs[i].line);
 		
 						tabs.splice(i, 1);
 		
@@ -804,7 +804,7 @@ ui.extend(inputPanel, [
 					let button = tabs[i].childNodes[1];
 		
 					if(!tabs[i].named)
-						ui.set(button, { content: "File " + (i + 1) });
+						vision.set(button, { content: "File " + (i + 1) });
 		
 					button.index = i;
 		
@@ -884,7 +884,7 @@ ui.extend(inputPanel, [
 			onclick: () => {
 
 				io.save(
-					ui.get("#text")[0].value,
+					vision.get("#text")[0].value,
 					tabs[currentTab].named ?
 						tabs[currentTab].childNodes[1].innerHTML :
 						"File " + (currentTab + 1) + ".txt"
@@ -913,7 +913,7 @@ ui.extend(inputPanel, [
 		
 				mywindow.document.write(
 					"<pre>" +
-					ui.get("#text")[0].value.
+					vision.get("#text")[0].value.
 					split("<").join("&lt;").
 					split(">").join("&gt;").
 					split("&").join("&amp;") +
@@ -1001,7 +1001,7 @@ ui.extend(inputPanel, [
 		},
 		fields: { onclick: () => { showText("workspace"); } }
 	},
-	ui.set(
+	vision.set(
 		widgets.getTextbox(),
 		{
 			attributes: { id: "text" },
@@ -1022,7 +1022,7 @@ ui.extend(inputPanel, [
 	)
 ]);
 
-ui.extend(outputPanel, [
+vision.extend(outputPanel, [
 	{
 		tag: "button",
 		content: "Fullscreen",
@@ -1033,7 +1033,7 @@ ui.extend(outputPanel, [
 			top: "0%",
 			left: "0%"
 		},
-		fields: { onclick: () => { openFullscreen(ui.get("#display")[0]); } }
+		fields: { onclick: () => { openFullscreen(vision.get("#display")[0]); } }
 	},	
 	{
 		tag: "button",
@@ -1116,8 +1116,8 @@ ui.extend(outputPanel, [
 						if(outTabs[i].button.style.background == "green")
 							current = true;
 		
-						ui.get("#output-tabs")[0].removeChild(outTabs[i]);
-						ui.get("#display")[0].removeChild(outTabs[i].frame);
+						vision.get("#output-tabs")[0].removeChild(outTabs[i]);
+						vision.get("#display")[0].removeChild(outTabs[i].frame);
 		
 						outTabs.splice(i, 1);
 
