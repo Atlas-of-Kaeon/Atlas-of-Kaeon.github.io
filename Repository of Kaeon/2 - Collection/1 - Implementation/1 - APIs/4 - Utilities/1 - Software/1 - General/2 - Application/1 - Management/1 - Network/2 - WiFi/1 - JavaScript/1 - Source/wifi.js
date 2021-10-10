@@ -47,7 +47,7 @@ function connect(credentials, callback) {
 		else if(open) {
 
 			setTimeout(() => {
-				connect(ssid, password, callback);
+				connect(credentials, callback);
 			});
 		}
 	});
