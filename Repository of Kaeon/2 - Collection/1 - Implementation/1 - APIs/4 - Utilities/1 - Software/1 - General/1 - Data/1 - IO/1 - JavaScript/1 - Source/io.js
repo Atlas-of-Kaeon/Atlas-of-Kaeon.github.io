@@ -134,7 +134,7 @@ if(platform == "browser") {
 			else {
 		
 				try {
-					return getXMLHTTP(module.exports.cors_api_url + file);
+					return getXMLHTTP(module.exports.cors + file);
 				}
 		
 				catch(error) {
