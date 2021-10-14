@@ -1,3 +1,7 @@
+var moduleDependencies = {
+	cors: "https://ghost-cors.herokuapp.com/"
+};
+
 function getPlatform() {
 
 	if(typeof process === 'object') {
@@ -137,13 +141,13 @@ function sendRequest(request, callback) {
 
 		call = new XMLHttpRequest();
 
-		if(module.exports.CORSProxy != null && !(
+		if(module.exports.cors != null && !(
 			request.request.uri.startsWith("http://localhost") ||
 			request.request.uri.startsWith("https://localhost") ||
 			request.request.uri.startsWith("http://127.0.0.1") ||
 			request.request.uri.startsWith("https://127.0.0.1"))) {
 
-			request.request.uri = module.exports.CORSProxy + request.request.uri;
+			request.request.uri = module.exports.cors + request.request.uri;
 
 			if(request.headers == null)
 				request.headers = { };
@@ -200,7 +204,7 @@ function sendRequest(request, callback) {
 }
 
 module.exports = {
-	CORSProxy: "https://cors.bridged.cc/",
+	cors: moduleDependencies.cors,
 	getURLArguments,
 	toHTTP,
 	toJSON,

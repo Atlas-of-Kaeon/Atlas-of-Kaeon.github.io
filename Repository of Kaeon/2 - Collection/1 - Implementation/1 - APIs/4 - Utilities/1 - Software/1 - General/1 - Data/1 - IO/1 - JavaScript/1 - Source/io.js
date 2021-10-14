@@ -1,5 +1,5 @@
 var moduleDependencies = {
-	cors_api_url: "https://cors.bridged.cc/"
+	cors: "https://ghost-cors.herokuapp.com/"
 };
 
 var platform = "browser";
@@ -40,6 +40,8 @@ function getXMLHTTP(url) {
 if(platform == "node") {
 
 	module.exports = {
+
+		cors: moduleDependencies.cors,
 		
 		getInput: (query) => {
 			return require('readline-sync').question(query != null ? query : "");
@@ -82,6 +84,8 @@ if(platform == "node") {
 if(platform == "browser") {
 	
 	module.exports = {
+
+		cors: moduleDependencies.cors,
 
 		getInput: (query) => {
 			return prompt("" + (query != null ? query : ""));
@@ -130,7 +134,7 @@ if(platform == "browser") {
 			else {
 		
 				try {
-					return getXMLHTTP(moduleDependencies.cors_api_url + file);
+					return getXMLHTTP(module.exports.cors_api_url + file);
 				}
 		
 				catch(error) {
