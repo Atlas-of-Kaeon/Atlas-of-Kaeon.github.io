@@ -103,6 +103,13 @@ function makeOnlineRequest(path, cors) {
 
 function executeCommand(args) {
 
+	if(args[0].includes("/") && args[0].includes(".")) {
+
+		moduleDependencies.kaeonUtilities = args[0];
+
+		args = args.slice(1);
+	}
+
 	var ONESuite = require(moduleDependencies.ONESuite);
 	var io = require(moduleDependencies.io);
 
@@ -247,6 +254,11 @@ function executeScript() {
 		if(require.kaeonUnited)
 			return;
 	}
+
+	let args = getURLArguments();
+
+	if(args["router"] != null)
+		moduleDependencies.kaeonUtilities = args["router"];
 
 	module = {
 		id: '.',
@@ -446,6 +458,9 @@ function executeCDN() {
 
 		executeScript();
 	}
+
+	else if(args["router"] != null)
+		moduleDependencies.kaeonUtilities = args["router"];
 
 	if(args["app"] != null) {
 

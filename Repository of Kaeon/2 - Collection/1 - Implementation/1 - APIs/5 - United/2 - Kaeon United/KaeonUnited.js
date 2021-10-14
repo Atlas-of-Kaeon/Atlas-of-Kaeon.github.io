@@ -3,7 +3,7 @@
 // <script> document.documentElement.innerHTML = "";
 
 var moduleDependencies = {
-	cors: "https://cors.bridged.cc/",
+	cors: "https://ghost-cors.herokuapp.com/",
 	csb: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/5%20-%20United/1%20-%20United%20Suite/2%20-%20United%20C/3%20-%20CSB/1%20-%20JavaScript/1%20-%20Source/CSB.js",
 	documentation: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/2%20-%20Documentation/1%20-%20Kaeon%20United/index.html",
 	io: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/1%20-%20General/1%20-%20Data/1%20-%20IO/1%20-%20JavaScript/1%20-%20Source/io.js",
@@ -102,6 +102,13 @@ function makeOnlineRequest(path, cors) {
 }
 
 function executeCommand(args) {
+
+	if(args[0].includes("/") && args[0].includes(".")) {
+
+		moduleDependencies.kaeonUtilities = args[0];
+
+		args = args.slice(1);
+	}
 
 	var ONESuite = require(moduleDependencies.ONESuite);
 	var io = require(moduleDependencies.io);
@@ -247,6 +254,11 @@ function executeScript() {
 		if(require.kaeonUnited)
 			return;
 	}
+
+	let args = getURLArguments();
+
+	if(args["router"] != null)
+		moduleDependencies.kaeonUtilities = args["router"];
 
 	module = {
 		id: '.',
@@ -446,6 +458,9 @@ function executeCDN() {
 
 		executeScript();
 	}
+
+	else if(args["router"] != null)
+		moduleDependencies.kaeonUtilities = args["router"];
 
 	if(args["app"] != null) {
 
