@@ -1,5 +1,8 @@
 var moduleDependencies = {
 	applications: {
+		cors: {
+			ghostCORS: "https://ghost-cors.herokuapp.com/"
+		},
 		kaeonOrigin: "https://atlas-of-kaeon.github.io/?unitedjs=https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/3%20-%20Applications/1%20-%20Kaeon%20Origin/2%20-%20Monolith/kaeonOrigin.js"
 	},
 	kaeonUnited: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/5%20-%20United/2%20-%20Kaeon%20United/KaeonUnited.js",
@@ -36,6 +39,29 @@ var moduleDependencies = {
 			},
 			utilities: {
 				software: {
+					frameworks: {
+						vision: {
+							audio: {
+								speech: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/2%20-%20Frameworks/1%20-%20Vision/3%20-%20Audio/1%20-%20Speech/1%20-%20JavaScript/1%20-%20Source/speech.js"
+							},
+							vision: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/2%20-%20Frameworks/1%20-%20Vision/1%20-%20Core/1%20-%20JavaScript/1%20-%20Source/vision.js",
+							visual: {
+								general: {
+									dimensions: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/2%20-%20Frameworks/1%20-%20Vision/2%20-%20Visual/1%20-%20General/2%20-%20Dimensions/1%20-%20JavaScript/1%20-%20Source/Dimensions.js",
+									input: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/2%20-%20Frameworks/1%20-%20Vision/2%20-%20Visual/1%20-%20General/1%20-%20Input/1%20-%20JavaScript/1%20-%20Source/input.js"
+								},
+								widgets: {
+									general: {
+										widgets: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/2%20-%20Frameworks/1%20-%20Vision/2%20-%20Visual/2%20-%20Widgets/1%20-%20General/1%20-%20JavaScript/1%20-%20Source/widgets.js"
+									},
+									miscellaneous: {
+										search: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/2%20-%20Frameworks/1%20-%20Vision/2%20-%20Visual/2%20-%20Widgets/2%20-%20Miscellaneous/1%20-%20Search/1%20-%20JavaScript/1%20-%20Source/search.js",
+										youtube: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/2%20-%20Frameworks/1%20-%20Vision/2%20-%20Visual/2%20-%20Widgets/2%20-%20Miscellaneous/2%20-%20YouTube/1%20-%20JavaScript/1%20-%20Source/youtube.js"
+									}
+								}
+							}
+						}
+					},
 					general: {
 						application: {
 							management: {
@@ -61,29 +87,6 @@ var moduleDependencies = {
 								utilities: {
 									ONE: {
 										wrapONE: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/1%20-%20General/1%20-%20Data/2%20-%20Parsing/2%20-%20Utilities/1%20-%20ONE/1%20-%20Wrap%20ONE/1%20-%20Javascript/1%20-%20Source/wrapONE.js"
-									}
-								}
-							}
-						}
-					},
-					frameworks: {
-						vision: {
-							audio: {
-								speech: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/2%20-%20Frameworks/1%20-%20Vision/3%20-%20Audio/1%20-%20Speech/1%20-%20JavaScript/1%20-%20Source/speech.js"
-							},
-							vision: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/2%20-%20Frameworks/1%20-%20Vision/1%20-%20Core/1%20-%20JavaScript/1%20-%20Source/vision.js",
-							visual: {
-								general: {
-									dimensions: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/2%20-%20Frameworks/1%20-%20Vision/2%20-%20Visual/1%20-%20General/2%20-%20Dimensions/1%20-%20JavaScript/1%20-%20Source/Dimensions.js",
-									input: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/2%20-%20Frameworks/1%20-%20Vision/2%20-%20Visual/1%20-%20General/1%20-%20Input/1%20-%20JavaScript/1%20-%20Source/input.js"
-								},
-								widgets: {
-									general: {
-										widgets: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/2%20-%20Frameworks/1%20-%20Vision/2%20-%20Visual/2%20-%20Widgets/1%20-%20General/1%20-%20JavaScript/1%20-%20Source/widgets.js"
-									},
-									miscellaneous: {
-										search: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/2%20-%20Frameworks/1%20-%20Vision/2%20-%20Visual/2%20-%20Widgets/2%20-%20Miscellaneous/1%20-%20Search/1%20-%20JavaScript/1%20-%20Source/search.js",
-										youtube: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/2%20-%20Frameworks/1%20-%20Vision/2%20-%20Visual/2%20-%20Widgets/2%20-%20Miscellaneous/2%20-%20YouTube/1%20-%20JavaScript/1%20-%20Source/youtube.js"
 									}
 								}
 							}
