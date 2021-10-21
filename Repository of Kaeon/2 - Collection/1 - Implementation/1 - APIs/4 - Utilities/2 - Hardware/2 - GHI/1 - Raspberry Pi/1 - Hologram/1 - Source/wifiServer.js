@@ -3,8 +3,11 @@ var http = require("http");
 var wifi = require("./wifi.js");
 
 var network = null;
+var queue = [];
 
 function execCommand(data) {
+
+	console.log("EXECUTED:", data);
 
 	childProcess.exec(
 		"node ./socketCommand.js \"" +
@@ -63,6 +66,9 @@ http.createServer(function(req, res) {
 			if(network != null) {
 
 				wifi.connect(data.credentials, () => {
+
+					console.log("CONNECTED:", network);
+
 					execCommand(data);
 				});
 			}
@@ -71,6 +77,8 @@ http.createServer(function(req, res) {
 		else
 			execCommand(data);
 	});
+
+	console.log("RETURNED:", queue);
 	
 	res.write("" + queue);
 
