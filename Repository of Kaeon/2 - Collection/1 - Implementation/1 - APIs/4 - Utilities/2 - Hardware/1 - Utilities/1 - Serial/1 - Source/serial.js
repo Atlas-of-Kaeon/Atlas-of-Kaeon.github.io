@@ -1,9 +1,12 @@
 var SerialPort = require('serialport');
 var Readline = require('@serialport/parser-readline');
 
-function connect(path, onMessage) {
+function connect(path, onMessage, options) {
 
-	var port = new SerialPort(path != null ? path : "COM3", { baudRate: 9600 });
+	options = options != null ? options : { };
+	options.baudRate = options.baudRate != null ? options.baudRate : 9600;
+
+	var port = new SerialPort(path, options);
 	
 	port.pipe(new Readline({ delimiter: '\n' })).on('data', data => {
 	
@@ -28,7 +31,20 @@ function getMessage(message) {
 	return result;
 }
 
+function getPorts(callback) {
+
+	SerialPort.list().then(
+		(ports) => {
+			callback(ports);
+		},
+		() => {
+			callback([]);
+		}
+	);
+}
+
 module.exports = {
 	connect,
-	getMessage
+	getMessage,
+	getPorts
 }
