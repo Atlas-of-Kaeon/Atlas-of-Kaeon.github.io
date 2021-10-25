@@ -67,7 +67,7 @@ function setPorts(init, callback) {
 
 				devices.forEach((device) => {
 					
-					if(device.link != null)
+					if(device.link != null && device.link.isOpen)
 						device.link.close();
 				});
 			}
