@@ -8,7 +8,8 @@ function getDevices() {
 	// STUB
 	devices = {
 		"1": require("./ghiGPIO.js"),
-		"2": require("./ghiWiFi.js")
+		"2": require("./ghiWiFi.js"),
+		"3": require("./ghiSerial.js")
 	};
 
 	// STUB
@@ -122,7 +123,12 @@ http.createServer(function(req, res) {
 		let reading = { };
 
 		Object.keys(state).forEach((key) => {
-			reading[key] = getReading(key);
+
+			reading[key] = {
+				input: data[key],
+				output: getReading(key),
+				type: devices[key].type
+			};
 		});
 
 		res.write(JSON.stringify(reading));
