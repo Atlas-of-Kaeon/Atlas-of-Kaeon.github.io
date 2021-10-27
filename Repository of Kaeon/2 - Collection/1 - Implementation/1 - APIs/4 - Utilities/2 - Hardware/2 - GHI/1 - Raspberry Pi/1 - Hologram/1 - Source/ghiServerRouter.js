@@ -3,18 +3,15 @@ var http = require("http");
 
 function getDevices() {
 
-	let devices = [];
-
-	// STUB
-	devices = {
-		"1": require("./ghiGPIO.js"),
-		"2": require("./ghiWiFi.js"),
-		"3": require("./ghiSerial.js")
+	return {
+		"0": require("./ghiModuleReceptor.js"),
+		"1": require("./ghiModuleGPIO.js"),
+		"2": require("./ghiModuleSerial.js"),
+		"3": require("./ghiModuleDisplay.js"),
+		"4": require("./ghiModuleRecorder.js"),
+		"5": require("./ghiModuleWiFi.js"),
+		"6": require("./ghiModuleCellular.js")
 	};
-
-	// STUB
-
-	return devices;
 }
 
 function processData(id, data) {
@@ -46,7 +43,7 @@ function loop() {
 
 	Object.keys(state).forEach((key) => {
 
-		((reading) => {
+		((reading, delta) => {
 
 			try {
 				eval(state[key].script.code);
@@ -55,7 +52,14 @@ function loop() {
 			catch(error) {
 				console.log(error);
 			}
-		})(getReading(key));
+		})(
+			JSON.stringify(getReading(key)),
+			delta != null ?
+				(new Date()).getTime() - delta :
+				0
+		);
+
+		delta = (new Date()).getTime()
 	});
 };
 
@@ -79,6 +83,7 @@ var devices = [];
 var state = { };
 
 var interval = null;
+var delta = null;
 
 init();
 
@@ -117,7 +122,7 @@ http.createServer(function(req, res) {
 		console.log("PROCESSED:", data);
 
 		Object.keys(data).forEach((key) => {
-			processData(key, data[key]);
+			processData(key, data[key].state);
 		});
 
 		let reading = { };
@@ -130,14 +135,14 @@ http.createServer(function(req, res) {
 				type: devices[key].type
 			};
 		});
-
+		
 		res.write(JSON.stringify(reading));
 
 		res.end();
 	});
 }).listen(process.argv[2]);
 
-if(!fs.existsSync("./ghiData.json"))
-	fs.writeFileSync("./ghiData.json", "{}");
+if(!fs.existsSync("./dataGHI.json"))
+	fs.writeFileSync("./dataGHI.json", "{}");
 
 console.log("READY");

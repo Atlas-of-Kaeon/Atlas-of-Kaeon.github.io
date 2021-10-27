@@ -74,5 +74,6 @@ module.exports = {
 		});
 	
 		return reading;
-	}
+	},
+	type: "gpio"
 };

@@ -35,5 +35,6 @@ module.exports = {
 		queue = [];
 	
 		return reading;
-	}
+	},
+	type: "wifi"
 };
