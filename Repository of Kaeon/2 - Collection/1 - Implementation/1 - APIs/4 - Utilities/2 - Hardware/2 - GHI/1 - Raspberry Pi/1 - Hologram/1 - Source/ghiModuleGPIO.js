@@ -14,9 +14,10 @@ catch(error) {
 }
 
 var pins = [];
+var on = [];
 
 module.exports = {
-	init: (state, id, args) => {
+	init: (callback, state, id, args) => {
 	 
 		for(let i = 0; i <= 40; i++) {
 	 
@@ -31,25 +32,23 @@ module.exports = {
 	 
 			}
 		}
-		
-		state[id].on = [];
 	},
-	process: (state, id, data) => {
+	process: (state, id) => {
 	
-		if(data.on != null) {
+		if(state[id].output.on != null) {
 
 			pins.forEach((i, index) => {
 
-				if(!state[id].on.includes(index) &&
-					data.on.includes(index)) {
+				if(!on.includes(index) &&
+					state[id].output.on.includes(index)) {
 
 					gpio.mode(i, gpio.OUTPUT);
 
 					gpio.write(i, gpio.HIGH);
 				}
 
-				else if(state[id].on.includes(index) &&
-					!data.on.includes(index)) {
+				else if(on.includes(index) &&
+					!state[id].output.on.includes(index)) {
 
 					gpio.write(i, gpio.LOW);
 
@@ -57,7 +56,7 @@ module.exports = {
 				}
 			});
 
-			state[id].on = data.on;
+			on = state[id].output.on;
 		}
 	},
 	read: (state, id) => {
@@ -66,7 +65,7 @@ module.exports = {
 	
 		pins.forEach((i) => {
 	
-			if(state[id].on.includes[i])
+			if(state[id].output.on.includes[i])
 				reading.push(null);
 	
 			else

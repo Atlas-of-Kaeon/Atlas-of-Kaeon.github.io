@@ -10,7 +10,7 @@ function execCommand(data) {
 	console.log("EXECUTED:", data);
 
 	childProcess.exec(
-		"node ./ghiUtilitySocketCommand.js \"" +
+		"node ./ghiCommandSocket.js \"" +
 		data.data +
 		"\"" +
 		(

@@ -4,7 +4,7 @@ var wifiServerPort = 0;
 var queue = [];
 
 module.exports = {
-	init: (state, id, args) => {
+	init: (callback, state, id, args) => {
 		wifiServerPort = args[3];
 	},
 	process: (state, id, data) => {
@@ -15,7 +15,7 @@ module.exports = {
 					method: "POST",
 					uri: "http://localhost:" + wifiServerPort
 				},
-				body: JSON.stringify(data)
+				body: JSON.stringify(state[id].output)
 			},
 			(data) => {
 

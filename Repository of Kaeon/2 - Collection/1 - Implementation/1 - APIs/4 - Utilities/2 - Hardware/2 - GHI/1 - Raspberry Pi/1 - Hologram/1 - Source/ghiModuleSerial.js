@@ -88,20 +88,20 @@ function setPorts(init, callback) {
 }
 
 module.exports = {
-	init: (state, id, args) => {
+	init: (callback, state, id, args) => {
 		setPorts(true);
 	},
-	process: (state, id, data) => {
+	process: (state, id) => {
 
 		let init = deviceState == null;
 
 		if(!init)
-			sendData(devices.slice(0), data);
+			sendData(devices.slice(0), state[id].output);
 
 		setPorts(false, () => {
 
 			if(init)
-				sendData(devices, data);
+				sendData(devices, state[id].output);
 		});
 	},
 	read: (state, id) => {

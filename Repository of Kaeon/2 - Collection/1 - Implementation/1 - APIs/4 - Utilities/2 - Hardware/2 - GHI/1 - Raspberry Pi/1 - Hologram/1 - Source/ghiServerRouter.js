@@ -1,4 +1,3 @@
-var fs = require("fs");
 var http = require("http");
 
 function getDevices() {
@@ -14,93 +13,67 @@ function getDevices() {
 	};
 }
 
-function processData(id, data) {
-
-	try {
-		devices[id].process(state, id, data);
-	}
-
-	catch(error) {
-		console.log(error);
-	}
-}
-
-function getReading(id) {
-
-	try {
-		return devices[id].read(state, id);
-	}
-
-	catch(error) {
-
-		console.log(error);
-
-		return null;
-	}
-}
-
-function loop() {
-
-	Object.keys(state).forEach((key) => {
-
-		((reading, delta) => {
-
-			try {
-				eval(state[key].script.code);
-			}
-
-			catch(error) {
-				console.log(error);
-			}
-		})(
-			JSON.stringify(getReading(key)),
-			delta != null ?
-				(new Date()).getTime() - delta :
-				0
-		);
-
-		delta = (new Date()).getTime()
-	});
-};
-
 function init() {
 
 	devices = getDevices();
 
 	Object.keys(devices).forEach((key) => {
-
-		state[key] = {
-			script: ""
-		}
-
-		devices[key].init(state, key, process.argv);
+		state[key] = { output: { }, input: { }, type: devices[key].type };
 	});
 
-	interval = setInterval(loop, 1000 / 60);
+	Object.keys(devices).forEach((key) => {
+		devices[key].init(processCall, state, key, process.argv);
+	});
+}
+
+function processCall(call) {
+
+	Object.keys(call).forEach((key) => {
+		state[key].output = call[key];
+	});
+
+	Object.keys(call).forEach((key) => {
+
+		try {
+			devices[id].process(state, key);
+		}
+	
+		catch(error) {
+			console.log(error);
+		}
+	});
+
+	Object.keys(state).forEach((key) => {
+
+		try {
+			state[key].input = devices[id].read(state, id);
+		}
+	
+		catch(error) {
+			console.log(error);
+		}
+	});
 }
 
 var devices = [];
 var state = { };
 
-var interval = null;
-var delta = null;
-
 init();
 
-http.createServer(function(req, res) {
+http.createServer(function(request, response) {
 
-	let url = req.url.substring(1);
+	let url = request.url.substring(1);
 
 	if(url == "favicon.ico") {
 
-		res.end();
+		response.end();
 
 		return;
 	}
 
 	let body = "";
 
-	req.on('data', (chunk) => {
+	request.on('data', (chunk) => {
 		body += chunk.toString();
 	}).on('end', () => {
 
@@ -121,28 +94,12 @@ http.createServer(function(req, res) {
 
 		console.log("PROCESSED:", data);
 
-		Object.keys(data).forEach((key) => {
-			processData(key, data[key].state);
-		});
-
-		let reading = { };
-
-		Object.keys(state).forEach((key) => {
-
-			reading[key] = {
-				input: data[key],
-				output: getReading(key),
-				type: devices[key].type
-			};
-		});
+		processCall(data);
 		
-		res.write(JSON.stringify(reading));
+		response.write(JSON.stringify(state));
 
-		res.end();
+		response.end();
 	});
 }).listen(process.argv[2]);
-
-if(!fs.existsSync("./dataGHI.json"))
-	fs.writeFileSync("./dataGHI.json", "{}");
 
 console.log("READY");

@@ -1,5 +1,5 @@
 module.exports = {
-	init: (state, id, args) => {
+	init: (callback, state, id, args) => {
 		// STUB
 	},
 	process: (state, id, data) => {
