@@ -3,13 +3,13 @@ var fs = require("fs");
 var data = { };
 
 module.exports = {
-	block: (state, call) => {
+	block: (state, id, call) => {
 
 		// STUB
 
 		return false;
 	},
-	init: (callback, state, id, args) => {
+	init: (state, id, callback, args) => {
 
 		if(!fs.existsSync("./dataGHI.json"))
 			fs.writeFileSync("./dataGHI.json", "{}");

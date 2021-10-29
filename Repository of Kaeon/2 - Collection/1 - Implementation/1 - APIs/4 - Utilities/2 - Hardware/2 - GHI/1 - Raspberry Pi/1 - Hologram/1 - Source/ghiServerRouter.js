@@ -22,7 +22,7 @@ function init() {
 	});
 
 	Object.keys(devices).forEach((key) => {
-		devices[key].init(processCall, state, key, process.argv);
+		devices[key].init(state, key, processCall, process.argv);
 	});
 }
 
@@ -61,7 +61,7 @@ function validate(call) {
 
 	for(let i = 0; i < keys.length; i++) {
 
-		if(devices[keys[i]].block(state, call))
+		if(devices[keys[i]].block(state, keys[i], call))
 			return false;
 	}
 
