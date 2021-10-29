@@ -17,6 +17,9 @@ var pins = [];
 var on = [];
 
 module.exports = {
+	block: (state, call) => {
+		return false;
+	},
 	init: (callback, state, id, args) => {
 	 
 		for(let i = 0; i <= 40; i++) {

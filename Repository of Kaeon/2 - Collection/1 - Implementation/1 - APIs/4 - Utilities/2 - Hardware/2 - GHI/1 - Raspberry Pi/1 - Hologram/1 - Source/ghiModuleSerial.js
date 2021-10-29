@@ -88,6 +88,9 @@ function setPorts(init, callback) {
 }
 
 module.exports = {
+	block: (state, call) => {
+		return false;
+	},
 	init: (callback, state, id, args) => {
 		setPorts(true);
 	},

@@ -35,7 +35,7 @@ function processCall(call) {
 	Object.keys(call).forEach((key) => {
 
 		try {
-			devices[id].process(state, key);
+			devices[key].process(state, key);
 		}
 	
 		catch(error) {
@@ -46,13 +46,26 @@ function processCall(call) {
 	Object.keys(state).forEach((key) => {
 
 		try {
-			state[key].input = devices[id].read(state, id);
+			state[key].input = devices[key].read(state, key);
 		}
 	
 		catch(error) {
 			console.log(error);
 		}
 	});
+}
+
+function validate(call) {
+
+	let keys = Object.keys(devices);
+
+	for(let i = 0; i < keys.length; i++) {
+
+		if(devices[keys[i]].block(state, call))
+			return false;
+	}
+
+	return true;
 }
 
 var devices = [];
@@ -94,9 +107,21 @@ http.createServer(function(request, response) {
 
 		console.log("PROCESSED:", data);
 
-		processCall(data);
-		
-		response.write(JSON.stringify(state));
+		if(validate(call)) {
+
+			console.log("VALIDATED");
+
+			processCall(data);
+			
+			response.write(JSON.stringify(state));
+		}
+
+		else {
+
+			console.log("INVALIDATED");
+			
+			response.write(JSON.stringify(state));
+		}
 
 		response.end();
 	});

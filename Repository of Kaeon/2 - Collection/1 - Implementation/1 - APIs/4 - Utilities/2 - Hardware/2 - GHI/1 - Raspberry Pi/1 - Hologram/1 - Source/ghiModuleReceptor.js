@@ -3,6 +3,12 @@ var fs = require("fs");
 var data = { };
 
 module.exports = {
+	block: (state, call) => {
+
+		// STUB
+
+		return false;
+	},
 	init: (callback, state, id, args) => {
 
 		if(!fs.existsSync("./dataGHI.json"))
@@ -12,7 +18,7 @@ module.exports = {
 
 		// STUB
 	},
-	process: (state, id, data) => {
+	process: (state, id) => {
 		// STUB
 	},
 	read: (state, id) => {

@@ -4,10 +4,13 @@ var wifiServerPort = 0;
 var queue = [];
 
 module.exports = {
+	block: (state, call) => {
+		return false;
+	},
 	init: (callback, state, id, args) => {
 		wifiServerPort = args[3];
 	},
-	process: (state, id, data) => {
+	process: (state, id) => {
 
 		httpUtils.sendRequest(
 			{
