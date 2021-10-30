@@ -1,1 +1,0 @@
-@reboot sudo /usr/local/bin/node /home/pi/Documents/GHI/ghiSource.js 1233
