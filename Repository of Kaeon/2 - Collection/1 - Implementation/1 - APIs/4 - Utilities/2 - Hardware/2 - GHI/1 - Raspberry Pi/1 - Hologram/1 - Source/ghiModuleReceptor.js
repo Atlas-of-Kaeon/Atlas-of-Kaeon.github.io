@@ -18,24 +18,19 @@ function startInterval() {
 
 			if(newState != null) {
 
-				let newData = JSON.parse("" + newState);
+				let data = JSON.parse("" + newState);
+				let call = { };
 
-				Object.keys(newData).forEach((key) => {
+				Object.keys(data).forEach((key) => {
 
-					if(newData[key].output != null)
-						stateReference[key].output = newData[key].output;
+					if(data[key].output != null)
+						call[key] = data[key].output;
 				});
 
-				let secondaryCall = { };
+				console.log("SCRIPT CALL", JSON.stringify(call));
 
-				Object.keys(stateReference).forEach((key) => {
-
-					if(stateReference[key].output != null)
-						secondaryCall[key] = stateReference[key].output;
-				});
-
-				if(Object.keys(secondaryCall).length > 0)
-					callbackReference(secondaryCall);
+				if(Object.keys(call).length > 0)
+					callbackReference(call);
 			}
 		}
 
@@ -58,7 +53,6 @@ var data = {
 
 var callbackReference = () => { };
 var stateReference = { };
-var idReference = 0;
 
 var interval = null;
 var lastTime = null;
@@ -80,7 +74,6 @@ module.exports = {
 
 		stateReference = state;
 		callbackReference = callback;
-		idReference = id;
 		
 		startInterval();
 

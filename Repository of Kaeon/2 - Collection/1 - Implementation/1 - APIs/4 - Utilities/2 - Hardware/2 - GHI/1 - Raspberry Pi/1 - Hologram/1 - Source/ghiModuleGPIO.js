@@ -65,15 +65,25 @@ module.exports = {
 	read: (state, id) => {
 	
 		let reading = [];
+
+		if(state[id].output.on != null) {
 	
-		pins.forEach((i) => {
+			pins.forEach((i) => {
+		
+				if(state[id].output.on.includes(i))
+					reading.push(null);
+		
+				else
+					reading.push(gpio.read(i));
+			});
+		}
+
+		else {
 	
-			if(state[id].output.on.includes[i])
-				reading.push(null);
-	
-			else
+			pins.forEach((i) => {
 				reading.push(gpio.read(i));
-		});
+			});
+		}
 	
 		return reading;
 	},

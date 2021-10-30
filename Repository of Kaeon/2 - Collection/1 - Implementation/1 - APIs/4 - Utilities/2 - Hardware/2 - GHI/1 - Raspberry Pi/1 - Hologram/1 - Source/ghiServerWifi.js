@@ -59,23 +59,30 @@ http.createServer(function(req, res) {
 		
 		console.log("INTERCEPTED:", data);
 
-		if(data.credentials.ssid != network) {
+		try {
 
-			network = data.credentials.ssid;
+			if(data.credentials.ssid != network) {
 
-			if(network != null) {
+				network = data.credentials.ssid;
 
-				wifi.connect(data.credentials, () => {
+				if(network != null) {
 
-					console.log("CONNECTED:", network);
+					wifi.connect(data.credentials, () => {
 
-					execCommand(data);
-				});
+						console.log("CONNECTED:", network);
+
+						execCommand(data);
+					});
+				}
 			}
+
+			else
+				execCommand(data);
 		}
 
-		else
-			execCommand(data);
+		catch(error) {
+			console.log(error);
+		}
 	});
 
 	console.log("RETURNED:", queue);
@@ -86,3 +93,5 @@ http.createServer(function(req, res) {
 
 	res.end();
 }).listen(process.argv[2]);
+
+console.log("READY");
