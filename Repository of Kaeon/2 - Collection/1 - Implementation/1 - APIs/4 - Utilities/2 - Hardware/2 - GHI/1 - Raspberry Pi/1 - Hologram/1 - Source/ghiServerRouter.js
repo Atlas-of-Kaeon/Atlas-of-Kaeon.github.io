@@ -107,7 +107,7 @@ http.createServer(function(request, response) {
 
 		console.log("PROCESSED:", data);
 
-		if(validate(call)) {
+		if(validate(data)) {
 
 			console.log("VALIDATED");
 
