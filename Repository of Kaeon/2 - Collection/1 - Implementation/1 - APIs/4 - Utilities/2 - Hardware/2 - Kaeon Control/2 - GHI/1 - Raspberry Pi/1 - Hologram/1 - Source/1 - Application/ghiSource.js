@@ -8,4 +8,4 @@ let wifiPort = process.argv.length > 3 ?
 
 child.exec("node ghiServerWifi.js " + wifiPort);
 child.exec("node ghiServerRouter.js " + port + " " + wifiPort);
-child.exec("sudo python3 ghiReceiver.py " + port);
+child.exec("sudo python3 uhapi.py " + port);
