@@ -61,6 +61,20 @@ http.createServer(function(req, res) {
 
 		try {
 
+			if(data.credentials == null) {
+
+				res.end();
+
+				return;
+			}
+
+			if(data.credentials.ssid == null) {
+
+				res.end();
+				
+				return;
+			}
+
 			if(data.credentials.ssid != network) {
 
 				network = data.credentials.ssid;

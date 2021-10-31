@@ -9,7 +9,7 @@ if(metadata.sequence == null)
 if(metadata.delta == null)
 	metadata.delta = 0;
 
-metadata.delta -= delta;
+metadata.delta -= delta / 1000;
 
 if(metadata.sequence.length == 0 || metadata.delta > 0)
 	return null;
@@ -19,7 +19,7 @@ let operation = metadata.sequence[0].operation;
 if(metadata.sequence[0].delta != null)
 	metadata.delta = metadata.sequence[0].delta;
 
-metadata.sequence = metadata.sequence.slice(0);
+metadata.sequence = metadata.sequence.slice(1);
 
 let newState = JSON.parse(JSON.stringify(state));
 

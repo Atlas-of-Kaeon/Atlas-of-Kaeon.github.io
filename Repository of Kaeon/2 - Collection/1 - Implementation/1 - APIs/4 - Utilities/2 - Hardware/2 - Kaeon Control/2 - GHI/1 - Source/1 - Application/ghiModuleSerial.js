@@ -98,12 +98,12 @@ module.exports = {
 
 		let init = deviceState == null;
 
-		if(!init)
+		if(!init && Array.isArray(state[id].output))
 			sendData(devices.slice(0), state[id].output);
 
 		setPorts(false, () => {
 
-			if(init)
+			if(init && Array.isArray(state[id].output))
 				sendData(devices, state[id].output);
 		});
 	},
