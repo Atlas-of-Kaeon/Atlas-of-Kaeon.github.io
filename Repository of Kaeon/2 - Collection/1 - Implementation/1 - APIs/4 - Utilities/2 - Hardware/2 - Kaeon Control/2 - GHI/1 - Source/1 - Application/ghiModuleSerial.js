@@ -36,6 +36,8 @@ function createLink(device) {
 
 		link = { write: () => { } };
 	}
+
+	device.init = true;
 }
 
 function sendData(ports, data) {
@@ -44,11 +46,22 @@ function sendData(ports, data) {
 
 		let device = getDevice(ports, item);
 
+		if(device.init)
+			device.init = false;
+
 		if(device == null)
 			return;
 
-		if(device.link == null)
-			createLink(device);
+		if(device.link == null) {
+
+			createLink(device, item.data);
+
+			setTimeout(() => {
+
+				if(device.init)
+					device.link.write(serial.getMessage(item.data));
+			}, 2000);
+		}
 
 		else
 			device.link.write(serial.getMessage(item.data));
@@ -67,19 +80,17 @@ function setPorts(init, callback) {
 
 				devices.forEach((device) => {
 					
-					if(device.link != null && device.link.isOpen)
+					if(device.link != null && device.link.isOpen) {
+
 						device.link.close();
+
+						device.link = null;
+						device.init = false;
+					}
 				});
 			}
 
 			devices = ports;
-
-			if(init) {
-
-				devices.forEach((device) => {
-					createLink(device);
-				});
-			}
 		}
 
 		if(callback != null)
