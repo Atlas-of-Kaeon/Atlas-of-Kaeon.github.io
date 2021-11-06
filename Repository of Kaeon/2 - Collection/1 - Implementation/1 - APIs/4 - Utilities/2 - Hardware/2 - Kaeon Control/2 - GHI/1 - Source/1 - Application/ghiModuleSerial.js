@@ -9,7 +9,30 @@ function getDevice(ports, item) {
 		return null;
 
 	let match = ports.filter((device) => {
-		return device.pnpId == item.device || device.path == item.device;
+
+		if(typeof item.device == "string")
+			return device.pnpId == item.device || device.path == item.device;
+
+		else {
+
+			if(item.device.serial == null &&
+				item.device.vendor == null &&
+				item.device.product == null) {
+
+				return false;
+			}
+
+			if(item.device.serial != null && item.device.serial != device.serialNumber)
+				return false;
+
+			if(item.device.vendor != null && item.device.vendor != device.vendorId)
+				return false;
+
+			if(item.device.product != null && item.device.product != device.productId)
+				return false;
+
+			return true;
+		}
 	});
 
 	if(match.length == 0)
