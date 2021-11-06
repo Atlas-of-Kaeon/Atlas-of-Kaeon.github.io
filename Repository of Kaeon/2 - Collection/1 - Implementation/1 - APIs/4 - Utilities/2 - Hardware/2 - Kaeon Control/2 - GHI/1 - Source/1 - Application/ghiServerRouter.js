@@ -9,7 +9,8 @@ function getDevices() {
 		"3": require("./ghiModuleDisplay.js"),
 		"4": require("./ghiModuleRecorder.js"),
 		"5": require("./ghiModuleWiFi.js"),
-		"6": require("./ghiModuleCellular.js")
+		"6": require("./ghiModuleBluetooth.js"),
+		"7": require("./ghiModuleCellular.js")
 	};
 }
 
