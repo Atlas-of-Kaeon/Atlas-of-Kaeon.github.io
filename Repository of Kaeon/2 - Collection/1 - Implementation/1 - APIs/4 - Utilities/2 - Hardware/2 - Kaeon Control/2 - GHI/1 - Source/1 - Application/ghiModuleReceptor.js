@@ -70,7 +70,17 @@ module.exports = {
 		if(!fs.existsSync("./dataGHI.json"))
 			fs.writeFileSync("./dataGHI.json", "{}");
 
-		Object.assign(data, JSON.parse(fs.readFileSync("./dataGHI.json")));
+		let dataGHI = { };
+
+		try {
+			dataGHI = JSON.parse(fs.readFileSync("./dataGHI.json"));
+		}
+
+		catch(error) {
+			dataGHI = { };
+		}
+
+		Object.assign(data, dataGHI);
 
 		stateReference = state;
 		callbackReference = callback;
