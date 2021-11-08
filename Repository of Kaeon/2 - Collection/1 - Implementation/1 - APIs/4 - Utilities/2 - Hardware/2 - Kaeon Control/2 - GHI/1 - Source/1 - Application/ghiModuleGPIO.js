@@ -14,7 +14,7 @@ catch(error) {
 }
 
 var pins = [];
-var on = [];
+var stateRecord = [];
 
 module.exports = {
 	block: (state, id, call) => {
@@ -35,54 +35,51 @@ module.exports = {
 	 
 			}
 		}
+
+		while(stateRecord.length < pins.length)
+			stateRecord.push(0);
 	},
 	process: (state, id) => {
 	
-		if(state[id].output.on != null) {
+		if(state[id].output != null) {
 
-			pins.forEach((i, index) => {
+			for(let i = 0; i < pins.length && i < state[id].output.length; i++) {
 
-				if(!on.includes(index) &&
-					state[id].output.on.includes(index)) {
+				if(stateRecord[i] == 0 && state[id].output[i] != 0) {
 
-					gpio.mode(i, gpio.OUTPUT);
+					gpio.mode(pins[i], gpio.OUTPUT);
 
-					gpio.write(i, gpio.HIGH);
+					gpio.write(pins[i], state[id].output[i] == 1 ?
+						gpio.HIGH :
+						state[id].output[i]
+					);
 				}
 
-				else if(on.includes(index) &&
-					!state[id].output.on.includes(index)) {
+				else if(stateRecord[i] != 0 && state[id].output[i] == 0) {
 
-					gpio.write(i, gpio.LOW);
+					gpio.write(pins[i], gpio.LOW);
 
-					gpio.mode(i, gpio.INPUT);
+					gpio.mode(pins[i], gpio.INPUT);
 				}
-			});
+			}
 
-			on = state[id].output.on;
+			stateRecord = state[id].output;
+
+			while(stateRecord.length < pins.length)
+				stateRecord.push(0);
 		}
 	},
 	read: (state, id) => {
 	
 		let reading = [];
 
-		if(state[id].output.on != null) {
+		for(let i = 0; i < pins.length; i++) {
 	
-			pins.forEach((i) => {
-		
-				if(state[id].output.on.includes(i))
-					reading.push(null);
-		
-				else
-					reading.push(gpio.read(i));
-			});
-		}
-
-		else {
+			if(stateRecord[i] != 0)
+				reading.push(null);
 	
-			pins.forEach((i) => {
-				reading.push(gpio.read(i));
-			});
+			else
+				reading.push(gpio.read(pins[i]));
 		}
 	
 		return reading;

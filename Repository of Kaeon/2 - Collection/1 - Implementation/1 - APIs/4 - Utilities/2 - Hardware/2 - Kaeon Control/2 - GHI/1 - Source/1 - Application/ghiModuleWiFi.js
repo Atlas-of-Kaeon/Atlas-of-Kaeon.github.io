@@ -12,6 +12,9 @@ module.exports = {
 	},
 	process: (state, id) => {
 
+		if(state[id].output.credentials == null)
+			return;
+
 		httpUtils.sendRequest(
 			{
 				request: {
@@ -31,6 +34,8 @@ module.exports = {
 				}
 			}
 		);
+
+		state[id].output = { };
 	},
 	read: (state, id) => {
 	
