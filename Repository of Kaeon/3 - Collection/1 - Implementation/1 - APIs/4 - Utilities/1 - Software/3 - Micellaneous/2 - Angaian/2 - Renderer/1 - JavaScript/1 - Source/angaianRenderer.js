@@ -58,7 +58,7 @@ let urls = {
 	"516": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Chronicle-of-Kaeon/master/Chronicle%20of%20Kaeon/3%20-%20Collection/1%20-%20Angaian/1%20-%20Characters/516%20-%20Lai.png",
 	"520": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Chronicle-of-Kaeon/master/Chronicle%20of%20Kaeon/3%20-%20Collection/1%20-%20Angaian/1%20-%20Characters/520%20-%20Mai.png",
 	"528": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Chronicle-of-Kaeon/master/Chronicle%20of%20Kaeon/3%20-%20Collection/1%20-%20Angaian/1%20-%20Characters/528%20-%20Nai.png",
-	"1023": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Chronicle-of-Kaeon/master/Chronicle%20of%20Kaeon/3%20-%20Collection/1%20-%20Angaian/Angaian%20Crest.png"
+	"1023": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Chronicle-of-Kaeon/master/Chronicle%20of%20Kaeon/3%20-%20Collection/2%20-%20Angaian/2%20-%20Angaian%20Crest/Angaian%20Crest.png"
 };
 
 function render(element, text, size) {
