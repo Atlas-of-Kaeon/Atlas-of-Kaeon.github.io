@@ -6,7 +6,7 @@ import sys
 hologram = HologramCloud(dict(), network='cellular')
 
 try:
-	result = hologram.network.connect()
+	hologram.network.connect()
 
 except:
 	pass
@@ -19,7 +19,19 @@ except:
 
 while True:
 
-	message = hologram.popReceivedMessage()
+	try:
 
-	if message != None:
-		response = requests.post('http://localhost:' + sys.argv[1] + '/', data=message).text
+		message = hologram.popReceivedMessage()
+
+		if message != None:
+
+			print('RECEIVED: ' + message)
+
+			response = requests.post('http://localhost:' + sys.argv[1] + '/', data=message).text
+
+			hologram.sendMessage(response, topics=['UHAPI'])
+
+			print('RESPONSE: ' + response)
+
+	except:
+		pass
