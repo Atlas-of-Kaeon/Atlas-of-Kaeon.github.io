@@ -1,16 +1,27 @@
-var wifi = require('node-wifi');
-
-wifi.init({
-	face: null
-});
+var childProcess = require("child_process");
+var fs = require("fs");
+var wifi = process.platform == "win32" ? require("node-wifi") : { };
 
 var open = false;
+
+function initWindows() {
+
+	wifi.init({
+		face: null
+	});
+}
+
+function init() {
+
+	if(process.platform == "win32")
+		initWindows();
+}
 
 function getNetworks(callback) {
 	wifi.scan(callback);
 }
 
-function connect(credentials, callback) {
+function connectWindows(credentials, callback) {
 
 	open = true;
 	
@@ -53,9 +64,43 @@ function connect(credentials, callback) {
 	});
 }
 
+function connectLinux(credentials, callback) {
+	
+	let data = fs.readFileSync("/etc/wpa_supplicant/wpa_supplicant.conf");
+
+	data = data.substring(0, data.indexOf("\n\n")) +
+		"\n\nnetwork={\n\tssid=\"" +
+		credentials.ssid +
+		"\"\n\t" +
+		(credentials.password != null ?
+			"psk=\"" +
+				credentials.password +
+				"\"\n\tkey_mgmt=WPA-PSK" :
+			"key_mgmt=NONE"
+		) +
+		"\n}\n";
+
+	fs.writeFileSync("/etc/wpa_supplicant/wpa_supplicant.conf", data);
+
+	childProcess.execSync("sudo wpa_cli -i wlan0 reconfigure");
+
+	callback();
+}
+
+function connect(credentials, callback) {
+
+	if(process.platform == "win32")
+		connectWindows(credentials, callback);
+
+	else
+		connectLinux(credentials, callback);
+}
+
 function close() {
 	open = false;
 }
+
+init();
 
 module.exports = {
 	open,
