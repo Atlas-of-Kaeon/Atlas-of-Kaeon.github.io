@@ -66,7 +66,7 @@ function connectWindows(credentials, callback) {
 
 function connectLinux(credentials, callback) {
 	
-	let data = fs.readFileSync("/etc/wpa_supplicant/wpa_supplicant.conf");
+	let data = fs.readFileSync("/etc/wpa_supplicant/wpa_supplicant.conf", 'utf8');
 
 	data = data.substring(0, data.indexOf("\n\n")) +
 		"\n\nnetwork={\n\tssid=\"" +
