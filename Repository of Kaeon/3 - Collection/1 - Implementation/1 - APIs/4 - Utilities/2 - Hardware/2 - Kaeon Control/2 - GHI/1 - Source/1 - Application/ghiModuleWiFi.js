@@ -1,4 +1,4 @@
-var httpUtils = require("./httpUtils.js");
+var httpUtils = require(__dirname + "/httpUtils.js");
 
 var wifiServerPort = 0;
 var queue = [];

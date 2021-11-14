@@ -1,4 +1,4 @@
-var serial = require("./serial.js");
+var serial = require(__dirname + "/serial.js");
 
 var deviceState = null;
 var devices = null;

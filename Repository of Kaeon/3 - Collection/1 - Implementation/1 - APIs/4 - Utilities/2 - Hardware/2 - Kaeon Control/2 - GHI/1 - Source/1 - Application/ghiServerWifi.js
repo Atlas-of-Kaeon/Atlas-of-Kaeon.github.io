@@ -1,6 +1,6 @@
 var childProcess = require("child_process");
 var http = require("http");
-var wifi = require("./wifi.js");
+var wifi = require(__dirname + "/wifi.js");
 
 var network = null;
 var queue = [];
@@ -10,7 +10,7 @@ function execCommand(data) {
 	console.log("EXECUTED:", data);
 
 	childProcess.exec(
-		"node ./ghiCommandSocket.js \"" +
+		"node " + __dirname + "/ghiCommandSocket.js \"" +
 		data.data +
 		"\"" +
 		(

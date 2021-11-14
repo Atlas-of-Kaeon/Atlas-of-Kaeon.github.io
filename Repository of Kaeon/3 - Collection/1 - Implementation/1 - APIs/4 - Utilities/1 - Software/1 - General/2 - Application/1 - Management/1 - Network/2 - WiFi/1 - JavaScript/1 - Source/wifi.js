@@ -82,7 +82,7 @@ function connectLinux(credentials, callback) {
 
 	fs.writeFileSync("/etc/wpa_supplicant/wpa_supplicant.conf", data);
 
-	childProcess.execSync("sudo wpa_cli -i wlan0 reconfigure");
+	childProcess.execSync("sudo /usr/sbin/wpa_cli -i wlan0 reconfigure");
 
 	callback();
 }

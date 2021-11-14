@@ -67,13 +67,13 @@ module.exports = {
 	},
 	init: (state, id, callback, args) => {
 
-		if(!fs.existsSync("./dataGHI.json"))
-			fs.writeFileSync("./dataGHI.json", "{}");
+		if(!fs.existsSync(__dirname + "/dataGHI.json"))
+			fs.writeFileSync(__dirname + "/dataGHI.json", "{}");
 
 		let dataGHI = { };
 
 		try {
-			dataGHI = JSON.parse(fs.readFileSync("./dataGHI.json"));
+			dataGHI = JSON.parse(fs.readFileSync(__dirname + "/dataGHI.json"));
 		}
 
 		catch(error) {
@@ -92,10 +92,10 @@ module.exports = {
 			try {
 
 				if(data.statePreservation)
-					fs.writeFileSync("./dataGHI.json", JSON.stringify(data));
+					fs.writeFileSync(__dirname + "/dataGHI.json", JSON.stringify(data));
 
 				else
-					fs.writeFileSync("./dataGHI.json", "{}");
+					fs.writeFileSync(__dirname + "/dataGHI.json", "{}");
 			}
 
 			catch(error) {

@@ -3,14 +3,14 @@ var http = require("http");
 function getDevices() {
 
 	return {
-		"0": require("./ghiModuleReceptor.js"),
-		"1": require("./ghiModuleGPIO.js"),
-		"2": require("./ghiModuleSerial.js"),
-		"3": require("./ghiModuleDisplay.js"),
-		"4": require("./ghiModuleRecorder.js"),
-		"5": require("./ghiModuleWiFi.js"),
-		"6": require("./ghiModuleBluetooth.js"),
-		"7": require("./ghiModuleCellular.js")
+		"0": require(__dirname + "/ghiModuleReceptor.js"),
+		"1": require(__dirname + "/ghiModuleGPIO.js"),
+		"2": require(__dirname + "/ghiModuleSerial.js"),
+		"3": require(__dirname + "/ghiModuleDisplay.js"),
+		"4": require(__dirname + "/ghiModuleRecorder.js"),
+		"5": require(__dirname + "/ghiModuleWiFi.js"),
+		"6": require(__dirname + "/ghiModuleBluetooth.js"),
+		"7": require(__dirname + "/ghiModuleCellular.js")
 	};
 }
 
