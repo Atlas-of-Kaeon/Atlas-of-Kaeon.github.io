@@ -1,49 +1,38 @@
 var moduleDependencies = {
-	io: "",
-	scripts: {
-		main: "" // STUB
+	io: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/1%20-%20General/1%20-%20Data/1%20-%20IO/1%20-%20JavaScript/1%20-%20Source/io.js",
+	modules: {
+		device: {
+			raspberryPi: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/2%20-%20Frameworks/2%20-%20Control/2%20-%20Devices/1%20-%20Raspberry%20Pi/1%20-%20JavaScript/1%20-%20Source/controlRaspberryPi.js"
+		},
+		service: {
+			hologram: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/2%20-%20Frameworks/2%20-%20Control/3%20-%20Services/1%20-%20Hologram/1%20-%20JavaScript/1%20-%20Source/controlHologram.js"
+		},
+		command: {
+			gpioFlip: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/2%20-%20Frameworks/2%20-%20Control/4%20-%20Commands/1%20-%20GPIO/1%20-%20Flip/1%20-%20JavaScript/1%20-%20Source/controlGPIOFlip.js"
+		}
 	},
-	modules: [
-		"" // STUB - controlRaspberryPi.js
-	]
+	scripts: {
+		main: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/2%20-%20Frameworks/2%20-%20Control/5%20-%20Scripts/1%20-%20Main/controlMainScript.js"
+	}
 };
 
 var io = require(moduleDependencies.io);
 
+var modules = moduleDependencies.modules;
+var scripts = moduleDependencies.scripts;
+
 function call(contact, packet, callback) {
-
-	let service = getModules("service", "service", contact.service);
-
-	if(service.length == 0)
-		return;
-
-	let devices = getDevices(contact.device);
-	let receptor = getReceptor(devices);
-	
-	let message = { };
-
-	if(receptor != null)
-		message[receptor] = { script: moduleDependencies.scripts.main };
-
-	packet.forEach((item) => {
-
-		let command = getModules("command", "command", packet.command);
-
-		if(command != null)
-			command.process(devices, item.operation, message);
-	});
-
-	service.process(contact.contact.credentials, message, callback);
+	sendCall(contact.contact, getMessage(packet, contact.device), callback);
 }
 
-function getDevices(device) {
+function formatKey(key) {
+	return key.split(" ").join("").toLowerCase();
+}
 
-	device = device != null ? device : "";
+function getMessage(packet, device) {
 
-	let modules = getModules("device", "device", device);
-
-	return modules.length > 0 ?
-		modules[0] : 
+	let devices = modules.device[formatKey(device)] == null ?
+		modules.device[formatKey(device)] : 
 		{
 			receptor: ["0"],
 			gpio: ["1"],
@@ -54,42 +43,59 @@ function getDevices(device) {
 			bluetooth: ["6"],
 			cellular: ["7"]
 		};
-}
+	
+	let receptor = null;
 
-function getModules(type, field, key) {
+	if(devices["receptor"] != null) {
 
-	return moduleDependencies.modules.filter((item) => {
+		receptor = devices["receptor"].length > 0 ?
+			devices["receptor"][0] :
+			null;
+	}
+	
+	let message = { };
 
-		if(item.type != type)
-			return false;
+	if(receptor != null)
+		message[receptor] = { script: scripts.main };
 
-		if(field == null)
-			return true;
+	packet.forEach((item) => {
 
-		return item[field].split(" ").join("").toLowerCase() ==
-			key.split(" ").join("").toLowerCase();
+		let command = modules.command[formatKey(packet.command)];
+
+		if(command != null)
+			command.process(devices, item.operation, message);
 	});
+
+	return message;
 }
 
-function getReceptor(devices) {
+function sendCall(contact, message, callback) {
 
-	if(devices["receptor"] == null)
-		return null;
+	let service = modules.service[formatKey(contact.service)];
 
-	return devices["receptor"].length > 0 ? devices["receptor"][0] : null;
+	if(service.length == 0)
+		return;
+
+	service.process(contact.credentials, message, callback);
 }
 
-Object.keys(moduleDependencies.scripts).forEach((item) => {
-
-	moduleDependencies.scripts[item] =
-		io.open(moduleDependencies.scripts[item]);
+Object.keys(scripts).forEach((item) => {
+	scripts[item] = io.open(scripts[item]);
 });
 
-moduleDependencies.modules = moduleDependencies.modules.map((item) => {
-	return require(item);
+["command", "device", "service"].forEach((list) => {
+
+	Object.keys(modules[list]).forEach((key) => {
+
+		modules[list][key] = require(modules[list][key]);
+
+		delete modules[list][key];
+	});
 });
 
 module.exports = {
 	call,
-	scripts: moduleDependencies.scripts
+	getMessage,
+	scripts,
+	sendCall
 };
