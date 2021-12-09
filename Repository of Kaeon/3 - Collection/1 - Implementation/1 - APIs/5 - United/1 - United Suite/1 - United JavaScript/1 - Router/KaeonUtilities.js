@@ -78,9 +78,9 @@ var moduleDependencies = {
 						application: {
 							management: {
 								network: {
+									serial: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/1%20-%20General/2%20-%20Application/1%20-%20Management/3%20-%20Devices/1%20-%20Serial/1%20-%20JavaScript/1%20-%20Source/serial.js",
 									server: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/1%20-%20General/2%20-%20Application/1%20-%20Management/1%20-%20Network/1%20-%20Server/1%20-%20JavaScript/1%20-%20Source/server.js",
-									wifi: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/1%20-%20General/2%20-%20Application/1%20-%20Management/1%20-%20Network/2%20-%20WiFi/1%20-%20JavaScript/1%20-%20Source/wifi.js",
-									serial: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/1%20-%20General/2%20-%20Application/1%20-%20Management/3%20-%20Devices/1%20-%20Serial/1%20-%20Source/serial.js"
+									wifi: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/1%20-%20General/2%20-%20Application/1%20-%20Management/1%20-%20Network/2%20-%20WiFi/1%20-%20JavaScript/1%20-%20Source/wifi.js"
 								},
 								process: {
 									override: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/1%20-%20General/2%20-%20Application/1%20-%20Management/2%20-%20Process/2%20-%20Override/1%20-%20JavaScript/1%20-%20Source/override.js",
