@@ -1,0 +1,39 @@
+moduleDependencies = {
+	droneIdentifier: ""
+};
+
+module.exports = (devices, operation, message, state) => {
+
+	if(devices.receptor == null || devices.wifi == null)
+		return;
+
+	if(devices.receptor.length == 0 || devices.wifi.length == 0)
+		return;
+
+	let receptor = devices.receptor[0];
+	let wifi = devices.wifi[0];
+
+	let drone = operation.drone;
+
+	let data = droneIdentifier(drone).utilities.launch(
+		receptor,
+		wifi,
+		drone
+	);
+
+	message[receptor].metadata.sequences =
+		message[receptor].metadata.sequences != null ?
+			message[receptor].metadata.sequences :
+			[];
+
+		message[receptor].metadata.intervals =
+			message[receptor].metadata.intervals != null ?
+				message[receptor].metadata.intervals :
+				[];
+
+	message[receptor].metadata.sequences =
+		message[receptor].metadata.sequences.concat(data.sequences);
+
+	message[receptor].metadata.intervals =
+		message[receptor].metadata.sequences.concat(data.intervals);
+};

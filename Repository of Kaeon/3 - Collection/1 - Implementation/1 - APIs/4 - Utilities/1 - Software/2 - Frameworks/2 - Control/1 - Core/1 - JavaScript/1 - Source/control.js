@@ -12,7 +12,7 @@ var moduleDependencies = {
 		}
 	},
 	scripts: {
-		main: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/2%20-%20Frameworks/2%20-%20Control/5%20-%20Scripts/1%20-%20Main/1%20-%20JavaScript/1%20-%20Source/controlMainScript.js"
+		main: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/2%20-%20Frameworks/2%20-%20Control/6%20-%20Scripts/1%20-%20Main/1%20-%20JavaScript/1%20-%20Source/controlMainScript.js"
 	}
 };
 
