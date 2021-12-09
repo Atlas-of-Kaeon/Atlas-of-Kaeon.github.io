@@ -31,6 +31,8 @@ function formatKey(key) {
 
 function getMessage(packet, device) {
 
+	device = device != null ? device : "";
+
 	let devices = modules.device[formatKey(device)] == null ?
 		modules.device[formatKey(device)] : 
 		{
@@ -71,7 +73,7 @@ function getMessage(packet, device) {
 			}
 
 			catch(error) {
-				
+
 				console.log(error);
 
 				message = JSON.parse(temp);
