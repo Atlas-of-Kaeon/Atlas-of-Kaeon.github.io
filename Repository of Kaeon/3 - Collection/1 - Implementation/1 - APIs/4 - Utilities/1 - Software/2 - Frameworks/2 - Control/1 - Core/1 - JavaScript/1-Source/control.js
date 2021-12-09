@@ -60,10 +60,23 @@ function getMessage(packet, device) {
 
 	packet.forEach((item) => {
 
-		let command = modules.command[formatKey(packet.command)];
+		let command = modules.command[formatKey(item.command)];
 
-		if(command != null)
-			command.process(devices, item.operation, message);
+		if(command != null) {
+
+			let temp = JSON.stringify(message);
+
+			try {
+				command(devices, item.operation, message);
+			}
+
+			catch(error) {
+				
+				console.log(error);
+
+				message = JSON.parse(temp);
+			}
+		}
 	});
 
 	return message;
@@ -76,7 +89,13 @@ function sendCall(contact, message, callback) {
 	if(service.length == 0)
 		return;
 
-	service.process(contact.credentials, message, callback);
+	try {
+		service(contact.credentials, message, callback);
+	}
+
+	catch(error) {
+		console.log(error);
+	}
 }
 
 Object.keys(scripts).forEach((item) => {
