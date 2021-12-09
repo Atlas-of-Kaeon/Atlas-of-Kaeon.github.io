@@ -33,7 +33,7 @@ function getMessage(packet, device) {
 
 	device = device != null ? device : "";
 
-	let devices = modules.device[formatKey(device)] == null ?
+	let devices = modules.device[formatKey(device)] != null ?
 		modules.device[formatKey(device)] : 
 		{
 			receptor: ["0"],
@@ -74,7 +74,7 @@ function getMessage(packet, device) {
 
 			catch(error) {
 
-				console.log(error);
+				console.log(error.stack);
 
 				message = JSON.parse(temp);
 			}
@@ -88,7 +88,7 @@ function sendCall(contact, message, callback) {
 
 	let service = modules.service[formatKey(contact.service)];
 
-	if(service.length == 0)
+	if(service == null)
 		return;
 
 	try {
@@ -96,7 +96,7 @@ function sendCall(contact, message, callback) {
 	}
 
 	catch(error) {
-		console.log(error);
+		console.log(error.stack);
 	}
 }
 
@@ -108,9 +108,11 @@ Object.keys(scripts).forEach((item) => {
 
 	Object.keys(modules[list]).forEach((key) => {
 
-		modules[list][key] = require(modules[list][key]);
+		let path = modules[list][key];
 
 		delete modules[list][key];
+
+		modules[list][formatKey(key)] = require(path);
 	});
 });
 

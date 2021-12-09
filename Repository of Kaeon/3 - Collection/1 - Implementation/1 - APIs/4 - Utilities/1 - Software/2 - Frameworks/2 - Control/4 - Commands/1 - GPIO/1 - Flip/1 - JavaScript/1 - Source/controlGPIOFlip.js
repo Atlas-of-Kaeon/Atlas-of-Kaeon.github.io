@@ -11,7 +11,7 @@ module.exports = (devices, operation, message) => {
 
 	message[gpio] = message[gpio] != null ? message[gpio] : [];
 
-	while(array.length < pin + 1)
+	while(message[gpio].length < pin + 1)
 		message[gpio].push(0);
 
 	message[gpio][pin] = message[gpio][pin] == 0 ? 1 : 0;
