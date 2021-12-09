@@ -22,14 +22,14 @@ var modules = moduleDependencies.modules;
 var scripts = moduleDependencies.scripts;
 
 function call(contact, packet, callback) {
-	sendCall(contact.contact, getMessage(packet, contact.device), callback);
+	sendCall(contact.contact, getMessage(packet, contact.device, contact.state), callback);
 }
 
 function formatKey(key) {
 	return key.split(" ").join("").toLowerCase();
 }
 
-function getMessage(packet, device) {
+function getMessage(packet, device, state) {
 
 	device = device != null ? device : "";
 
@@ -69,7 +69,7 @@ function getMessage(packet, device) {
 			let temp = JSON.stringify(message);
 
 			try {
-				command(devices, item.operation, message);
+				command(devices, item.operation, message, state);
 			}
 
 			catch(error) {

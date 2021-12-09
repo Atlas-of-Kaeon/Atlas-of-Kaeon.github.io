@@ -1,4 +1,4 @@
-module.exports = (devices, operation, message) => {
+module.exports = (devices, operation, message, state) => {
 
 	if(devices.gpio == null)
 		return;
@@ -14,5 +14,7 @@ module.exports = (devices, operation, message) => {
 	while(message[gpio].length < pin + 1)
 		message[gpio].push(0);
 
-	message[gpio][pin] = message[gpio][pin] == 0 ? 1 : 0;
+	let flipped = state != null ? message[gpio][pin] == 0 : false;
+
+	message[gpio][pin] = flipped ? 0 : 1;
 };
