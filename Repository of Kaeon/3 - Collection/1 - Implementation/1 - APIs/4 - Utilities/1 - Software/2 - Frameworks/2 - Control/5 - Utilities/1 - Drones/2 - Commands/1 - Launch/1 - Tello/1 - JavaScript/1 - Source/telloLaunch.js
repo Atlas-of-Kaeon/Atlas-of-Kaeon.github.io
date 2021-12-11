@@ -23,11 +23,13 @@ module.exports = (receptor, wifi, drone) => {
 	
 	return {
 		sequences: [
-			[
-				getInstruction(wifi, drone, "command"),
-				getInstruction(wifi, drone, "battery?"),
-				getInstruction(wifi, drone, "takeoff")
-			]
+			{
+				sequence: [
+					getInstruction(wifi, drone, "command"),
+					getInstruction(wifi, drone, "battery?"),
+					getInstruction(wifi, drone, "takeoff")
+				]
+			}
 		]
 	};
 };

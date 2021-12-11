@@ -26,21 +26,28 @@ module.exports = (devices, operation, message, state) => {
 	if(message[receptor].metadata == null)
 		message[receptor].metadata = { };
 
-	if(message[receptor].metadata.sequences == null)
-		message[receptor].metadata.sequences = [];
+	if(message[receptor].metadata.schedule == null)
+		message[receptor].metadata.schedule = { };
 
-	if(message[receptor].metadata.intervals == null)
-		message[receptor].metadata.intervals = [];
+	if(message[receptor].metadata.schedule.sequences == null)
+		message[receptor].metadata.schedule.sequences = [];
+
+	if(message[receptor].metadata.schedule.intervals == null)
+		message[receptor].metadata.schedule.intervals = [];
 
 	if(data.sequences != null) {
 
-		message[receptor].metadata.sequences =
-			message[receptor].metadata.sequences.concat(data.sequences);
+		message[receptor].metadata.schedule.sequences =
+			message[receptor].metadata.schedule.sequences.concat(
+				data.sequences
+			);
 	}
 
 	if(data.intervals != null) {
 
-		message[receptor].metadata.intervals =
-			message[receptor].metadata.intervals.concat(data.intervals);
+		message[receptor].metadata.schedule.intervals =
+			message[receptor].metadata.schedule.intervals.concat(
+				data.intervals
+			);
 	}
 };
