@@ -32,9 +32,15 @@ module.exports = (devices, operation, message, state) => {
 	if(message[receptor].metadata.intervals == null)
 		message[receptor].metadata.intervals = [];
 
-	message[receptor].metadata.sequences =
-		message[receptor].metadata.sequences.concat(data.sequences);
+	if(data.sequences != null) {
 
-	message[receptor].metadata.intervals =
-		message[receptor].metadata.sequences.concat(data.intervals);
+		message[receptor].metadata.sequences =
+			message[receptor].metadata.sequences.concat(data.sequences);
+	}
+
+	if(data.intervals != null) {
+
+		message[receptor].metadata.intervals =
+			message[receptor].metadata.intervals.concat(data.intervals);
+	}
 };
