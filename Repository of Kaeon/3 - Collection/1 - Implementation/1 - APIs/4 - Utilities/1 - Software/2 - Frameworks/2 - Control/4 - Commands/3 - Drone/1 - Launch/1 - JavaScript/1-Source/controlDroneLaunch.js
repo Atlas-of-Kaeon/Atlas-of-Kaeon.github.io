@@ -23,15 +23,14 @@ module.exports = (devices, operation, message, state) => {
 		drone
 	);
 
-	message[receptor].metadata.sequences =
-		message[receptor].metadata.sequences != null ?
-			message[receptor].metadata.sequences :
-			[];
+	if(message[receptor].metadata == null)
+		message[receptor].metadata = { };
 
-		message[receptor].metadata.intervals =
-			message[receptor].metadata.intervals != null ?
-				message[receptor].metadata.intervals :
-				[];
+	if(message[receptor].metadata.sequences == null)
+		message[receptor].metadata.sequences = [];
+
+	if(message[receptor].metadata.intervals == null)
+		message[receptor].metadata.intervals = [];
 
 	message[receptor].metadata.sequences =
 		message[receptor].metadata.sequences.concat(data.sequences);
