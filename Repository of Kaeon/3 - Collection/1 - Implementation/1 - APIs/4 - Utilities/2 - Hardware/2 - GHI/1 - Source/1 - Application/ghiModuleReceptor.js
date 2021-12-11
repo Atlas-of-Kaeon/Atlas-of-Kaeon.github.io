@@ -39,7 +39,7 @@ function startInterval() {
 		}
 
 		lastTime = (new Date()).getTime();
-	}, data.stateInterval);
+	}, data.scriptInterval * 1000);
 }
 
 var data = {
