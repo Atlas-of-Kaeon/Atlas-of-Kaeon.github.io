@@ -1,4 +1,4 @@
-function getInstruction(wifi, drone, instruction) {
+function getInstruction(wifi, drone, command) {
 
 	let instruction = {
 		delta: 2,
@@ -12,7 +12,7 @@ function getInstruction(wifi, drone, instruction) {
 				"host": "192.168.10.1",
 				"port": 8889
 			},
-			"data": instruction
+			"data": command
 		}
 	};
 
