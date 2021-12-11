@@ -1,5 +1,4 @@
 var moduleDependencies = {
-	httpUtils: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/1%20-%20General/1%20-%20Data/3%20-%20API/1%20-%20HTTP%20Utilities/1%20-%20JavaScript/1%20-%20Source/httpUtils.js",
 	io: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/4%20-%20Utilities/1%20-%20Software/1%20-%20General/1%20-%20Data/1%20-%20IO/1%20-%20JavaScript/1%20-%20Source/io.js",
 	modules: {
 		device: {
@@ -22,7 +21,6 @@ var moduleDependencies = {
 	}
 };
 
-var httpUtils = require(moduleDependencies.httpUtils);
 var io = require(moduleDependencies.io);
 
 var modules = moduleDependencies.modules;
@@ -92,17 +90,6 @@ function getMessage(packet, device, state) {
 }
 
 function sendCall(contact, message, callback) {
-
-	let isHTTP = contact.service == null ?
-		true :
-		formatKey(contact.service) == "http";
-
-	if(isHTTP) {
-
-		httpUtils.sendRequest(contact.credentials.request, callback);
-		
-		return;
-	}
 
 	let service = modules.service[formatKey(contact.service)];
 
