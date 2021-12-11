@@ -27,7 +27,12 @@ var modules = moduleDependencies.modules;
 var scripts = moduleDependencies.scripts;
 
 function call(contact, packet, callback) {
-	sendCall(contact.contact, getMessage(packet, contact.device, contact.state), callback);
+
+	sendCall(
+		contact.contact,
+		getMessage(packet, contact.device, contact.state),
+		callback
+	);
 }
 
 function formatKey(key) {
