@@ -6,7 +6,7 @@ var httpUtils = require(moduleDependencies.httpUtils);
 
 module.exports = (credentials, message, callback) => {
 
-	httpUtils.sendRequest({
+	return httpUtils.sendRequest({
 		request: {
 			method: "POST",
 			uri: "https://dashboard.hologram.io/api/1/devices/messages/" +

@@ -28,7 +28,7 @@ var scripts = moduleDependencies.scripts;
 
 function call(contact, packet, callback) {
 
-	sendCall(
+	return sendCall(
 		contact.contact,
 		getMessage(packet, contact.device, contact.state),
 		callback
@@ -102,7 +102,7 @@ function sendCall(contact, message, callback) {
 		return;
 
 	try {
-		service(contact.credentials, message, callback);
+		return service(contact.credentials, message, callback);
 	}
 
 	catch(error) {
