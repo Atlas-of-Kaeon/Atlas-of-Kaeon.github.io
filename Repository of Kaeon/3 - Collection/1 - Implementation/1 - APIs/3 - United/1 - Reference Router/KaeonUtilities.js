@@ -30,7 +30,21 @@ var moduleDependencies = {
 			},
 			philosophersStone: {
 				philosophersStone: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/1%20-%20Core/2%20-%20Philosopher's%20Stone/1%20-%20Philosopher's%20Stone/1%20-%20JavaScript/1%20-%20Source/PhilosophersStone.js",
-				soul: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/1%20-%20Core/2%20-%20Philosopher's%20Stone/2%20-%20SOUL/3%20-%20SOUL/2%20-%202.0/1%20-%20JavaScript/1%20-%20Source/SOUL.js"
+				soul: {
+					soul: {
+						soul: "",
+						soulLegacy: ""
+					},
+					soulEntity: "",
+					utilities: {
+						binaryMap: "",
+						dataMap: {
+							curveMethod: "",
+							dataMap: ""
+						},
+						vectorConverter: ""
+					}
+				}
 			},
 			uc: {
 				csb: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/2%20-%20United/1%20-%20United%20C/3%20-%20CSB/1%20-%20JavaScript/1%20-%20Source/CSB.js",
