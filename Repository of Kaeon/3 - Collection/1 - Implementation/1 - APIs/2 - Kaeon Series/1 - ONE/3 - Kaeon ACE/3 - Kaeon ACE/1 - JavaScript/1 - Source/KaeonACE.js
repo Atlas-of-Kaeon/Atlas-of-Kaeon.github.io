@@ -8,7 +8,7 @@ var moduleDependencies = {
 };
 
 var io = require(moduleDependencies.io);
-var kaeonACE = require(moduleDependencies.kaeonACE);
+var kaeonACE = require(moduleDependencies.kaeonACECore);
 var onePlus = require(moduleDependencies.onePlus);
 var standardKaeonACE = require(moduleDependencies.standardKaeonACE);
 var universalPreprocessor = require(moduleDependencies.universalPreprocessor);
