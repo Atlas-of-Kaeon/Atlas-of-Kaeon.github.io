@@ -1,6 +1,6 @@
 var moduleDependencies = {
 	io: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/1%20-%20Data/1%20-%20IO/1%20-%20JavaScript/1%20-%20Source/io.js",
-	kaeonACE: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/2%20-%20Kaeon%20Series/1%20-%20ONE/3%20-%20Kaeon%20ACE/1%20-%20APIs/1%20-%20Babylon/1%20-%20Core/1%20-%20Source/KaeonACE.js",
+	kaeonACECore: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/2%20-%20Kaeon%20Series/1%20-%20ONE/3%20-%20Kaeon%20ACE/1%20-%20APIs/1%20-%20Babylon/1%20-%20Core/1%20-%20Source/KaeonACECore.js",
 	onePlus: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/1%20-%20Core/1%20-%20ONE/4%20-%20ONE%2B/1%20-%20JavaScript/1%20-%20Source/ONEPlus.js",
 	standardKaeonACE: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/2%20-%20Kaeon%20Series/1%20-%20ONE/3%20-%20Kaeon%20ACE/1%20-%20APIs/1%20-%20Babylon/2%20-%20Modules/3%20-%20Standard%20Kaeon%20ACE/1%20-%20Source/standardKaeonACE.js",
 	universalPreprocessor: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/1%20-%20Core/1%20-%20ONE/5%20-%20Universal%20Preprocessor/1%20-%20JavaScript/1%20-%20Source/UniversalPreprocessor.js",
@@ -14,26 +14,76 @@ var standardKaeonACE = require(moduleDependencies.standardKaeonACE);
 var universalPreprocessor = require(moduleDependencies.universalPreprocessor);
 var widgets = require(moduleDependencies.widgets);
 
-var urlArgs = {};
+function getEnvironment() {
 
-window.location.href.replace(
-	/[?&]+([^=&]+)=([^&]*)/gi,
-	function(match, key, value) {
-		urlArgs[key.toLowerCase()] = decodeURIComponent(value);
+	let environment = "browser";
+	
+	if(typeof process === 'object') {
+	
+		if(typeof process.versions === 'object') {
+	
+			if(typeof process.versions.node !== 'undefined')
+				environment = "node";
+		}
 	}
-);
 
-function startGame(element) {
+	return environment;
+}
+
+function getPlatform(environment) {
+
+	if(environment == "browser") {
+
+		if(typeof require == "function" && typeof module == "object") {
+
+			if(module.parent != null)
+				return "module";
+		}
+
+		return "cdn";
+	}
+
+	else
+		return module.parent != null ? "module" : "cdn";
+}
+
+function run(ace, element) {
+
+	element = element != null ? element : document.documentElement;
 
 	var core = { };
 
-	standardKaeonACE(core);
-	
-	kaeonACE.run(
-		core,
-		onePlus.readONEPlus(universalPreprocessor.preprocess(io.open(urlArgs["kaeonace"]))),
-		element
-	);
+	widgets.createStartScreen(element, "Start", () => {
+
+		standardKaeonACE(core);
+		
+		kaeonACE.run(
+			core,
+			onePlus.readONEPlus(universalPreprocessor.preprocess(ace)),
+			element
+		);
+	});
+
+	return core;
 }
 
-widgets.createStartScreen(document.documentElement, "Start", startGame);
+if(getPlatform(getEnvironment()) == "cdn") {
+
+	var urlArgs = {};
+	
+	window.location.href.replace(
+		/[?&]+([^=&]+)=([^&]*)/gi,
+		function(match, key, value) {
+			urlArgs[key.toLowerCase()] = decodeURIComponent(value);
+		}
+	);
+
+	run(io.open(urlArgs["kaeonace"]));
+}
+
+else {
+
+	module.exports = {
+		run
+	};
+}
