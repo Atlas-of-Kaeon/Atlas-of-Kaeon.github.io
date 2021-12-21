@@ -6,7 +6,7 @@ var moduleDependencies = {
 };
 
 var fusion = require(moduleDependencies.fusion);
-var kaeonACE = require(moduleDependencies.kaeonACE);
+var kaeonACE = require(moduleDependencies.kaeonACECore);
 var philosophersStone = require(moduleDependencies.philosophersStone);
 var widgets = require(moduleDependencies.widgets);
 
