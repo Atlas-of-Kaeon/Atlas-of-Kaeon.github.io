@@ -9,8 +9,12 @@ let wrapONE = require(moduleDependencies.wrapONE);
 let style = `<style>
 
 	p {
-		font-family: Arial, Helvetica, sans-serif;
+		font-family: Georgia, serif;
 		font-size: 12px;
+	}
+
+	hr {
+		margin-left: 40px;
 	}
 
 	.paper-one-reference {
@@ -68,16 +72,21 @@ function toPaperONEElement(element, markup, indices) {
 	if(markup)
 		content = content.split("\n\n").join("<br/>");
 
+	let paperClass = indices.length == 1 ?
+		"paper-one-title" :
+		(element.children.length > 0 ?
+			"paper-one-subtitle paper-one-nest-" + (indices.length + 1) :
+			"paper-one-text");
+
 	let text = markup ?
-		"<p class=\"" +
-			(indices.length == 1 ?
-				"paper-one-title" :
-				(element.children.length > 0 ?
-					"paper-one-subtitle paper-one-nest-" + (indices.length + 1) :
-					"paper-one-text")
-			) +
+		"<p class=\"paper-one " +
+			paperClass +
 			"\">" +
 			content +
+			(paperClass == "paper-one-text" && one.getIndex(element) + 1 < element.parent.children.length ?
+				"<hr/>" :
+				""
+			) +
 			"</p>" :
 		content;
 
@@ -128,7 +137,7 @@ function toPaperONE(document, markup) {
 	tokens = tokens.map((token, index) => {
 		
 		if(index == 0 || index % 2 == 1)
-			return markup ? "<p class=\"paper-one-reference\">" + token + "</p>" : token;
+			return markup ? "<p class=\"paper-one paper-one-reference\">" + token + "</p>" : token;
 
 		return toPaperONEDocument(token, markup);
 	})
