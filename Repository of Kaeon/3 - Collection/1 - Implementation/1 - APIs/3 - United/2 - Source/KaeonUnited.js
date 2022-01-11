@@ -511,8 +511,12 @@ function executeCDN() {
 		args["htmlraw"] == null &&
 		args["app"] == null) {
 
-		if(moduleDependencies.origin != null)
+		if(moduleDependencies.origin != null) {
+
+			executeScript();
+			
 			executeJS(makeOnlineRequest(moduleDependencies.origin, true));
+		}
 	}
 }
 
