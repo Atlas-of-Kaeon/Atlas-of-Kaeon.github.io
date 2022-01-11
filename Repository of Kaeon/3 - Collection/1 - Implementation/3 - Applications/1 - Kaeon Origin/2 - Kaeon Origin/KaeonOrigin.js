@@ -6,4 +6,7 @@ var moduleDependencies = {
 var httpUtils = require(moduleDependencies.httpUtils);
 var virtualSystem = require(moduleDependencies.virtualSystem);
 
-virtualSystem.initiateVirtualSystemDefault(httpUtils.getURLArguments(window.location.href).startup);
+let args = httpUtils.getURLArguments(window.location.href);
+
+if(args.startup != null)
+	virtualSystem.initiateVirtualSystemDefault(args.startup);
