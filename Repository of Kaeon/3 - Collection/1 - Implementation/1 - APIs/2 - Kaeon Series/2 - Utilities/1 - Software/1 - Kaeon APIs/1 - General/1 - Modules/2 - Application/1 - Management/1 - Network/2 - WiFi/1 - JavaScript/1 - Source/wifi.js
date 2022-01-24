@@ -205,12 +205,13 @@ function setAccessPointLinux(credentials) {
 			data = fs.readFileSync(
 				"/etc/hostapd/hostapd.conf",
 				'utf8'
-			).split("\n");
+			).trim().split("\n");
 
 			data = data.filter((item) => {
 
 				return !item.startsWith("ssid") &&
-					!item.startsWith("wpa_passphrase");
+					!item.startsWith("wpa") &&
+					!item.startsWith("rsn");
 			});
 
 			data.push(
@@ -220,6 +221,16 @@ function setAccessPointLinux(credentials) {
 					"GHI-" + getSerialNumber()
 				)
 			);
+
+			if(credentials.password) {
+
+				data.push("wpa=2");
+				data.push("wpa_key_mgmt=WPA-PSK");
+				data.push("wpa_pairwise=TKIP");
+				data.push("rsn_pairwise=CCMP");
+
+				data.push("wpa_passphrase=" + credentials.password);
+			}
 	
 			fs.writeFileSync("/etc/hostapd/hostapd.conf", data.join("\n"));
 		}

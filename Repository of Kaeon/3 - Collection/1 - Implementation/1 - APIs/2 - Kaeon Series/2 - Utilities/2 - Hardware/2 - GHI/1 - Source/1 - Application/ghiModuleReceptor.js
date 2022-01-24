@@ -93,22 +93,6 @@ module.exports = {
 		callbackReference = callback;
 		
 		startInterval();
-
-		setInterval(() => {
-
-			try {
-
-				if(data.statePreservation)
-					fs.writeFileSync(__dirname + "/dataGHI.json", JSON.stringify(data));
-
-				else
-					fs.writeFileSync(__dirname + "/dataGHI.json", "{}");
-			}
-
-			catch(error) {
-				console.log(error);
-			}
-		}, 1000);
 	},
 	process: (state, id) => {
 
@@ -122,12 +106,28 @@ module.exports = {
 
 		Object.assign(data, state[id].output);
 
-		if(newAccess) {
+		try {
 
-			// STUB - Change Port
+			if(data.statePreservation) {
 
-			wifi.setAccessPoint(data.access);
+				let preservation = JSON.parse(JSON.stringify(data));
+
+				if(preservation.access != null)
+					preservation.access.password = null;
+
+				fs.writeFileSync(__dirname + "/dataGHI.json", JSON.stringify(preservation));
+			}
+
+			else
+				fs.writeFileSync(__dirname + "/dataGHI.json", "{}");
 		}
+
+		catch(error) {
+			console.log(error);
+		}
+
+		if(newAccess)
+			wifi.setAccessPoint(data.access);
 
 		if(newInterval)
 			startInterval();
