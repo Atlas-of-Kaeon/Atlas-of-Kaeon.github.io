@@ -130,7 +130,7 @@ function initWindows() {
 function setAccessPoint(credentials) {
 
 	if(process.platform != "win32")
-		setAccessPointLinux(credentials, callback);
+		setAccessPointLinux(credentials);
 }
 
 function setAccessPointLinux(credentials) {
