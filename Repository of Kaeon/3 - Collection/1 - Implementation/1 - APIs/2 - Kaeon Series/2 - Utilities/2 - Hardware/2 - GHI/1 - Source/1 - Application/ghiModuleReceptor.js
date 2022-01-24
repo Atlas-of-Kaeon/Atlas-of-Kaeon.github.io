@@ -1,4 +1,5 @@
 var fs = require("fs");
+var wifi = require(__dirname + "/wifi.js");
 
 function startInterval() {
 	
@@ -43,6 +44,12 @@ function startInterval() {
 }
 
 var data = {
+	access: {
+		ssid: "GHI-" + wifi.getSerialNumber(),
+		password: null,
+		ip: "192.168.4.1",
+		port: 1233
+	},
 	metadata: "",
 	password: null,
 	script: "",
@@ -109,7 +116,18 @@ module.exports = {
 			state[id].output.scriptInterval != data.scriptInterval :
 			false;
 
+		let newAccess = state[id].output.access != null &&
+			JSON.stringify(state[id].output.access) !=
+				JSON.stringify(data.access);
+
 		Object.assign(data, state[id].output);
+
+		if(newAccess) {
+
+			// STUB - Change Port
+
+			wifi.setAccessPoint(data.access);
+		}
 
 		if(newInterval)
 			startInterval();
