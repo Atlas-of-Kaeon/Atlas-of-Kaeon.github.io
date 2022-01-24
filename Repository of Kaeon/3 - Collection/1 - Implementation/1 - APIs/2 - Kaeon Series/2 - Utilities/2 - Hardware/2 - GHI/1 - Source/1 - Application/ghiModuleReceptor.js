@@ -127,7 +127,7 @@ module.exports = {
 		}
 
 		if(newAccess)
-			setTimeout(() => { wifi.setAccessPoint(data.access) });
+			setTimeout(() => { wifi.setAccessPoint(data.access); });
 
 		if(newInterval)
 			startInterval();
