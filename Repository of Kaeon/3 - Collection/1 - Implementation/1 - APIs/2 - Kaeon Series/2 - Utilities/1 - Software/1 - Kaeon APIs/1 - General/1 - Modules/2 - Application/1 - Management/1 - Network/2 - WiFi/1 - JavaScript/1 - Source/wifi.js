@@ -99,7 +99,7 @@ function getNetworks(callback) {
 
 function getSerialNumberLinux() {
 
-	let raw = child_process.execSync(
+	let raw = childProcess.execSync(
 		'/usr/bin/cat /proc/cpuinfo | grep Serial'
 	).toString();
 
@@ -141,10 +141,10 @@ function setAccessPointLinux(credentials) {
 	
 		data = fs.readFileSync("/etc/dhcpcd.conf", 'utf8').split("\n");
 	
-		let dataBegin = data.indexOf("# BEGIN GHI DATA");
-		let dataEnd = data.indexOf("# END GHI DATA");
+		let dataBegin = data.indexOf("# BEGIN WIFI DATA");
+		let dataEnd = data.indexOf("# END WIFI DATA");
 	
-		let dataSettings = "# BEGIN GHI DATA\n" +
+		let dataSettings = "# BEGIN WIFI DATA\n" +
 			"interface wlan0\n" +
 			"    static ip_address=" +
 			(credentials != null ?
@@ -156,7 +156,7 @@ function setAccessPointLinux(credentials) {
 			) +
 			"/24\n" +
 			"    nohook wpa_supplicant\n" +
-			"# END GHI DATA";
+			"# END WIFI DATA";
 	
 		if(dataBegin != -1) {
 	
@@ -171,25 +171,11 @@ function setAccessPointLinux(credentials) {
 				data = data.slice(0, dataBegin);
 		}
 	
-		if(credentials == null) {
+		if(dataBegin != -1)
+			data.splice(dataBegin, 0, dataSettings);
 
-			childProcess.execSync(
-				"sudo /usr/bin/systemctl disable hostapd dnsmasq"
-			);
-		}
-	
-		else {
-	
-			childProcess.execSync(
-				"sudo /usr/bin/systemctl enable hostapd dnsmasq"
-			);
-	
-			if(dataBegin != -1)
-				data.splice(dataBegin, 0, dataSettings);
-	
-			else
-				data.push(dataSettings);
-		}
+		else
+			data.push(dataSettings);
 	
 		fs.writeFileSync("/etc/dhcpcd.conf", data.join("\n"));
 	}
@@ -211,7 +197,8 @@ function setAccessPointLinux(credentials) {
 
 				return !item.startsWith("ssid") &&
 					!item.startsWith("wpa") &&
-					!item.startsWith("rsn");
+					!item.startsWith("rsn") &&
+					item.trim().length > 0;
 			});
 
 			data.push(
@@ -223,19 +210,38 @@ function setAccessPointLinux(credentials) {
 			);
 
 			if(credentials.password) {
-
 				data.push("wpa=2");
+				data.push("wpa_passphrase=" + credentials.password);
 				data.push("wpa_key_mgmt=WPA-PSK");
 				data.push("wpa_pairwise=TKIP");
 				data.push("rsn_pairwise=CCMP");
-
-				data.push("wpa_passphrase=" + credentials.password);
 			}
 	
 			fs.writeFileSync("/etc/hostapd/hostapd.conf", data.join("\n"));
 		}
 	}
 
+	catch(error) {
+		console.log(error);
+	}
+	
+	try {
+	
+		if(credentials == null) {
+
+			childProcess.execSync(
+				"sudo /usr/bin/systemctl disable hostapd dnsmasq"
+			);
+		}
+	
+		else {
+	
+			childProcess.execSync(
+				"sudo /usr/bin/systemctl enable hostapd dnsmasq"
+			);
+		}
+	}
+	
 	catch(error) {
 		console.log(error);
 	}
