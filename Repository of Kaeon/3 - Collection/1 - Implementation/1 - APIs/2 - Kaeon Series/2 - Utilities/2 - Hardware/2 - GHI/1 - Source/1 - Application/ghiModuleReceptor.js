@@ -44,12 +44,7 @@ function startInterval() {
 }
 
 var data = {
-	access: {
-		ssid: "GHI-" + wifi.getSerialNumber(),
-		password: null,
-		ip: "192.168.4.1",
-		port: 1233
-	},
+	access: null,
 	metadata: "",
 	password: null,
 	script: "",
@@ -100,11 +95,9 @@ module.exports = {
 			state[id].output.scriptInterval != data.scriptInterval :
 			false;
 
-		let newAccess = state[id].output.access != null &&
-			JSON.stringify(state[id].output.access) !=
-				JSON.stringify(data.access);
-
 		Object.assign(data, state[id].output);
+		
+		data.access = null;
 
 		try {
 
@@ -126,8 +119,8 @@ module.exports = {
 			console.log(error);
 		}
 
-		if(newAccess)
-			setTimeout(() => { wifi.setAccessPoint(data.access); });
+		if(Object.keys(state[id].output).includes("access"))
+			setTimeout(() => { wifi.setAccessPoint(state[id].output.access); });
 
 		if(newInterval)
 			startInterval();
