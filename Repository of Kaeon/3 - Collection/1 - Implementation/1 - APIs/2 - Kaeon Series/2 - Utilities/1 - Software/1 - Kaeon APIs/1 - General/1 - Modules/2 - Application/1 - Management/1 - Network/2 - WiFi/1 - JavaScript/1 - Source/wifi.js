@@ -176,6 +176,20 @@ function setAccessPointLinux(credentials) {
 
 		else
 			data.push(dataSettings);
+
+		if(credentials == null) {
+
+			childProcess.execSync(
+				"sudo /usr/bin/systemctl disable hostapd dnsmasq"
+			);
+		}
+	
+		else {
+	
+			childProcess.execSync(
+				"sudo /usr/bin/systemctl enable hostapd dnsmasq"
+			);
+		}
 	
 		fs.writeFileSync("/etc/dhcpcd.conf", data.join("\n"));
 	}
@@ -221,27 +235,6 @@ function setAccessPointLinux(credentials) {
 		}
 	}
 
-	catch(error) {
-		console.log(error);
-	}
-	
-	try {
-	
-		if(credentials == null) {
-
-			childProcess.execSync(
-				"sudo /usr/bin/systemctl disable hostapd dnsmasq"
-			);
-		}
-	
-		else {
-	
-			childProcess.execSync(
-				"sudo /usr/bin/systemctl enable hostapd dnsmasq"
-			);
-		}
-	}
-	
 	catch(error) {
 		console.log(error);
 	}
