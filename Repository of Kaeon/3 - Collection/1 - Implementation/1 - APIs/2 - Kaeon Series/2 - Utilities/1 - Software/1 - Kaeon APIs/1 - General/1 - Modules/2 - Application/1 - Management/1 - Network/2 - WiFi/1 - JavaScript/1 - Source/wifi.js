@@ -170,12 +170,6 @@ function setAccessPointLinux(credentials) {
 			else
 				data = data.slice(0, dataBegin);
 		}
-	
-		if(dataBegin != -1)
-			data.splice(dataBegin, 0, dataSettings);
-
-		else
-			data.push(dataSettings);
 
 		if(credentials == null) {
 
@@ -185,6 +179,12 @@ function setAccessPointLinux(credentials) {
 		}
 	
 		else {
+	
+			if(dataBegin != -1)
+				data.splice(dataBegin, 0, dataSettings);
+	
+			else
+				data.push(dataSettings);
 	
 			childProcess.execSync(
 				"sudo /usr/bin/systemctl enable hostapd dnsmasq"
