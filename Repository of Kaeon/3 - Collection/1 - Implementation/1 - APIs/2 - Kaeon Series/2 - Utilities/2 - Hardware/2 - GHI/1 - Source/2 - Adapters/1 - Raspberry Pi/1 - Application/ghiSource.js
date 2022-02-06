@@ -22,7 +22,10 @@ let port = dataGHI.access.port != null ?
 	);
 
 let wifiPort = process.argv.length > 3 ?
-	process.argv[3] : (port != 1234 ? 1234 : 1233);
+	process.argv[3] : port + 1;
+
+let jshPort = process.argv.length > 4 ?
+	process.argv[4] : wifiPort + 1
 
 child.exec(
 	"sudo /usr/local/bin/node " +
@@ -34,10 +37,21 @@ child.exec(
 child.exec(
 	"sudo /usr/local/bin/node " +
 	__dirname +
+	"/ghiServerJSH.js " +
+	port +
+	" " +
+	jshPort
+);
+
+child.exec(
+	"sudo /usr/local/bin/node " +
+	__dirname +
 	"/ghiServerRouter.js " +
 	port +
 	" " +
-	wifiPort
+	wifiPort +
+	" " +
+	jshPort
 );
 
 child.exec(

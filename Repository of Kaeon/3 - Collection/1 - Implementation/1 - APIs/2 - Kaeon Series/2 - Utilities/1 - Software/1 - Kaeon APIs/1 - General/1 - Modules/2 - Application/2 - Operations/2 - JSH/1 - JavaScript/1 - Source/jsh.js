@@ -16,9 +16,21 @@ function processData(modules, data) {
 
 		modules.forEach((item) => {
 
+			let moduleRequest = null;
+
+			if(data.modules != null) {
+
+				let match = data.modules.filter((value) => {
+					return item.name == value.module;
+				});
+
+				if(match.length > 0)
+					moduleRequest = match[0].request;
+			}
+
 			response.modules.push({
 				"module": item.name,
-				"response": item.process(data)
+				"response": item.process(moduleRequest)
 			})
 		});
 	}
