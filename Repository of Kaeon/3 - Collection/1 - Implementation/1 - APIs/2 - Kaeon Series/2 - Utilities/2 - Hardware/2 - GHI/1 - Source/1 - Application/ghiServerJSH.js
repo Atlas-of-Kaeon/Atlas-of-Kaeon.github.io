@@ -9,7 +9,8 @@ jsh.startJSHServer(
 			name: "ghi",
 			process: (data) => {
 
-				data = data != null ? data : { };
+				if(data == null)
+					return null;
 
 				if(!(Object.keys(data).includes("commands") ||
 					Object.keys(data).includes("processes") ||
@@ -25,9 +26,12 @@ jsh.startJSHServer(
 									method: "POST",
 									uri: "http://localhost:" + process.argv[3]
 								},
+								headers: {
+									"Content-Type": "application/json"
+								},
 								body: JSON.stringify(data)
 							}
-						).body
+						).body;
 					}
 
 					catch(error) {
