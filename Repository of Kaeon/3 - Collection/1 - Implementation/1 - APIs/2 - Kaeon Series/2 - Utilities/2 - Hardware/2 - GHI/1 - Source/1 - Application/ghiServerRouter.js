@@ -15,6 +15,32 @@ function getDevices() {
 	};
 }
 
+function processRequest(data) {
+
+	try {
+
+		let validated = validate(data);
+
+		console.log(validated ? "VALIDATED" : "INVALIDATED");
+
+		if(validated) {
+
+			processCall(data);
+
+			return state;
+		}
+
+		else
+			return null;
+	}
+
+	catch(error) {
+		console.log(error);
+	}
+
+	return null;
+}
+
 function init() {
 
 	devices = getDevices();
@@ -131,7 +157,7 @@ http.createServer(function(request, response) {
 
 			try {
 
-				response.write(
+				let jshResponse = JSON.parse(
 					httpUtils.sendRequest(
 						{
 							request: {
@@ -142,28 +168,39 @@ http.createServer(function(request, response) {
 						}
 					).body
 				);
+
+				if(data.modules != null) {
+
+					let match = data.modules.filter((item) => {
+						return item.module == "ghi";
+					});
+
+					if(match.length > 0) {
+
+						try {
+							
+							jshResponse.modules.push({
+								module: "ghi",
+								response: processRequest(match[0].request)
+							});
+						}
+
+						catch(error) {
+							console.log(error);
+						}
+					}
+				}
+
+				response.write(JSON.stringify(jshResponse));
 			}
 
 			catch(error) {
-
+				console.log(error);
 			}
 		}
 
-		else if(validate(data)) {
-
-			console.log("VALIDATED");
-
-			processCall(data);
-			
-			response.write(JSON.stringify(state));
-		}
-
-		else {
-
-			console.log("INVALIDATED");
-			
-			response.write(JSON.stringify(state));
-		}
+		else
+			response.write(JSON.stringify(processRequest(data)));
 
 		response.end();
 	});
