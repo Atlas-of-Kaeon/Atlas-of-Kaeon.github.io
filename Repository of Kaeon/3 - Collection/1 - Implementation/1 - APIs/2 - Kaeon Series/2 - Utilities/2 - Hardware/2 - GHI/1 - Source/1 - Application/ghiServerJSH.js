@@ -25,7 +25,7 @@ jsh.startJSHServer(
 									method: "POST",
 									uri: "http://localhost:" + process.argv[3]
 								},
-								body: body
+								body: JSON.stringify(data)
 							}
 						).body
 					}

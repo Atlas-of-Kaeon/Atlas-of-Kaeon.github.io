@@ -1,6 +1,8 @@
 var child = require("child_process");
 var fs = require("fs");
 
+let defaultPort = 1233;
+
 let dataGHI = { };
 
 try {
@@ -18,14 +20,16 @@ let port = dataGHI.access.port != null ?
 	dataGHI.access.port :
 	(process.argv.length > 2 ?
 		process.argv[2] :
-		1233
+		"" + defaultPort
 	);
+
+port = Number(port) != NaN ? Number(port) : defaultPort;
 
 let wifiPort = process.argv.length > 3 ?
 	process.argv[3] : port + 1;
 
 let jshPort = process.argv.length > 4 ?
-	process.argv[4] : wifiPort + 1
+	process.argv[4] : wifiPort + 1;
 
 child.exec(
 	"sudo /usr/local/bin/node " +
@@ -38,9 +42,9 @@ child.exec(
 	"sudo /usr/local/bin/node " +
 	__dirname +
 	"/ghiServerJSH.js " +
-	port +
+	jshPort +
 	" " +
-	jshPort
+	port
 );
 
 child.exec(
