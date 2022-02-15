@@ -1,7 +1,7 @@
 var child = require("child_process");
 var fs = require("fs");
 
-let defaultPort = 1233;
+let defaultPort = 80;
 
 let dataGHI = { };
 
