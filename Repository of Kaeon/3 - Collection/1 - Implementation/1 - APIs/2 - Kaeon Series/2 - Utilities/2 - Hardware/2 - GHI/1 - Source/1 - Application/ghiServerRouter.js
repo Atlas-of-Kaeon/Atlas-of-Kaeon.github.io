@@ -15,32 +15,6 @@ function getDevices() {
 	};
 }
 
-function processRequest(data) {
-
-	try {
-
-		let validated = validate(data);
-
-		console.log(validated ? "VALIDATED" : "INVALIDATED");
-
-		if(validated) {
-
-			processCall(data);
-
-			return state;
-		}
-
-		else
-			return null;
-	}
-
-	catch(error) {
-		console.log(error);
-	}
-
-	return null;
-}
-
 function init() {
 
 	devices = getDevices();
@@ -88,6 +62,32 @@ function processCall(call) {
 			console.log(error);
 		}
 	});
+}
+
+function processRequest(data) {
+
+	try {
+
+		let validated = validate(data);
+
+		console.log(validated ? "VALIDATED" : "INVALIDATED");
+
+		if(validated) {
+
+			processCall(data);
+
+			return state;
+		}
+
+		else
+			return null;
+	}
+
+	catch(error) {
+		console.log(error);
+	}
+
+	return null;
 }
 
 function validate(call) {
