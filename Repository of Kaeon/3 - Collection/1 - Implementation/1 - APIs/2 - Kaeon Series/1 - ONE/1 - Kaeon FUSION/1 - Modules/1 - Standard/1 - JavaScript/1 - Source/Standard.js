@@ -6,12 +6,7 @@ var moduleDependencies = {
 	philosophersStone: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/1%20-%20Core/2%20-%20Philosopher's%20Stone/1%20-%20Philosopher's%20Stone/1%20-%20JavaScript/1%20-%20Source/PhilosophersStone.js",
 	oneSuite: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/1%20-%20Core/1%20-%20ONE/6%20-%20ONE%20Suite/1%20-%20JavaScript/1%20-%20Source/ONESuite.js",
 	io: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/1%20-%20Data/1%20-%20IO/1%20-%20JavaScript/1%20-%20Source/io.js",
-	kaeonACECore: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/2%20-%20Kaeon%20Series/1%20-%20ONE/3%20-%20Kaeon%20ACE/1%20-%20APIs/1%20-%20Babylon/1%20-%20Core/1%20-%20Source/KaeonACECore.js",
 	tokenizer: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/1%20-%20Data/2%20-%20Parsing/1%20-%20Tokenizer/1%20-%20JavaScript/1%20-%20Source/tokenizer.js",
-	formatConverter: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/1%20-%20Data/2%20-%20Parsing/3%20-%20Format%20Converter/1%20-%20JavaScript/1%20-%20Source/formatConverter.js",
-	httpUtils: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/1%20-%20Data/3%20-%20API/1%20-%20HTTP%20Utilities/1%20-%20JavaScript/1%20-%20Source/httpUtils.js",
-	widgets: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/2%20-%20Frameworks/1%20-%20Vision/2%20-%20Utilities/1%20-%20Visual/2%20-%20Widgets/1%20-%20General/1%20-%20JavaScript/1%20-%20Source/widgets.js",
-	vision: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/2%20-%20Frameworks/1%20-%20Vision/1%20-%20Core/1%20-%20JavaScript/1%20-%20Source/vision.js"
 };
 
 var one = require(moduleDependencies.one);
@@ -19,14 +14,8 @@ var fusion = require(moduleDependencies.fusion);
 var philosophersStone = require(moduleDependencies.philosophersStone);
 var oneSuite = require(moduleDependencies.oneSuite);
 
-var kaeonACECore = require(moduleDependencies.kaeonACE);
-
 var io = require(moduleDependencies.io);
 var tokenizer = require(moduleDependencies.tokenizer);
-var formatConverter = require(moduleDependencies.formatConverter);
-var httpUtils = require(moduleDependencies.httpUtils);
-var widgets = require(moduleDependencies.widgets);
-var vision = require(moduleDependencies.vision);
 
 var fs = {};
 var path = {};
@@ -1370,19 +1359,6 @@ function direct() {
 	}
 }
 
-function optimize() {
-
-	philosophersStone.abide(this, new fusion.FUSIONUnit());
-
-	this.verify = function(element) {
-		return element.content.toLowerCase() == "optimize";
-	}
-
-	this.process = function(element, processed) {
-		// STUB
-	}
-}
-
 function inject() {
 
 	philosophersStone.abide(this, new fusion.FUSIONUnit());
@@ -2246,45 +2222,6 @@ function vanish() {
 	}
 }
 
-function forCommand() {
-
-	philosophersStone.abide(this, new fusion.FUSIONUnit());
-
-	this.verify = function(element) {
-		return element.content.toLowerCase() == "for";
-	}
-
-	this.process = function(element, processed) {
-		// STUB
-	}
-}
-
-function ifCommand() {
-
-	philosophersStone.abide(this, new fusion.FUSIONUnit());
-
-	this.verify = function(element) {
-		return element.content.toLowerCase() == "if";
-	}
-
-	this.process = function(element, processed) {
-		// STUB
-	}
-}
-
-function whileCommand() {
-
-	philosophersStone.abide(this, new fusion.FUSIONUnit());
-
-	this.verify = function(element) {
-		return element.content.toLowerCase() == "while";
-	}
-
-	this.process = function(element, processed) {
-		// STUB
-	}
-}
-
 function log() {
 
 	philosophersStone.abide(this, new fusion.FUSIONUnit());
@@ -2393,32 +2330,6 @@ function logLineError() {
 	}
 }
 
-function logClear() {
-
-	philosophersStone.abide(this, new fusion.FUSIONUnit());
-
-	this.verify = function(element) {
-		return element.content.toLowerCase() == "log clear";
-	}
-
-	this.process = function(element, processed) {
-		// STUB
-	}
-}
-
-function logLineClear() {
-
-	philosophersStone.abide(this, new fusion.FUSIONUnit());
-
-	this.verify = function(element) {
-		return element.content.toLowerCase() == "log line clear";
-	}
-
-	this.process = function(element, processed) {
-		// STUB
-	}
-}
-
 function input() {
 
 	philosophersStone.abide(this, new fusion.FUSIONUnit());
@@ -2435,19 +2346,6 @@ function input() {
 			str += renderItem(processed[i]);
 
 		return io.getInput(str);
-	}
-}
-
-function getLog() {
-
-	philosophersStone.abide(this, new fusion.FUSIONUnit());
-
-	this.verify = function(element) {
-		return element.content.toLowerCase() == "get log";
-	}
-
-	this.process = function(element, processed) {
-		// STUB
 	}
 }
 
@@ -2565,19 +2463,6 @@ function weekday() {
 
 	this.process = function(element, processed) {
 		return ((new Date()).getDay() % 7) + 1;
-	}
-}
-
-function addresses() {
-
-	philosophersStone.abide(this, new fusion.FUSIONUnit());
-
-	this.verify = function(element) {
-		return element.content.toLowerCase() == "addresses";
-	}
-
-	this.process = function(element, processed) {
-		// STUB
 	}
 }
 
@@ -2882,65 +2767,6 @@ function buildWorkspace() {
 
 	this.process = function(element, processed) {
 		return path.resolve("."); // STUB - TEMPORARY
-	}
-}
-
-function readBytes() {
-
-	philosophersStone.abide(this, new fusion.FUSIONUnit());
-
-	this.verify = function(element) {
-		return element.content.toLowerCase() == "read bytes";
-	}
-
-	this.process = function(element, processed) {
-		// STUB
-	}
-}
-
-function writeBytes() {
-
-	philosophersStone.abide(this, new fusion.FUSIONUnit());
-
-	this.verify = function(element) {
-		return element.content.toLowerCase() == "write bytes";
-	}
-
-	this.process = function(element, processed) {
-		// STUB
-	}
-}
-
-function send() {
-
-	philosophersStone.abide(this, new fusion.FUSIONUnit());
-
-	this.verify = function(element) {
-		return element.content.toLowerCase() == "send";
-	}
-
-	this.process = function(element, processed) {
-		
-		let request = Array.isArray(processed[0]) ?
-			JSON.parse(formatConverter.dynamicListToJSON(processed[0])) :
-			"" + processed[0];
-
-		httpUtils.sendRequest(request, processed.length == 1 ? null : () => {
-			// STUB
-		});
-	}
-}
-
-function host() {
-
-	philosophersStone.abide(this, new fusion.FUSIONUnit());
-
-	this.verify = function(element) {
-		return element.content.toLowerCase() == "host";
-	}
-
-	this.process = function(element, processed) {
-		// STUB
 	}
 }
 
@@ -4093,13 +3919,13 @@ function setAlias() {
 
 	this.process = function(element, processed) {
 
-		if(processed[0].dynamicAliases == null)
-			processed[0].dynamicAliases = [];
+		if(processed[0].standardAliases == null)
+			processed[0].standardAliases = [];
 		
-		while(processed[0].dynamicAliases.length < Number("" + processed[1]))
-			processed[0].dynamicAliases.push(null);
+		while(processed[0].standardAliases.length < Number("" + processed[1]))
+			processed[0].standardAliases.push(null);
 		
-		processed[0].dynamicAliases[Number("" + processed[1]) - 1] = "" + processed[2];
+		processed[0].standardAliases[Number("" + processed[1]) - 1] = "" + processed[2];
 
 		return null;
 	}
@@ -4117,12 +3943,12 @@ function getByAlias() {
 
 		let value = [];
 
-		if(processed[0].dynamicAliases == null)
+		if(processed[0].standardAliases == null)
 			return value;
 
-		for(let i = 0; i < processed[0].dynamicAliases.length && i < processed[0].length; i++) {
+		for(let i = 0; i < processed[0].standardAliases.length && i < processed[0].length; i++) {
 
-			if(processed[0].dynamicAliases[i].toLowerCase() == ("" + processed[1]).toLowerCase())
+			if(processed[0].standardAliases[i].toLowerCase() == ("" + processed[1]).toLowerCase())
 				value.push(processed[0][i]);
 		}
 
@@ -4142,12 +3968,12 @@ function getAliasIndices() {
 
 		let value = [];
 
-		if(processed[0].dynamicAliases == null)
+		if(processed[0].standardAliases == null)
 			return value;
 
-		for(let i = 0; i < processed[0].dynamicAliases.length && i < processed[0].length; i++) {
+		for(let i = 0; i < processed[0].standardAliases.length && i < processed[0].length; i++) {
 
-			if(processed[0].dynamicAliases[i].toLowerCase() == ("" + processed[1]).toLowerCase())
+			if(processed[0].standardAliases[i].toLowerCase() == ("" + processed[1]).toLowerCase())
 				value.push(i + 1);
 		}
 
@@ -4165,41 +3991,15 @@ function getAlias() {
 
 	this.process = function(element, processed) {
 
-		if(processed[0].dynamicAliases == null)
+		if(processed[0].standardAliases == null)
 			return null;
 
 		let index = Number("" + processed[1]) - 1;
 
-		if(index >= processed[0].length || index >= processed[0].dynamicAliases.length)
+		if(index >= processed[0].length || index >= processed[0].standardAliases.length)
 			return null;
 		
-		return processed[0].dynamicAliases[index];
-	}
-}
-
-function jsonToDynamicList() {
-
-	philosophersStone.abide(this, new fusion.FUSIONUnit());
-
-	this.verify = function(element) {
-		return element.content.toLowerCase() == "json to dynamic list";
-	}
-
-	this.process = function(element, processed) {
-		return formatConverter.jsonToDynamicList("" + processed[0]);
-	}
-}
-
-function dynamicListToJSON() {
-
-	philosophersStone.abide(this, new fusion.FUSIONUnit());
-
-	this.verify = function(element) {
-		return element.content.toLowerCase() == "dynamic list to json";
-	}
-
-	this.process = function(element, processed) {
-		return formatConverter.dynamicListToJSON(processed[0]);
+		return processed[0].standardAliases[index];
 	}
 }
 
@@ -5094,298 +4894,6 @@ function hexadecimalToBinary() {
 	}
 }
 
-function connect() {
-
-	philosophersStone.abide(this, new fusion.FUSIONUnit());
-
-	this.verify = function(element) {
-		return element.content.toLowerCase() == "connect";
-	}
-
-	this.process = function(element, processed) {
-		// STUB
-	}
-}
-
-function disconnect() {
-
-	philosophersStone.abide(this, new fusion.FUSIONUnit());
-
-	this.verify = function(element) {
-		return element.content.toLowerCase() == "disconnect";
-	}
-
-	this.process = function(element, processed) {
-		// STUB
-	}
-}
-
-function isConnected() {
-
-	philosophersStone.abide(this, new fusion.FUSIONUnit());
-
-	this.verify = function(element) {
-		return element.content.toLowerCase() == "is connected";
-	}
-
-	this.process = function(element, processed) {
-		// STUB
-	}
-}
-
-function getConnections() {
-
-	philosophersStone.abide(this, new fusion.FUSIONUnit());
-
-	this.verify = function(element) {
-		return element.content.toLowerCase() == "get connections";
-	}
-
-	this.process = function(element, processed) {
-		// STUB
-	}
-}
-
-function getPolicies() {
-
-	philosophersStone.abide(this, new fusion.FUSIONUnit());
-
-	this.verify = function(element) {
-		return element.content.toLowerCase() == "get policies";
-	}
-
-	this.process = function(element, processed) {
-		// STUB
-	}
-}
-
-function traverse() {
-
-	philosophersStone.abide(this, new fusion.FUSIONUnit());
-
-	this.verify = function(element) {
-		return element.content.toLowerCase() == "traverse";
-	}
-
-	this.process = function(element, processed) {
-		// STUB
-	}
-}
-
-function train() {
-
-	philosophersStone.abide(this, new fusion.FUSIONUnit());
-
-	this.verify = function(element) {
-		return element.content.toLowerCase() == "train";
-	}
-
-	this.process = function(element, processed) {
-		// STUB
-	}
-}
-
-function generate() {
-
-	philosophersStone.abide(this, new fusion.FUSIONUnit());
-
-	this.verify = function(element) {
-		return element.content.toLowerCase() == "generate";
-	}
-
-	this.process = function(element, processed) {
-		// STUB
-	}
-}
-
-function correlate() {
-
-	philosophersStone.abide(this, new fusion.FUSIONUnit());
-
-	this.verify = function(element) {
-		return element.content.toLowerCase() == "correlate";
-	}
-
-	this.process = function(element, processed) {
-		// STUB
-	}
-}
-
-function getUI() {
-
-	philosophersStone.abide(this, new fusion.FUSIONUnit());
-
-	this.verify = function(element) {
-		return element.content.toLowerCase() == "get ui";
-	}
-
-	this.process = function(element, processed) {
-		
-		let elements = [];
-
-		processed.forEach((item) => {
-			elements = elements.concat(Array.from(document.querySelectorAll("" + item)));
-		});
-
-		return elements.map((item) => {
-			formatConverter.jsonToDynamicList(JSON.stringify(vision.get(item)));
-		});
-	}
-}
-
-function setUI() {
-
-	philosophersStone.abide(this, new fusion.FUSIONUnit());
-
-	this.verify = function(element) {
-		return element.content.toLowerCase() == "set ui";
-	}
-
-	this.process = function(element, processed) {
-		
-		let elements = [];
-
-		processed.forEach((item, index) => {
-
-			if(index == 0)
-				return;
-
-			elements = elements.concat(Array.from(document.querySelectorAll("" + item)));
-		});
-
-		let settings = JSON.parse(formatConverter.dynamicListToJSON(processed[0]));
-
-		elements.forEach((item) => {
-			vision.set(item, settings);
-		});
-	}
-}
-
-function extendUI() {
-
-	philosophersStone.abide(this, new fusion.FUSIONUnit());
-
-	this.verify = function(element) {
-		return element.content.toLowerCase() == "extend ui";
-	}
-
-	this.process = function(element, processed) {
-
-		let dom = document.documentElement;
-
-		if(typeof processed[0] == "string")
-			dom = document.querySelector("" + processed[0]);
-
-		processed.forEach((item, index) => {
-			
-			if(typeof processed[0] == "string" && index == 0)
-				return;
-
-			vision.extend(dom, vision.create(JSON.parse(formatConverter.dynamicListToJSON(item))));
-		});
-	}
-}
-
-function deleteUI() {
-
-	philosophersStone.abide(this, new fusion.FUSIONUnit());
-
-	this.verify = function(element) {
-		return element.content.toLowerCase() == "delete ui";
-	}
-
-	this.process = function(element, processed) {
-
-		processed.forEach((item) => {
-			vision.remove("" + item);
-		});
-	}
-}
-
-function specifyUI() {
-
-	philosophersStone.abide(this, new fusion.FUSIONUnit());
-
-	this.verify = function(element) {
-		return element.content.toLowerCase() == "specify ui";
-	}
-
-	this.process = function(element, processed) {
-		
-		processed.forEach((list) => {
-			vision.selectorRules["" + list[0]] = JSON.parse(formatConverter.dynamicListToJSON(list[1]));
-		})
-	}
-}
-
-function loadUI() {
-
-	philosophersStone.abide(this, new fusion.FUSIONUnit());
-
-	this.verify = function(element) {
-		return element.content.toLowerCase() == "load ui";
-	}
-
-	this.process = function(element, processed) {
-		vision.load(processed);
-	}
-}
-
-function HTMLToDOM() {
-
-	philosophersStone.abide(this, new fusion.FUSIONUnit());
-
-	this.verify = function(element) {
-		return element.content.toLowerCase() == "HTML to DOM";
-	}
-
-	this.process = function(element, processed) {
-		return formatConverter.jsonToDynamicList(JSON.stringify(vision.toElement("" + processed[0])));
-	}
-}
-
-function DOMToHTML() {
-
-	philosophersStone.abide(this, new fusion.FUSIONUnit());
-
-	this.verify = function(element) {
-		return element.content.toLowerCase() == "DOM to HTML";
-	}
-
-	this.process = function(element, processed) {
-		return vision.toHTML(JSON.parse(formatConverter.dynamicListToJSON(processed[0])));
-	}
-}
-
-function kaeonACECommand() {
-
-	philosophersStone.abide(this, new fusion.FUSIONUnit());
-
-	var reference = this;
-
-	this.verify = function(element) {
-		return element.content.toLowerCase() == "kaeon ace";
-	}
-
-	this.process = function(element, processed) {
-
-		var fusionRef = reference.fusion;
-
-		let ace = element;
-
-		while(ace.parent != null)
-			ace = ace.parent;
-
-		widgets.createStartScreen(
-			document.documentElement,
-			"Start",
-			(dom) => {
-				kaeonACECore.run(fusionRef, ace, dom);
-			}
-		);
-	}
-}
-
 // COMMAND UTILITY FUNCTIONS
 
 function getStone(reference, tags) {
@@ -5584,7 +5092,6 @@ module.exports = function(fusion) {
 	philosophersStone.connect(fusion, new be(), [], true);
 	philosophersStone.connect(fusion, new call(), [], true);
 	philosophersStone.connect(fusion, new direct(), [], true);
-	philosophersStone.connect(fusion, new optimize(), [], true);
 	philosophersStone.connect(fusion, new inject(), [], true);
 	
 	philosophersStone.connect(fusion, new returnCommand(), [], true);
@@ -5609,18 +5116,12 @@ module.exports = function(fusion) {
 	philosophersStone.connect(fusion, new ternary(), [], true);
 	philosophersStone.connect(fusion, new isolate(), [], true);
 	philosophersStone.connect(fusion, new vanish(), [], true);
-	philosophersStone.connect(fusion, new forCommand(), [], true);
-	philosophersStone.connect(fusion, new ifCommand(), [], true);
-	philosophersStone.connect(fusion, new whileCommand(), [], true);
 
 	philosophersStone.connect(fusion, new log(), [], true);
 	philosophersStone.connect(fusion, new logLine(), [], true);
 	philosophersStone.connect(fusion, new logError(), [], true);
 	philosophersStone.connect(fusion, new logLineError(), [], true);
-	philosophersStone.connect(fusion, new logClear(), [], true);
-	philosophersStone.connect(fusion, new logLineClear(), [], true);
 	philosophersStone.connect(fusion, new input(), [], true);
-	philosophersStone.connect(fusion, new getLog(), [], true);
 	
 	philosophersStone.connect(fusion, new operatingSystem(), [], true);
 	philosophersStone.connect(fusion, new time(), [], true);
@@ -5631,7 +5132,6 @@ module.exports = function(fusion) {
 	philosophersStone.connect(fusion, new minute(), [], true);
 	philosophersStone.connect(fusion, new second(), [], true);
 	philosophersStone.connect(fusion, new weekday(), [], true);
-	philosophersStone.connect(fusion, new addresses(), [], true);
 	
 	philosophersStone.connect(fusion, new open(), [], true);
 	philosophersStone.connect(fusion, new save(), [], true);
@@ -5651,10 +5151,6 @@ module.exports = function(fusion) {
 	philosophersStone.connect(fusion, new pathSeparator(), [], true);
 	philosophersStone.connect(fusion, new sourceWorkspaces(), [], true);
 	philosophersStone.connect(fusion, new buildWorkspace(), [], true);
-	philosophersStone.connect(fusion, new readBytes(), [], true);
-	philosophersStone.connect(fusion, new writeBytes(), [], true);
-	philosophersStone.connect(fusion, new send(), [], true);
-	philosophersStone.connect(fusion, new host(), [], true);
 
 	philosophersStone.connect(fusion, new list(), [], true);
 	philosophersStone.connect(fusion, new size(), [], true);
@@ -5691,8 +5187,6 @@ module.exports = function(fusion) {
 	philosophersStone.connect(fusion, new getByAlias(), [], true);
 	philosophersStone.connect(fusion, new getAliasIndices(), [], true);
 	philosophersStone.connect(fusion, new getAlias(), [], true);
-	philosophersStone.connect(fusion, new jsonToDynamicList(), [], true);
-	philosophersStone.connect(fusion, new dynamicListToJSON(), [], true);
 	
 	philosophersStone.connect(fusion, new characterToNumber(), [], true);
 	philosophersStone.connect(fusion, new numberToCharacter(), [], true);
@@ -5750,28 +5244,4 @@ module.exports = function(fusion) {
 	philosophersStone.connect(fusion, new hexadecimalToDecimal(), [], true);
 	philosophersStone.connect(fusion, new binaryToHexadecimal(), [], true);
 	philosophersStone.connect(fusion, new hexadecimalToBinary(), [], true);
-	
-	philosophersStone.connect(fusion, new connect(), [], true);
-	philosophersStone.connect(fusion, new disconnect(), [], true);
-	philosophersStone.connect(fusion, new isConnected(), [], true);
-	philosophersStone.connect(fusion, new getConnections(), [], true);
-	philosophersStone.connect(fusion, new getPolicies(), [], true);
-	philosophersStone.connect(fusion, new traverse(), [], true);
-	philosophersStone.connect(fusion, new train(), [], true);
-	philosophersStone.connect(fusion, new generate(), [], true);
-	philosophersStone.connect(fusion, new correlate(), [], true);
-
-	philosophersStone.connect(fusion, new getUI(), [], true);
-	philosophersStone.connect(fusion, new setUI(), [], true);
-	philosophersStone.connect(fusion, new extendUI(), [], true);
-	philosophersStone.connect(fusion, new deleteUI(), [], true);
-	philosophersStone.connect(fusion, new specifyUI(), [], true);
-	philosophersStone.connect(fusion, new loadUI(), [], true);
-	philosophersStone.connect(fusion, new HTMLToDOM(), [], true);
-	philosophersStone.connect(fusion, new DOMToHTML(), [], true);
-	
-	philosophersStone.connect(fusion, new kaeonACECommand(), [], true);
-
-	if(platform == "Browser")
-		vision.startScriptEngine();
 };
