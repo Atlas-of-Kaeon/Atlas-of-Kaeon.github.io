@@ -21,7 +21,7 @@ function process(code, fusion) {
 	code =
 		Array.isArray(code) ?
 			one.toObject(code) :
-			parse("" + code);
+			read("" + code);
 
 	if(fusion == null) {
 
