@@ -352,11 +352,11 @@ function load() {
 	}
 
 	catch(error) {
-		data = one.createElement("");
+		data = one.create("");
 	}
 
 	if(data.children.length == 0)
-		one.addChild(data, one.createElement(""));
+		one.add(data, one.create(""));
 
 	for(let i = 0; i < data.children.length; i++) {
 
@@ -521,25 +521,25 @@ function saveData() {
 
 	try {
 
-		let data = new one.Element();
+		let data = one.create();
 		
 		tabs[currentTab].data = text.value;
 
 		for(let i = 0; i < tabs.length; i++) {
 
-			let item = one.createElement(tabs[i].data);
+			let item = one.create(tabs[i].data);
 
-			one.addChild(data, item);
+			one.add(data, item);
 
 			if(tabs[i].named) {
 
-				one.addChild(
-					item, one.createElement(tabs[i].childNodes[1].innerHTML)
+				one.add(
+					item, one.create(tabs[i].childNodes[1].innerHTML)
 				);
 			}
 		}
 		
-		window.localStorage.setItem("kaeonOriginData", one.writeONE(data));
+		window.localStorage.setItem("kaeonOriginData", one.write(data));
 	}
 
 	catch(error) {
