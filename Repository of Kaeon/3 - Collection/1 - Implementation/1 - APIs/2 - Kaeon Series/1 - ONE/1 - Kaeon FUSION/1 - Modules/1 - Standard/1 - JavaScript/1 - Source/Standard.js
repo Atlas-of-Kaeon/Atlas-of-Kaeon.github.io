@@ -557,7 +557,7 @@ function doCommand() {
 		return executeFunction(
 			element,
 			reference.fusion,
-			one.toElement(processed[0]),
+			one.toObject(processed[0]),
 			processed.length > 1 ? processed[1] : null
 		);
 	}
@@ -1090,7 +1090,7 @@ function reflect() {
 			let result = executeFunction(
 				element,
 				innerReference.reference.fusionStone,
-				one.toElement(deny),
+				one.toObject(deny),
 				[one.toList(element)],
 				unit);
 			
@@ -1105,7 +1105,7 @@ function reflect() {
 			let result = executeFunction(
 				element,
 				innerReference.reference.fusionStone,
-				one.toElement(verify),
+				one.toObject(verify),
 				[one.toList(element)],
 				unit);
 			
@@ -1120,7 +1120,7 @@ function reflect() {
 			let result = executeFunction(
 				element,
 				innerReference.reference.fusionStone,
-				one.toElement(trickleDown),
+				one.toObject(trickleDown),
 				[one.toList(element)],
 				unit);
 			
@@ -1135,7 +1135,7 @@ function reflect() {
 			return executeFunction(
 				element,
 				innerReference.reference.fusionStone,
-				one.toElement(processFunction),
+				one.toObject(processFunction),
 				[one.toList(element), processed],
 				unit);
 		}
@@ -1148,7 +1148,7 @@ function reflect() {
 			let result = executeFunction(
 				element,
 				innerReference.reference.fusionStone,
-				one.toElement(terminate),
+				one.toObject(terminate),
 				[one.toList(element), processed],
 				unit);
 			
@@ -1163,7 +1163,7 @@ function reflect() {
 			let result = executeFunction(
 				element,
 				innerReference.reference.fusionStone,
-				one.toElement(isAdded),
+				one.toObject(isAdded),
 				[one.toList(element), processed],
 				unit);
 			
@@ -1178,11 +1178,11 @@ function reflect() {
 			let result = executeFunction(
 				element,
 				innerReference.reference.fusionStone,
-				one.toElement(jump),
+				one.toObject(jump),
 				[one.toList(element), processed],
 				unit);
 			
-			return one.toElement(result);
+			return one.toObject(result);
 		}
 
 		unit.handleError = function(element, processed, exception) {
@@ -1193,7 +1193,7 @@ function reflect() {
 			executeFunction(
 				element,
 				innerReference.reference.fusionStone,
-				one.toElement(handleError),
+				one.toObject(handleError),
 				[one.toList(element), processed, exception],
 				unit);
 		}
@@ -1375,10 +1375,10 @@ function inject() {
 		let injection = null;
 
 		if(Array.isArray(processed[0]))
-			injection = one.toElement(processed[0]);
+			injection = one.toObject(processed[0]);
 
 		else
-			injection = one.toElement(oneSuite.parse("" + processed[0]));
+			injection = one.toObject(oneSuite.parse("" + processed[0]));
 
 		element.content = injection.content;
 		element.children = injection.children;
@@ -1594,7 +1594,7 @@ function execute() {
 				}
 			}
 
-			reference.fusion.internalProcess(one.toElement(oneSuite.parse(data)), true);
+			reference.fusion.internalProcess(one.toObject(oneSuite.parse(data)), true);
 		}
 
 		return null;
@@ -1903,7 +1903,7 @@ function split() {
 
 	this.process = function(element, processed) {
 
-		let thread = one.copyElement(element);
+		let thread = one.copy(element);
 		thread.content = "";
 		
 		let state = getState(element);
@@ -2096,7 +2096,7 @@ function shift() {
 
 	this.jump = function(element, processed) {
 
-		let item = one.toElement(processed[0]);
+		let item = one.toObject(processed[0]);
 
 		if(processed.length > 1) {
 
@@ -2136,7 +2136,7 @@ function flip() {
 				}
 			}
 			
-			jump = one.copyElement(jump);
+			jump = one.copy(jump);
 			
 			reverseElement(jump);
 			
@@ -2208,7 +2208,7 @@ function vanish() {
 			let index = one.getIndex(toVanish[i]);
 			
 			if(index >= 0)
-				one.removeChild(toVanish[i].parent, index);
+				toVanish[i].parent[i].children.slice(index, 1);
 		}
 
 		return element.content.toLowerCase() == "vanish";
@@ -3197,7 +3197,7 @@ function listToElement() {
 	}
 
 	this.process = function(element, processed) {
-		return one.writeONE(one.toElement(processed[0]));
+		return one.write(one.toObject(processed[0]));
 	}
 }
 
@@ -3221,7 +3221,7 @@ function elementToList() {
 			}
 		}
 
-		return one.toList(one.toElement(oneSuite.parse(data)));
+		return one.toList(one.toObject(oneSuite.parse(data)));
 	}
 }
 

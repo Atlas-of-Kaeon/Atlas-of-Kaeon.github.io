@@ -6,8 +6,8 @@ var one = require(moduleDependencies.one);
 
 function getItem(element, item, defaultOption) {
 
-	if(one.getChild(element, item) != null)
-		return one.getChild(element, item).children[0].content;
+	if(one.get(element, item).length > 0)
+		return one.get(element, item)[0].children[0].content;
 
 	return defaultOption;
 }

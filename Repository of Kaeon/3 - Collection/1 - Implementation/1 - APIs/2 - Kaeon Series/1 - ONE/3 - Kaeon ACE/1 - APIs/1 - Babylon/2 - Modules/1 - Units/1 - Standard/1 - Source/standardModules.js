@@ -20,14 +20,14 @@ var audio = {
 
 	onDeserialize: function(core, ace, entity) {
 
-		if(one.getChild(ace, "audio") != null) {
+		if(one.get(ace, "audio")[0] != null) {
 
 			let medium = "file";
 
-			if(one.getChild(one.getChild(ace, "audio"), "medium") != null)
-				medium = one.getChild(one.getChild(ace, "audio"), "medium").children[0].content.trim().toLowerCase();
+			if(one.get(one.get(ace, "audio")[0], "medium")[0] != null)
+				medium = one.get(one.get(ace, "audio")[0], "medium")[0].children[0].content.trim().toLowerCase();
 	
-			let source = one.getChild(one.getChild(ace, "audio"), "source").children[0].content;
+			let source = one.get(one.get(ace, "audio")[0], "source")[0].children[0].content;
 
 			if(medium == "file") {
 
@@ -49,9 +49,9 @@ var cursor = {
 
 	onDeserialize: function(core, ace, entity) {
 
-		if(one.getChild(ace, "cursor") != null) {
+		if(one.get(ace, "cursor")[0] != null) {
 	
-			if(one.getChild(one.getChild(ace, "cursor"), "none") != null)
+			if(one.get(one.get(ace, "cursor")[0], "none")[0] != null)
 				core.element.style.cursor = "none";
 		}
 	}
@@ -74,8 +74,8 @@ var id = {
 
 	onDeserialize: function(core, ace, entity) {
 
-		if(one.getChild(ace, "id") != null)
-			this.reference[one.getChild(ace, "id").children[0].content] = entity;
+		if(one.get(ace, "id").length > 0)
+			this.reference[one.get(ace, "id")[0].children[0].content] = entity;
 
 	}
 }
@@ -92,9 +92,9 @@ var model = {
 
 	onDeserialize: function(core, ace, entity) {
 
-		if(one.getChild(ace, "model") != null) {
+		if(one.get(ace, "model").length > 0) {
 			
-			let source = one.getChild(one.getChild(ace, "model"), "source").children[0].content;
+			let source = one.get(one.get(ace, "model")[0], "source")[0].children[0].content;
 	
 			let model = BABYLON.SceneLoader.ImportMesh("", source.substring(0, source.lastIndexOf("/") + 1), source.substring(source.lastIndexOf("/") + 1), core.scene, function (meshes) {          
 				entity.components = entity.components.concat(meshes);
@@ -127,9 +127,9 @@ var move = {
 		
 		let command = onePlus.readONEPlus("" + data);
 
-		if(one.getChild(command, "move") != null) {
+		if(one.get(command, "move").length > 0) {
 			
-			let item = one.getChild(command, "move").children[0];
+			let item = one.get(command, "move")[0].children[0];
 
 			let entity = move.id.reference[item.content];
 
@@ -151,16 +151,16 @@ var script = {
 
 	onDeserialize: function(core, ace, entity) {
 
-		if(one.getChild(ace, "script") != null)
-			this.scripts = this.scripts.concat(one.getChild(ace, "script", null, true));
+		if(one.get(ace, "script").length > 0)
+			this.scripts = this.scripts.concat(one.get(ace, "script"));
 	},
 
 	onUpdate: function(core, delta) {
 		
 		for(let i = 0; i < this.scripts.length; i++) {
 			
-			let start = one.getChild(this.scripts[i], "start");
-			let update = one.getChild(this.scripts[i], "update");
+			let start = one.get(this.scripts[i], "start")[0];
+			let update = one.get(this.scripts[i], "update")[0];
 
 			if(!this.scripts[i].started)
 				this.executeSubscript(start, core, delta);
@@ -176,8 +176,8 @@ var script = {
 		if(subscript == null)
 			return;
 
-		let language = one.getChild(subscript, "language").children[0].content.toLowerCase().trim().split(" ").join("");
-		let source = one.getChild(subscript, "source").children[0].content;
+		let language = one.get(subscript, "language")[0].children[0].content.toLowerCase().trim().split(" ").join("");
+		let source = one.get(subscript, "source")[0].children[0].content;
 
 		try {
 

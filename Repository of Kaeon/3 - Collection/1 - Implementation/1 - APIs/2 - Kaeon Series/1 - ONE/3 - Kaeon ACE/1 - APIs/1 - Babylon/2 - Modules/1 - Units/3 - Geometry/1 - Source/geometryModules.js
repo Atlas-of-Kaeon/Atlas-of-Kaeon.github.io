@@ -10,7 +10,7 @@ var ball = {
 
 	onDeserialize: function(core, ace, entity) {
 
-		if(one.getChild(ace, "ball") != null) {
+		if(one.get(ace, "ball").length > 0) {
 	
 			let ball = BABYLON.MeshBuilder.CreateSphere(
 				"sphere",
@@ -27,9 +27,9 @@ var ground = {
 
 	onDeserialize: function(core, ace, entity) {
 
-		if(one.getChild(ace, "ground") != null) {
+		if(one.get(ace, "ground").length > 0) {
 			
-			let item = one.getChild(ace, "ground");
+			let item = one.get(ace, "ground")[0];
 
 			let texture = moduleUtilities.getItem(item, "texture");
 			let map = moduleUtilities.getItem(item, "map");
@@ -91,7 +91,7 @@ var skybox = {
 
 	onDeserialize: function(core, ace, entity) {
 
-		if(one.getChild(ace, "skybox") != null) {
+		if(one.get(ace, "skybox").length > 0) {
 		
 			var skybox = BABYLON.MeshBuilder.CreateBox("skyBox", { size: 10000.0 }, core.scene);
 	
@@ -100,10 +100,10 @@ var skybox = {
 			skyboxMaterial.backFaceCulling = false;
 
 			skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture(
-				one.getChild(
-					one.getChild(ace, "skybox"),
+				one.get(
+					one.get(ace, "skybox")[0],
 					"source"
-				).children[0].content, core.scene);
+				)[0].children[0].content, core.scene);
 
 			skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
 			skyboxMaterial.disableLighting = true;

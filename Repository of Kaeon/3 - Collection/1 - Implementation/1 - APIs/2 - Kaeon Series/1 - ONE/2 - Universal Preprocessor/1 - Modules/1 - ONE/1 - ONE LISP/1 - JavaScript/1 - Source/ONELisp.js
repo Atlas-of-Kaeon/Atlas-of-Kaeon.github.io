@@ -8,7 +8,7 @@ var tokenizer = require(moduleDependencies.tokenizer);
 
 function processONELisp(data) {
 
-	let root = new one.Element();
+	let root = one.create();
 	
 	let tokens =
 		tokenizer.tokenize(
@@ -34,7 +34,7 @@ function processONELisp(data) {
 					currentElement.content = literal;
 				
 				else
-					one.addChild(currentElement, one.createElement(literal));
+					one.add(currentElement, one.create(literal));
 				
 				literal = "";
 			}
@@ -53,7 +53,7 @@ function processONELisp(data) {
 					currentElement.content = tokens[i + 1];
 				
 				else
-					one.addChild(currentElement, one.createElement(tokens[i + 1]));
+					one.add(currentElement, one.create(tokens[i + 1]));
 			}
 			
 			i++;
@@ -63,10 +63,10 @@ function processONELisp(data) {
 		
 		if(tokens[i] == "(" && i < tokens.length - 1) {
 			
-			let newElement = new one.Element();
+			let newElement = one.create();
 			newElement.content = null;
 			
-			one.addChild(currentElement, newElement);
+			one.add(currentElement, newElement);
 			
 			currentElement = newElement;
 		}
@@ -83,7 +83,7 @@ function processONELisp(data) {
 				currentElement.content = tokens[i];
 			
 			else
-				one.addChild(currentElement, one.createElement(tokens[i]));
+				one.add(currentElement, one.create(tokens[i]));
 		}
 	}
 	
@@ -92,7 +92,7 @@ function processONELisp(data) {
 	if(currentElement.content == null)
 		currentElement.content = "";
 	
-	return one.writeONE(root);
+	return one.write(root);
 }
 
 module.exports = function(item) {

@@ -114,7 +114,7 @@ function toPaperONEDocument(document, markup) {
 	catch(error) {
 
 		try {
-			element = one.readONE(document);
+			element = one.read(document);
 		}
 
 		catch(error) {

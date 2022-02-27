@@ -14,11 +14,9 @@ var universalPreprocessor = require(moduleDependencies.universalPreprocessor);
 
 function parse(string) {
 
-	return one.toList(
-		onePlus.readONEPlus(
-			preprocess(
-				string.split("\r").join("")
-			)
+	return onePlus.readONEPlus(
+		preprocess(
+			string.split("\r").join("")
 		)
 	);
 }
@@ -31,8 +29,8 @@ function process(code, fusion) {
 
 	code =
 		Array.isArray(code) ?
-			one.toElement(code) :
-			one.toElement(parse("" + code));
+			one.toObject(code) :
+			parse("" + code);
 
 	if(fusion == null) {
 
@@ -54,7 +52,10 @@ function process(code, fusion) {
 }
 
 function write(element) {
-	return one.writeONE(one.toElement(element));
+
+	return Array.isArray(element) ?
+		one.write(one.toObject(element)) :
+		one.write(element);
 }
 
 module.exports = {

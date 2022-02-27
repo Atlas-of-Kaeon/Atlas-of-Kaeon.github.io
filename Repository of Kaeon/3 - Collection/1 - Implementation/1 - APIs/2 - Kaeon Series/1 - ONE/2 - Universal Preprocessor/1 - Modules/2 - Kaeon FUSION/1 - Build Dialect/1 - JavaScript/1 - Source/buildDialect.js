@@ -118,25 +118,25 @@ function buildDialect() {
 		
 		try {
 			
-			let injection = one.getChild(meta, "Injection");
-			let use = one.getChild(meta, "Use");
+			let injection = one.get(meta, "Injection")[0];
+			let use = one.get(meta, "Use")[0];
 			
 			if(injection != null)
 				return injection.children[0].content;
 			
 			if(use != null) {
 				
-				let dialect = one.getChild(use, "Dialect").children[0].content;
+				let dialect = one.get(use, "Dialect")[0].children[0].content;
 				
-				let codeElement = one.copyElement(one.getChild(use, "Code"));
+				let codeElement = one.copy(one.get(use, "Code")[0]);
 				codeElement.content = "";
 				
 				let code = [codeElement];
 				
 				let args = [];
 				
-				if(one.hasChild(use, "Arguments"))
-					args = one.getChild(use, "Arguments").children.slice(0);
+				if(one.get(use, "Arguments").length > 0)
+					args = one.get(use, "Arguments")[0].children.slice(0);
 	
 				args.push("");
 				args.push([]);

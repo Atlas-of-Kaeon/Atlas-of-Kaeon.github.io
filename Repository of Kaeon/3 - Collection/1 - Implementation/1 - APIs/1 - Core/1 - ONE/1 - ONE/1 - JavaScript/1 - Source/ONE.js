@@ -1,312 +1,175 @@
-function Element() {
-	
-	this.content = "";
-	
-	this.parent = null;
-	this.children = [];
-}
+function add(parent) {
 
-function createElement(content, child) {
-	
-	var element = new Element();
-	
-	if(content != null)
-		element.content = content;
-	
-	if(child != null)
-		addChild(element, child);
-	
-	return element;
-}
+	let child = [];
 
-function copyElement(element) {
+	for(let i = 1; i < arguments.length; i++) {
 
-	var newElement = createElement(element.content);
-	
-	for(var i = 0; i < element.children.length; i++)
-		addChild(newElement, copyElement(element.children[i]));
-		
-	return newElement;
-}
-
-function addChild(parent, child, indices) {
-	
-	if(Array.isArray(child)) {
-		
-		if(indices != null) {
-		
-			var get = getChild(parent, indices);
-			
-			var index = getIndex(get);
-			parent = get.parent;
-			
-			for(var i = 0; i < children.length; i++) {
-		
-				child.parent = parent;
-				
-				parent.children.splice(index + i, 0, children[i]);
-			}
-		}
-		
-		else {
-			
-			for(var i = 0; i < child.length; i++) {
-		
-				child.parent = parent;
-				
-				parent.children.push(child[i]);
-			}
-		}
+		child = child.concat(
+			Array.isArray(arguments[i]) ?
+				arguments[i] :
+				[arguments[i]]
+		);
 	}
 
-	else {
-		
-		if(indices != null) {
-		
-			var get = getChild(parent, indices);
-			
-			var index = getIndex(get);
-			parent = get.parent;
-			
-			child.parent = parent;
-			
-			parent.children.splice(index, 0, child);
-		}
-		
-		else {
-		
-			child.parent = parent;
-			
-			parent.children.push(child);
-		}
-	}
+	child.forEach((item) => {
+
+		parent.children.push(item);
+
+		item.parent = parent;
+	});
+
+	return parent;
 }
 
-function removeChild(element, indices, amount, multiple, deep, caseSensitive) {
-
-	var get = getChild(element, indices, amount, multiple, deep, caseSensitive);
-
-	for(var i = 0; i < get.length; i++)
-		get[i].parent.splice(getIndex(get[i]), 1);
-		
-	return get;
+function clean(element) {
+	
+	return {
+		content: element.content != null ? element.content : "",
+		children: element.children != null ?
+			element.children.map((item) => {
+				return clean(item);
+			}) :
+			[]
+	};
 }
 
-function getChild(element, indices, amount, multiple, deep, caseSensitive) {
-	
-	if(!Array.isArray(indices))
-		indices = [indices];
-	
-	if(indices.length == 0)
-		return null;
-	
-	var currentElement = element;
-	
-	for(var i = 0; i < indices.length; i++) {
-		
-		if(typeof indices[i] == "number") {
-			
-			var index = indices[i];
-			
-			if(index >= 0 && index < currentElement.children.length)
-				currentElement = currentElement.children[index];
-			
-			else
-				return null;
-		}
-		
-		else {
-			
-			content = "" + indices[i];
-			
-			for(var j = 0; j < currentElement.children.length; j++) {
-				
-				if(!caseSensitive) {
-				
-					if(currentElement.children[j].content.toLowerCase() == content.toLowerCase())
-						currentElement = currentElement.children[j];
-				}
-				
-				else {
-				
-					if(currentElement.children[j].content == content)
-						currentElement = currentElement.children[j];
-				}
-			}
-		}
-	}
-	
-	if(typeof indices[indices.length - 1] == "number")
-		return currentElement;
-	
-	else {
-		
-		if(currentElement.parent != null)
-			currentElement = currentElement.parent;
-		
-		if(multiple) {
-			
-			var children = [];
-			
-			var lower = caseSensitive ? content : content.toLowerCase();
-			
-			for(var i = 0; i < currentElement.children.length; i++) {
-				
-				if(currentElement.children[i].content.toLowerCase() === lower)
-					children.push(currentElement.children[i]);
-				
-				if(deep)
-					requestedChildren = requestedChildren.concat(getChildrenAs(currentElement.children[i], content, caseSensitive, deep));
-			}
-			
-			return children;
-		}
-		
-		else {
-			
-			var lower = caseSensitive ? content : content.toLowerCase();
-			
-			for(var i = 0; i < currentElement.children.length; i++) {
-				
-				if(currentElement.children[i].content.toLowerCase() === lower)
-					return currentElement.children[i];
-				
-				if(deep) {
-				
-					child = getChildAs(currentElement.children[i], content, caseSensitive, deep);
-					
-					if(child != null)
-						return child;
-				}
-			}
-			
-			return null;
-		}
-	}
+function copy(element) {
+	return setValues(JSON.parse(JSON.stringify(clean(element))));
 }
 
-function getRoot(element) {
-	
-	var root = element;
-	
-	while(root.parent != null)
-		root = root.parent;
-	
-	return root;
+function create(content, parent) {
+
+	let children = [];
+
+	for(let i = 2; i < arguments.length; i++) {
+
+		child = child.concat(
+			Array.isArray(arguments[i]) ?
+				arguments[i] :
+				[arguments[i]]
+		);
+	}
+
+	return setValues({
+		content: content != null ? content : "",
+		parent: parent,
+		children: children
+	});
+}
+
+function get(element) {
+
+	let path = [];
+
+	for(let i = 1; i < arguments.length; i++) {
+
+		path = path.concat(
+			Array.isArray(arguments[i]) ?
+				arguments[i] :
+				[arguments[i]]
+		);
+	}
+
+	for(let i = 0; i < path.length - 1; i++) {
+		
+		if(typeof path[i] == "string") {
+
+			let match = element.children.filter((item) => {
+				return item.content == path[i];
+			});
+
+			if(match.length == 0)
+				return [];
+
+			element = match[0];
+		}
+
+		else if(path[i] >= 0 && path[i] < element.children.length)
+			element = element.children[path[i]];
+
+		else
+			return [];
+	}
+
+	let id = path[path.length - 1];
+		
+	if(typeof id == "string") {
+
+		return element.children.filter((item) => {
+			return item.content == id;
+		});
+	}
+
+	else if(id >= 0 && id < element.children.length)
+		return [element.children[id]];
+
+	return [];
 }
 
 function getIndex(element) {
 
 	if(element.parent == null)
 		return -1;
-	
-	for(var i = 0; i < element.parent.children.length; i++) {
-		
-		if(element.parent.children[i] === element)
-			return i;
-	}
-	
-	return -1;
+
+	return element.parent.children.indexOf(element);
 }
 
 function getPath(element) {
-	
-	var root = element;
-	var path = [];
-	
-	while(root.parent != null) {
-	
-		path.push(getIndex(root));
-	
-		root = root.parent;
-	}
-	
-	return path.reverse();
-}
-	
-function equals(a, b, caseSensitive) {
-	
-	var aLower = caseSensitive ? a.content : a.content.toLowerCase();
-	var bLower = caseSensitive ? b.content : b.content.toLowerCase();
-	
-	if(aLower != bLower || a.children.length != b.children.length)
-		return false;
-	
-	for(var i = 0; i < a.children.length; i++) {
+
+	let path = [];
+
+	while(element.parent != null) {
 		
-		if(!equals(a.children[i], b.children[i]))
-			return false;
+		path.push(getIndex(element));
+
+		element = element.parent;
 	}
 	
-	return true;
+	return path;
 }
 
-function toElement(list) {
+function getRoot(element) {
 
-	if(list.length == 0)
-		return new Element();
-
-	let element = createElement("" + list[0]);
-
-	for(let i = 1; i < list.length; i++) {
-		
-		if(Array.isArray(list[i]))
-			addChild(element, toElement(list[i]));
-		
-		else
-			addChild(element, createElement("" + list[i]));
-	}
-
+	while(element.parent != null)
+		element = element.parent;
+	
 	return element;
 }
 
-function toList(element) {
-
-	let list = [];
+function read(one, tokens, reduced) {
 	
-	if(element.content != null)
-		list.push(element.content);
-	
-	for(let i = 0; i < element.children.length; i++) {
-		
-		if(element.children[i].children.length == 0)
-			list.push(element.children[i].content);
-		
-		else
-			list.push(toList(element.children[i]));
-	}
-		
-	return list;
-}
+	tokens = tokens != null ? tokens : ["-", "\n", "\t"];
 
-function readONE(one) {
-	return readONEAs(one, ["-", "\n", "\t"], false);
-}
-
-function readONEAs(one, tokens, reduced) {
-	
-	var element = new Element();
+	let element = create();
 	
 	try {
 		
-		var elements = getElements(one.split(tokens[1]));
+		let elements = readElements(one.split(tokens[1]));
 		
-		var currentElement = element;
-		var currentNest = 0;
+		let currentElement = element;
+		let currentNest = 0;
 		
-		for(var i = 0; i < elements.length; i++) {
+		for(let i = 0; i < elements.length; i++) {
 		
-			var nest = cropElement(elements[i], tokens[2]);
+			let nest = readCrop(elements[i], tokens[2]);
 			
-			var newElement = createElement(getElementContent(elements[i], tokens[1]));
+			let newElement = create(readContent(elements[i], tokens[1]));
 			
-			for(var j = currentNest; j > nest - 1 && currentElement.parent != null; j--)
+			for(let j = currentNest;
+				j > nest - 1 && currentElement.parent != null;
+				j--) {
+				
 				currentElement = currentElement.parent;
+			}
 			
-			if(nest > currentNest && currentElement.children.length > 0)
-				currentElement = currentElement.children[currentElement.children.length - 1];
+			if(nest > currentNest && currentElement.children.length > 0) {
+
+				currentElement = currentElement.children[
+					currentElement.children.length - 1
+				];
+			}
 			
-			addChild(currentElement, newElement);
+			add(currentElement, newElement);
 			
 			currentElement = newElement;
 			currentNest = nest;
@@ -314,24 +177,24 @@ function readONEAs(one, tokens, reduced) {
 	}
 	
 	catch(error) {
-		element = new Element();
+		element = create();
 	}
 	
 	return element;
 }
 
-function getElements(lines) {
+function readElements(lines) {
 	
-	var elements = [];
+	let elements = [];
 	
-	for(var i = 0; i < lines.length; i++) {
+	for(let i = 0; i < lines.length; i++) {
 		
 		line = lines[i];
 		
 		element = [];
 		element.push(lines[i]);
 		
-		for(i++; i < lines.length && lines[i] != line; i++)
+		for(i++; i < lines.length && lines[i].replace(/\s+$/g, '') != line.replace(/\s+$/g, ''); i++)
 			element.push(lines[i]);
 		
 		elements.push(element);
@@ -340,26 +203,32 @@ function getElements(lines) {
 	return elements;
 }
 
-function cropElement(element, nesting) {
+function readCrop(element, nesting) {
 	
-	var nest = 0;
+	let nest = 0;
+
+	let line = element[0].replace(/\s+$/g, '');
 	
-	for(var nestIndex = 0; element[0].indexOf(nesting, nestIndex) != -1; nestIndex += nesting.length)
+	for(let nestIndex = 0;
+		line.indexOf(nesting, nestIndex) != -1;
+		nestIndex += nesting.length) {
+		
 		nest++;
+	}
 		
 	element.splice(0, 1);
 	
-	for(var i = 0; i < element.length; i++)
+	for(let i = 0; i < element.length; i++)
 		element[i] = element[i].substring((nest + 1) * nesting.length);
 	
 	return nest;
 }
 
-function getElementContent(element, breaking) {
+function readContent(element, breaking) {
 	
-	var content = "";
+	let content = "";
 	
-	for(var i = 0; i < element.length; i++) {
+	for(let i = 0; i < element.length; i++) {
 		
 		content += element[i];
 		
@@ -370,72 +239,142 @@ function getElementContent(element, breaking) {
 	return content;
 }
 
-function writeONE(element) {
-	return writeONEAs(element.parent == null ? element : createElement("", copyElement(element)), ["-", "\n", "\t"], false);
+function setValues(element) {
+
+	element.content = element.content != null ? element.content : "";
+	element.parent = element.parent != null ? element.parent : null;
+	
+	element.children.forEach((item) => {
+
+		item.parent = element;
+
+		setValues(item);
+	});
+
+	return element;
 }
 
-function writeONEAs(element, tokens, reduced) {
+function toObject(list) {
+
+	if(list.length == 0)
+		return create();
+
+	let element = create("" + list[0]);
+
+	for(let i = 1; i < list.length; i++) {
+		
+		if(Array.isArray(list[i]))
+			add(element, toObject(list[i]));
+		
+		else
+			add(element, create("" + list[i]));
+	}
+
+	return element;
+}
+
+function toList(object) {
+
+	let list = [];
+	
+	list.push(object.content != null ? object.content : "");
+	
+	for(let i = 0; i < object.children.length; i++) {
+		
+		if(object.children[i].children.length == 0)
+			list.push(object.children[i].content);
+		
+		else
+			list.push(toList(object.children[i]));
+	}
+		
+	return list;
+}
+
+function write(element, tokens, reduced) {
+
+	element = element.parent == null ?
+		element :
+		{ content: "", children: [copy(element)] };
+
+	tokens = tokens != null ? tokens : ["-", "\n", "\t"];
 
 	try {
 	
-		var write = element;
+		let write = element;
 		
 		if(element.content != "") {
 			
-			write = new Element();
+			write = create();
 			
-			addChild(write, copyElement(element));
+			add(write, copy(element));
 		}
 		
 		return writeElement(tokens, write, 0, true, reduced);
 	}
 	
 	catch(error) {
+
+		console.log(error.message);
+
 		return "";
 	}
 }
 
 function writeElement(tokens, element, nest, isRoot, reduced) {
 
-	var code = "";
+	let code = "";
 	
 	if(!isRoot) {
 		
-		var content = element.content;
+		let content = element.content;
 		
-		code += indent(nest, tokens[2]) + (!reduced ? tokens[0] : "") + tokens[1] + indent(nest + 1, tokens[2]);
+		code +=
+			writeIndent(nest, tokens[2]) +
+			(!reduced ? tokens[0] : "") +
+			tokens[1] +
+			writeIndent(nest + 1, tokens[2]);
 		
 		lines = content.split(tokens[1]);
 		
-		for(var i = 0; i < lines.length; i++) {
+		for(let i = 0; i < lines.length; i++) {
 		
 			code += lines[i];
 			
 			if(i < lines.length - 1)
-				code += tokens[1] + indent(nest + 1, tokens[2]);
+				code += tokens[1] + writeIndent(nest + 1, tokens[2]);
 		}
 		
-		code += tokens[1] + indent(nest, tokens[2]) + (!reduced ? tokens[0] : "");
+		code +=
+			tokens[1] +
+			writeIndent(nest, tokens[2]) +
+			(!reduced ? tokens[0] : "");
 	}
 	
-	var elements = element.children;
+	let elements = element.children;
 	
-	for(var i = 0; i < elements.length; i++) {
+	for(let i = 0; i < elements.length; i++) {
 		
 		if(!isRoot || i > 0)
 			code += tokens[1];
 		
-		code += writeElement(tokens, elements[i], (!isRoot ? nest + 1 : nest), false, reduced);
+		code += writeElement(
+			tokens,
+			elements[i],
+			(!isRoot ? nest + 1 : nest),
+			false,
+			reduced
+		);
 	}
 	
 	return code;
 }
 
-function indent(nest, token) {
+function writeIndent(nest, token) {
 	
-	var indent = "";
+	let indent = "";
 	
-	for(var i = 0; i < nest; i++)
+	for(let i = 0; i < nest; i++)
 		indent += token;
 	
 	return indent;
@@ -443,25 +382,17 @@ function indent(nest, token) {
 
 module.exports = {
 
-	Element,
-	createElement,
-	copyElement,
-	addChild,
-	removeChild,
-	getChild,
-	getRoot,
+	add,
+	clean,
+	copy,
+	create,
+	get,
 	getIndex,
 	getPath,
-	equals,
-	toElement,
+	getRoot,
+	read,
+	setValues,
 	toList,
-	readONE,
-	readONEAs,
-	getElements,
-	cropElement,
-	getElementContent,
-	writeONE,
-	writeONEAs,
-	writeElement,
-	indent
+	toObject,
+	write
 };

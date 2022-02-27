@@ -219,7 +219,7 @@ function preprocess(tokens, tokenize, data) {
 
 function process(tokens, tokenize, nestToken) {
 
-	var element = new one.Element();
+	var element = one.create();
 
 	var currentElement = element;
 
@@ -286,7 +286,7 @@ function process(tokens, tokenize, nestToken) {
 		else if(literal) {
 
 			previousElement = cropElement(getElement(literalString), true);
-			one.addChild(currentElement, previousElement);
+			one.add(currentElement, previousElement);
 
 			literalString = "";
 		}
@@ -385,7 +385,7 @@ function isLiteralBlock(line, nest) {
 
 function getElement(string) {
 
-	var element = new one.Element();
+	var element = one.create();
 	element.content = string;
 
 	return element;
@@ -417,7 +417,7 @@ function processLine(tokens, line, currentElement) {
 
 			var newElement = cropElement(getElement(processContent(token)), false);
 
-			one.addChild(currentElement, newElement);
+			one.add(currentElement, newElement);
 		}
 
 		if(token == ":" || token == "{") {

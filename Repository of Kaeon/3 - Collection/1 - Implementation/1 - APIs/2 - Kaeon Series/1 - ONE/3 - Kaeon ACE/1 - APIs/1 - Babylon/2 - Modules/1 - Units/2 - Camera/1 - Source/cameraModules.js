@@ -10,7 +10,7 @@ var camera = {
 
 	onDeserialize: function(core, ace, entity) {
 
-		if(one.getChild(ace, "camera control") != null)
+		if(one.get(ace, "camera control").length > 0)
 			this.controlOn = true;
 	},
 
