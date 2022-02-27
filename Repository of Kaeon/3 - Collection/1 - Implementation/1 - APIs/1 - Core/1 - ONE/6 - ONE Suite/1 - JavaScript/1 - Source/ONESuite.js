@@ -12,15 +12,6 @@ var kaeonFUSION = require(moduleDependencies.kaeonFUSION);
 
 var universalPreprocessor = require(moduleDependencies.universalPreprocessor);
 
-function parse(string) {
-
-	return onePlus.readONEPlus(
-		preprocess(
-			string.split("\r").join("")
-		)
-	);
-}
-
 function preprocess(string) {
 	return universalPreprocessor.preprocess(string);
 }
@@ -51,6 +42,15 @@ function process(code, fusion) {
 	return fusion.fusion.returnValue;
 }
 
+function read(string) {
+
+	return onePlus.read(
+		preprocess(
+			string.split("\r").join("")
+		)
+	);
+}
+
 function write(element) {
 
 	return Array.isArray(element) ?
@@ -59,8 +59,8 @@ function write(element) {
 }
 
 module.exports = {
-	parse,
 	preprocess,
 	process,
+	read,
 	write
 }

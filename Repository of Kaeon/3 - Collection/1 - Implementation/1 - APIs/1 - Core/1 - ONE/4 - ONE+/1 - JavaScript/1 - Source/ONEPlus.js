@@ -6,7 +6,7 @@ var moduleDependencies = {
 var one = require(moduleDependencies.one);
 var tokenizer = require(moduleDependencies.tokenizer);
 
-function readONEPlus(data) {
+function read(data) {
 
 	tokens = getTokens(data);
 	tokenize = tokenizer.tokenize(tokens, data);
@@ -570,19 +570,5 @@ function preprocessLine(tokens, line) {
 }
 
 module.exports = {
-
-	readONEPlus,
-	getTokens,
-	getIndentToken,
-	preprocess,
-	process,
-	getLine,
-	getNest,
-	isBlankLine,
-	isLiteralBlock,
-	getElement,
-	cropElement,
-	processLine,
-	processContent,
-	preprocessLine
+	read
 };

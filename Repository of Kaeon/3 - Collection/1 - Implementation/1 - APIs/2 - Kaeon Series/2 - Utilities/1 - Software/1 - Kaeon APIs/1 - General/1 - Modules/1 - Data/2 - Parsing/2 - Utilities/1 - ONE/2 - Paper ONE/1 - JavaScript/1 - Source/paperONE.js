@@ -1,11 +1,11 @@
 var moduleDependencies = {
 	one: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/1%20-%20Core/1%20-%20ONE/1%20-%20ONE/1%20-%20JavaScript/1%20-%20Source/ONE.js",
-	onePlus: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/1%20-%20Core/1%20-%20ONE/4%20-%20ONE%2B/1%20-%20JavaScript/1%20-%20Source/ONEPlus.js",
+	oneSuite: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/1%20-%20Core/1%20-%20ONE/6%20-%20ONE%20Suite/1%20-%20JavaScript/1%20-%20Source/ONESuite.js",
 	wrapONE: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/1%20-%20Data/2%20-%20Parsing/2%20-%20Utilities/1%20-%20ONE/1%20-%20Wrap%20ONE/1%20-%20Javascript/1%20-%20Source/wrapONE.js"
 }
 
 let one = require(moduleDependencies.one);
-let onePlus = require(moduleDependencies.onePlus);
+let oneSuite = require(moduleDependencies.oneSuite);
 let wrapONE = require(moduleDependencies.wrapONE);
 
 let style = `<style>
@@ -105,26 +105,17 @@ function toPaperONEElement(element, markup, indices) {
 
 function toPaperONEDocument(document, markup) {
 
-	let element = null;
-
 	try {
-		element = onePlus.readONEPlus(document);
+
+		let element = oneSuite.read(document);
+		wrapONE.unwrapONE(element);
+	
+		return toPaperONEElement(element, markup, []);
 	}
 
 	catch(error) {
-
-		try {
-			element = one.read(document);
-		}
-
-		catch(error) {
-			return "";
-		}
+		return "";
 	}
-
-	wrapONE.unwrapONE(element);
-
-	return toPaperONEElement(element, markup, []);
 }
 
 function toPaperONE(document, markup) {

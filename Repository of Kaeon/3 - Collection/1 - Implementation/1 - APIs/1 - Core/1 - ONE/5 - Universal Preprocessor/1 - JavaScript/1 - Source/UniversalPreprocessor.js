@@ -50,7 +50,7 @@ function processKaeonFUSIONDirective(state, directive, text, index) {
 	try {
 
 		state.kaeonFUSIONInterpreter.process(
-			onePlus.readONEPlus(directive)
+			onePlus.read(directive)
 		);
 
 		let value = state.kaeonFUSIONInterpreter.returnValue;

@@ -1378,7 +1378,7 @@ function inject() {
 			injection = one.toObject(processed[0]);
 
 		else
-			injection = one.toObject(oneSuite.parse("" + processed[0]));
+			injection = one.toObject(oneSuite.read("" + processed[0]));
 
 		element.content = injection.content;
 		element.children = injection.children;
@@ -1594,7 +1594,7 @@ function execute() {
 				}
 			}
 
-			reference.fusion.internalProcess(one.toObject(oneSuite.parse(data)), true);
+			reference.fusion.internalProcess(one.toObject(oneSuite.read(data)), true);
 		}
 
 		return null;
@@ -3221,7 +3221,7 @@ function elementToList() {
 			}
 		}
 
-		return one.toList(one.toObject(oneSuite.parse(data)));
+		return one.toList(one.toObject(oneSuite.read(data)));
 	}
 }
 
