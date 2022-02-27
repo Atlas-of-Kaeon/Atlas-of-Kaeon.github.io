@@ -75,7 +75,7 @@ function get(element) {
 		if(typeof path[i] == "string") {
 
 			let match = element.children.filter((item) => {
-				return item.content == path[i];
+				return item.content.toLowerCase() == path[i].toLowerCase();
 			});
 
 			if(match.length == 0)
@@ -96,7 +96,7 @@ function get(element) {
 	if(typeof id == "string") {
 
 		return element.children.filter((item) => {
-			return item.content == id;
+			return item.content.toLowerCase() == id.toLowerCase();
 		});
 	}
 
