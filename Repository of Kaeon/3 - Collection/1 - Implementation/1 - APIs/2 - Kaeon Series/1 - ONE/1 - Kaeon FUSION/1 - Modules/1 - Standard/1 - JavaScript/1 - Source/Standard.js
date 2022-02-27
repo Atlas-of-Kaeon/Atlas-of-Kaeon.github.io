@@ -480,7 +480,7 @@ function define() {
 
 	this.process = function(element, processed) {
 
-		let defined = one.copyElement(element);
+		let defined = one.copy(element);
 		defined.content = "";
 
 		return one.toList(defined);
@@ -740,7 +740,7 @@ function isCommand() {
 				continue;
 			}
 
-			if(reference.fusion.fusionUnits[i].verify(one.createElement("" + processed[0]))) {
+			if(reference.fusion.fusionUnits[i].verify(one.create("" + processed[0]))) {
 				return true;
 			}
 		}
