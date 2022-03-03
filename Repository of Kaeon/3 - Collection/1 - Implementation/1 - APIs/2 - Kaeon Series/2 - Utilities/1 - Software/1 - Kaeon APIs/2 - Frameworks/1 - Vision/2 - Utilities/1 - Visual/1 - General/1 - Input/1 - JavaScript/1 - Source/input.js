@@ -1,4 +1,4 @@
-function addInput(element, input) {
+function addInput(element, input, onChange) {
 
 	if(input == null) {
 
@@ -25,18 +25,26 @@ function addInput(element, input) {
 		}
 	};
 
+	onChange = onChange != null ? onChange : () => { };
+
 	element.addEventListener(
 		"keydown",
 		function(event) {
+
+			let previous = JSON.parse(JSON.stringify(input));
 			
 			if(!input.pc.keyboard.includes(event.keyCode))
 				input.pc.keyboard.push(event.keyCode);
+
+			onChange(previous, input);
 		}
 	);
 
 	element.addEventListener(
 		"keyup",
 		function(event) {
+
+			let previous = JSON.parse(JSON.stringify(input));
 
 			for(let i = 0; i < input.pc.keyboard.length; i++) {
 				
@@ -47,12 +55,16 @@ function addInput(element, input) {
 					i--;
 				}
 			}
+
+			onChange(previous, input);
 		}
 	);
 
 	element.addEventListener(
 		"mousedown",
 		function(event) {
+
+			let previous = JSON.parse(JSON.stringify(input));
 			
 			if(event.button == 0)
 				input.pc.mouse.buttons.left = true;
@@ -62,12 +74,16 @@ function addInput(element, input) {
 			
 			if(event.button == 2)
 				input.pc.mouse.buttons.right = true;
+
+			onChange(previous, input);
 		}
 	);
 
 	element.addEventListener(
 		"mouseup",
 		function(event) {
+
+			let previous = JSON.parse(JSON.stringify(input));
 
 			if(event.button == 0)
 				input.pc.mouse.buttons.left = false;
@@ -77,12 +93,16 @@ function addInput(element, input) {
 			
 			if(event.button == 2)
 				input.pc.mouse.buttons.right = false;
+
+			onChange(previous, input);
 		}
 	);
 
 	element.addEventListener(
 		"wheel",
 		function(event) {
+
+			let previous = JSON.parse(JSON.stringify(input));
 
 			input.pc.mouse.scroll = event.deltaY;
 
@@ -92,6 +112,8 @@ function addInput(element, input) {
 				},
 				1000 / 60
 			);
+
+			onChange(previous, input);
 		}
 	);
 }
