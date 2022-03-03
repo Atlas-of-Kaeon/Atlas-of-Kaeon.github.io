@@ -1,0 +1,19 @@
+{
+  "name": "ghi-server",
+  "bin": {
+    "ghi": "ghi.js"
+  },
+  "version": "1.0.0",
+  "description": "A Node.js Implementation of a GHI Server",
+  "main": "ghi.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "node-wifi": "^2.0.16",
+    "rpio": "^2.4.2",
+    "serialport": "^10.3.0"
+  }
+}
