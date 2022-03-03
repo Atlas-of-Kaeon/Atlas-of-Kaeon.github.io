@@ -1,3 +1,12 @@
+function cleanKey(key) {
+
+	return key.
+		split("Key").join("").
+		split("Digit").join("").
+		split("Arrow").join("").
+		toLowerCase();
+}
+
 function addInput(element, input, onChange) {
 
 	if(input == null) {
@@ -33,8 +42,8 @@ function addInput(element, input, onChange) {
 
 			let previous = JSON.parse(JSON.stringify(input));
 			
-			if(!input.pc.keyboard.includes(event.keyCode))
-				input.pc.keyboard.push(event.keyCode);
+			if(!input.pc.keyboard.includes(cleanKey(event.code)))
+				input.pc.keyboard.push(cleanKey(event.code));
 
 			onChange(previous, input);
 		}
@@ -48,7 +57,7 @@ function addInput(element, input, onChange) {
 
 			for(let i = 0; i < input.pc.keyboard.length; i++) {
 				
-				if(input.pc.keyboard[i] == event.keyCode) {
+				if(input.pc.keyboard[i] == cleanKey(event.code)) {
 
 					input.pc.keyboard.splice(i, 1);
 
