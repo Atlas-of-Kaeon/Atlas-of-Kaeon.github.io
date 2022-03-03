@@ -1,0 +1,14 @@
+{
+	"name": "kaeon-united",
+	"bin": {
+		"kaeon-united": "KaeonUnited.js"
+	},
+	"version": "1.0.70",
+	"description": "It just works",
+	"main": "KaeonUnited.js",
+	"scripts": {
+		"start": "node KaeonUnited.js"
+	},
+	"author": "",
+	"license": "Apache-2.0"
+}
