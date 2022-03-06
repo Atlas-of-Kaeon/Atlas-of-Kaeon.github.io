@@ -1,31 +1,46 @@
+var child_process = require("child_process");
 var fs = require("fs");
-
-function processClean() {
-
-	if(fs.existsSync(__dirname + "/dataGHI.json"))
-		fs.rmSync(__dirname + "/dataGHI.json");
-
-	if(fs.existsSync(__dirname + "/dataJSH.json"))
-		fs.rmSync(__dirname + "/dataJSH.json");
-
-	if(fs.existsSync(__dirname + "/dataLog.json"))
-		fs.rmSync(__dirname + "/dataLog.json");
-}
 
 function isEnabled() {
 	// STUB
 }
 
 function processClear(port, args) {
-	// STUB
+
+	if(fs.existsSync(__dirname + "/dataLog.json"))
+		fs.rmSync(__dirname + "/dataLog.json");
 }
 
 function processDisable(port, args) {
-	// STUB
+	
+	if(process.platform != "win32")
+		processDisableLinux();
+}
+
+function processDisableLinux() {
+
+	fs.writeFileSync(
+		"/var/spool/cron/crontabs/root",
+		""
+	);
+
+	child_process.execSync("sudo reboot"); // STUB
 }
 
 function processEnable(port, args) {
-	// STUB
+	
+	if(process.platform != "win32")
+		processEnableLinux();
+}
+
+function processEnableLinux() {
+
+	fs.writeFileSync(
+		"/var/spool/cron/crontabs/root",
+		"@reboot sudo /usr/local/bin/node " + __dirname + "/ghi.js 80"
+	);
+
+	child_process.execSync("sudo reboot"); // STUB
 }
 
 function processLog(port, args) {
@@ -37,7 +52,12 @@ function processPing(port, args) {
 }
 
 function processReset(port, args) {
-	// STUB
+
+	if(fs.existsSync(__dirname + "/dataGHI.json"))
+		fs.rmSync(__dirname + "/dataGHI.json");
+
+	if(fs.existsSync(__dirname + "/dataJSH.json"))
+		fs.rmSync(__dirname + "/dataJSH.json");
 }
 
 function processStatus(port, args) {
@@ -70,4 +90,4 @@ function processCommand(port, args) {
 
 module.exports = {
 	processCommand
-}
+};

@@ -1,4 +1,0 @@
-# Replace "[SOURCE_FOLDER]" with the folder that ghiSource.js is located in.
-# The default source folder is "/home/pi/Documents/GHI".
-
-@reboot sudo /usr/local/bin/node [SOURCE_FOLDER]/ghi.js 80
