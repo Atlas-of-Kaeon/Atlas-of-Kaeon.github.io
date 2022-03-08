@@ -61,6 +61,9 @@ function processReset(port, args) {
 }
 
 function processStatus(port, args) {
+
+	console.log("- GHI -");
+
 	// STUB
 }
 
