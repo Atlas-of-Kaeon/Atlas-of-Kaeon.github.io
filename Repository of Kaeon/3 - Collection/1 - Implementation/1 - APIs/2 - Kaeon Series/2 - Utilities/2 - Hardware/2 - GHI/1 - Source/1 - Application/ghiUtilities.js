@@ -1,8 +1,30 @@
 var child_process = require("child_process");
 var fs = require("fs");
+var httpUtils = require(__dirname + "/httpUtils.js");
 
-function isEnabled() {
-	// STUB
+function isEnabled(port) {
+
+	try {
+
+		JSON.parse(
+			httpUtils.sendRequest({
+				request: {
+					method: "POST",
+					uri: "http://localhost:" + port
+				},
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: ""
+			}).body
+		);
+
+		return true;
+	}
+
+	catch(error) {
+		return false;
+	}
 }
 
 function processClear(port, args) {
@@ -12,6 +34,25 @@ function processClear(port, args) {
 }
 
 function processDisable(port, args) {
+
+	let status = isEnabled(port);
+
+	if(status) {
+		
+		[port, port + 1, port + 2].forEach((item) => {
+
+			httpUtils.sendRequest({
+				request: {
+					method: "POST",
+					uri: "http://localhost:" + item
+				},
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: "TERMINATE"
+			})
+		});
+	}
 	
 	if(process.platform != "win32")
 		processDisableLinux();
@@ -23,32 +64,67 @@ function processDisableLinux() {
 		"/var/spool/cron/crontabs/root",
 		""
 	);
-
-	child_process.execSync("sudo reboot"); // STUB
 }
 
 function processEnable(port, args) {
+
+	let status = isEnabled(port);
+
+	if(!status) {
+
+		child_process.execSync(
+			(process.platform != "win32" ?
+				"sudo /usr/local/bin/" :
+				"") +
+			"node " + __dirname + "/ghi.js " + port
+		);
+	}
 	
 	if(process.platform != "win32")
-		processEnableLinux();
+		processEnableLinux(port, status);
 }
 
-function processEnableLinux() {
+function processEnableLinux(port, status) {
 
 	fs.writeFileSync(
 		"/var/spool/cron/crontabs/root",
-		"@reboot sudo /usr/local/bin/node " + __dirname + "/ghi.js 80"
+		"@reboot sudo /usr/local/bin/node " +
+			__dirname +
+			"/autoVersioner.js sudo /usr/local/bin/node " +
+			__dirname +
+			"/ghi.js " +
+			port
 	);
-
-	child_process.execSync("sudo reboot"); // STUB
 }
 
 function processLog(port, args) {
-	// STUB
+
+	let log = "";
+	
+	if(fs.existsSync(__dirname + "/dataLog.json"))
+		log = fs.readFileSync(__dirname + "/dataLog.json", 'utf-8');
+
+	if(args.length == 0)
+		console.log(log);
+
+	else
+		fs.writeFileSync(log, args[0]);
 }
 
 function processPing(port, args) {
-	// STUB
+
+	console.log(
+		httpUtils.sendRequest({
+			request: {
+				method: "POST",
+				uri: "http://localhost:" + port
+			},
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: args[0]
+		})
+	);
 }
 
 function processReset(port, args) {
@@ -61,10 +137,7 @@ function processReset(port, args) {
 }
 
 function processStatus(port, args) {
-
-	console.log("- GHI -");
-
-	// STUB
+	console.log(isEnabled(port) ? "On" : "Off");
 }
 
 function processCommand(port, args) {

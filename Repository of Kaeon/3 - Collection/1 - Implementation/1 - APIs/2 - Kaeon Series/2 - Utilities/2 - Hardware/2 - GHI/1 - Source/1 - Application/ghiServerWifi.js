@@ -32,6 +32,14 @@ function execCommand(data) {
 
 http.createServer(function(req, res) {
 	
+	if(!(request.socket.remoteAddress == "127.0.0.1" ||
+		request.socket.remoteAddress == "::1")) {
+	
+		res.end();
+	
+		return;
+	}
+	
 	let url = req.url.substring(1);
 	
 	if(url == "favicon.ico") {
@@ -46,6 +54,13 @@ http.createServer(function(req, res) {
 	req.on('data', (chunk) => {
 		body += chunk.toString();
 	}).on('end', () => {
+	
+		if(body == "TERMINATE") {
+
+			res.end();
+
+			process.exit(0);
+		}
 	
 		let data = { };
 	

@@ -15,9 +15,17 @@ function getDevices() {
 	};
 }
 
+function getProcesses() {
+
+	return [
+		require(__dirname + "/ghiProcessArduino.js")
+	];
+}
+
 function init() {
 
 	devices = getDevices();
+	processes = getProcesses();
 
 	Object.keys(devices).forEach((key) => {
 		state[key] = { output: { }, input: { }, type: devices[key].type };
@@ -25,6 +33,16 @@ function init() {
 
 	Object.keys(devices).forEach((key) => {
 		devices[key].init(state, key, processCall, process.argv);
+	});
+
+	processes.forEach((item) => {
+
+		item.initialize();
+
+		setInterval(
+			item.update,
+			item.rate * 1000
+		);
 	});
 }
 
@@ -131,6 +149,15 @@ http.createServer(function(request, response) {
 	request.on('data', (chunk) => {
 		body += chunk.toString();
 	}).on('end', () => {
+	
+		if(body == "TERMINATE" && (
+			request.socket.remoteAddress == "127.0.0.1" ||
+			request.socket.remoteAddress == "::1")) {
+
+			res.end();
+
+			process.exit(0);
+		}
 
 		console.log("RECEIVED:", body);
 

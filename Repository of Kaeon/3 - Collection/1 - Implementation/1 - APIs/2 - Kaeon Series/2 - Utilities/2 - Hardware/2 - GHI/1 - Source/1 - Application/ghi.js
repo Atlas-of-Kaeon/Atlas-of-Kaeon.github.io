@@ -35,28 +35,25 @@ if(process.argv.length > 3 ? isNaN(Number(process.argv[2])) : false) {
 	let jshPort = process.argv.length > 4 ?
 		process.argv[4] : wifiPort + 1;
 
-	child.exec(
+	let boilerCommand = 
 		(process.platform == "win32" ? "" : "sudo /usr/local/bin/") +
 		"node " +
 		__dirname +
-		"/ghiServerWifi.js " +
-		wifiPort
-	);
+		"/terminalLog.js " +
+		__dirname +
+		"/dataLog.json null ";
+
+	let boilerCommandNode =
+		boilerCommand +
+		(process.platform == "win32" ? "" : " sudo /usr/local/bin/") +
+		"node " +
+		__dirname;
+
+	child.exec(boilerCommandNode + "/ghiServerWifi.js " + wifiPort);
+	child.exec(boilerCommandNode + "/jsh.js " + jshPort);
 
 	child.exec(
-		(process.platform == "win32" ? "" : "sudo /usr/local/bin/") +
-		"node " +
-		__dirname +
-		"/ghiServerJSH.js " +
-		jshPort +
-		" " +
-		port
-	);
-
-	child.exec(
-		(process.platform == "win32" ? "" : "sudo /usr/local/bin/") +
-		"node " +
-		__dirname +
+		boilerCommandNode +
 		"/ghiServerRouter.js " +
 		port +
 		" " +
@@ -68,9 +65,10 @@ if(process.argv.length > 3 ? isNaN(Number(process.argv[2])) : false) {
 	if(process.platform != "win32") {
 
 		child.exec(
+			boilerCommand +
 			"sudo /bin/python3 " +
 			__dirname +
-			"/uhapi.py " +
+			"/uhapiHologram.py " +
 			port
 		);
 	}

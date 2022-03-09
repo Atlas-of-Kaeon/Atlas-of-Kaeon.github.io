@@ -108,7 +108,7 @@ function processData(modules, data) {
 	return response;
 }
 
-function startJSHServer(port, passwordPath, modules) {
+function startJSHServer(port, passwordPath, block, modules) {
 
 	if(!fs.existsSync(passwordPath))
 		fs.writeFileSync(passwordPath, "null");
@@ -116,6 +116,15 @@ function startJSHServer(port, passwordPath, modules) {
 	password = JSON.parse(fs.readFileSync(passwordPath, 'utf-8'));
 
 	http.createServer((request, response) => {
+	
+		if(block && !(
+			request.socket.remoteAddress == "127.0.0.1" ||
+			request.socket.remoteAddress == "::1")) {
+		
+			res.end();
+		
+			return;
+		}
 
 		try {
 
@@ -133,6 +142,15 @@ function startJSHServer(port, passwordPath, modules) {
 			request.on('data', (chunk) => {
 				body += chunk.toString();
 			}).on('end', () => {
+	
+				if(body == "TERMINATE" && (
+					request.socket.remoteAddress == "127.0.0.1" ||
+					request.socket.remoteAddress == "::1")) {
+		
+					res.end();
+		
+					process.exit(0);
+				}
 
 				let parsedBody = JSON.parse(body)
 				
@@ -170,3 +188,14 @@ function startJSHServer(port, passwordPath, modules) {
 module.exports = {
 	startJSHServer
 };
+
+if(module.parent == null) {
+
+	startJSHServer(
+		process.argv.length > 2 ? process.argv[2] : 80,
+		process.argv.length > 3 ?
+			process.argv[3] :
+			__dirname + "/dataJSH.json",
+		process.argv.length > 4 ? JSON.parse(process.argv[4]) : true
+	);
+}
