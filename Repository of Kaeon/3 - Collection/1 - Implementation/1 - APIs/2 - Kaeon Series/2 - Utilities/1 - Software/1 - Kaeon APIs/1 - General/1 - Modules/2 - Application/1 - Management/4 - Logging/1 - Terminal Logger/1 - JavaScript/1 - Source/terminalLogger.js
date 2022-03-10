@@ -7,7 +7,7 @@ function log(map, path, command) {
 
 	try {
 
-		if(file.existsSync(path))
+		if(fs.existsSync(path))
 			file = JSON.parse(fs.readFileSync(path, 'utf-8'));
 	}
 
@@ -15,27 +15,33 @@ function log(map, path, command) {
 		file = [];
 	}
 
-	childProcess.exec(command, (error, stdout, stderr) => {
+	let child = childProcess.exec(command)
 
-		let line = "" +
-			(error != null ? "" + error.stack : "") +
-			(stdout != null ? "" + stdout : "") +
-			(stderr != null ? "" + stderr : "");
+	let onData = (data) => {
 
 		file.push(
 			map != null ?
-				map(line, { error, stdout, stderr }) :
-				line
+				map("" + data) :
+				"" + data
 		);
 
 		try {
-			fs.writeFile(path, JSON.stringify(file));
+
+			fs.writeFile(path, JSON.stringify(file), null, (error) => {
+				fs.writeFileSync(path, JSON.stringify(file));
+			});
 		}
 
 		catch(error) {
-
+			
 		}
-	})
+	};
+	
+	child.stdout.setEncoding('utf8');
+	child.stdout.on('data', onData);
+	
+	child.stderr.setEncoding('utf8');
+	child.stderr.on('data', onData);
 }
 
 module.exports = {
