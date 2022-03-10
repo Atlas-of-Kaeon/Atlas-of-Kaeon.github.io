@@ -33,7 +33,7 @@ function log(map, path, command) {
 		}
 
 		catch(error) {
-			
+
 		}
 	};
 	
@@ -63,6 +63,8 @@ if(module.parent == null) {
 	log(
 		map,
 		process.argv[2],
-		process.argv.slice(4).join(" ")
+		process.argv.slice(4).map((item) => {
+			return item.includes(" ") ? "\"" + item + "\"" : item;
+		}).join(" ")
 	);
 }

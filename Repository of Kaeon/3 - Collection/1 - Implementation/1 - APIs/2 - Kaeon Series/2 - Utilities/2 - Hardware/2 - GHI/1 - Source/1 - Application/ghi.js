@@ -25,9 +25,10 @@ let port = dataGHI.access.port != null ?
 		"" + defaultPort
 	);
 
-port = Number(port) != NaN ? Number(port) : defaultPort;
+port = !isNaN(Number(port)) ? Number(port) : defaultPort;
 
-if(process.argv.length > 3 ? isNaN(Number(process.argv[2])) : false) {
+if(process.argv.length == 2 ||
+	(process.argv.length >= 3 ? !isNaN(Number(process.argv[2])) : false)) {
 
 	let wifiPort = process.argv.length > 3 ?
 		process.argv[3] : port + 1;
@@ -37,24 +38,24 @@ if(process.argv.length > 3 ? isNaN(Number(process.argv[2])) : false) {
 
 	let boilerCommand = 
 		(process.platform == "win32" ? "" : "sudo /usr/local/bin/") +
-		"node " +
+		"node \"" +
 		__dirname +
-		"/terminalLog.js " +
+		"/terminalLogger.js\" \"" +
 		__dirname +
-		"/dataLog.json null ";
+		"/dataLog.json\" null ";
 
 	let boilerCommandNode =
 		boilerCommand +
 		(process.platform == "win32" ? "" : " sudo /usr/local/bin/") +
-		"node " +
+		"node \"" +
 		__dirname;
 
-	child.exec(boilerCommandNode + "/ghiServerWifi.js " + wifiPort);
-	child.exec(boilerCommandNode + "/jsh.js " + jshPort);
+	child.exec(boilerCommandNode + "/ghiServerWifi.js\" " + wifiPort);
+	child.exec(boilerCommandNode + "/jsh.js\" " + jshPort);
 
 	child.exec(
 		boilerCommandNode +
-		"/ghiServerRouter.js " +
+		"/ghiServerRouter.js\" " +
 		port +
 		" " +
 		wifiPort +
@@ -66,9 +67,9 @@ if(process.argv.length > 3 ? isNaN(Number(process.argv[2])) : false) {
 
 		child.exec(
 			boilerCommand +
-			"sudo /bin/python3 " +
+			"sudo /bin/python3 \"" +
 			__dirname +
-			"/uhapiHologram.py " +
+			"/uhapiHologram.py\" " +
 			port
 		);
 	}

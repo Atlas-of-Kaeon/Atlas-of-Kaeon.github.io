@@ -44,6 +44,13 @@ if(module.parent == null) {
 	else if(process.argv[2] == "-v")
 		console.log(getCurrentVersion());
 
-	else
-		execute(null, process.argv.slice[2].join(" "));
+	else {
+
+		execute(
+			null,
+			process.argv.slice(2).map((item) => {
+				return item.includes(" ") ? "\"" + item + "\"" : item;
+			}).join(" ")
+		);
+	}
 }

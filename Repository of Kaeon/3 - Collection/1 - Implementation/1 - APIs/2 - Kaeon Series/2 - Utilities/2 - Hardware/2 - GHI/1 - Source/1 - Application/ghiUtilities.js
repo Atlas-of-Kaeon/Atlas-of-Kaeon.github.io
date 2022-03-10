@@ -50,7 +50,7 @@ function processDisable(port, args) {
 					"Content-Type": "application/json"
 				},
 				body: "TERMINATE"
-			})
+			});
 		});
 	}
 	
@@ -72,11 +72,11 @@ function processEnable(port, args) {
 
 	if(!status) {
 
-		child_process.execSync(
+		child_process.exec(
 			(process.platform != "win32" ?
 				"sudo /usr/local/bin/" :
 				"") +
-			"node " + __dirname + "/ghi.js " + port
+			"node \"" + __dirname + "/ghi.js\" " + port
 		);
 	}
 	
