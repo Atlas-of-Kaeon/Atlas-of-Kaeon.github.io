@@ -118,10 +118,10 @@ function startJSHServer(port, passwordPath, block, modules) {
 	http.createServer((request, response) => {
 	
 		if(block && !(
-			request.socket.remoteAddress == "127.0.0.1" ||
+			request.socket.remoteAddress == "::ffff:127.0.0.1" ||
 			request.socket.remoteAddress == "::1")) {
 		
-			res.end();
+			response.end();
 		
 			return;
 		}
@@ -144,15 +144,23 @@ function startJSHServer(port, passwordPath, block, modules) {
 			}).on('end', () => {
 	
 				if(body == "TERMINATE" && (
-					request.socket.remoteAddress == "127.0.0.1" ||
+					request.socket.remoteAddress == "::ffff:127.0.0.1" ||
 					request.socket.remoteAddress == "::1")) {
 		
-					res.end();
+					response.end();
 		
 					process.exit(0);
 				}
 
-				let parsedBody = JSON.parse(body)
+				let parsedBody = { };
+				
+				try {
+					parsedBody = JSON.parse(body);
+				}
+
+				catch(error) {
+					parsedBody = { };
+				}
 				
 				if(password == null || password == parsedBody.password) {
 

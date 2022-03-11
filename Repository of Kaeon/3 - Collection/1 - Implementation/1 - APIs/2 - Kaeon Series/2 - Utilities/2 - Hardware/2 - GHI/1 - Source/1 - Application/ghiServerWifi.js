@@ -32,7 +32,7 @@ function execCommand(data) {
 
 http.createServer(function(req, res) {
 	
-	if(!(request.socket.remoteAddress == "127.0.0.1" ||
+	if(!(request.socket.remoteAddress == "::ffff:127.0.0.1" ||
 		request.socket.remoteAddress == "::1")) {
 	
 		res.end();

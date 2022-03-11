@@ -151,7 +151,7 @@ http.createServer(function(request, response) {
 	}).on('end', () => {
 	
 		if(body == "TERMINATE" && (
-			request.socket.remoteAddress == "127.0.0.1" ||
+			request.socket.remoteAddress == "::ffff:127.0.0.1" ||
 			request.socket.remoteAddress == "::1")) {
 
 			res.end();

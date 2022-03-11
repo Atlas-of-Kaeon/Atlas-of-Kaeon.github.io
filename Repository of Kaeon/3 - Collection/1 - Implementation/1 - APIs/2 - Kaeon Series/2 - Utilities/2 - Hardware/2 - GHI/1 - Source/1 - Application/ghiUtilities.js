@@ -41,16 +41,23 @@ function processDisable(port, args) {
 		
 		[port, port + 1, port + 2].forEach((item) => {
 
-			httpUtils.sendRequest({
-				request: {
-					method: "POST",
-					uri: "http://localhost:" + item
-				},
-				headers: {
-					"Content-Type": "application/json"
-				},
-				body: "TERMINATE"
-			});
+			try {
+
+				httpUtils.sendRequest({
+					request: {
+						method: "POST",
+						uri: "http://localhost:" + item
+					},
+					headers: {
+						"Content-Type": "application/json"
+					},
+					body: "TERMINATE"
+				});
+			}
+
+			catch(error) {
+				console.log(error);
+			}
 		});
 	}
 	

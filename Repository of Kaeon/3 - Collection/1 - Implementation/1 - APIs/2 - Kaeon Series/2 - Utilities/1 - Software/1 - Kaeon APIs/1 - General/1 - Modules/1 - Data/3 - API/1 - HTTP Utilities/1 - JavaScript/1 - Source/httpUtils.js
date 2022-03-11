@@ -186,7 +186,11 @@ function sendRequest(request, callback) {
 
 					let header = headers[i].split(":");
 
-					response.headers[header[0].trim()] = header[1].trim();
+					if(header.length >= 2)
+						response.headers[header[0].trim()] = header[1].trim();
+
+					else
+						response.headers[header[0].trim()] = "";
 				}
 			}
 	
