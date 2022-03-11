@@ -133,7 +133,7 @@ var state = { };
 
 init();
 
-http.createServer(function(request, response) {
+http.createServer((request, response) => {
 
 	let url = request.url.substring(1);
 
@@ -154,7 +154,7 @@ http.createServer(function(request, response) {
 			request.socket.remoteAddress == "::ffff:127.0.0.1" ||
 			request.socket.remoteAddress == "::1")) {
 
-			res.end();
+			response.end();
 
 			process.exit(0);
 		}

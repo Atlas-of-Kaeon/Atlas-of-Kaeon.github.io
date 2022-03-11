@@ -30,34 +30,34 @@ function execCommand(data) {
 	);
 }
 
-http.createServer(function(req, res) {
+http.createServer((request, response) => {
 	
 	if(!(request.socket.remoteAddress == "::ffff:127.0.0.1" ||
 		request.socket.remoteAddress == "::1")) {
 	
-		res.end();
+		response.end();
 	
 		return;
 	}
 	
-	let url = req.url.substring(1);
+	let url = request.url.substring(1);
 	
 	if(url == "favicon.ico") {
 	
-		res.end();
+		response.end();
 	
 		return;
 	}
 	
 	let body = "";
 	
-	req.on('data', (chunk) => {
+	request.on('data', (chunk) => {
 		body += chunk.toString();
 	}).on('end', () => {
 	
 		if(body == "TERMINATE") {
 
-			res.end();
+			response.end();
 
 			process.exit(0);
 		}
@@ -78,14 +78,14 @@ http.createServer(function(req, res) {
 
 			if(data.credentials == null) {
 
-				res.end();
+				response.end();
 
 				return;
 			}
 
 			if(data.credentials.ssid == null) {
 
-				res.end();
+				response.end();
 				
 				return;
 			}
@@ -116,11 +116,11 @@ http.createServer(function(req, res) {
 
 	console.log("RETURNED:", queue);
 	
-	res.write("" + queue);
+	response.write("" + queue);
 
 	queue = [];
 
-	res.end();
+	response.end();
 }).listen(process.argv[2]);
 
 console.log("READY");

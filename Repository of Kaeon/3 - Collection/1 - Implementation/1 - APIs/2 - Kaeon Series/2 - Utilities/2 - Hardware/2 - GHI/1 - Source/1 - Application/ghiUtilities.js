@@ -34,32 +34,27 @@ function processClear(port, args) {
 }
 
 function processDisable(port, args) {
-
-	let status = isEnabled(port);
-
-	if(status) {
 		
-		[port, port + 1, port + 2].forEach((item) => {
+	[port, port + 1, port + 2].forEach((item) => {
 
-			try {
+		try {
 
-				httpUtils.sendRequest({
-					request: {
-						method: "POST",
-						uri: "http://localhost:" + item
-					},
-					headers: {
-						"Content-Type": "application/json"
-					},
-					body: "TERMINATE"
-				});
-			}
+			httpUtils.sendRequest({
+				request: {
+					method: "POST",
+					uri: "http://localhost:" + item
+				},
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: "TERMINATE"
+			});
+		}
 
-			catch(error) {
-				console.log(error);
-			}
-		});
-	}
+		catch(error) {
+			
+		}
+	});
 	
 	if(process.platform != "win32")
 		processDisableLinux();
