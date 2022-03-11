@@ -50,27 +50,45 @@ if(process.argv.length == 2 ||
 		"node \"" +
 		__dirname;
 
-	child.exec(boilerCommandNode + "/ghiServerWifi.js\" " + wifiPort);
-	child.exec(boilerCommandNode + "/jsh.js\" " + jshPort);
+	child.exec(boilerCommandNode + "/ghiServerWifi.js\" " + wifiPort,
+		{
+			stdio: 'ignore',
+			shell: false,
+			windowsHide: true
+		}
+	);
+
+	child.exec(boilerCommandNode + "/jsh.js\" " + jshPort,
+		{
+			stdio: 'ignore',
+			shell: false,
+			windowsHide: true
+		}
+	);
 
 	child.exec(
 		boilerCommandNode +
-		"/ghiServerRouter.js\" " +
-		port +
-		" " +
-		wifiPort +
-		" " +
-		jshPort
+			"/ghiServerRouter.js\" " +
+			port +
+			" " +
+			wifiPort +
+			" " +
+			jshPort,
+		{
+			stdio: 'ignore',
+			shell: false,
+			windowsHide: true
+		}
 	);
 
 	if(process.platform != "win32") {
 
 		child.exec(
 			boilerCommand +
-			"sudo /bin/python3 \"" +
-			__dirname +
-			"/uhapiHologram.py\" " +
-			port
+				"sudo /bin/python3 \"" +
+				__dirname +
+				"/uhapiHologram.py\" " +
+				port
 		);
 	}
 }

@@ -79,16 +79,52 @@ function processEnable(port, args) {
 
 	if(!status) {
 
-		child_process.exec(
-			(process.platform != "win32" ?
-				"sudo /usr/local/bin/" :
-				"") +
-			"node \"" + __dirname + "/ghi.js\" " + port
-		);
+		if(process.platform != "win32") {
+
+			child_process.spawn(
+				"sudo",
+				[
+					"/usr/local/bin/node",
+					__dirname +
+					"/autoVersioner.js",
+					"/usr/local/bin/node",
+					__dirname + "/ghi.js",
+					"" + port
+				],
+				{
+					stdio: 'ignore',
+					detached: true,
+					shell: false,
+					windowsHide: true
+				}
+			);
+		}
+
+		else {
+
+			child_process.spawn(
+				"node",
+				[
+					__dirname +
+					"/autoVersioner.js",
+					"node",
+					__dirname + "/ghi.js",
+					"" + port
+				],
+				{
+					stdio: 'ignore',
+					detached: true,
+					shell: false,
+					windowsHide: true
+				}
+			);
+		}
 	}
 	
 	if(process.platform != "win32")
 		processEnableLinux(port, status);
+
+	process.exit(0);
 }
 
 function processEnableLinux(port, status) {

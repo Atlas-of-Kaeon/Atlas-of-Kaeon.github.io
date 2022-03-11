@@ -4,7 +4,18 @@ function execute(version, command) {
 	
 	setVersion(version != null ? version : getLatestVersion());
 
-	child_process.execSync(command);
+	child_process.spawn(
+		command[0],
+		command.slice(1),
+		{
+			stdio: 'ignore',
+			detached: true,
+			shell: false,
+			windowsHide: true
+		}
+	);
+
+	process.exit(0);
 }
 
 function getCurrentVersion() {
@@ -48,9 +59,7 @@ if(module.parent == null) {
 
 		execute(
 			null,
-			process.argv.slice(2).map((item) => {
-				return item.includes(" ") ? "\"" + item + "\"" : item;
-			}).join(" ")
+			process.argv.slice(2)
 		);
 	}
 }
