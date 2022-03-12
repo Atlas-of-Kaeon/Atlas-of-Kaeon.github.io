@@ -3,7 +3,7 @@
   "bin": {
     "ghi": "ghi.js"
   },
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A Node.js Implementation of a GHI Server",
   "main": "ghi.js",
   "scripts": {
