@@ -1,5 +1,6 @@
 var serial = require(__dirname + "/serial.js");
 
+var adapters = null;
 var deviceState = null;
 var devices = null;
 
@@ -44,6 +45,19 @@ function getDevice(ports, item) {
 function createLink(device) {
 			
 	try {
+
+		adapters.forEach((adapter) => {
+
+			try {
+
+				if(adapter.verify(device))
+					adapter.adapt(device);
+			}
+
+			catch(error) {
+				console.log(error);
+			}
+		});
 
 		device.link = serial.connect(
 			device.path,
@@ -113,6 +127,15 @@ function setPorts(init, callback) {
 				});
 			}
 
+			if(init) {
+
+				ports.forEach((port) => {
+	
+					if(port.link == null)
+						createLink(port);
+				});
+			}
+
 			devices = ports;
 		}
 
@@ -125,7 +148,10 @@ module.exports = {
 	block: (state, id, call) => {
 		return false;
 	},
-	init: (state, id, callback, args) => {
+	init: (reference, state, id, callback, args) => {
+
+		adapters = reference.adapters;
+
 		setPorts(true);
 	},
 	process: (state, id) => {

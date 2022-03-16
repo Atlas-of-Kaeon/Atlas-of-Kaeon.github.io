@@ -67,7 +67,7 @@ module.exports = {
 
 		return data.password != call.password;
 	},
-	init: (state, id, callback, args) => {
+	init: (reference, state, id, callback, args) => {
 
 		if(!fs.existsSync(__dirname + "/dataGHI.json"))
 			fs.writeFileSync(__dirname + "/dataGHI.json", "{}");

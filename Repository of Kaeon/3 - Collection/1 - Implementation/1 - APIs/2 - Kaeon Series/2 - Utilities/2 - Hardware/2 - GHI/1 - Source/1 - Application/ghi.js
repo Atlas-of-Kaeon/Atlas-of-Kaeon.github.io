@@ -81,16 +81,8 @@ if(process.argv.length == 2 ||
 		}
 	);
 
-	if(process.platform != "win32") {
-
-		child.exec(
-			boilerCommand +
-				"sudo /bin/python3 \"" +
-				__dirname +
-				"/uhapiHologram.py\" " +
-				port
-		);
-	}
+	if(process.platform != "win32")
+		child.exec(boilerCommandNode + "/uhapiHologramManager.js\"");
 }
 
 else {

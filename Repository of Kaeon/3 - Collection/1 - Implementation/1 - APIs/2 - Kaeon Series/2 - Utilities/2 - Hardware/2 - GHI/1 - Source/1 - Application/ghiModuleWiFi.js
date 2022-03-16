@@ -7,7 +7,7 @@ module.exports = {
 	block: (state, id, call) => {
 		return false;
 	},
-	init: (state, id, callback, args) => {
+	init: (reference, state, id, callback, args) => {
 		wifiServerPort = args[3];
 	},
 	process: (state, id) => {

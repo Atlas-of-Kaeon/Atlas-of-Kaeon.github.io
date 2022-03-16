@@ -1,46 +1,55 @@
+var moduleDependencies = {
+	kaeonUnited: "https://cdn.jsdelivr.net/gh/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io@master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/3%20-%20United/2%20-%20Source/KaeonUnited.js"
+};
+
+var fs = require("fs");
 var http = require("http");
+var ghiReference = require(__dirname + "/ghiReference.js");
 var httpUtils = require(__dirname + "/httpUtils.js");
-
-function getDevices() {
-
-	return {
-		"0": require(__dirname + "/ghiModuleReceptor.js"),
-		"1": require(__dirname + "/ghiModuleGPIO.js"),
-		"2": require(__dirname + "/ghiModuleSerial.js"),
-		"3": require(__dirname + "/ghiModuleDisplay.js"),
-		"4": require(__dirname + "/ghiModuleRecorder.js"),
-		"5": require(__dirname + "/ghiModuleWiFi.js"),
-		"6": require(__dirname + "/ghiModuleBluetooth.js"),
-		"7": require(__dirname + "/ghiModuleCellular.js")
-	};
-}
-
-function getProcesses() {
-
-	return [
-		require(__dirname + "/ghiProcessArduino.js")
-	];
-}
 
 function init() {
 
-	devices = getDevices();
-	processes = getProcesses();
+	Object.keys(ghiReference.devices).forEach((key) => {
 
-	Object.keys(devices).forEach((key) => {
-		state[key] = { output: { }, input: { }, type: devices[key].type };
+		state[key] = {
+			output: { },
+			input: { },
+			type: ghiReference.devices[key].type
+		};
 	});
 
-	Object.keys(devices).forEach((key) => {
-		devices[key].init(state, key, processCall, process.argv);
+	Object.keys(ghiReference.devices).forEach((key) => {
+
+		ghiReference.devices[key].init(
+			ghiReference,
+			state,
+			key,
+			processCall,
+			process.argv
+		);
 	});
 
-	processes.forEach((item) => {
+	ghiReference.processes.forEach((item) => {
 
-		item.initialize();
+		try {
+			item.initialize(state);
+		}
+
+		catch(error) {
+			console.log(error);
+		}
 
 		setInterval(
-			item.update,
+			() => {
+
+				try {
+					item.update(state);
+				}
+
+				catch(error) {
+
+				}
+			},
 			item.rate * 1000
 		);
 	});
@@ -62,7 +71,7 @@ function processCall(call) {
 	Object.keys(call).forEach((key) => {
 
 		try {
-			devices[key].process(state, key);
+			ghiReference.devices[key].process(state, key);
 		}
 	
 		catch(error) {
@@ -73,7 +82,7 @@ function processCall(call) {
 	Object.keys(state).forEach((key) => {
 
 		try {
-			state[key].input = devices[key].read(state, key);
+			state[key].input = ghiReference.devices[key].read(state, key);
 		}
 	
 		catch(error) {
@@ -110,13 +119,13 @@ function processRequest(data) {
 
 function validate(call) {
 
-	let keys = Object.keys(devices);
+	let keys = Object.keys(ghiReference.devices);
 
 	for(let i = 0; i < keys.length; i++) {
 
 		try {
 
-			if(devices[keys[i]].block(state, keys[i], call))
+			if(ghiReference.devices[keys[i]].block(state, keys[i], call))
 				return false;
 		}
 	
@@ -128,7 +137,6 @@ function validate(call) {
 	return true;
 }
 
-var devices = [];
 var state = { };
 
 init();
@@ -138,6 +146,24 @@ http.createServer((request, response) => {
 	let url = request.url.substring(1);
 
 	if(url == "favicon.ico") {
+
+		response.end();
+
+		return;
+	}
+
+	if(request.method == "GET") {
+
+		response.setHeader("Content-Type", "text/html");
+
+		response.write(
+			"<script src=\"" +
+				moduleDependencies.kaeonUnited +
+				"\"></script>" +
+				"<script>" +
+				fs.readFileSync(__dirname + "/ghiSite.js", "utf-8") +
+				"</script>"
+		);
 
 		response.end();
 
