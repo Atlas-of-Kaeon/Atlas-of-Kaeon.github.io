@@ -162,7 +162,7 @@ vision.extend({
 
 vision.extend({
 	tag: "button",
-	content: "RETREIVE DATA",
+	content: "RETRIEVE DATA",
 	style: {
 		position: "absolute",
 		left: "50%",

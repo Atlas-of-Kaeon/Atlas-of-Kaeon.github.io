@@ -26,17 +26,38 @@ var io = require(moduleDependencies.io);
 var modules = moduleDependencies.modules;
 var scripts = moduleDependencies.scripts;
 
-function call(contact, packet, callback) {
+function call(contact, packet, sendCallback, getCallback) {
 
-	return sendCall(
+	sendCall(
 		contact.contact,
 		getMessage(packet, contact.device, contact.state),
-		callback
+		sendCallback
 	);
+
+	return getCalls(contact, null, getCallback);
 }
 
 function formatKey(key) {
 	return key.split(" ").join("").toLowerCase();
+}
+
+function getCalls(contact, cutoff, callback) {
+
+	let service = modules.service[formatKey(contact.service)];
+
+	if(service == null)
+		return [];
+
+	try {
+		return service.getCalls(contact.credentials, cutoff, callback);
+	}
+
+	catch(error) {
+
+		console.log(error.stack);
+
+		return [];
+	}
 }
 
 function getMessage(packet, device, state) {
@@ -102,7 +123,7 @@ function sendCall(contact, message, callback) {
 		return;
 
 	try {
-		return service(contact.credentials, message, callback);
+		return service.sendCall(contact.credentials, message, callback);
 	}
 
 	catch(error) {
@@ -128,6 +149,7 @@ Object.keys(scripts).forEach((item) => {
 
 module.exports = {
 	call,
+	getCalls,
 	getMessage,
 	scripts,
 	sendCall
