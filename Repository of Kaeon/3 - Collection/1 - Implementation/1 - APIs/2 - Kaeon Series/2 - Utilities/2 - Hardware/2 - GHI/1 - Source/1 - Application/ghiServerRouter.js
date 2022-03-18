@@ -7,6 +7,20 @@ var http = require("http");
 var ghiReference = require(__dirname + "/ghiReference.js");
 var httpUtils = require(__dirname + "/httpUtils.js");
 
+function getPluginData() {
+
+	if(!fs.existsSync("dataPlugins.json"))
+		fs.writeFileSync("dataPlugins.json", "[]");
+
+	try {
+		return JSON.parse(fs.readFileSync("dataPlugins.json", "utf-8"));
+	}
+
+	catch(error) {
+		return [];
+	}
+}
+
 function init() {
 
 	Object.keys(ghiReference.devices).forEach((key) => {
@@ -47,12 +61,62 @@ function init() {
 				}
 
 				catch(error) {
-
+					console.log(error);
 				}
 			},
 			item.rate * 1000
 		);
 	});
+
+	setInterval(
+		() => {
+
+			let data = getPluginData();
+			
+			if(JSON.stringify(Object.keys(plugins)) !=
+				JSON.stringify(data)) {
+				
+				plugins = { };
+
+				data.forEach((item) => {
+
+					try {
+
+						plugins[item] = require(item);
+
+						if(!plugins[item].initialized &&
+							plugins[item].initialize != null) {
+
+							plugins[item].initialize(state);
+
+							plugins[item].initialized = true;
+						}
+					}
+
+					catch(error) {
+
+						console.log(error);
+
+						plugins[item] = { };
+					}
+				});
+			}
+
+			Object.values(plugins).forEach((item) => {
+
+				try {
+
+					if(item.onUpdate != null)
+						item.onUpdate(state);
+				}
+
+				catch(error) {
+					console.log(error);
+				}
+			});
+		},
+		1000
+	);
 }
 
 function processCall(call) {
@@ -137,6 +201,7 @@ function validate(call) {
 	return true;
 }
 
+var plugins = { };
 var state = { };
 
 init();
@@ -156,14 +221,27 @@ http.createServer((request, response) => {
 
 		response.setHeader("Content-Type", "text/html");
 
-		response.write(
-			"<script src=\"" +
-				moduleDependencies.kaeonUnited +
-				"\"></script>" +
-				"<script>" +
-				fs.readFileSync(__dirname + "/ghiSite.js", "utf-8") +
-				"</script>"
-		);
+		let site = "<script src=\"" +
+			moduleDependencies.kaeonUnited +
+			"\"></script>" +
+			"<script>" +
+			fs.readFileSync(__dirname + "/ghiSite.js", "utf-8") +
+			"</script>";
+
+		Object.values(plugins).forEach((item) => {
+
+			try {
+
+				if(item.onSite != null)
+					site = item.onSite(state, site);
+			}
+
+			catch(error) {
+				console.log(error);
+			}
+		});
+
+		response.write(site);
 
 		response.end();
 
@@ -188,6 +266,7 @@ http.createServer((request, response) => {
 		console.log("RECEIVED:", body);
 
 		let data = { };
+		let result = { };
 
 		try {
 			data = JSON.parse(body);
@@ -201,6 +280,19 @@ http.createServer((request, response) => {
 		}
 
 		console.log("PROCESSED:", data);
+
+		Object.values(plugins).forEach((item) => {
+
+			try {
+
+				if(item.onIncoming != null)
+					item.onIncoming(state, data);
+			}
+
+			catch(error) {
+				console.log(error);
+			}
+		});
 
 		if(Object.keys(data).includes("commands") ||
 			Object.keys(data).includes("processes") ||
@@ -244,7 +336,7 @@ http.createServer((request, response) => {
 					}
 				}
 
-				response.write(JSON.stringify(jshResponse));
+				result = jshResponse;
 			}
 
 			catch(error) {
@@ -253,7 +345,28 @@ http.createServer((request, response) => {
 		}
 
 		else
-			response.write(JSON.stringify(processRequest(data)));
+			result = processRequest(data);
+
+		Object.values(plugins).forEach((item) => {
+
+			try {
+
+				if(item.onOutgoing != null)
+					item.onOutgoing(state, data, result);
+			}
+
+			catch(error) {
+				console.log(error);
+			}
+		});
+
+		try {
+			response.write(JSON.stringify(result));
+		}
+
+		catch(error) {
+			response.write("{}");
+		}
 
 		response.end();
 	});

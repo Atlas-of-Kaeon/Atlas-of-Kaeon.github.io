@@ -2,6 +2,20 @@ var child_process = require("child_process");
 var fs = require("fs");
 var httpUtils = require(__dirname + "/httpUtils.js");
 
+function getPluginData() {
+
+	if(!fs.existsSync("dataPlugins.json"))
+		fs.writeFileSync("dataPlugins.json", "[]");
+
+	try {
+		return JSON.parse(fs.readFileSync("dataPlugins.json", "utf-8"));
+	}
+
+	catch(error) {
+		return [];
+	}
+}
+
 function isEnabled(port) {
 
 	try {
@@ -135,6 +149,25 @@ function processEnableLinux(port, status) {
 	);
 }
 
+function processInstall(port, args) {
+
+	args.forEach((arg) => {
+		child_process.execSync("npm install " + arg);
+	});
+
+	fs.writeFileSync(
+		"dataPlugins.json",
+		JSON.stringify([...new Set(getPluginData().concat(args))])
+	);
+}
+
+function processList(port, args) {
+
+	getPluginData().forEach((plugin) => {
+		console.log(plugin);
+	});
+}
+
 function processLog(port, args) {
 
 	let log = "";
@@ -147,6 +180,24 @@ function processLog(port, args) {
 
 	else
 		fs.writeFileSync(log, args[0]);
+}
+
+function processPlugin(command, port, args) {
+	
+	getPluginData().forEach((item) => {
+
+		try {
+		
+			let plugin = require(item);
+
+			if(plugin.verifyCommand(command, port, args))
+				plugin.onCommand(command, port, args);
+		}
+
+		catch(error) {
+			console.log(error);
+		}
+	});
 }
 
 function processPing(port, args) {
@@ -178,28 +229,54 @@ function processStatus(port, args) {
 	console.log(isEnabled(port) ? "On" : "Off");
 }
 
+function processUninstall(port, args) {
+
+	args.forEach((arg) => {
+		child_process.execSync("npm uninstall " + arg);
+	});
+
+	fs.writeFileSync(
+		"dataPlugins.json",
+		getPluginData().filter((item) => {
+			return !args.includes(item);
+		})
+	);
+}
+
 function processCommand(port, args) {
 
 	if(process.argv[2] == "clear")
 		processClear(port, args);
 
-	if(process.argv[2] == "disable")
+	else if(process.argv[2] == "disable")
 		processDisable(port, args);
 
-	if(process.argv[2] == "enable")
+	else if(process.argv[2] == "enable")
 		processEnable(port, args);
 
-	if(process.argv[2] == "log")
+	else if(process.argv[2] == "install")
+		processInstall(port, args);
+
+	else if(process.argv[2] == "list")
+		processList(port, args);
+
+	else if(process.argv[2] == "log")
 		processLog(port, args);
 
-	if(process.argv[2] == "ping")
+	else if(process.argv[2] == "ping")
 		processPing(port, args);
 
-	if(process.argv[2] == "reset")
+	else if(process.argv[2] == "reset")
 		processReset(port, args);
 
-	if(process.argv[2] == "status")
+	else if(process.argv[2] == "status")
 		processStatus(port, args);
+
+	else if(process.argv[2] == "uninstall")
+		processUninstall(port, args);
+	
+	else
+		processPlugin(process.argv[2], port, args);
 }
 
 module.exports = {
