@@ -101,6 +101,12 @@ function init() {
 					}
 				});
 			}
+		},
+		1000
+	);
+
+	setInterval(
+		() => {
 
 			Object.values(plugins).forEach((item) => {
 
@@ -115,7 +121,7 @@ function init() {
 				}
 			});
 		},
-		1000
+		1000 / 60
 	);
 }
 
