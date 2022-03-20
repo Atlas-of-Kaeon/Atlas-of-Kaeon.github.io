@@ -1,12 +1,12 @@
 #!/bin/bash
 
-arm = $(uname -m)
+ARM=$(uname -m)
 
 if which node > /dev/null
 	then
 		echo "node is installed, skipping..."
 	else
-		if [arm == "armv6l"]
+		if [ $ARM == "armv6l" ]
 			then
 				wget https://nodejs.org/dist/v11.15.0/node-v11.15.0-linux-armv6l.tar.xz
 				tar -xJf node-v11.15.0-linux-armv6l.tar.xz
