@@ -12,6 +12,7 @@ if which node > /dev/null
 				tar -xJf node-v11.15.0-linux-armv6l.tar.xz
 				sudo cp -r node-v11.15.0-linux-armv6l/* /usr/local/
 				rm -r node-v11.15.0-linux-armv6l
+				rm node-v11.15.0-linux-armv6l.tar.xz
 			else
 				sudo apt-get update
 				sudo apt-get install nodejs
