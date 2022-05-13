@@ -4,7 +4,7 @@
 
 var moduleDependencies = {
 	cors: "https://ghost-cors.herokuapp.com/",
-	defaultInterface: "", // STUB
+	defaultInterface: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/3%20-%20United/1%20-%20Resources/1%20-%20Default%20Interface/KaeonUnitedDefaultInterface.json",
 	ONESuite: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/1%20-%20Core/1%20-%20ONE/6%20-%20ONE%20Suite/1%20-%20JavaScript/1%20-%20Source/ONESuite.js",
 };
 
