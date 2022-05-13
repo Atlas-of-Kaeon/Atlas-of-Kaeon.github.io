@@ -4,247 +4,140 @@
 
 var moduleDependencies = {
 	cors: "https://ghost-cors.herokuapp.com/",
-	csb: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/2%20-%20United/1%20-%20United%20C/3%20-%20CSB/1%20-%20JavaScript/1%20-%20Source/CSB.js",
-	origin: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/3%20-%20Applications/1%20-%20Kaeon%20Origin/2%20-%20Kaeon%20Origin/KaeonOrigin.js",
-	io: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/1%20-%20Data/1%20-%20IO/1%20-%20JavaScript/1%20-%20Source/io.js",
-	kaeonUtilities: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/3%20-%20United/1%20-%20Resources/1%20-%20Reference%20Router/KaeonUtilities.js",
+	defaultInterface: "", // STUB
 	ONESuite: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/1%20-%20Core/1%20-%20ONE/6%20-%20ONE%20Suite/1%20-%20JavaScript/1%20-%20Source/ONESuite.js",
-	ucc: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/2%20-%20United/1%20-%20United%20C/2%20-%20UCC/1%20-%20JavaScript/1%20-%20Source/UCC.js"
 };
 
-function getEnvironment() {
+function appendInterface(main, resource) {
 
-	let environment = "browser";
-	
-	if(typeof process === 'object') {
-	
-		if(typeof process.versions === 'object') {
-	
-			if(typeof process.versions.node !== 'undefined')
-				environment = "node";
+	["components", "modules", "extensions"].forEach((field) => {
+
+		if(resource[field] != null) {
+
+			main[field] = main[field].concat(resource[field]).map((item) => {
+				return JSON.stringify(item);
+			}).filter((item, pos, self) => {
+				return self.indexOf(item) == pos;
+			}).map((item) => {
+				return JSON.parse(item);
+			});
 		}
-	}
+	});
 
-	return environment;
+	if(resource.management != null)
+		Object.assign(main.management, resource.management);
 }
 
-function getPlatform(environment) {
-
-	if(environment == "browser") {
-
-		if(typeof require == "function" && typeof module == "object") {
-
-			if(module.parent != null)
-				return "module";
-		}
-
-		return document.documentElement.innerHTML == "<head></head><body></body>" ? "cdn" : "script";
-	}
-
-	else {
-
-		if(module.parent != null)
-			return "module";
-
-		return "command";
-	}
-}
-
-function getURLArguments(raw) {
-
-	let vars = {};
-
-	window.location.href.replace(
-		/[?&]+([^=&]+)=([^&]*)/gi,
-		function(m, key, value) {
-		
-			vars[
-				raw ?
-					decodeURIComponent(key) :
-					decodeURIComponent(key).toLowerCase()
-			] = decodeURIComponent(value);
-		}
-	);
-
-	return vars;
-}
-
-function makeOnlineRequest(path, cors) {
-
-	try {
-
-		if(cors)
-			path = moduleDependencies.cors + path;
-		
-		let rawFile = new XMLHttpRequest();
-
-		rawFile.open("GET", path, false);
-
-		let allText = "";
-
-		rawFile.onreadystatechange = function() {
-
-			if(rawFile.readyState === 4) {
-
-				if(rawFile.status === 200 || rawFile.status == 0)
-					allText = rawFile.responseText;
-			}
-		}
-
-		rawFile.send(null);
-
-		return allText;
-	}
-
-	catch(error) {
-		return "";
-	}
+function executeCDN() {
+	executeScript();
+	executeCommandOperation(getInterface(), getURLArguments());
 }
 
 function executeCommand(args) {
+	
+	let execSync = require('child_process').execSync;
+	let interfaces = getInterfaces();
 
-	if(args[0].includes("/") && args[0].includes(".")) {
-
-		moduleDependencies.kaeonUtilities = args[0];
-
-		args = args.slice(1);
-	}
-
-	var ONESuite = require(moduleDependencies.ONESuite);
-	var io = require(moduleDependencies.io);
-
-	(async () => {
+	if(args.length > 0) {
 
 		let operation = args[0].toLowerCase();
+		let arguments = args.slice(1);
+	
+		if(operation == "install") {
+
+			arguments.forEach((item) => {
+
+				if(interfaces.includes(item))
+					return;
+
+				try {
+
+					execSync("npm install " + item);
+					onDependency(item, "install");
+
+					interfaces.push(item);
+				}
+
+				catch(error) {
+
+				}
+			});
+		}
+	
+		else if(operation == "uninstall") {
+
+			arguments.forEach((item) => {
+
+				if(!interfaces.includes(item))
+					return;
+
+				try {
+
+					onDependency(item, "uninstall");
+					execSync("npm uninstall " + item);
+
+					interfaces.splice(interfaces.indexOf(item), 1);
+				}
+
+				catch(error) {
+
+				}
+			});
+		}
+	
+		else if(operation == "list")
+			console.log(Object.keys(interface.management).join("\n"));
+
+		if(operation == "install" || operation == "uninstall") {
+
+			let interface = require(moduleDependencies.defaultInterface);
+
+			interfaces.forEach((item) => {
+				appendInterface(interface, require(item));
+			});
+			
+			fs.writeFileSync(__dirname + "/interface.json", data);
+		}
+	}
+
+	executeCommandOperation(interface, args);
+}
+
+function executeCommandOperation(interface, args) {
+
+	interface.components.forEach((item) => {
 		
-		if(operation != "parse" &&
-			operation != "preprocess" &&
-			operation != "process" &&
-			operation != "js" &&
-			operation != "ucc" &&
-			operation != "assemble" &&
-			operation != "disassemble") {
+		if(item.environment.toLowerCase() == "javascript" ||
+			item.environment.toLowerCase() == "js") {
 
-			require(moduleDependencies.kaeonUtilities)(operation)(args.slice(1));
-
-			return;
+			require(item.reference)(args);
 		}
+	});
+}
 
-		let data = null;
+function executeModule(utility) {
+	
+	let interface = getInterface();
 
-		if(args[1] != null) {
+	if(utility == null)
+		return interface;
+
+	for(let i = 0; i < interface.modules.length; i++) {
+
+		if(interface.modules[i].path.join(".").
+			toLowerCase().endsWith(utility)) {
 			
-			let flag = args[1].toLowerCase();
+			let match = interface.modules[i].implementations.filter((item) => {
 
-			data = ONESuite.preprocess(flag == "open" ? io.open(args[2]) : args[2]);
+				return item.environment.toLowerCase() == "javascript" ||
+					item.environment.toLowerCase() == "js";
+			});
+
+			return match.length > 0 ? require(match[0].reference) : null;
 		}
+	}
 
-		let result = "";
-
-		if(operation == "parse")
-			result = ONESuite.write(ONESuite.read(data));
-
-		if(operation == "preprocess")
-			result = data;
-
-		if(operation == "process") {
-
-			if(data != null)
-				result = ONESuite.process(data);
-			
-			else {
-
-				let state = { };
-
-				while(true) {
-
-					let input = io.getInput("Enter code (Enter 'q' to quit): ");
-
-					if(input.toLowerCase() == "q")
-						return;
-
-					console.log("\n" + ONESuite.process(ONESuite.preprocess(input), state));
-				}
-			}
-		}
-
-		if(operation == "js") {
-
-			if(data != null) {
-
-				result = await eval(
-					"(async () => {\n" +
-					ONESuite.preprocess(data) +
-					"\n})();"
-				);
-			}
-
-			else {
-
-				while(true) {
-
-					let input = io.getInput("Enter code (Enter 'q' to quit): ");
-
-					if(input.toLowerCase() == "q")
-						return;
-
-					console.log(
-						await eval(
-							"(async () => {\n" +
-							ONESuite.preprocess(input) +
-							"\n})();"
-						)
-					);
-				}
-			}
-		}
-
-		if(operation == "ucc") {
-
-			if(data.startsWith("http://") || data.startsWith("https://")) {
-
-				let download = data;
-
-				if(data.includes("?"))
-					data = data.substring(0, data.indexOf("?"));
-
-				data = data.substring(data.lastIndexOf("/") + 1);
-
-				io.save(io.open(download), data);
-			}
-
-			execSync(
-				"npx kaeon-united js open \"" +
-				moduleDependencies.ucc +
-				"\" " +
-				data
-			);
-		}
-
-		if(operation == "assemble") {
-
-			if(!Array.isArray(data))
-				data = require(moduleDependencies.csb)(data);
-			
-			fs.writeFileSync(args[3], new Uint8Array(Buffer.from(data)));
-		}
-
-		if(operation == "disassemble")
-			io.save(require(moduleDependencies.csb).disassemble(fs.readFileSync(data)), args[3]);
-
-		if(result == null)
-			result = "";
-
-		result = ("" + result).trim();
-
-		if(result != "") {
-
-			console.log(result);
-
-			if(args[3] != null)
-				io.save(result, args[3]);
-		}
-	})();
+	return null;
 }
 
 function executeScript() {
@@ -254,11 +147,6 @@ function executeScript() {
 		if(require.kaeonUnited)
 			return;
 	}
-
-	let args = getURLArguments();
-
-	if(args["router"] != null)
-		moduleDependencies.kaeonUtilities = args["router"];
 
 	module = {
 		id: '.',
@@ -307,7 +195,7 @@ function executeScript() {
 		let lowerPath = path.toLowerCase().split("-").join("").split(" ").join("");
 
 		if(lowerPath.endsWith("kaeonunited") || lowerPath.endsWith("kaeonunited.js"))
-			return unitedRequire(moduleDependencies.kaeonUtilities);
+			return executeModule;
 	
 		require.cache = require.cache ? require.cache : { };
 	
@@ -345,7 +233,7 @@ function executeScript() {
 			
 			if(!options.dynamic) {
 				
-				allText = makeOnlineRequest(path);
+				allText = fetchOnlineResource(path);
 
 				require.cache[lowerPath] = newModule;
 			}
@@ -418,105 +306,35 @@ function executeScript() {
 	}
 }
 
-function executeJS(code) {
-	
-	eval(
-		"(async () => {" +
-		require.ONESuite.preprocess(code) +
-		"})()"
-	);
-}
+function fetchOnlineResource(path, cors) {
 
-function executeOP(code) {
-	require.ONESuite.process(code);
-}
+	try {
 
-function executeHTML(code) {
+		if(cors)
+			path = moduleDependencies.cors + path;
+		
+		let rawFile = new XMLHttpRequest();
 
-	document.documentElement.innerHTML = code;
+		rawFile.open("GET", path, false);
 
-	let scripts = document.querySelectorAll("script");
+		let allText = "";
 
-	for(let i = 0; i < scripts.length; i++) {
+		rawFile.onreadystatechange = function() {
 
-		if(scripts[i].getAttribute("src") != null)
-			(1, eval)(makeOnlineRequest(scripts[i].getAttribute("src")));
+			if(rawFile.readyState === 4) {
 
-		(1, eval)(scripts[i].text);
-	}
-}
-
-function executeCDN() {
-
-	let args = getURLArguments();
-
-	if(args["unitedjs"] != null ||
-		args["unitedjsraw"] != null ||
-		args["unitedop"] != null ||
-		args["unitedopraw"] != null ||
-		args["app"] != null) {
-
-		executeScript();
-	}
-
-	else if(args["router"] != null)
-		moduleDependencies.kaeonUtilities = args["router"];
-
-	if(args["app"] != null) {
-
-		let redirect = "" + require(moduleDependencies.kaeonUtilities)(args["app"]);
-
-		if(redirect.includes("?") && args.length > 1)
-			redirect += "?";
-
-		let rawArgs = getURLArguments(true);
-
-		Object.keys(rawArgs).forEach((key) => {
-
-			if(key.toLowerCase() == "app")
-				return;
-
-			if(!redirect.endsWith("?"))
-				redirect += "?";
-
-			redirect += rawArgs[key];
-		});
-
-		window.location.href = redirect;
-	}
-
-	if(args["unitedjs"] != null)
-		executeJS(makeOnlineRequest(args["unitedjs"], true));
-
-	if(args["unitedjsraw"] != null)
-		executeJS(args["unitedjsraw"]);
-
-	if(args["unitedop"] != null)
-		executeOP(makeOnlineRequest(args["unitedop"], true));
-
-	if(args["unitedopraw"] != null)
-		executeOP(args["unitedopraw"]);
-
-	if(args["html"] != null)
-		executeHTML(makeOnlineRequest(args["html"], true));
-
-	if(args["htmlraw"] != null)
-		executeHTML(args["htmlraw"]);
-
-	if(args["unitedjs"] == null &&
-		args["unitedjsraw"] == null &&
-		args["unitedop"] == null &&
-		args["unitedopraw"] == null &&
-		args["html"] == null &&
-		args["htmlraw"] == null &&
-		args["app"] == null) {
-
-		if(moduleDependencies.origin != null) {
-
-			executeScript();
-			
-			executeJS(makeOnlineRequest(moduleDependencies.origin, true));
+				if(rawFile.status === 200 || rawFile.status == 0)
+					allText = rawFile.responseText;
+			}
 		}
+
+		rawFile.send(null);
+
+		return allText;
+	}
+
+	catch(error) {
+		return "";
 	}
 }
 
@@ -531,6 +349,151 @@ function fileExists(file) {
 	}
 }
 
+function getEnvironment() {
+
+	let environment = "browser";
+	
+	if(typeof process === 'object') {
+	
+		if(typeof process.versions === 'object') {
+	
+			if(typeof process.versions.node !== 'undefined')
+				environment = "node";
+		}
+	}
+
+	return environment;
+}
+
+function getInterface(environment) {
+
+	if(environment == "browser") {
+
+		let args = getURLArguments();
+
+		let interface = Object.assign(
+			{
+				components: [],
+				modules: [],
+				extensions: [],
+				management: { }
+			},
+			JSON.parse(
+				fetchOnlineResource(
+					moduleDependencies.defaultInterface
+				)
+			)
+		);
+
+		if(args.use == null)
+			return interface;
+		
+		try {
+			
+			JSON.parse(args.use).forEach((item) => {
+
+				try {
+
+					appendInterface(
+						interface,
+						JSON.parse(
+							fetchOnlineResource(item)
+						)
+					);
+				}
+
+				catch(error) {
+
+				}
+			});
+		}
+
+		catch(error) {
+
+		}
+	}
+
+	else {
+
+		let fs = require("fs");
+
+		try {
+
+			return JSON.parse(
+				fs.readFileSync(__dirname + "/interface.json", "utf-8")
+			);
+		}
+	
+		catch(error) {
+
+			let data = require(moduleDependencies.defaultInterface);
+			
+			fs.writeFileSync(__dirname + "/interface.json", data);
+
+			return JSON.parse(data);
+		}
+	}
+
+	return interface;
+}
+
+function getInterfaces() {
+
+	try {
+
+		return Object.keys(
+			JSON.parse(
+				fs.readFileSync(__dirname + "/interface.json", "utf-8")
+			).management
+		);
+	}
+
+	catch(error) {
+		return [];
+	}
+}
+
+function getPlatform(environment) {
+
+	if(environment == "browser") {
+
+		if(typeof require == "function" && typeof module == "object") {
+
+			if(module.parent != null)
+				return "module";
+		}
+
+		return document.documentElement.innerHTML == "<head></head><body></body>" ? "cdn" : "script";
+	}
+
+	else {
+
+		if(module.parent != null)
+			return "module";
+
+		return "command";
+	}
+}
+
+function getURLArguments(raw) {
+
+	let vars = {};
+
+	window.location.href.replace(
+		/[?&]+([^=&]+)=([^&]*)/gi,
+		function(m, key, value) {
+		
+			vars[
+				raw ?
+					decodeURIComponent(key) :
+					decodeURIComponent(key).toLowerCase()
+			] = decodeURIComponent(value);
+		}
+	);
+
+	return vars;
+}
+
 function moduleExists(file) {
 
 	if(fileExists(file))
@@ -540,6 +503,36 @@ function moduleExists(file) {
 		return true;
 
 	return false;
+}
+
+function onDependency(item, command) {
+
+	let resource = require(item);
+
+	if(resource.management == null)
+		return;
+
+	let operations = item.management[command];
+
+	if(operations == null)
+		return;
+
+	operations.forEach((item) => {
+
+		if(!(item.environment.toLowerCase() == "js" ||
+			item.environment.toLowerCase() == "javascript")) {
+
+			return;
+		}
+
+		try {
+			require(item.reference)();
+		}
+
+		catch(error) {
+
+		}
+	});
 }
 
 var environment = getEnvironment();
@@ -650,7 +643,7 @@ if(environment == "node" && !united) {
 				return xhr;
 
 			if(lowerPath.endsWith("kaeonunited") || lowerPath.endsWith("kaeonunited.js"))
-				return require(moduleDependencies.kaeonUtilities);
+				return executeModule;
 
 			if(options.reload) {
 
@@ -782,6 +775,6 @@ if(platform == "cdn")
 	executeCDN();
 
 if(platform == "module")
-	module.exports = require(moduleDependencies.kaeonUtilities);
+	module.exports = executeModule;
 
 // </script>
