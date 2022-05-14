@@ -1,59 +1,59 @@
 {
 	"components": [
 		{
-			"reference": "[assemble]",
+			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/3%20-%20United/1%20-%20Resources/1%20-%20Default%20Interface/1%20-%20Components/1%20-%20Console/1%20-%20Assemble/kaeonUnitedCommandAssemble.js",
 			"environment": "javascript"
 		},
 		{
-			"reference": "[disassemble]",
+			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/3%20-%20United/1%20-%20Resources/1%20-%20Default%20Interface/1%20-%20Components/1%20-%20Console/2%20-%20Disassemble/kaeonUnitedCommandDisassemble.js",
 			"environment": "javascript"
 		},
 		{
-			"reference": "[js]",
+			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/3%20-%20United/1%20-%20Resources/1%20-%20Default%20Interface/1%20-%20Components/1%20-%20Console/3%20-%20JS/kaeonUnitedCommandJS.js",
 			"environment": "javascript"
 		},
 		{
-			"reference": "[parse]",
+			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/3%20-%20United/1%20-%20Resources/1%20-%20Default%20Interface/1%20-%20Components/1%20-%20Console/4%20-%20Parse/kaeonUnitedCommandParse.js",
 			"environment": "javascript"
 		},
 		{
-			"reference": "[preprocess]",
+			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/3%20-%20United/1%20-%20Resources/1%20-%20Default%20Interface/1%20-%20Components/1%20-%20Console/5%20-%20Preprocess/kaeonUnitedCommandPreprocess.js",
 			"environment": "javascript"
 		},
 		{
-			"reference": "[process]",
+			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/3%20-%20United/1%20-%20Resources/1%20-%20Default%20Interface/1%20-%20Components/1%20-%20Console/6%20-%20Process/kaeonUnitedCommandProcess.js",
 			"environment": "javascript"
 		},
 		{
-			"reference": "[ucc]",
+			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/3%20-%20United/1%20-%20Resources/1%20-%20Default%20Interface/1%20-%20Components/1%20-%20Console/7%20-%20UCC/kaeonUnitedCommandUCC.js",
 			"environment": "javascript"
 		},
 		{
-			"reference": "[app]",
+			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/3%20-%20United/1%20-%20Resources/1%20-%20Default%20Interface/1%20-%20Components/2%20-%20Online/1%20-%20App/kaeonUnitedURLApp.js",
 			"environment": "javascript"
 		},
 		{
-			"reference": "[html]",
+			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/3%20-%20United/1%20-%20Resources/1%20-%20Default%20Interface/1%20-%20Components/2%20-%20Online/2%20-%20Shadow/1%20-%20HTML/1%20-%20External/kaeonUnitedURLHTML.js",
 			"environment": "javascript"
 		},
 		{
-			"reference": "[htmlraw]",
+			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/3%20-%20United/1%20-%20Resources/1%20-%20Default%20Interface/1%20-%20Components/2%20-%20Online/2%20-%20Shadow/1%20-%20HTML/2%20-%20Raw/kaeonUnitedURLHTMLRaw.js",
 			"environment": "javascript"
 		},
 		{
-			"reference": "[unitedjs]",
+			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/3%20-%20United/1%20-%20Resources/1%20-%20Default%20Interface/1%20-%20Components/2%20-%20Online/2%20-%20Shadow/2%20-%20United%20JS/1%20-%20External/kaeonUnitedURLUnitedJS.js",
 			"environment": "javascript"
 		},
 		{
-			"reference": "[unitedjsraw]",
+			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/3%20-%20United/1%20-%20Resources/1%20-%20Default%20Interface/1%20-%20Components/2%20-%20Online/2%20-%20Shadow/2%20-%20United%20JS/2%20-%20Raw/kaeonUnitedURLUnitedJSRaw.js",
 			"environment": "javascript"
 		},
 		{
-			"reference": "[unitedop]",
+			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/3%20-%20United/1%20-%20Resources/1%20-%20Default%20Interface/1%20-%20Components/2%20-%20Online/2%20-%20Shadow/3%20-%20United%20OP/1%20-%20External/kaeonUnitedURLUnitedOP.js",
 			"environment": "javascript"
 		},
 		{
-			"reference": "[unitedopraw]",
+			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/3%20-%20United/1%20-%20Resources/1%20-%20Default%20Interface/1%20-%20Components/2%20-%20Online/2%20-%20Shadow/3%20-%20United%20OP/2%20-%20Raw/kaeonUnitedURLUnitedOPRaw.js",
 			"environment": "javascript"
 		}
 	],
