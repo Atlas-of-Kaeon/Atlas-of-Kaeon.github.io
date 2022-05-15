@@ -446,6 +446,15 @@
 			]
 		},
 		{
+			"path": ["utilities", "software", "general", "application", "management", "network", "connectionManager"],
+			"implementations": [
+				{
+					"environment": "javascript",
+					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/2%20-%20Application/1%20-%20Management/1%20-%20Network/3%20-%20Connection%20Monitor/connectionMonitor.js"
+				}
+			]
+		},
+		{
 			"path": ["utilities", "software", "general", "application", "management", "network", "server"],
 			"implementations": [
 				{
