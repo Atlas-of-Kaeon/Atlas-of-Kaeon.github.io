@@ -1,3 +1,7 @@
+function executeOP(code) {
+	require.ONESuite.process(code);
+}
+
 module.exports = (args) => {
 
 	if(Array.isArray(args))
@@ -8,5 +12,7 @@ module.exports = (args) => {
 	if(arg == null)
 		return;
 
-	// STUB
+	executeScript();
+	
+	executeOP(args["unitedopraw"]);
 };
