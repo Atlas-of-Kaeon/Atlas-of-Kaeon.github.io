@@ -192,10 +192,14 @@ function executeScript() {
 			return options.async == true ? promise : undefined;
 		}
 
-		let lowerPath = path.toLowerCase().split("-").join("").split(" ").join("");
+		let lowerPath = path.toLowerCase().
+			split("-").join("").split(" ").join("");
 
-		if(lowerPath.endsWith("kaeonunited") || lowerPath.endsWith("kaeonunited.js"))
+		if(lowerPath.endsWith("kaeonunited") ||
+			lowerPath.endsWith("kaeonunited.js")) {
+
 			return executeModule;
+		}
 	
 		require.cache = require.cache ? require.cache : { };
 	
@@ -267,7 +271,10 @@ function executeScript() {
 					";return module;"
 				);
 				
-				let newModuleContents = moduleFunction(newModule, require.cache);
+				let newModuleContents = moduleFunction(
+					newModule,
+					require.cache
+				);
 		
 				for(key in newModuleContents.exports)
 					newModule.exports[key] = newModuleContents.exports[key];
@@ -463,7 +470,10 @@ function getPlatform(environment) {
 				return "module";
 		}
 
-		return document.documentElement.innerHTML == "<head></head><body></body>" ? "cdn" : "script";
+		return document.documentElement.innerHTML ==
+			"<head></head><body></body>" ?
+				"cdn" :
+				"script";
 	}
 
 	else {
@@ -557,6 +567,7 @@ if(environment == "node" && !united) {
 
 	module.paths.push(process.cwd() + path.sep + "node_modules");
 
+	var connected = -1;
 	var installedModules = [
 		"assert",
 		"buffer",
@@ -589,7 +600,12 @@ if(environment == "node" && !united) {
 	];
 
 	try {
-		installedModules = installedModules.concat(Object.keys(JSON.parse(execSync('npm ls --json').toString()).dependencies));
+
+		installedModules = installedModules.concat(
+			Object.keys(
+				JSON.parse(execSync('npm ls --json').toString()).dependencies
+			)
+		);
 	}
 	
 	catch(error) {
@@ -635,15 +651,19 @@ if(environment == "node" && !united) {
 			return options.async == true ? promise : undefined;
 		}
 
-		let lowerPath = path.toLowerCase().split("-").join("").split(" ").join("");
+		let lowerPath = path.toLowerCase().
+			split("-").join("").split(" ").join("");
 
 		if(!options.dynamic) {
 
 			if(lowerPath == "xmlhttprequest")
 				return xhr;
 
-			if(lowerPath.endsWith("kaeonunited") || lowerPath.endsWith("kaeonunited.js"))
+			if(lowerPath.endsWith("kaeonunited") ||
+				lowerPath.endsWith("kaeonunited.js")) {
+
 				return executeModule;
+			}
 
 			if(options.reload) {
 
@@ -654,7 +674,9 @@ if(environment == "node" && !united) {
 			else if(require.cache[path] != null)
 				return require.cache[path];
 
-			if(!path.startsWith("http://") && !path.startsWith("https://") && !options.global) {
+			if(!path.startsWith("http://") &&
+				!path.startsWith("https://") &&
+				!options.global) {
 
 				if(!moduleExists(path) && !installedModules.includes(path)) {
 			
@@ -725,31 +747,86 @@ if(environment == "node" && !united) {
 
 	require.open = function(path) {
 
-		if(environment == "node" &&
-			!(path.toLowerCase().startsWith("http://") ||
-			path.toLowerCase().startsWith("https://"))) {
-			
-			return fs.readFileSync(path, 'utf8');
+		if(require.open.cache == null) {
+
+			if(fs.existsSync("kaeonUnited.json"))
+				fs.writeFileSync("kaeonUnited.json", "{}");
+
+			require.open.cache = JSON.parse(
+				fs.readFileSync("kaeonUnited.json", 'utf-8')
+			);
 		}
 
-		let data = "";
+		try {
 
-		let rawFile = new xhr.XMLHttpRequest();
+			if(!(path.toLowerCase().startsWith("http://") ||
+				path.toLowerCase().startsWith("https://"))) {
+				
+				return fs.readFileSync(path, 'utf-8');
+			}
+
+			else {
+
+				if(connected != -1) {
+
+					try {
+
+						let data = "";
+						let rawFile = new xhr.XMLHttpRequest();
+						
+						rawFile.open("GET", path, false);
 		
-		rawFile.open("GET", path, false);
+						rawFile.onreadystatechange = function() {
+		
+							if(rawFile.readyState === 4) {
+		
+								if(rawFile.status === 200 ||
+									rawFile.status == 0) {
 
-		rawFile.onreadystatechange = function() {
+									data = rawFile.responseText;
 
-			if(rawFile.readyState === 4) {
+									require.open.cache[path] = data;
+								}
+							}
+						}
+		
+						rawFile.send(null);
 
-				if(rawFile.status === 200 || rawFile.status == 0)
-					data = rawFile.responseText;
+						try {
+
+							fs.writeFile(
+								"kaeonUnited.json",
+								JSON.stringify(require.open.cache)
+							);
+						}
+
+						catch(error) {
+
+						}
+		
+						return data;
+					}
+
+					catch(error) {
+
+						let data = require.open.cache[path]
+
+						return data != null ? data : "";
+					}
+				}
+
+				else {
+
+					let data = require.open.cache[path]
+
+					return data != null ? data : "";
+				}
 			}
 		}
 
-		rawFile.send(null);
-
-		return data;
+		catch(error) {
+			return "";
+		}
 	}
 
 	try {
@@ -763,6 +840,27 @@ if(environment == "node" && !united) {
 	require.cache = { };
 
 	require.kaeonUnited = true;
+
+	setInterval(() => {
+				
+		require('dns').resolve('www.google.com', function(error) {
+	
+			if(error)
+				connected = -1;
+				
+			else
+				connected = (new Date()).getTime();
+		});
+	}, 1000 / 60);
+	
+	setInterval(() => {
+		
+		if(connected == -1)
+			return;
+	
+		if((new Date()).getTime() - connected > 1000)
+			connected = -1;
+	}, 1000 / 60);
 }
 
 if(platform == "command")
