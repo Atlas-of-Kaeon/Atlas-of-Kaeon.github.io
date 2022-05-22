@@ -30,7 +30,7 @@ function appendInterface(main, resource) {
 
 function executeCDN() {
 	executeScript();
-	executeCommandOperation(getInterface(), getURLArguments());
+	executeCommandOperation(getInterface(getEnvironment()), getURLArguments());
 }
 
 function executeCommand(args) {

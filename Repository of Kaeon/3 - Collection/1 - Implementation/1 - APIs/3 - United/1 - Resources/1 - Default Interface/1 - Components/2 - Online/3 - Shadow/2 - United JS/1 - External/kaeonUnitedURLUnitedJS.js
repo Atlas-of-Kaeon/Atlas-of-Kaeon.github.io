@@ -19,5 +19,5 @@ module.exports = (args) => {
 
 	executeScript();
 
-	executeJS(makeOnlineRequest(args["unitedjs"], true));
+	executeJS(fetchOnlineResource(args["unitedjs"], true));
 };

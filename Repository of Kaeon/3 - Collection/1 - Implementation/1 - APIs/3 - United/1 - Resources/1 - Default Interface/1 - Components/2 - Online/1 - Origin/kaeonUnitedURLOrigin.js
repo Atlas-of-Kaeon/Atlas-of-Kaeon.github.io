@@ -21,5 +21,5 @@ module.exports = (args) => {
 
 	executeScript();
 	
-	executeJS(makeOnlineRequest(moduleDependencies.origin, true));
+	executeJS(fetchOnlineResource(moduleDependencies.origin, true));
 };

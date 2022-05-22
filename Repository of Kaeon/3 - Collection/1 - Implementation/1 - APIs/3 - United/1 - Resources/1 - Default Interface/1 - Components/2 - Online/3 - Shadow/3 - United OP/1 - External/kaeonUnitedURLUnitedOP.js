@@ -14,5 +14,5 @@ module.exports = (args) => {
 
 	executeScript();
 
-	executeOP(makeOnlineRequest(args["unitedop"], true));
+	executeOP(fetchOnlineResource(args["unitedop"], true));
 };
