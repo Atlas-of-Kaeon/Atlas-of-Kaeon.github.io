@@ -129,7 +129,10 @@ function executeModule(utility) {
 			if(interface.modules[i].path.join(".").
 				toLowerCase().endsWith(utility)) {
 				
-				let match = interface.modules[i].implementations.filter((item) => {
+				let match = interface.
+					modules[i].
+					implementations.
+					filter((item) => {
 
 					return item.environment.toLowerCase() == "javascript" ||
 						item.environment.toLowerCase() == "js";
