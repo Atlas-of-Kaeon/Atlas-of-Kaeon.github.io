@@ -117,7 +117,7 @@ function executeCommandOperation(interface, args) {
 
 function executeModule(utility) {
 	
-	let interface = getInterface();
+	let interface = getInterface(getEnvironment());
 
 	if(utility == null)
 		return interface;
