@@ -122,22 +122,47 @@ function executeModule(utility) {
 	if(utility == null)
 		return interface;
 
-	for(let i = 0; i < interface.modules.length; i++) {
+	if(typeof utility == "string") {
 
-		if(interface.modules[i].path.join(".").
-			toLowerCase().endsWith(utility)) {
-			
-			let match = interface.modules[i].implementations.filter((item) => {
+		for(let i = 0; i < interface.modules.length; i++) {
 
-				return item.environment.toLowerCase() == "javascript" ||
-					item.environment.toLowerCase() == "js";
-			});
+			if(interface.modules[i].path.join(".").
+				toLowerCase().endsWith(utility)) {
+				
+				let match = interface.modules[i].implementations.filter((item) => {
 
-			return match.length > 0 ? require(match[0].reference) : null;
+					return item.environment.toLowerCase() == "javascript" ||
+						item.environment.toLowerCase() == "js";
+				});
+
+				return match.length > 0 ? require(match[0].reference) : null;
+			}
 		}
+
+		return null;
 	}
 
-	return null;
+	else {
+
+		interface.modules.forEach((item) => {
+
+			item.implementations.forEach((implementation) => {
+
+				let environment = implementation.environment.toLowerCase();
+
+				if(environment == "kaeon fusion" || environment == "kf") {
+
+					try {
+						require(implementation.reference)(utility);
+					}
+
+					catch(error) {
+
+					}
+				}
+			});
+		});
+	}
 }
 
 function executeScript() {
