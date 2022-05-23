@@ -4,7 +4,7 @@ var moduleDependencies = {
 	ONESuite: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/3%20-%20Collection/1%20-%20Implementation/1%20-%20APIs/1%20-%20Core/1%20-%20ONE/6%20-%20ONE%20Suite/1%20-%20JavaScript/1%20-%20Source/ONESuite.js",
 };
 
-module.exports = (args) => {
+module.exports = (args, intervals) => {
 
 	if(!Array.isArray(args))
 		return;
@@ -30,5 +30,7 @@ module.exports = (args) => {
 		}
 
 		io.save(require(moduleDependencies.csb).disassemble(fs.readFileSync(data)), args[3]);
+
+		intervals.forEach((item) => { clearInterval(item); });
 	})();
 };
