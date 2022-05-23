@@ -33,7 +33,32 @@ function executeCDN() {
 	executeCommandOperation(getInterface(getEnvironment()), getURLArguments());
 }
 
-function executeCommand(args) {
+function executeCommand(args, intervals) {
+
+	intervals.push(
+		setInterval(() => {
+					
+			dns.resolve('www.google.com', function(error) {
+		
+				if(error)
+					connected = -1;
+					
+				else
+					connected = (new Date()).getTime();
+			});
+		}, 1000 / 60)
+	);
+	
+	intervals.push(
+		setInterval(() => {
+			
+			if(connected == -1)
+				return;
+		
+			if((new Date()).getTime() - connected > 1000)
+				connected = -1;
+		}, 1000 / 60)
+	);
 	
 	let execSync = require('child_process').execSync;
 	let interfaces = getInterfaces();
@@ -96,23 +121,37 @@ function executeCommand(args) {
 				appendInterface(interface, require(item));
 			});
 			
-			fs.writeFileSync(__dirname + "/interface.json", data);
+			fs.writeFileSync(
+				__dirname + "/interface.json",
+				JSON.stringify(interface)
+			);
 		}
 	}
 
-	executeCommandOperation(interface, args);
+	executeCommandOperation(getInterface(), args, intervals);
 }
 
-function executeCommandOperation(interface, args) {
+function executeCommandOperation(interface, args, intervals) {
+
+	let matched = false;
 
 	interface.components.forEach((item) => {
 		
 		if(item.environment.toLowerCase() == "javascript" ||
 			item.environment.toLowerCase() == "js") {
 
-			require(item.reference)(args);
+			matched = true;
+
+			require(item.reference)(args, intervals);
 		}
 	});
+
+	if(!matched && intervals != null) {
+
+		intervals.forEach((interval) => {
+			clearInterval(interval);
+		});
+	}
 }
 
 function executeModule(utility) {
@@ -401,18 +440,20 @@ function getEnvironment() {
 }
 
 function getInterface(environment) {
+	
+	let interface = {
+		components: [],
+		modules: [],
+		extensions: [],
+		management: { }
+	};
 
 	if(environment == "browser") {
 
 		let args = getURLArguments();
 
-		let interface = Object.assign(
-			{
-				components: [],
-				modules: [],
-				extensions: [],
-				management: { }
-			},
+		interface = Object.assign(
+			interface,
 			JSON.parse(
 				fetchOnlineResource(
 					moduleDependencies.defaultInterface
@@ -461,11 +502,24 @@ function getInterface(environment) {
 	
 		catch(error) {
 
-			let data = require(moduleDependencies.defaultInterface);
-			
-			fs.writeFileSync(__dirname + "/interface.json", data);
+			try {
 
-			return JSON.parse(data);
+				interface = Object.assign(
+					interface,
+					require(moduleDependencies.defaultInterface)
+				);
+				
+				fs.writeFileSync(
+					__dirname + "/interface.json",
+					JSON.stringify(interface)
+				);
+	
+				return interface;
+			}
+		
+			catch(error) {
+
+			}
 		}
 	}
 
@@ -574,10 +628,9 @@ function onDependency(item, command) {
 }
 
 var environment = getEnvironment();
+var intervals = [];
 var platform = getPlatform(environment);
-
 var requireDefault = null;
-
 var united = false;
 
 if(typeof require != typeof undefined) {
@@ -589,13 +642,11 @@ if(typeof require != typeof undefined) {
 
 if(environment == "node" && !united) {
 
+	var connected = 1;
+	var dns = require("dns");
 	var execSync = require('child_process').execSync;
 	var fs = require('fs');
-	var path = require('path');
 
-	module.paths.push(process.cwd() + path.sep + "node_modules");
-
-	var connected = -1;
 	var installedModules = [
 		"assert",
 		"buffer",
@@ -626,6 +677,10 @@ if(environment == "node" && !united) {
 		"vm",
 		"zlib"
 	];
+
+	var path = require('path');
+
+	module.paths.push(process.cwd() + path.sep + "node_modules");
 
 	try {
 
@@ -747,24 +802,31 @@ if(environment == "node" && !united) {
 			data = require.oneSuite.preprocess(data);
 		
 		let result = null;
-		
-		if(!options.global) {
 
-			data =
-				"require = arguments[0];var module={exports:{}};" +
-				data +
-				";return module.exports;";
-
-			result = (new Function(data))(require);
+		try {
+			result = JSON.parse(data);
 		}
 
-		else {
-
-			var module = { exports: { } };
-
-			(1, eval)(data);
-
-			result = module.exports;
+		catch(error) {
+		
+			if(!options.global) {
+	
+				data =
+					"require = arguments[0];var module={exports:{}};" +
+					data +
+					";return module.exports;";
+	
+				result = (new Function(data))(require);
+			}
+	
+			else {
+	
+				var module = { exports: { } };
+	
+				(1, eval)(data);
+	
+				result = module.exports;
+			}
 		}
 		
 		if(!options.dynamic)
@@ -777,7 +839,7 @@ if(environment == "node" && !united) {
 
 		if(require.open.cache == null) {
 
-			if(fs.existsSync("kaeonUnited.json"))
+			if(!fs.existsSync("kaeonUnited.json"))
 				fs.writeFileSync("kaeonUnited.json", "{}");
 
 			require.open.cache = JSON.parse(
@@ -824,12 +886,13 @@ if(environment == "node" && !united) {
 
 							fs.writeFile(
 								"kaeonUnited.json",
-								JSON.stringify(require.open.cache)
+								JSON.stringify(require.open.cache),
+								() => { }
 							);
 						}
 
 						catch(error) {
-
+							
 						}
 		
 						return data;
@@ -868,31 +931,10 @@ if(environment == "node" && !united) {
 	require.cache = { };
 
 	require.kaeonUnited = true;
-
-	setInterval(() => {
-				
-		require('dns').resolve('www.google.com', function(error) {
-	
-			if(error)
-				connected = -1;
-				
-			else
-				connected = (new Date()).getTime();
-		});
-	}, 1000 / 60);
-	
-	setInterval(() => {
-		
-		if(connected == -1)
-			return;
-	
-		if((new Date()).getTime() - connected > 1000)
-			connected = -1;
-	}, 1000 / 60);
 }
 
 if(platform == "command")
-	executeCommand(process.argv.slice(2));
+	executeCommand(process.argv.slice(2), intervals);
 
 if(platform == "script")
 	executeScript();
