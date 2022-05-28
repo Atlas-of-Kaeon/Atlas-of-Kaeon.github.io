@@ -6,55 +6,44 @@ var moduleDependencies = {
 var repoExplorer = require(moduleDependencies.repoExplorer);
 var wrapONE = require(moduleDependencies.wrapONE);
 
-function renderFolder(protocol, path) {
+function render(protocol, path, title, originalPath, child) {
+
+	originalPath = originalPath != null ? originalPath : path.join(": ");
 
 	let items = repoExplorer.getItems(protocol, path);
-	let render = "";
+	let result = "";
 
 	if(items.files.length == 1) {
 
-		render =
-			"#[ " + path.join(": ") + " ]#\n\n" +
-			repoExplorer.getItem(protocol, path.concat([items.files[0]])) +
-			"\n\n";
-	}
+		let titleLine = path.join(": ");
 
-	items.folders.forEach((item) => {
-		render += renderFolder(protocol, path.concat([item])) + "\n\n";
-	});
+		if(title != null)
+			titleLine = title + titleLine.substring(originalPath.length);
 
-	return render.trim();
-}
-
-function renderLibrary(protocol, path) {
-
-	let items = repoExplorer.getItems(protocol, path);
-	let render = "";
-
-	if(items.files.length == 1) {
-
-		render =
-			"#[ " + path.join(": ") + " ]#\n\n" +
+		result =
+			"#[ " + titleLine + " ]#\n\n" +
 			repoExplorer.getItem(protocol, path.concat([items.files[0]])) +
 			"\n\n";
 	}
 
 	items.folders.forEach((item) => {
 
-		if(!(item == "1 - Core" ||
+		if(!child && !(item == "1 - Core" ||
 			item == "1 - Connections" ||
 			item == "2 - Connections")) {
 			
 			return;
 		}
 
-		render += renderFolder(protocol, path.concat([item])) + "\n\n";
+		result += render(
+			protocol, path.concat([item]),
+			title, originalPath, true
+		) + "\n\n";
 	});
 
-	return wrapONE.wrap(render.trim(), 99);
+	return !child ? wrapONE.wrap(result.trim(), 99) : result.trim();
 }
 
 module.exports = {
-	renderFolder,
-	renderLibrary
+	render
 };
