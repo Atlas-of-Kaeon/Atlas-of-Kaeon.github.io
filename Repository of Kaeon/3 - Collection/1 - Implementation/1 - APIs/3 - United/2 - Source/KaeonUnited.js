@@ -782,8 +782,12 @@ if(environment == "node" && !united) {
 					if(installedModules.includes(path))
 						item = requireDefault(path);
 
-					else
-						item = requireDefault("module").prototype.require(path);
+					else {
+
+						item = requireDefault("module").
+							prototype.
+							require(path);
+					}
 
 					require.cache[path] = item;
 		
