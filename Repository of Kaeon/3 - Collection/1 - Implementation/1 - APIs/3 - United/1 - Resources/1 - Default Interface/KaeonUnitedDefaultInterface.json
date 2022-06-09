@@ -432,7 +432,7 @@
 			]
 		},
 		{
-			"path": ["utilities", "software", "frameworks", "vision", "vision", "visual"],
+			"path": ["utilities", "software", "frameworks", "vision", "vision"],
 			"implementations": [
 				{
 					"environment": "javascript",
