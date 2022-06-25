@@ -345,7 +345,7 @@ function executeScript() {
 			
 			if(!options.dynamic) {
 				
-				allText = makeOnlineRequest(path);
+				allText = makeOnlineRequest(path, true);
 
 				require.cache[lowerPath] = newModule;
 			}
