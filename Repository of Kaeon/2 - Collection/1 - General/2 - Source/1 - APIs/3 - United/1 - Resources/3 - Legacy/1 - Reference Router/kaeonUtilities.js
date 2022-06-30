@@ -120,23 +120,6 @@ var moduleDependencies = {
 						}
 					},
 					general: {
-						application: {
-							management: {
-								network: {
-									server: root + "1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/2%20-%20Application/1%20-%20Management/1%20-%20Network/1%20-%20Server/1%20-%20JavaScript/1%20-%20Source/server.js",
-									wifi: root + "1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/2%20-%20Application/1%20-%20Management/1%20-%20Network/2%20-%20WiFi/1%20-%20JavaScript/1%20-%20Source/wifi.js"
-								},
-								process: {
-									override: root + "1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/2%20-%20Application/1%20-%20Management/2%20-%20Process/2%20-%20Override/1%20-%20JavaScript/1%20-%20Source/override.js",
-									platform: root + "1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/2%20-%20Application/1%20-%20Management/2%20-%20Process/1%20-%20Platform/1%20-%20JavaScript/1%20-%20Source/platform.js"
-								},
-								serial: root + "1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/2%20-%20Application/1%20-%20Management/3%20-%20Devices/1%20-%20Serial/1%20-%20JavaScript/1%20-%20Source/serial.js"
-							},
-							operations: {
-								jsh: root + "1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/2%20-%20Application/2%20-%20Operations/2%20-%20JSH/1%20-%20JavaScript/1%20-%20Source/jsh.js",
-								virtualSystem: root + "1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/2%20-%20Application/2%20-%20Operations/1%20-%20Virtual%20System/1%20-%20JavaScript/1%20-%20Source/virtualSystem.js"
-							}
-						},
 						data: {
 							API: {
 								httpUtils: root + "1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/1%20-%20Data/3%20-%20API/1%20-%20HTTP%20Utilities/1%20-%20JavaScript/1%20-%20Source/httpUtils.js",
@@ -154,7 +137,23 @@ var moduleDependencies = {
 									}
 								}
 							}
-						}
+						},
+						management: {
+							network: {
+								server: root + "1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/2%20-%20Management/1%20-%20Network/1%20-%20Server/1%20-%20JavaScript/1%20-%20Source/server.js",
+								wifi: root + "1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/2%20-%20Management/1%20-%20Network/2%20-%20WiFi/1%20-%20JavaScript/1%20-%20Source/wifi.js"
+							},
+							process: {
+								override: root + "1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/2%20-%20Management/2%20-%20Process/2%20-%20Override/1%20-%20JavaScript/1%20-%20Source/override.js",
+								platform: root + "1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/2%20-%20Management/2%20-%20Process/1%20-%20Platform/1%20-%20JavaScript/1%20-%20Source/platform.js"
+							},
+							serial: root + "1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/2%20-%20Management/3%20-%20Devices/1%20-%20Serial/1%20-%20JavaScript/1%20-%20Source/serial.js"
+						},
+						operations: {
+							jsh: root + "1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/3%20-%20Operations/2%20-%20JSH/1%20-%20JavaScript/1%20-%20Source/jsh.js",
+							virtualSystem: root + "1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/3%20-%20Operations/1%20-%20Virtual%20System/1%20-%20JavaScript/1%20-%20Source/virtualSystem.js"
+						},
+						generalUniverse: "1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/4%20-%20Processes/1%20-%20Simulation/1%20-%20General%20Universe/1%20-%20JavaScript/1%20-%20Source/generalUniverse.js"
 					}
 				}
 			}
