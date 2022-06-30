@@ -4,7 +4,7 @@
 <h2 align="center">A Language Without Limits!</h2>
 
 <p align="center">
-	<img src="" height="300px"/>
+	<img src="https://github.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/blob/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20General/1%20-%20Documentation/3%20-%20Iconography/1%20-%20ONE/2%20-%20Kaeon%20FUSION/Kaeon%20FUSION%20Logo.png?raw=true" height="300px"/>
 </p>
 
 </div>
@@ -42,7 +42,7 @@ But, it is not only the functionality of the language which is customizable. The
 fully configurable through a system called the [Universal Preprocessor]().
 
 The functionality needed for most use cases is integrated into the Standard interface. The standard
-interface is included in [Kaeon United](), as is a CLI for Kaeon FUSION.
+interface is included in [Kaeon United](https://github.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/blob/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20General/1%20-%20Documentation/1%20-%20Guides/2%20-%20Kaeon%20United/README.md), as is a CLI for Kaeon FUSION.
 
 ONE, ONE+, and the Universal Preprocessor may all be used independently of Kaeon FUSION.
 

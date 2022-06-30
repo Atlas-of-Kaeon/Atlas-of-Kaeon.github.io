@@ -1,7 +1,3 @@
-[Home]() /
-[Previous]() /
-[Next]()
-
 <div align="center"><h1>Universal Preprocessor</h1></div>
 
 The Universal Preprocessor is a preprocessing system that can be injected into the source code of any programming or markup language,
@@ -116,11 +112,3 @@ Will be preprocessed to:
     Hell0
 	
     W0rld
-
-<div align="right"><p>
-
-<a href="">Home</a> / 
-<a href="">Previous</a> / 
-<a href="">Next</a>
-
-</p></div>

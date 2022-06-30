@@ -2,7 +2,7 @@
 
 Kaeon United GhostHost,
 or GhostHost for short,
-is a utility built into the [Kaeon United]() platform that allows for free and anonymous front end hosting for serverless apps.
+is a utility built into the [Kaeon United](https://github.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/blob/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20General/1%20-%20Documentation/1%20-%20Guides/2%20-%20Kaeon%20United/README.md) platform that allows for free and anonymous front end hosting for serverless apps.
 
 <h2 align="center">Functionality</h2>
 
@@ -60,7 +60,7 @@ The URL for a Kaeon FUSION project using raw code instead of a URL project must 
 To demonstrate,
 we've uploaded an example site to this repository, located at the following URL:
 
-<a href="https://Atlas-of-Kaeon.github.io/?html=">https://Atlas-of-Kaeon.github.io/?html=</a>
+<a href="https://Atlas-of-Kaeon.github.io/?html=https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20General/1%20-%20Documentation/2%20-%20Samples/2%20-%20Websites/1%20-%20Sample/Sample.html">https://Atlas-of-Kaeon.github.io/?html=https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20General/1%20-%20Documentation/2%20-%20Samples/2%20-%20Websites/1%20-%20Sample/Sample.html</a>
 
 <h2 align="center">Why use GhostHost over GitLab pages, or other similar services?</h2>
 

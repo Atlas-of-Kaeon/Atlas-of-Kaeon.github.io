@@ -1,18 +1,14 @@
-[Home]() /
-[Previous]() /
-[Next]()
-
 <div align="center">
 
 <h1>ONE+</h1>
 
 <p align="center">
-	<img src="" width="300px"/>
+	<img src="https://github.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/blob/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20General/1%20-%20Documentation/3%20-%20Iconography/1%20-%20ONE/1%20-%20ONE+/ONE+%20Logo.png?raw=true" width="300px"/>
 </p>
 
 </div>
 
-While [ONE]() is versatile and serves as a solid foundation for the FUSION system,
+While [ONE](https://github.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/blob/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20General/1%20-%20Documentation/1%20-%20Guides/1%20-%20Utilities/2%20-%20ONE/1%20-%20ONE/README.md) is versatile and serves as a solid foundation for the FUSION system,
 it is quite cumbersome to write it by hand.
 ONE+ was created to compensate for this.
 
@@ -324,11 +320,3 @@ Becomes:
     -
     	world
     -
-
-<div align="right"><p>
-
-<a href="">Home</a> / 
-<a href="">Previous</a> / 
-<a href="">Next</a>
-
-</p></div>

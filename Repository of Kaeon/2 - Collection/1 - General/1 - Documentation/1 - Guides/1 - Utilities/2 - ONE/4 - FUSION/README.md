@@ -1,6 +1,3 @@
-[Home]() /
-[Previous]()
-
 <div align="center"><h1>FUSION</h1></div>
 
 FUSION is a system that allows any ONE document,
@@ -118,10 +115,3 @@ arg1 = i()
 arg1 = LAND(arg1)
 
 g(arg1)
-
-<div align="right"><p>
-
-<a href="">Home</a> / 
-<a href="">Previous</a>
-
-</p></div>

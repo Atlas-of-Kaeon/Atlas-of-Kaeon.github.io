@@ -1,12 +1,9 @@
-[Home]() /
-[Next]()
-
 <div align="center">
 
 <h1>ONE</h1>
 
 <p align="center">
-	<img src="" width="300px"/>
+	<img src="https://github.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/blob/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20General/1%20-%20Documentation/3%20-%20Iconography/1%20-%20ONE/ONE%20Logo.png?raw=true" width="300px"/>
 </p>
 
 </div>
@@ -87,10 +84,3 @@ Note: The above element encodes the following string: "Line 1\n\tLine 2\n\t\tLin
     		-
     			Grand Child 1
     		-
-
-<div align="right"><p>
-
-<a href="">Home</a> / 
-<a href="">Next</a>
-
-</p></div>
