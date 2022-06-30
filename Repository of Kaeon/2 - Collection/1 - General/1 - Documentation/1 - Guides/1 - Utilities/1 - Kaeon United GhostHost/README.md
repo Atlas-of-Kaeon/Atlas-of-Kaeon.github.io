@@ -19,7 +19,7 @@ If JavaScript or Kaeon FUSION is provided,
 it shall be executed as a script implictly.
 
 If JavaScript is provided,
-it shall be interpreted as [United JavaScript](),
+it shall be interpreted as [United JavaScript](https://github.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/blob/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20General/1%20-%20Documentation/1%20-%20Guides/2%20-%20Kaeon%20United/README.md#united-javascript),
 and shall thus have access to the CommonJS require function,
 through which it may import modules stored online via their URLs.
 
