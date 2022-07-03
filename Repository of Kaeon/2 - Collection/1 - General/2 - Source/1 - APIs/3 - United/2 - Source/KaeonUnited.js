@@ -77,7 +77,9 @@ function executeCommand(args, intervals) {
 
 				try {
 
-					execSync("npm install " + item);
+					if(!item.startsWith("http://") && !item.startsWith("https://"))
+						execSync("npm install " + item);
+						
 					onDependency(item, "install");
 
 					interfaces.push(item);
@@ -99,7 +101,9 @@ function executeCommand(args, intervals) {
 				try {
 
 					onDependency(item, "uninstall");
-					execSync("npm uninstall " + item);
+					
+					if(!item.startsWith("http://") && !item.startsWith("https://"))
+						execSync("npm uninstall " + item);
 
 					interfaces.splice(interfaces.indexOf(item), 1);
 				}
@@ -380,12 +384,11 @@ function executeScript() {
 	}
 }
 
-function fetchOnlineResource(path, cors) {
+function fetchOnlineResource(path) {
 
 	try {
 
-		if(cors)
-			path = moduleDependencies.cors + path;
+		path = moduleDependencies.cors + path;
 		
 		let rawFile = new XMLHttpRequest();
 
