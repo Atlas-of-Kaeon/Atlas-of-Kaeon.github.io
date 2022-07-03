@@ -77,8 +77,11 @@ function executeCommand(args, intervals) {
 
 				try {
 
-					if(!item.startsWith("http://") && !item.startsWith("https://"))
+					if(!item.startsWith("http://") &&
+						!item.startsWith("https://")) {
+						
 						execSync("npm install " + item);
+					}
 						
 					onDependency(item, "install");
 
@@ -102,8 +105,11 @@ function executeCommand(args, intervals) {
 
 					onDependency(item, "uninstall");
 					
-					if(!item.startsWith("http://") && !item.startsWith("https://"))
+					if(!item.startsWith("http://") &&
+						!item.startsWith("https://")) {
+						
 						execSync("npm uninstall " + item);
+					}
 
 					interfaces.splice(interfaces.indexOf(item), 1);
 				}
