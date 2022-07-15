@@ -81,7 +81,7 @@ await page.screenshot({path: 'screenshot.png'});
 await browser.close();
 </code></pre>
 
-<p>This code is a slightly modified version of the sample code provided on the puppeteer npm page.</p>
+<p>This code is a slightly modified version of the sample code provided on the <a href="https://www.npmjs.com/package/puppeteer">puppeteer npm page</a>.</p>
 
 <p>If one were to place it into a file called "test.js" located in an otherwise empty directory,
 with puppeteer not installed either locally or globally,
@@ -112,6 +112,10 @@ but it&#39;s written in such a way that its functionality differs according to h
 
 <p>To use Kaeon United as a script,
 reference it via <a href="https://www.jsdelivr.com/">jsDelivr</a> or another similar service.</p>
+
+<p>Kaeon United can be accessed through jsDelivr on <a href="https://www.npmjs.com/package/kaeon-united">its npm repository</a> via the following URL:</p>
+
+<pre><code>https://cdn.jsdelivr.net/npm/kaeon-united@1.0.77/KaeonUnited.js</code></pre>
 
 <p>As a script,
 Kaeon United shall provide access to the United JavaScript version of CommonJS in the browser.</p>
