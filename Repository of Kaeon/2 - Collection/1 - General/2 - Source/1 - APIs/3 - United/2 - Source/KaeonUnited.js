@@ -136,6 +136,17 @@ function executeCommand(args, intervals) {
 				JSON.stringify(interface)
 			);
 		}
+
+		if(operation == "install" ||
+			operation == "list" ||
+			operation == "uninstall") {
+
+			intervals.forEach((item) => {
+				clearInterval(item);
+			});
+
+			return;
+		}
 	}
 
 	executeCommandOperation(getInterface(), args, intervals);
