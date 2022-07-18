@@ -115,7 +115,7 @@ reference it via <a href="https://www.jsdelivr.com/">jsDelivr</a> or another sim
 
 <p>Kaeon United can be accessed through jsDelivr on <a href="https://www.npmjs.com/package/kaeon-united">its npm repository</a> via the following URL:</p>
 
-<pre><code>https://cdn.jsdelivr.net/npm/kaeon-united@1.0.77/KaeonUnited.js</code></pre>
+<pre><code>https://cdn.jsdelivr.net/npm/kaeon-united@1.0.78/KaeonUnited.js</code></pre>
 
 <p>As a script,
 Kaeon United shall provide access to the United JavaScript version of CommonJS in the browser.</p>

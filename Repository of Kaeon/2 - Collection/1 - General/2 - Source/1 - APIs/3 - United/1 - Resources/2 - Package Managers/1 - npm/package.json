@@ -3,12 +3,13 @@
 	"bin": {
 		"kaeon-united": "KaeonUnited.js"
 	},
-	"version": "1.0.71",
+	"version": "1.0.78",
 	"description": "It just works",
 	"main": "KaeonUnited.js",
 	"scripts": {
 		"start": "node KaeonUnited.js"
 	},
 	"author": "",
-	"license": "Apache-2.0"
+	"license": "Apache-2.0",
+	"homepage": "https://github.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/blob/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20General/1%20-%20Documentation/1%20-%20Guides/2%20-%20Kaeon%20United/README.md"
 }
