@@ -1,7 +1,9 @@
 var moduleDependencies = {
+	io: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20General/2%20-%20Source/1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/1%20-%20Data/1%20-%20IO/1%20-%20JavaScript/1%20-%20Source/io.js",
 	vision: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20General/2%20-%20Source/1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/2%20-%20Frameworks/1%20-%20Vision/1%20-%20Core/1%20-%20JavaScript/1%20-%20Source/vision.js"
 };
 
+var io = require(moduleDependencies.io);
 var vision = require(moduleDependencies.vision);
 
 function play(id, options, element) {
@@ -57,6 +59,25 @@ function playAudio(id, options, element) {
 	return play(id, options, element);
 }
 
+function search(query) {
+
+	return [
+		...new Set(
+			io.open(
+				"https://www.youtube.com/results?search_query=" +
+					query.toLowerCase().split(" ").join("+")
+			).split("\"videoId\":\"").map((item, index) => {
+		
+				return index > 0 && index % 2 == 0 ?
+					item.substring(0, item.indexOf("\"")) :
+					null;
+			}).filter((item) => {
+				return item != null;
+			})
+		)
+	];
+}
+
 function stop(index) {
 
 	vision.remove(play.state[index]);
@@ -67,5 +88,6 @@ function stop(index) {
 module.exports = {
 	play,
 	playAudio,
+	search,
 	stop
 }
