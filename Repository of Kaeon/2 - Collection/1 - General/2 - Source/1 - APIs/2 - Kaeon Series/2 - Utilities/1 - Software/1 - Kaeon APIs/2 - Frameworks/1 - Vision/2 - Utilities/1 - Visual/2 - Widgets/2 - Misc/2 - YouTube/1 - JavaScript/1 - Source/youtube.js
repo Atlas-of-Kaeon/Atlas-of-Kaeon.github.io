@@ -80,9 +80,21 @@ function search(query) {
 
 function stop(index) {
 
-	vision.remove(play.state[index]);
+	try {
+		vision.remove(play.state[index]);
+	}
 
-	delete play.state[index];
+	catch(error) {
+		
+	}
+
+	try {
+		delete play.state[index];
+	}
+
+	catch(error) {
+		
+	}
 }
 
 module.exports = {
