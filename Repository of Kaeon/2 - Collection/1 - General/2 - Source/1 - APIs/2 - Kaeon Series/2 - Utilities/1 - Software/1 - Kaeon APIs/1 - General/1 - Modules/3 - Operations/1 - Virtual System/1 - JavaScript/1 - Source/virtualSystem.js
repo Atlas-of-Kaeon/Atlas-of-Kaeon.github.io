@@ -30,6 +30,10 @@ function cookieDisk(cookie) {
 		"alias": cookie,
 		setResource: function(path, content) {
 
+			path = path.trim().endsWith("/") ?
+				path.trim().substring(0, path.length - 1) :
+				path.trim();
+
 			let data = window.localStorage.getItem(this.alias);
 
 			if(data == null)
@@ -65,6 +69,10 @@ function cookieDisk(cookie) {
 			window.localStorage.setItem(this.alias, JSON.stringify(data));
 		},
 		getResource: function(path) {
+
+			path = path.trim().endsWith("/") ?
+				path.trim().substring(0, path.length - 1) :
+				path.trim();
 
 			let data = window.localStorage.getItem(this.alias);
 
@@ -187,6 +195,13 @@ function getFolder(data) {
 	return folder;
 }
 
+function getResource(path, content) {
+
+	return window.fileSystem != null ?
+		window.fileSystem.getResource(path, content) :
+		null;
+}
+
 function httpDisk() {
 
 	Object.assign(this, {
@@ -248,9 +263,9 @@ function initiateVirtualSystemDefault(startup) {
 
 	let fileSystem = new virtualFileSystem(
 		[
-			new virtualSystem.cookieDisk("Origin"),
-			new virtualSystem.httpDisk(),
-			new virtualSystem.httpsDisk()
+			new cookieDisk("Origin"),
+			new httpDisk(),
+			new httpsDisk()
 		]
 	);
 
@@ -263,6 +278,7 @@ function virtualFileSystem(disks) {
 
 	Object.assign(this, {
 		"disks": disks,
+		"executeCommand": executeCommand,
 		setResource: function(path, content) {
 
 			if(path.trim() == "" && content == null) {
@@ -317,14 +333,22 @@ function virtualFileSystem(disks) {
 	});
 }
 
+function setResource(path, content) {
+
+	if(window.fileSystem != null)
+		window.fileSystem.setResource(path, content);
+}
+
 module.exports = {
 	cookieDisk,
 	executeCommand,
 	getCommandArguments,
 	getFolder,
+	getResource,
 	httpDisk,
 	httpsDisk,
 	initiateVirtualSystem,
 	initiateVirtualSystemDefault,
+	setResource,
 	virtualFileSystem
 };
