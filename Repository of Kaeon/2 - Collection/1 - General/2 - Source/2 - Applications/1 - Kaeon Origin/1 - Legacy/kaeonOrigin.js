@@ -49,7 +49,7 @@ if(urlArgs.kaeonoriginjs != null ||
 
 	let code = "";
 	
-	var data = oneSuite.read(
+	var data = one.read(
 		rawUrlArgs.workspace != null ?
 			io.open(rawUrlArgs.workspace) :
 			window.localStorage.getItem("kaeonOriginData"));
@@ -346,7 +346,7 @@ function load() {
 	let data = window.localStorage.getItem("kaeonOriginData");
 
 	try {
-		data = oneSuite.read(data);
+		data = one.read(data);
 	}
 
 	catch(error) {
@@ -572,8 +572,8 @@ function showText(mode) {
 
 		if(mode == "one") {
 
-			oneText.value = oneSuite.write(
-				oneSuite.read(vision.get("#text")[0].value)
+			oneText.value = one.write(
+				one.read(vision.get("#text")[0].value)
 			);
 		}
 
