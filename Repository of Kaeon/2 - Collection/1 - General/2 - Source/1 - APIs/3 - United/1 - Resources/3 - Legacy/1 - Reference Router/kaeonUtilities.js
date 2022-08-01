@@ -28,6 +28,7 @@ var moduleDependencies = {
 			one: {
 				fusion: root + "1%20-%20APIs/1%20-%20Core/1%20-%20ONE/2%20-%20FUSION/1%20-%20JavaScript/1%20-%20Source/FUSION.js",
 				kaeonFUSION: root + "1%20-%20APIs/1%20-%20Core/1%20-%20ONE/3%20-%20Kaeon%20FUSION/1%20-%20JavaScript/1%20-%20Source/KaeonFUSION.js",
+				kaeonFUSION: root + "1%20-%20APIs/1%20-%20Core/1%20-%20ONE/3%20-%20Kaeon%20Library%20Manager/1%20-%20JavaScript/1%20-%20Source/kaeonLibraryManager.js",
 				one: root + "1%20-%20APIs/1%20-%20Core/1%20-%20ONE/1%20-%20ONE/1%20-%20JavaScript/1%20-%20Source/ONE.js",
 				onePlus: root + "1%20-%20APIs/1%20-%20Core/1%20-%20ONE/4%20-%20ONE%2B/1%20-%20JavaScript/1%20-%20Source/ONEPlus.js",
 				oneSuite: root + "1%20-%20APIs/1%20-%20Core/1%20-%20ONE/6%20-%20ONE%20Suite/1%20-%20JavaScript/1%20-%20Source/ONESuite.js",
@@ -123,8 +124,11 @@ var moduleDependencies = {
 						data: {
 							API: {
 								httpUtils: root + "1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/1%20-%20Data/3%20-%20API/1%20-%20HTTP%20Utilities/1%20-%20JavaScript/1%20-%20Source/httpUtils.js",
-								repoExplorer: root + "1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/1%20-%20Data/3%20-%20API/2%20-%20Repo%20Explorer/1%20-%20JavaScript/1%20-%20Source/repoExplorer.js",
-								searchUtils: root + "1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/1%20-%20Data/3%20-%20API/3%20-%20Search%20Utilities/1%20-%20JavaScript/1%20-%20Source/searchUtils.js"
+								external: {
+									repoExplorer: root + "1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/1%20-%20Data/3%20-%20API/2%20-%20External/1%20-%20Repo%20Explorer/1%20-%20JavaScript/1%20-%20Source/repoExplorer.js",
+									searchUtils: root + "1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/1%20-%20Data/3%20-%20API/2%20-%20External/2%20-%20Search%20Utilities/1%20-%20JavaScript/1%20-%20Source/searchUtils.js",
+									wikipediaUtils: root + "1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/1%20-%20Data/3%20-%20API/2%20-%20External/3%20-%20Wikipedia%20Utilities/1%20-%20JavaScript/1%20-%20Source/WikipediaUtils.js"
+								}
 							},
 							io: root + "1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/1%20-%20Data/1%20-%20IO/1%20-%20JavaScript/1%20-%20Source/io.js",
 							parsing: {

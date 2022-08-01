@@ -144,6 +144,15 @@
 			]
 		},
 		{
+			"path": ["one", "kaeonLibraryManager"],
+			"implementations": [
+				{
+					"environment": "javascript",
+					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20General/2%20-%20Source/1%20-%20APIs/1%20-%20Core/1%20-%20ONE/7%20-%20Kaeon%20Library%20Manager/1%20-%20JavaScript/1%20-%20Source/kaeonLibraryManager.js"
+				}
+			]
+		},
+		{
 			"path": ["one", "one"],
 			"implementations": [
 				{
@@ -459,20 +468,29 @@
 			]
 		},
 		{
-			"path": ["utilities", "software", "general", "data", "API", "repoExplorer"],
+			"path": ["utilities", "software", "general", "data", "API", "external", "repoExplorer"],
 			"implementations": [
 				{
 					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20General/2%20-%20Source/1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/1%20-%20Data/3%20-%20API/2%20-%20Repo%20Explorer/1%20-%20JavaScript/1%20-%20Source/repoExplorer.js"
+					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20General/2%20-%20Source/1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/1%20-%20Data/3%20-%20API/2%20-%20External/1%20-%20Repo%20Explorer/1%20-%20JavaScript/1%20-%20Source/repoExplorer.js"
 				}
 			]
 		},
 		{
-			"path": ["utilities", "software", "general", "data", "API", "searchUtils"],
+			"path": ["utilities", "software", "general", "data", "API", "external", "searchUtils"],
 			"implementations": [
 				{
 					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20General/2%20-%20Source/1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/1%20-%20Data/3%20-%20API/3%20-%20Search%20Utilities/1%20-%20JavaScript/1%20-%20Source/searchUtils.js"
+					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20General/2%20-%20Source/1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/1%20-%20Data/3%20-%20API/2%20-%20External/2%20-%20Search%20Utilities/1%20-%20JavaScript/1%20-%20Source/searchUtils.js"
+				}
+			]
+		},
+		{
+			"path": ["utilities", "software", "general", "data", "API", "external", "wikipediaUtils"],
+			"implementations": [
+				{
+					"environment": "javascript",
+					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20General/2%20-%20Source/1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/1%20-%20Data/3%20-%20API/2%20-%20External/3%20-%20Wikipedia%20Utilities/1%20-%20JavaScript/1%20-%20Source/wikipediaUtils.js"
 				}
 			]
 		},
