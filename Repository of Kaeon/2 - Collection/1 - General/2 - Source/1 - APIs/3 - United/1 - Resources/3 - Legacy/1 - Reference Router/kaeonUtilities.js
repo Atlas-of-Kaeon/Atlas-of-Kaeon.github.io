@@ -127,7 +127,7 @@ var moduleDependencies = {
 								external: {
 									repoExplorer: root + "1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/1%20-%20Data/3%20-%20API/2%20-%20External/1%20-%20Repo%20Explorer/1%20-%20JavaScript/1%20-%20Source/repoExplorer.js",
 									searchUtils: root + "1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/1%20-%20Data/3%20-%20API/2%20-%20External/2%20-%20Search%20Utilities/1%20-%20JavaScript/1%20-%20Source/searchUtils.js",
-									wikipediaUtils: root + "1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/1%20-%20Data/3%20-%20API/2%20-%20External/3%20-%20Wikipedia%20Utilities/1%20-%20JavaScript/1%20-%20Source/WikipediaUtils.js"
+									wikipediaUtils: root + "1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/1%20-%20Data/3%20-%20API/2%20-%20External/3%20-%20Wikipedia%20Utilities/1%20-%20JavaScript/1%20-%20Source/wikipediaUtils.js"
 								}
 							},
 							io: root + "1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/1%20-%20Data/1%20-%20IO/1%20-%20JavaScript/1%20-%20Source/io.js",
