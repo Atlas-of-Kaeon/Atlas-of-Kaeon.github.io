@@ -54,6 +54,146 @@ function createStartScreen(element, text, callback) {
 	);
 }
 
+function getTerminal(onSubmit) {
+
+	onSubmit = onSubmit != null ? onSubmit : () => { };
+
+	let log = vision.create();
+	let mark = vision.create({ fields: { innerHTML: ">" } });
+
+	let field = vision.create({
+		tag: "input",
+		attributes: {
+			rows: "1"
+		},
+		style: {
+			"border-top-style": "hidden",
+			"border-right-style": "hidden",
+			"border-left-style": "hidden",
+			"border-bottom-style": "hidden",
+			outline: "none",
+			"width": "100%",
+			"font-family": "monospace",
+			resize: "none",
+			overflow: "auto"
+		}
+	});
+
+	let terminal = vision.create({
+		content: [
+			{
+				tag: "table",
+				content: [
+					{
+						tag: "tr",
+						content: [
+							{ tag: "td", content: [log] }
+						]
+					}
+				],
+				style: {
+					width: "100%",
+					"border-collapse": "collapse"
+				}
+			},
+			{
+				tag: "table",
+				content: [
+					{
+						tag: "tr",
+						content: [
+							{
+								tag: "td",
+								content: [mark],
+								style: {
+									width: "1%",
+									"white-space": "nowrap"
+								}
+							},
+							{ tag: "td", content: [field] }
+						]
+					}
+				],
+				style: {
+					width: "100%",
+					"border-collapse": "collapse"
+				}
+			}
+		],
+		style: {
+			"font-family": "monospace",
+			"position": "absolute",
+			"left": "0%",
+			"top": "0%",
+			"width": "100%",
+			"height": "100%",
+			"overflow": "auto"
+		}
+	});
+
+	terminal.current = null;
+	terminal.index = null;
+	terminal.history = [];
+
+	terminal.clear = () => {
+		log.innerHTML = "";
+	}
+
+	terminal.getContent = () => {
+		return log.innerHTML;
+	}
+
+	terminal.getText = () => {
+		return log.textContent;
+	}
+
+	terminal.logContent = (content) => {
+
+		log.innerHTML +=
+			(log.innerHTML.length > 0 ? "<br/>" : "") +
+			content;
+
+		terminal.scrollTop = terminal.scrollHeight;
+	}
+
+	terminal.setContent = (content) => {
+
+		log.innerHTML = content;
+
+		terminal.scrollTop = terminal.scrollHeight;
+	}
+
+	terminal.getMark = () => {
+		return mark.textContent;
+	}
+
+	terminal.setMark = (content) => {
+		mark.innerHTML = content + (content.length > 0 ? " " : "") + ">";
+	}
+
+	terminal.onSubmit = onSubmit;
+
+	field.onkeypress = (event) => {
+		
+		if(event.keyCode == 13) {
+
+			if(field.value.trim().length > 0) {
+
+				terminal.history.push(field.value);
+				terminal.logContent(terminal.getMark() + " " + field.value);
+
+				terminal.onSubmit(field.value);
+
+				terminal.scrollTop = terminal.scrollHeight;
+			}
+
+			field.value = "";
+		}
+	};
+
+	return terminal;
+}
+
 function getTextbox(options) {
 
 	options = options != null ? options : { };
@@ -213,6 +353,7 @@ function getTabs(content, config) {
 
 module.exports = {
 	createStartScreen,
+	getTerminal,
 	getTextbox,
 	addTab,
 	setTab,
