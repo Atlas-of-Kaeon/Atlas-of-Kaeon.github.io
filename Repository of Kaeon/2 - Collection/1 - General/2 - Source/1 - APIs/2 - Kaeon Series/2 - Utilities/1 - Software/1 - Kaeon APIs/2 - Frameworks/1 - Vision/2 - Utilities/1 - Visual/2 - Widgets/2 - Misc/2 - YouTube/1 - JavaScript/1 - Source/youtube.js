@@ -6,6 +6,10 @@ var moduleDependencies = {
 var io = require(moduleDependencies.io);
 var vision = require(moduleDependencies.vision);
 
+function getPlaying() {
+	return JSON.parse(JSON.stringify(play.state));
+}
+
 function play(id, options, element) {
 
 	options = options != null ? options : { };
@@ -98,8 +102,9 @@ function stop(index) {
 }
 
 module.exports = {
+	getPlaying,
 	play,
 	playAudio,
 	search,
 	stop
-}
+};

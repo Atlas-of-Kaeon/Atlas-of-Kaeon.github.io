@@ -27,12 +27,12 @@ window.location.href.replace(
 	}
 );
 
-if(window.localStorage.getItem("kaeonOriginConsole") == null)
-	window.localStorage.setItem("kaeonOriginConsole", "true");
+if(window.localStorage.getItem("kaeonCodeConsole") == null)
+	window.localStorage.setItem("kaeonCodeConsole", "true");
 
-if(urlArgs.kaeonoriginjs != null ||
-	urlArgs.kaeonoriginfusion != null ||
-	urlArgs.kaeonoriginhtml != null) {
+if(urlArgs.kaeoncodejs != null ||
+	urlArgs.kaeoncodefusion != null ||
+	urlArgs.kaeoncodehtml != null) {
 
 	vision.set(
 		document.documentElement,
@@ -52,14 +52,14 @@ if(urlArgs.kaeonoriginjs != null ||
 	var data = one.read(
 		rawUrlArgs.workspace != null ?
 			io.open(rawUrlArgs.workspace) :
-			window.localStorage.getItem("kaeonOriginData"));
+			window.localStorage.getItem("kaeonCodeData"));
 		
 	let id =
-		urlArgs.kaeonoriginjs != null ?
-			urlArgs.kaeonoriginjs :
-			(urlArgs.kaeonoriginfusion != null ?
-				urlArgs.kaeonoriginfusion :
-				urlArgs.kaeonoriginhtml);
+		urlArgs.kaeoncodejs != null ?
+			urlArgs.kaeoncodejs :
+			(urlArgs.kaeoncodefusion != null ?
+				urlArgs.kaeoncodefusion :
+				urlArgs.kaeoncodehtml);
 
 	if(isNaN(id)) {
 
@@ -90,9 +90,9 @@ if(urlArgs.kaeonoriginjs != null ||
 
 	}
 
-	let isJS = urlArgs.kaeonoriginjs != null;
-	let isFUSION = urlArgs.kaeonoriginfusion != null;
-	let isHTML = urlArgs.kaeonoriginhtml != null;
+	let isJS = urlArgs.kaeoncodejs != null;
+	let isFUSION = urlArgs.kaeoncodefusion != null;
+	let isHTML = urlArgs.kaeoncodehtml != null;
 
 	override.onSend((request) => {
 
@@ -168,7 +168,7 @@ if(urlArgs.kaeonoriginjs != null ||
 				vision.extend(outputField);
 			
 			outputField.style.display =
-				window.localStorage.getItem("kaeonOriginConsole") == "true" &&
+				window.localStorage.getItem("kaeonCodeConsole") == "true" &&
 					rawUrlArgs.workspace == null ?
 					"block" :
 					"none";
@@ -343,7 +343,7 @@ function load() {
 
 	vision.get("#files")[0].innerHTML = "";
 
-	let data = window.localStorage.getItem("kaeonOriginData");
+	let data = window.localStorage.getItem("kaeonCodeData");
 
 	try {
 		data = one.read(data);
@@ -425,7 +425,7 @@ function onRun(type) {
 		tag: "iframe",
 		attributes: {
 			"src": window.location.href +
-				"&kaeonorigin" +
+				"&kaeoncode" +
 				type +
 				"=" +
 				currentTab,
@@ -537,7 +537,7 @@ function saveData() {
 			}
 		}
 		
-		window.localStorage.setItem("kaeonOriginData", one.write(data));
+		window.localStorage.setItem("kaeonCodeData", one.write(data));
 	}
 
 	catch(error) {
@@ -581,7 +581,7 @@ function showText(mode) {
 			oneText.value = oneSuite.preprocess(vision.get("#text")[0].value);
 
 		else
-			oneText.value = window.localStorage.getItem("kaeonOriginData");
+			oneText.value = window.localStorage.getItem("kaeonCodeData");
 	}
 
 	catch(error) {
@@ -589,7 +589,7 @@ function showText(mode) {
 	}
 }
 
-document.title = "Kaeon Origin";
+document.title = "Kaeon Code";
 
 vision.load(moduleDependencies.bootstrap);
 
@@ -646,7 +646,7 @@ vision.extend(inputPanel, [
 						return;
 					}
 		
-					window.localStorage.setItem("kaeonOriginData", text);
+					window.localStorage.setItem("kaeonCodeData", text);
 		
 					load();
 				}
@@ -657,7 +657,7 @@ vision.extend(inputPanel, [
 						function(text) {
 		
 							window.localStorage.setItem(
-								"kaeonOriginData",
+								"kaeonCodeData",
 								text
 							);
 		
@@ -682,8 +682,8 @@ vision.extend(inputPanel, [
 			onclick: () => {
 
 				io.save(
-					window.localStorage.getItem("kaeonOriginData"),
-					"Kaeon Origin Workspace.op"
+					window.localStorage.getItem("kaeonCodeData"),
+					"Kaeon Code Workspace.op"
 				);
 			}
 		}
@@ -1035,7 +1035,7 @@ vision.extend(outputPanel, [
 	},	
 	{
 		tag: "button",
-		content: window.localStorage.getItem("kaeonOriginConsole") == "true" ?
+		content: window.localStorage.getItem("kaeonCodeConsole") == "true" ?
 			"Hide Console" :
 			"Show Console",
 		style: {
@@ -1048,17 +1048,17 @@ vision.extend(outputPanel, [
 		fields: {
 			onclick: (event) => {
 
-				if(window.localStorage.getItem("kaeonOriginConsole") ==
+				if(window.localStorage.getItem("kaeonCodeConsole") ==
 					"true") {
 		
-					window.localStorage.setItem("kaeonOriginConsole", "false");
+					window.localStorage.setItem("kaeonCodeConsole", "false");
 		
 					event.target.innerHTML = "Show Console";
 				}
 		
 				else {
 		
-					window.localStorage.setItem("kaeonOriginConsole", "true");
+					window.localStorage.setItem("kaeonCodeConsole", "true");
 		
 					event.target.innerHTML = "Hide Console";
 				}
