@@ -107,6 +107,12 @@ function cookieDisk(cookie) {
 				return getFolder(result);
 			
 			return result;
+		},
+		serialize: function() {
+
+			let data = window.localStorage.getItem(this.alias);
+
+			return data != null ? JSON.parse(data) : { };
 		}
 	});
 }
@@ -218,6 +224,9 @@ function httpDisk() {
 			catch(error) {
 				return null;
 			}
+		},
+		serialize: function() {
+			return { };
 		}
 	});
 }
@@ -238,20 +247,51 @@ function httpsDisk() {
 			catch(error) {
 				return null;
 			}
+		},
+		serialize: function() {
+			return { };
 		}
 	});
 }
 
-function initiateVirtualSystem(fileSystem, startup) {
+function initiateVirtualSystem(fileSystem, config) {
 
 	window.fileSystem = fileSystem;
 
+	load(config);
+}
+
+function initiateVirtualSystemDefault(config, cookieName) {
+
+	cookieName = cookieName != null ? cookieName : "Storage";
+
+	let fileSystem = new virtualFileSystem(
+		[
+			new cookieDisk(cookieName),
+			new httpDisk(),
+			new httpsDisk()
+		]
+	);
+
+	fileSystem.setResource("Storage://execute.js", "eval(arguments[0]);");
+	
+	initiateVirtualSystem(fileSystem, config);
+}
+
+function load(config) {
+
+	if(config == null)
+		return;
+
 	try {
 
-		startup = JSON.parse(fileSystem.getResource(startup));
+		let data = JSON.parse(io.open(config));
 
-		for(let i = 0; i < startup.length; i++)
-			executeCommand(startup[i]);
+		if(typeof data.files == "object")
+			loadFiles(data.files);
+
+		if(Array.isArray(data.commands))
+			loadCommands(data.commands);
 	}
 
 	catch(error) {
@@ -259,19 +299,55 @@ function initiateVirtualSystem(fileSystem, startup) {
 	}
 }
 
-function initiateVirtualSystemDefault(startup) {
-
-	let fileSystem = new virtualFileSystem(
-		[
-			new cookieDisk("Origin"),
-			new httpDisk(),
-			new httpsDisk()
-		]
-	);
-
-	fileSystem.setResource("Origin://execute.js", "eval(arguments[0]);");
+function loadCommands(commands) {
 	
-	initiateVirtualSystem(fileSystem, startup);
+	commands.forEach((item) => {
+		executeCommand(item);
+	});
+}
+
+function loadFiles(files, path) {
+	
+	if(Array.isArray(files)) {
+		
+		files.forEach((item) => {
+
+			setResource(
+				item.path,
+				item.location != null ?
+					io.open("" + item.location) :
+					"" + item.content
+			);
+		});
+	}
+
+	else {
+
+		path = path != null ? path : "";
+
+		Object.keys(files).forEach((key) => {
+			
+			let value = files[key];
+
+			if(typeof value == "object") {
+
+				let newPath = path + key + (path.length == 0 ? "://" : "/");
+
+				loadFiles(value, newPath);
+			}
+
+			else {
+
+				try {
+					setResource(path + key, "" + value);
+				}
+
+				catch(error) {
+
+				}
+			}
+		});
+	}
 }
 
 function virtualFileSystem(disks) {
@@ -329,8 +405,22 @@ function virtualFileSystem(disks) {
 				if(disks[i].alias.toLowerCase() == alias.toLowerCase())
 					return disks[i].getResource(path);
 			}
+		},
+		serialize: function() {
+			
+			let data = { };
+
+			disks.forEach((item) => {
+				data[item.alias] = item.serialize();
+			});
+
+			return JSON.stringify(data);
 		}
 	});
+}
+
+function serialize() {
+	return window.fileSystem != null ? fileSystem.serialize() : "";
 }
 
 function setResource(path, content) {
@@ -349,6 +439,10 @@ module.exports = {
 	httpsDisk,
 	initiateVirtualSystem,
 	initiateVirtualSystemDefault,
+	load,
+	loadCommands,
+	loadFiles,
 	setResource,
+	serialize,
 	virtualFileSystem
 };
