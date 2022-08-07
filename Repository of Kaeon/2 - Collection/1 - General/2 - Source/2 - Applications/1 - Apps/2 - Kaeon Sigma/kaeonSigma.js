@@ -63,7 +63,7 @@ if(window.fileSystem == null)
 
 			let speech = require("kaeon-united")("speech");
 			let vision = require("kaeon-united")("vision");
-			let widgets = require("widgets.js");
+			let widgets = require("kaeon-united")("widgets");
 			let youtube = require("kaeon-united")("youtube");
 
 			let tick = 1 / 60;
