@@ -1,8 +1,28 @@
 {
 	"files": [
-
+		{
+			"path": "Storage://Default/System/Processes/openInterface.js",
+			"location": "openInterface.js"
+		},
+		{
+			"path": "Storage://Default/System/Commands/clear.js",
+			"location": "clear.js"
+		},
+		{
+			"path": "Storage://User/Applications/Processes/kaeonSigma/kaeonSigma.js",
+			"location": "kaeonSigma.js"
+		},
+		{
+			"path": "Storage://User/Applications/Processes/sigma.js",
+			"content": "let dispatch = \"Storage://User/Applications/Processes/kaeonSigma/Management/sigmaDispatch.js\";\nlet config = \"Storage://User/Applications/Processes/kaeonSigma/Management/sigmaConfig.json\";\n\nfileSystem.executeCommand(\n\tdispatch +\n\t\t\" \\\"\" +\n\t\tconfig +\n\t\t\"\\\" \\\"\" +\n\t\targuments[0] +\n\t\t\"\\\"\"\n);"
+		},
+		{
+			"path": "Storage://User/Applications/Apps/code.js",
+			"content": "window.open(\"https://atlas-of-kaeon.github.io/?unitedjs=https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20General/2%20-%20Source/2%20-%20Applications/1%20-%20Apps/1%20-%20Kaeon%20Code/kaeonCode.js\", \"_blank\");"
+		}
 	],
 	"commands": [
-
+		"Storage://Default/System/Processes/openInterface.js",
+		"Storage://User/Applications/Processes/kaeonSigma/kaeonSigma.js"
 	]
 }

@@ -1,10 +1,30 @@
 var moduleDependencies = {
+	virtualSystem: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20General/2%20-%20Source/1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/3%20-%20Operations/1%20-%20Virtual%20System/1%20-%20JavaScript/1%20-%20Source/virtualSystem.js",
 	vision: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20General/2%20-%20Source/1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/2%20-%20Frameworks/1%20-%20Vision/1%20-%20Core/1%20-%20JavaScript/1%20-%20Source/vision.js"
 };
 
+var virtualSystem = require(moduleDependencies.virtualSystem);
 var vision = require(moduleDependencies.vision);
 
 function createStartScreen(element, text, callback) {
+
+	let newScreen = element == null;
+
+	if(newScreen) {
+
+		element = vision.create({
+			style: {
+				position: "absolute",
+				left: "0%",
+				top: "0%",
+				width: "100%",
+				height: "100%",
+				"z-index": "999"
+			}
+		});
+
+		vision.extend(element);
+	}
 
 	let button = vision.create(
 		{
@@ -28,9 +48,13 @@ function createStartScreen(element, text, callback) {
 
 	button.onclick = function() {
 
-		element.innerHTML = "";
+		if(!newScreen)
+			element.innerHTML = "";
 
 		callback(element);
+
+		if(newScreen)
+			vision.remove(element);
 	}
 	
 	vision.extend(
@@ -194,6 +218,98 @@ function getTerminal(onSubmit) {
 	return terminal;
 }
 
+function getVSTerminal(paths) {
+
+	let reference = null;
+	
+	let terminal = getTerminal((command) => {
+		vsTerminalOnSubmit(command, reference, terminal.paths.concat([terminal.location]));
+	});
+
+	reference = terminal;
+
+	terminal.setLocation = (location) => {
+
+		terminal.location = location;
+
+		terminal.setMark(location);
+	};
+
+	terminal.setPaths = (paths) => {
+		terminal.paths = paths != null ? paths : [];
+	};
+
+	terminal.setLocation("");
+	terminal.setPaths(paths);
+
+	return terminal;
+}
+
+function getVSTerminalCommand(command, paths) {
+
+	for(let i = 0; i < paths.length; i++) {
+
+		let folder = virtualSystem.getResource(paths[i]);
+
+		if(folder == null)
+			return;
+
+		if(!Array.isArray(folder))
+			return;
+
+		let index = folder[1].map((item) => {
+
+			if(item.includes("."))
+				item = item.substring(0, item.indexOf("."));
+
+			return item.toLowerCase();
+		}).indexOf(command.toLowerCase());
+
+		if(index != -1) {
+
+			return paths[i] +
+				(paths[i].endsWith("/") ? "" : "/") +
+				folder[1][index];
+		}
+	}
+
+	return null;
+}
+
+function vsTerminalOnSubmit(command, terminal, paths) {
+
+	let args = virtualSystem.getCommandArguments(command);
+	let loadedCommand = getVSTerminalCommand(args[0], paths);
+
+	command = (loadedCommand == null ? command : loadedCommand) +
+		" " +
+		args.slice(1).map((item) => {
+			return "\"" + item.split("\"").join("\\\"") + "\"";
+		}).join(" ")
+
+	let tempLog = console.log;
+
+	console.log = function() {
+
+		let toLog = "";
+
+		for(let i = 0; i < arguments.length; i++)
+			toLog += (i > 0 ? " " : "") + arguments[i];
+
+		terminal.logContent(toLog);
+	}
+
+	virtualSystem.executeCommand(
+		(loadedCommand == null ? command : loadedCommand) +
+			" " +
+			args.slice(1).map((item) => {
+				return "\"" + item.split("\"").join("\\\"") + "\"";
+			}).join(" ")
+	);
+
+	console.log = tempLog;
+}
+
 function getTextbox(options) {
 
 	options = options != null ? options : { };
@@ -354,6 +470,7 @@ function getTabs(content, config) {
 module.exports = {
 	createStartScreen,
 	getTerminal,
+	getVSTerminal,
 	getTextbox,
 	addTab,
 	setTab,

@@ -9,7 +9,9 @@ var virtualSystem = require(moduleDependencies.virtualSystem);
 
 let args = httpUtils.getURLArguments(window.location.href);
 
-virtualSystem.initiateVirtualSystemDefault(
+virtualSystem.initiateVirtualSystemDefault();
+
+virtualSystem.load(
 	args.override != "true" ?
 		moduleDependencies.defaultConfig :
 		null

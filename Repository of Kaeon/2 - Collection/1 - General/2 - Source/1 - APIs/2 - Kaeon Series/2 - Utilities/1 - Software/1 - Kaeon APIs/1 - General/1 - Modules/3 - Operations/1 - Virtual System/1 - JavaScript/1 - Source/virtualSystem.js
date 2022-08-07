@@ -256,6 +256,9 @@ function httpsDisk() {
 
 function initiateVirtualSystem(fileSystem, config) {
 
+	if(window.fileSystem != null)
+		return;
+
 	window.fileSystem = fileSystem;
 
 	load(config);
@@ -263,19 +266,29 @@ function initiateVirtualSystem(fileSystem, config) {
 
 function initiateVirtualSystemDefault(config, cookieName) {
 
-	cookieName = cookieName != null ? cookieName : "Storage";
+	try {
 
-	let fileSystem = new virtualFileSystem(
-		[
-			new cookieDisk(cookieName),
-			new httpDisk(),
-			new httpsDisk()
-		]
-	);
-
-	fileSystem.setResource("Storage://execute.js", "eval(arguments[0]);");
+		if(window.fileSystem != null)
+			return;
 	
-	initiateVirtualSystem(fileSystem, config);
+		cookieName = cookieName != null ? cookieName : "Storage";
+	
+		let fileSystem = new virtualFileSystem(
+			[
+				new cookieDisk(cookieName),
+				new httpDisk(),
+				new httpsDisk()
+			]
+		);
+	
+		fileSystem.setResource("Storage://execute.js", "eval(arguments[0]);");
+		
+		initiateVirtualSystem(fileSystem, config);
+	}
+
+	catch(error) {
+
+	}
 }
 
 function load(config) {
@@ -385,7 +398,7 @@ function virtualFileSystem(disks) {
 				for(let i = 0; i < this.disks.length; i++)
 					aliases.push(this.disks[i].alias);
 
-				return aliases;
+				return [aliases, []];
 			}
 
 			let alias = "";
