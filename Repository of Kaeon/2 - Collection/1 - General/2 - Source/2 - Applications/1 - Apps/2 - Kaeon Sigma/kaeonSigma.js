@@ -1,4 +1,4 @@
-var virtualSystem = require("virtualSystem");
+var virtualSystem = require("kaeon-united")("virtualSystem");
 
 if(window.fileSystem == null)
 	virtualSystem.initiateVirtualSystemDefault();
