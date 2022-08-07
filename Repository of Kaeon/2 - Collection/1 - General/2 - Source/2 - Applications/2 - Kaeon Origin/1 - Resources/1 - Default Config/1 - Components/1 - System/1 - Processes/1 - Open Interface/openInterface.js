@@ -9,7 +9,8 @@ var widgets = require(moduleDependencies.widgets);
 let terminal = widgets.getVSTerminal([
 	"Storage://",
 	"Storage://Default/System/Commands",
-	"Storage://User/Applications/Processes"
+	"Storage://User/Applications/Processes",
+	"Storage://User/Applications/Apps"
 ]);
 
 window.terminals = [terminal];
