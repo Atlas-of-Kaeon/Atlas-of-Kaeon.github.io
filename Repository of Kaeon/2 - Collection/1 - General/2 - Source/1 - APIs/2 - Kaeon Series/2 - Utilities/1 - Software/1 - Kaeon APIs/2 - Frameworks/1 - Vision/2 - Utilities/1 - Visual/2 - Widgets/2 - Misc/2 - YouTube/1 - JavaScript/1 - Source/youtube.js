@@ -7,6 +7,11 @@ var io = require(moduleDependencies.io);
 var vision = require(moduleDependencies.vision);
 
 function getPlaying() {
+
+	play.state =
+		play.state != null ?
+			play.state : { };
+
 	return JSON.parse(JSON.stringify(play.state));
 }
 
