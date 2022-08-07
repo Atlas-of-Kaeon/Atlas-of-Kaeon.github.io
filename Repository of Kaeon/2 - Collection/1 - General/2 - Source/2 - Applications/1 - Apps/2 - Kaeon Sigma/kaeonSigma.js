@@ -78,7 +78,7 @@ if(window.fileSystem == null)
 					return item.toLowerCase();
 				});
 
-				effect = effect != null ? effect : "rIPq9Fl5r44"
+				effect = effect != null ? effect : "B14L61fYZlc"
 			
 				if(interval != null)
 					return;
