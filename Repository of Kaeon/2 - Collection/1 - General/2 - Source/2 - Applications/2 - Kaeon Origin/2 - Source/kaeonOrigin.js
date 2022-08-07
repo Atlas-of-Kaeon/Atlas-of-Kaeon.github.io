@@ -7,6 +7,8 @@ var moduleDependencies = {
 var httpUtils = require(moduleDependencies.httpUtils);
 var virtualSystem = require(moduleDependencies.virtualSystem);
 
+document.title = "Kaeon Origin";
+
 let args = httpUtils.getURLArguments(window.location.href);
 
 virtualSystem.initiateVirtualSystemDefault();
