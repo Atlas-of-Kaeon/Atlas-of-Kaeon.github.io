@@ -72,7 +72,7 @@ if(window.fileSystem == null)
 			
 			function startAssistant(que, effect) {
 			
-				que = que != null ? que : ["hey sigma", "a sigma"];
+				que = que != null ? que : ["hey sigma", "a sigma", "play sigma"];
 
 				que = (Array.isArray(que) ? que : [que]).map((item) => {
 					return item.toLowerCase();
@@ -91,7 +91,7 @@ if(window.fileSystem == null)
 				
 						youtube.playAudio(effect);
 				
-						terminals[0].logContent("SIGMA RECEIVED: " + text);
+						terminals[0].logContent("SIGMA RECEIVED: " + que[0]);
 					}
 			
 					else {
