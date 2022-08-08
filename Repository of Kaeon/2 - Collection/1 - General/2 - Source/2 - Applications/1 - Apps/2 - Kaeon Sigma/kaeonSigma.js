@@ -72,7 +72,14 @@ if(window.fileSystem == null)
 			
 			function startAssistant(que, effect) {
 			
-				que = que != null ? que : ["hey sigma", "a sigma", "play sigma"];
+				que = que != null ? que : [
+					"hey sigma",
+					"a sigma",
+					"play sigma",
+					"hey sigmund",
+					"a sigmund",
+					"play sigmund"
+				];
 
 				que = (Array.isArray(que) ? que : [que]).map((item) => {
 					return item.toLowerCase();
