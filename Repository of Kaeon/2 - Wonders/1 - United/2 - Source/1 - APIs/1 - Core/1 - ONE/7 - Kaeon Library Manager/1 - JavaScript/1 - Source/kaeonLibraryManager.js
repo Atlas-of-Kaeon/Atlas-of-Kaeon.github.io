@@ -28,9 +28,9 @@ function render(protocol, path, title, originalPath, child) {
 
 	items.folders.forEach((item) => {
 
-		if(!child && !(item == "1 - Core" ||
-			item == "1 - Connections" ||
-			item == "2 - Connections")) {
+		if(!child && !(item == "1 - Philosophy" ||
+			item == "1 - Principles" ||
+			item == "2 - Principles")) {
 			
 			return;
 		}
