@@ -1,7 +1,7 @@
 <div align="center"><h1>Kaeon United - It Just Works</h1></div>
 
 <div align="center">
-	<img height="300px" src="https://github.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/blob/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20General/1%20-%20Documentation/3%20-%20Iconography/2%20-%20Kaeon%20United/2%20-%20Kaeon%20United/Kaeon%20United%20Logo.png?raw=true"/>
+	<img height="300px" src="https://github.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/blob/master/Repository%20of%20Kaeon/2%20-%20Wonders/1%20-%20United/1%20-%20Documentation/3%20-%20Iconography/2%20-%20Kaeon%20United/2%20-%20Kaeon%20United/Kaeon%20United%20Logo.png?raw=true"/>
 </div>
 
 <h2 align="center">What is Kaeon United?</h2>
@@ -26,15 +26,15 @@
 <p>As an extension of said functionality, the API provides utilities for the following languages:</p>
 
 <ul>
-<li><p>The <a href="https://github.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/blob/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20General/1%20-%20Documentation/1%20-%20Guides/1%20-%20Utilities/3%20-%20Kaeon%20FUSION/README.md">Kaeon FUSION</a> programming language.</p>
+<li><p>The <a href="https://github.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/blob/master/Repository%20of%20Kaeon/2%20-%20Wonders/1%20-%20United/1%20-%20Documentation/1%20-%20Guides/1%20-%20Utilities/3%20-%20Kaeon%20FUSION/README.md">Kaeon FUSION</a> programming language.</p>
 </li>
-<li><p>The <a href="https://github.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/blob/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20General/1%20-%20Documentation/1%20-%20Guides/1%20-%20Utilities/2%20-%20ONE/1%20-%20ONE/README.md">ONE</a> and <a href="https://github.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/blob/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20General/1%20-%20Documentation/1%20-%20Guides/1%20-%20Utilities/2%20-%20ONE/2%20-%20ONE%2B/README.md">ONE+</a> data interchange languages.</p>
+<li><p>The <a href="https://github.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/blob/master/Repository%20of%20Kaeon/2%20-%20Wonders/1%20-%20United/1%20-%20Documentation/1%20-%20Guides/1%20-%20Utilities/2%20-%20ONE/1%20-%20ONE/README.md">ONE</a> and <a href="https://github.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/blob/master/Repository%20of%20Kaeon/2%20-%20Wonders/1%20-%20United/1%20-%20Documentation/1%20-%20Guides/1%20-%20Utilities/2%20-%20ONE/2%20-%20ONE%2B/README.md">ONE+</a> data interchange languages.</p>
 </li>
-<li><p>The <a href="https://github.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/blob/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20General/1%20-%20Documentation/1%20-%20Guides/1%20-%20Utilities/2%20-%20ONE/3%20-%20Universal%20Preprocessor/README.md">Universal Preprocessor</a>.</p>
+<li><p>The <a href="https://github.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/blob/master/Repository%20of%20Kaeon/2%20-%20Wonders/1%20-%20United/1%20-%20Documentation/1%20-%20Guides/1%20-%20Utilities/2%20-%20ONE/3%20-%20Universal%20Preprocessor/README.md">Universal Preprocessor</a>.</p>
 </li>
-<li><p>A C and C++ hybrid language called <a href="https://github.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/blob/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20General/1%20-%20Documentation/1%20-%20Guides/1%20-%20Utilities/4%20-%20United%20C/README.md">United C</a>.</p>
+<li><p>A C and C++ hybrid language called <a href="https://github.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/blob/master/Repository%20of%20Kaeon/2%20-%20Wonders/1%20-%20United/1%20-%20Documentation/1%20-%20Guides/1%20-%20Utilities/4%20-%20United%20C/README.md">United C</a>.</p>
 </li>
-<li><p>A machine code editing format called Character Separated Binary, or <a href="https://github.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/blob/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20General/1%20-%20Documentation/1%20-%20Guides/1%20-%20Utilities/4%20-%20United%20C/README.md#csb">CSB</a> for short.</p>
+<li><p>A machine code editing format called Character Separated Binary, or <a href="https://github.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/blob/master/Repository%20of%20Kaeon/2%20-%20Wonders/1%20-%20United/1%20-%20Documentation/1%20-%20Guides/1%20-%20Utilities/4%20-%20United%20C/README.md#csb">CSB</a> for short.</p>
 </li>
 <li><p>An enhanced version of JavaScript called:</p>
 </li>
@@ -106,7 +106,7 @@ but it&#39;s written in such a way that its functionality differs according to h
 
 <h3>As a CDN</h3>
 
-<p>See <a href="https://github.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/blob/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20General/1%20-%20Documentation/1%20-%20Guides/1%20-%20Utilities/1%20-%20Kaeon%20United%20GhostHost/README.md">Kaeon United GhostHost</a>.</p>
+<p>See <a href="https://github.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/blob/master/Repository%20of%20Kaeon/2%20-%20Wonders/1%20-%20United/1%20-%20Documentation/1%20-%20Guides/1%20-%20Utilities/1%20-%20Kaeon%20United%20GhostHost/README.md">Kaeon United GhostHost</a>.</p>
 
 <h3>As an HTML Script</h3>
 

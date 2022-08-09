@@ -14,7 +14,7 @@
 // [ BEGIN: DEPENDENCIES ]
 
 var moduleDependencies = {
-	dimensions: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Collection/1%20-%20General/2%20-%20Source/1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/2%20-%20Frameworks/1%20-%20Vision/2%20-%20Utilities/1%20-%20Visual/1%20-%20General/2%20-%20Dimensions/1%20-%20JavaScript/1%20-%20Source/Dimensions.js"
+	dimensions: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Repository%20of%20Kaeon/2%20-%20Wonders/1%20-%20United/2%20-%20Source/1%20-%20APIs/2%20-%20Kaeon%20Series/2%20-%20Utilities/1%20-%20Software/1%20-%20Kaeon%20APIs/2%20-%20Frameworks/1%20-%20Vision/2%20-%20Utilities/1%20-%20Visual/1%20-%20General/2%20-%20Dimensions/1%20-%20JavaScript/1%20-%20Source/Dimensions.js"
 };
 
 var dimensions = require(moduleDependencies.dimensions);
