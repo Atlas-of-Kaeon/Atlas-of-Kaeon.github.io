@@ -1,0 +1,57 @@
+-
+	The Kaeon United Specification
+-
+	-
+		Philosophy
+	-
+		-
+			The Kaeon United  specification, is the set of documents within the Philosophy Library
+			of Kaeon and the Principles Library of Kaeon that define the key components of the
+			software development suite that defines Kaeon United.
+
+			This document lists the folders that contain the aforementioned documents under their
+			corresponding locations within the Kaeon united specification, as well as a list of
+			omitted folders nested within the included folders.
+		-
+	-
+		Principles
+	-
+		-
+			Details
+		-
+			-
+				Included Folders
+			-
+				-
+					1 - Core: 1 - Code
+				-
+					-
+						The Philosophy Library of Kaeon: 1 - Philosophy: 3 - Wonders: 1 -
+						Conventions: 2 - Language: 1 - Code
+					-
+				-
+					1 - Core: 2 - Philosopher's Stone
+				-
+					-
+						Core: 1 - Philosophy: 3 - Wonders: 2 - Philosopher's Stones: 2 -
+						Computation
+					-
+				-
+					1 - Core: 2 - Kaeon United
+				-
+					-
+						Core: 1 - Philosophy: 3 - Wonders: 3 - Kaeon United
+					-
+				-
+					2 - Suite
+				-
+					-
+						Chronicle: 1 - Philosophy: 1 - General: 2 - Technical: 2 - Computation
+					-
+			-
+				Omitted Folders
+			-
+				-
+					Core: 1 - Philosophy: 3 - Wonders: 3 - Kaeon United: 2 - Kaeon META: 2 - The
+					Final Programs
+				-
