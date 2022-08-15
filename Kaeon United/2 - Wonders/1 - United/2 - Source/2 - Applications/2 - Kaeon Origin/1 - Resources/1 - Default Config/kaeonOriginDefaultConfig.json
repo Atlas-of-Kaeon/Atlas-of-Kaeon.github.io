@@ -2,19 +2,19 @@
 	"files": [
 		{
 			"path": "Storage://Default/System/Processes/openInterface.js",
-			"location": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/1%20-%20United/2%20-%20Source/2%20-%20Applications/2%20-%20Kaeon%20Origin/1%20-%20Resources/1%20-%20Default%20Config/1%20-%20Components/1%20-%20System/1%20-%20Processes/1%20-%20Open%20Interface/openInterface.js"
+			"location": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/1%20-%20United/2%20-%20Source/2%20-%20Applications/2%20-%20Kaeon%20Origin/1%20-%20Resources/1%20-%20Default%20Config/1%20-%20Components/1%20-%20Processes/1%20-%20Open%20Interface/openInterface.js"
 		},
 		{
 			"path": "Storage://Default/System/Commands/clear.js",
-			"location": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/1%20-%20United/2%20-%20Source/2%20-%20Applications/2%20-%20Kaeon%20Origin/1%20-%20Resources/1%20-%20Default%20Config/1%20-%20Components/1%20-%20System/2%20-%20Commands/1%20-%20Clear/clear.js"
+			"location": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/1%20-%20United/2%20-%20Source/2%20-%20Applications/2%20-%20Kaeon%20Origin/1%20-%20Resources/1%20-%20Default%20Config/1%20-%20Components/2%20-%20Commands/1%20-%20Clear/clear.js"
 		},
 		{
-			"path": "Storage://User/Applications/Processes/kaeonSigma/kaeonSigma.js",
-			"location": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/1%20-%20United/2%20-%20Source/2%20-%20Applications/1%20-%20Apps/2%20-%20Kaeon%20Sigma/kaeonSigma.js"
+			"path": "Storage://User/Applications/Processes/kaeonMeta/kaeonMeta.js",
+			"location": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/1%20-%20United/2%20-%20Source/2%20-%20Applications/2%20-%20Kaeon%20Origin/2%20-%20Utilities/1%20-%20Kaeon%20Meta/kaeonMeta.js"
 		},
 		{
-			"path": "Storage://User/Applications/Processes/sigma.js",
-			"content": "let dispatch = \"Storage://User/Applications/Processes/kaeonSigma/Management/sigmaDispatch.js\";\nlet config = \"Storage://User/Applications/Processes/kaeonSigma/Management/sigmaConfig.json\";\n\nfileSystem.executeCommand(\n\tdispatch +\n\t\t\" \\\"\" +\n\t\tconfig +\n\t\t\"\\\" \\\"\" +\n\t\targuments[0] +\n\t\t\"\\\"\"\n);"
+			"path": "Storage://User/Applications/Processes/meta.js",
+			"content": "let dispatch = \"Storage://User/Applications/Processes/kaeonMeta/Management/metaDispatch.js\";\nlet config = \"Storage://User/Applications/Processes/kaeonMeta/Management/metaConfig.json\";\n\nfileSystem.executeCommand(\n\tdispatch +\n\t\t\" \\\"\" +\n\t\tconfig +\n\t\t\"\\\" \\\"\" +\n\t\targuments[0] +\n\t\t\"\\\"\"\n);"
 		},
 		{
 			"path": "Storage://User/Applications/Apps/code.js",
@@ -23,6 +23,6 @@
 	],
 	"commands": [
 		"Storage://Default/System/Processes/openInterface.js",
-		"Storage://User/Applications/Processes/kaeonSigma/kaeonSigma.js"
+		"Storage://User/Applications/Processes/kaeonMeta/kaeonMeta.js"
 	]
 }

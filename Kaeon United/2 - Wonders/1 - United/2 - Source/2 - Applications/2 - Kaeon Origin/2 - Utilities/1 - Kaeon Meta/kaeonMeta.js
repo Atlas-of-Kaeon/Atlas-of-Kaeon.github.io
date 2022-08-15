@@ -5,7 +5,7 @@ if(window.fileSystem == null)
 
 [
 	[
-		"Storage://User/Applications/Processes/kaeonSigma/Management/sigmaDispatch.js",
+		"Storage://User/Applications/Processes/kaeonMeta/Management/metaDispatch.js",
 		`
 			let config = { };
 			let text = "";
@@ -25,7 +25,7 @@ if(window.fileSystem == null)
 		`
 	],
 	[
-		"Storage://User/Applications/Processes/kaeonSigma/Management/sigmaInit.js",
+		"Storage://User/Applications/Processes/kaeonMeta/Management/metaInit.js",
 		`
 			let config = JSON.parse(fileSystem.getResource(arguments[0]));
 
@@ -41,22 +41,22 @@ if(window.fileSystem == null)
 		`
 	],
 	[
-		"Storage://User/Applications/Processes/kaeonSigma/Management/sigmaConfig.json",
+		"Storage://User/Applications/Processes/kaeonMeta/Management/metaConfig.json",
 		`
 			{
-				"dispatch": "Storage://User/Applications/Processes/kaeonSigma/Management/sigmaDispatch.js",
+				"dispatch": "Storage://User/Applications/Processes/kaeonMeta/Management/metaDispatch.js",
 				"dispatchers": [
-					"Storage://User/Applications/Processes/kaeonSigma/Dispatchers/youtubeDispatcher.js",
-					"Storage://User/Applications/Processes/kaeonSigma/Dispatchers/wikipediaDispatcher.js"
+					"Storage://User/Applications/Processes/kaeonMeta/Dispatchers/youtubeDispatcher.js",
+					"Storage://User/Applications/Processes/kaeonMeta/Dispatchers/wikipediaDispatcher.js"
 				],
 				"interfaces": [
-					"Storage://User/Applications/Processes/kaeonSigma/Interfaces/sigmaSpeech.js"
+					"Storage://User/Applications/Processes/kaeonMeta/Interfaces/metaSpeech.js"
 				]
 			}
 		`
 	],
 	[
-		"Storage://User/Applications/Processes/kaeonSigma/Interfaces/sigmaSpeech.js",
+		"Storage://User/Applications/Processes/kaeonMeta/Interfaces/metaSpeech.js",
 		`
 			let configPath = arguments[0];
 			let config = JSON.parse(fileSystem.getResource(configPath));
@@ -73,12 +73,18 @@ if(window.fileSystem == null)
 			function startAssistant(que, effect) {
 			
 				que = que != null ? que : [
-					"hey sigma",
-					"a sigma",
-					"play sigma",
-					"hey sigmund",
-					"a sigmund",
-					"play sigmund"
+					"hey meta",
+					"a meta",
+					"play meta",
+					"hey metta",
+					"a metta",
+					"play metta",
+					"hey meda",
+					"a meda",
+					"play meda"
+					"hey medda",
+					"a medda",
+					"play medda"
 				];
 
 				que = (Array.isArray(que) ? que : [que]).map((item) => {
@@ -150,28 +156,28 @@ if(window.fileSystem == null)
 		`
 	],
 	[
-		"Storage://User/Applications/Processes/kaeonSigma/Dispatchers/youtubeDispatcher.js",
+		"Storage://User/Applications/Processes/kaeonMeta/Dispatchers/youtubeDispatcher.js",
 		`
 			if(arguments[0].toLowerCase().startsWith("play ")) {
 
 				fileSystem.executeCommand(
-					"Storage://User/Applications/Processes/kaeonSigma/Apps/playYoutubeSong.js \\"" +
+					"Storage://User/Applications/Processes/kaeonMeta/Apps/playYoutubeSong.js \\"" +
 						arguments[0].substring(5) +
 						"\\""
 				);
 			}
 
 			if(arguments[0].toLowerCase().startsWith("stop"))
-				fileSystem.executeCommand("Storage://User/Applications/Processes/kaeonSigma/Apps/stopYoutubeSong.js");
+				fileSystem.executeCommand("Storage://User/Applications/Processes/kaeonMeta/Apps/stopYoutubeSong.js");
 		`
 	],
 	[
-		"Storage://User/Applications/Processes/kaeonSigma/Dispatchers/wikipediaDispatcher.js",
+		"Storage://User/Applications/Processes/kaeonMeta/Dispatchers/wikipediaDispatcher.js",
 		`
 			if(arguments[0].toLowerCase().startsWith("tell me about ")) {
 
 				fileSystem.executeCommand(
-					"Storage://User/Applications/Processes/kaeonSigma/Apps/readWikipediaSummary.js \\"" +
+					"Storage://User/Applications/Processes/kaeonMeta/Apps/readWikipediaSummary.js \\"" +
 						arguments[0].substring(14).trim() +
 						"\\""
 				);
@@ -179,17 +185,17 @@ if(window.fileSystem == null)
 		`
 	],
 	[
-		"Storage://User/Applications/Processes/kaeonSigma/Apps/playYoutubeSong.js",
+		"Storage://User/Applications/Processes/kaeonMeta/Apps/playYoutubeSong.js",
 		`
 			let youtube = require("kaeon-united")("youtube");
 
-			fileSystem.executeCommand("Storage://User/Applications/Processes/kaeonSigma/Apps/stopYoutubeSong.js");
+			fileSystem.executeCommand("Storage://User/Applications/Processes/kaeonMeta/Apps/stopYoutubeSong.js");
 
 			youtube.playAudio(youtube.search(arguments[0])[0]);
 		`
 	],
 	[
-		"Storage://User/Applications/Processes/kaeonSigma/Apps/stopYoutubeSong.js",
+		"Storage://User/Applications/Processes/kaeonMeta/Apps/stopYoutubeSong.js",
 		`
 			let youtube = require("kaeon-united")("youtube");
 
@@ -199,7 +205,7 @@ if(window.fileSystem == null)
 		`
 	],
 	[
-		"Storage://User/Applications/Processes/kaeonSigma/Apps/readWikipediaSummary.js",
+		"Storage://User/Applications/Processes/kaeonMeta/Apps/readWikipediaSummary.js",
 		`
 			let wikipedia = require("kaeon-united")("wikipediaUtils");
 
@@ -213,4 +219,4 @@ if(window.fileSystem == null)
 	fileSystem.setResource(item[0], item[1]);
 });
 
-fileSystem.executeCommand("Storage://User/Applications/Processes/kaeonSigma/Management/sigmaInit.js \"Storage://User/Applications/Processes/kaeonSigma/Management/sigmaConfig.json\"");
+fileSystem.executeCommand("Storage://User/Applications/Processes/kaeonMeta/Management/metaInit.js \"Storage://User/Applications/Processes/kaeonMeta/Management/metaConfig.json\"");
