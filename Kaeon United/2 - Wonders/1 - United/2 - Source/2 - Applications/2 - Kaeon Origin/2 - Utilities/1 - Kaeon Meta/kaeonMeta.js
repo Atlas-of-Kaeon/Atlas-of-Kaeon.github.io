@@ -81,7 +81,7 @@ if(window.fileSystem == null)
 					"play metta",
 					"hey meda",
 					"a meda",
-					"play meda"
+					"play meda",
 					"hey medda",
 					"a medda",
 					"play medda"
@@ -104,12 +104,12 @@ if(window.fileSystem == null)
 				
 						youtube.playAudio(effect);
 				
-						terminals[0].logContent("SIGMA RECEIVED: " + que[0]);
+						terminals[0].logContent("META RECEIVED: " + que[0]);
 					}
 			
 					else {
 				
-						terminals[0].logContent("SIGMA RECEIVED: " + text);
+						terminals[0].logContent("META RECEIVED: " + text);
 
 						if(listening > 0) {
 							
