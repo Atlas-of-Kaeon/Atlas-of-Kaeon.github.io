@@ -46,8 +46,8 @@ if(window.fileSystem == null)
 			{
 				"dispatch": "Storage://User/Applications/Processes/kaeonMeta/Management/metaDispatch.js",
 				"dispatchers": [
-					"Storage://User/Applications/Processes/kaeonMeta/Dispatchers/youtubeDispatcher.js",
-					"Storage://User/Applications/Processes/kaeonMeta/Dispatchers/wikipediaDispatcher.js"
+					"Storage://User/Applications/Processes/kaeonMeta/Dispatchers/mediaDispatcher.js",
+					"Storage://User/Applications/Processes/kaeonMeta/Dispatchers/articleDispatcher.js"
 				],
 				"interfaces": [
 					"Storage://User/Applications/Processes/kaeonMeta/Interfaces/metaSpeech.js"
@@ -64,7 +64,7 @@ if(window.fileSystem == null)
 			let speech = require("kaeon-united")("speech");
 			let vision = require("kaeon-united")("vision");
 			let widgets = require("kaeon-united")("widgets");
-			let youtube = require("kaeon-united")("youtube");
+			let media = require("kaeon-united")("generalReference")("media");
 
 			let tick = 1 / 60;
 			let listening = 0;
@@ -102,7 +102,7 @@ if(window.fileSystem == null)
 				
 						listening = 10;
 				
-						youtube.playAudio(effect);
+						media.playAudio(effect);
 				
 						terminals[0].logContent("META RECEIVED: " + que[0]);
 					}
@@ -156,28 +156,28 @@ if(window.fileSystem == null)
 		`
 	],
 	[
-		"Storage://User/Applications/Processes/kaeonMeta/Dispatchers/youtubeDispatcher.js",
+		"Storage://User/Applications/Processes/kaeonMeta/Dispatchers/mediaDispatcher.js",
 		`
 			if(arguments[0].toLowerCase().startsWith("play ")) {
 
 				fileSystem.executeCommand(
-					"Storage://User/Applications/Processes/kaeonMeta/Apps/playYoutubeSong.js \\"" +
+					"Storage://User/Applications/Processes/kaeonMeta/Apps/playMediaSong.js \\"" +
 						arguments[0].substring(5) +
 						"\\""
 				);
 			}
 
 			if(arguments[0].toLowerCase().startsWith("stop"))
-				fileSystem.executeCommand("Storage://User/Applications/Processes/kaeonMeta/Apps/stopYoutubeSong.js");
+				fileSystem.executeCommand("Storage://User/Applications/Processes/kaeonMeta/Apps/stopMediaSong.js");
 		`
 	],
 	[
-		"Storage://User/Applications/Processes/kaeonMeta/Dispatchers/wikipediaDispatcher.js",
+		"Storage://User/Applications/Processes/kaeonMeta/Dispatchers/articleDispatcher.js",
 		`
 			if(arguments[0].toLowerCase().startsWith("tell me about ")) {
 
 				fileSystem.executeCommand(
-					"Storage://User/Applications/Processes/kaeonMeta/Apps/readWikipediaSummary.js \\"" +
+					"Storage://User/Applications/Processes/kaeonMeta/Apps/readArticleSummary.js \\"" +
 						arguments[0].substring(14).trim() +
 						"\\""
 				);
@@ -185,34 +185,34 @@ if(window.fileSystem == null)
 		`
 	],
 	[
-		"Storage://User/Applications/Processes/kaeonMeta/Apps/playYoutubeSong.js",
+		"Storage://User/Applications/Processes/kaeonMeta/Apps/playMediaSong.js",
 		`
-			let youtube = require("kaeon-united")("youtube");
+			let media = require("kaeon-united")("generalReference")("media");
 
-			fileSystem.executeCommand("Storage://User/Applications/Processes/kaeonMeta/Apps/stopYoutubeSong.js");
+			fileSystem.executeCommand("Storage://User/Applications/Processes/kaeonMeta/Apps/stopMediaSong.js");
 
-			youtube.playAudio(youtube.search(arguments[0])[0]);
+			media.playAudio(media.search(arguments[0])[0]);
 		`
 	],
 	[
-		"Storage://User/Applications/Processes/kaeonMeta/Apps/stopYoutubeSong.js",
+		"Storage://User/Applications/Processes/kaeonMeta/Apps/stopMediaSong.js",
 		`
-			let youtube = require("kaeon-united")("youtube");
+			let media = require("kaeon-united")("generalReference")("media");
 
-			Object.keys(youtube.getPlaying()).forEach((item) => {
-				youtube.stop(item);
+			Object.keys(media.getPlaying()).forEach((item) => {
+				media.stop(item);
 			});
 		`
 	],
 	[
-		"Storage://User/Applications/Processes/kaeonMeta/Apps/readWikipediaSummary.js",
+		"Storage://User/Applications/Processes/kaeonMeta/Apps/readArticleSummary.js",
 		`
-			let wikipedia = require("kaeon-united")("wikipediaUtils");
+			let article = require("kaeon-united")("generalReference")("article");
 
-			let results = wikipedia.search(arguments[0]);
+			let results = article.search(arguments[0]);
 
 			if(results.length > 0)
-				require("kaeon-united")("speech").speak(wikipedia.getSummary(results[0]));
+				require("kaeon-united")("speech").speak(article.getSummary(results[0]));
 		`
 	]
 ].forEach((item) => {
