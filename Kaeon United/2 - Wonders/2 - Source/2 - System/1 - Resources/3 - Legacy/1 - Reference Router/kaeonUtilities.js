@@ -122,35 +122,35 @@ var moduleDependencies = {
 					},
 					general: {
 						data: {
-							httpUtils: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/1%20-%20Data/3%20-%20API/1%20-%20HTTP%20Utilities/httpUtils.js",
-							io: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/1%20-%20Data/1%20-%20IO/io.js",
+							httpUtils: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/3%20-%20API/1%20-%20HTTP%20Utilities/httpUtils.js",
+							io: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/1%20-%20IO/io.js",
 							parsing: {
-								formatConverter: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/1%20-%20Data/2%20-%20Parsing/3%20-%20Format%20Converter/formatConverter.js",
-								tokenizer: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/1%20-%20Data/2%20-%20Parsing/1%20-%20Tokenizer/tokenizer.js",
+								formatConverter: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/2%20-%20Parsing/3%20-%20Format%20Converter/formatConverter.js",
+								tokenizer: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/2%20-%20Parsing/1%20-%20Tokenizer/tokenizer.js",
 								utilities: {
 									ONE: {
-										paperONE: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/1%20-%20Data/2%20-%20Parsing/2%20-%20Utilities/1%20-%20ONE/2%20-%20Paper%20ONE/paperONE.js",
-										wrapONE: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/1%20-%20Data/2%20-%20Parsing/2%20-%20Utilities/1%20-%20ONE/1%20-%20Wrap%20ONE/wrapONE.js"
+										paperONE: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/2%20-%20Parsing/2%20-%20Utilities/1%20-%20ONE/2%20-%20Paper%20ONE/paperONE.js",
+										wrapONE: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/2%20-%20Parsing/2%20-%20Utilities/1%20-%20ONE/1%20-%20Wrap%20ONE/wrapONE.js"
 									}
 								}
 							}
 						},
 						management: {
 							network: {
-								server: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/2%20-%20Management/1%20-%20Network/1%20-%20Server/server.js",
-								wifi: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/2%20-%20Management/1%20-%20Network/2%20-%20WiFi/wifi.js"
+								server: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/1%20-%20Network/1%20-%20Server/server.js",
+								wifi: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/1%20-%20Network/2%20-%20WiFi/wifi.js"
 							},
 							process: {
-								override: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/2%20-%20Management/2%20-%20Process/2%20-%20Override/override.js",
-								platform: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/2%20-%20Management/2%20-%20Process/1%20-%20Platform/platform.js"
+								override: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/2%20-%20Process/2%20-%20Override/override.js",
+								platform: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/2%20-%20Process/1%20-%20Platform/platform.js"
 							},
-							serial: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/2%20-%20Management/3%20-%20Devices/1%20-%20Serial/serial.js"
+							serial: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/3%20-%20Devices/1%20-%20Serial/serial.js"
 						},
 						operations: {
-							jsh: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/3%20-%20Operations/2%20-%20JSH/jsh.js",
-							virtualSystem: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/3%20-%20Operations/1%20-%20Virtual%20System/virtualSystem.js"
+							jsh: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/3%20-%20Operations/2%20-%20JSH/jsh.js",
+							virtualSystem: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/3%20-%20Operations/1%20-%20Virtual%20System/virtualSystem.js"
 						},
-						generalUniverse: "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Modules/4%20-%20Processes/1%20-%20Simulation/1%20-%20General%20Universe/generalUniverse.js"
+						generalUniverse: "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/4%20-%20Processes/1%20-%20Simulation/1%20-%20General%20Universe/generalUniverse.js"
 					}
 				}
 			}
