@@ -10,7 +10,7 @@ var moduleDependencies = {
 	kaeonUnited: root + "3%20-%20Applications/1%20-%20Kaeon%20Origin/1%20-%20Legacy/kaeonOrigin.js",
 	modules: {
 		js: {
-			generalReference: "2%20-%20System/1%20-%20Resources/1%20-%20Interfaces/2%20-%20General%20Interface/1%20-%20Module/generalReference.js",
+			generalReference: root + "2%20-%20System/1%20-%20Resources/1%20-%20Interfaces/2%20-%20General%20Interface/1%20-%20Module/generalReference.js",
 			kaeonACE: {
 				apis: {
 					kaeonACECore: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/1%20-%20ONE/3%20-%20Kaeon%20ACE/1%20-%20APIs/1%20-%20Babylon/1%20-%20Core/KaeonACECore.js",

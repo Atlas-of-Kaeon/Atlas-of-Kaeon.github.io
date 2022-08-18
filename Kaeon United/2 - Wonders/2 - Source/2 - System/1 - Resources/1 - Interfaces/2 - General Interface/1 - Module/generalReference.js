@@ -37,7 +37,7 @@ module.exports = (path) => {
 
 	let newModule = { interfaces: { } };
 
-	Object.values.forEach((item) => {
+	Object.values(data).forEach((item) => {
 
 		if(item.interfaces == null)
 			return;
@@ -53,4 +53,4 @@ module.exports = (path) => {
 		Object.assign(newModule, Object.values(newModule.interfaces)[0]);
 
 	return newModule;
-}
+};
