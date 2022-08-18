@@ -122,7 +122,7 @@ var moduleDependencies = {
 					},
 					general: {
 						data: {
-							httpUtils: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/3%20-%20API/1%20-%20HTTP%20Utilities/httpUtils.js",
+							httpUtils: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/3%20-%20HTTP%20Utilities/httpUtils.js",
 							io: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/1%20-%20IO/io.js",
 							parsing: {
 								formatConverter: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/2%20-%20Parsing/3%20-%20Format%20Converter/formatConverter.js",
