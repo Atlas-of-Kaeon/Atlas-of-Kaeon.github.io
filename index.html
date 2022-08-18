@@ -142,7 +142,7 @@ function executeCommand(args) {
 		let result = "";
 
 		if(operation == "parse")
-			result = ONESuite.write(ONESuite.parse(data));
+			result = ONESuite.write(ONESuite.read(data));
 
 		if(operation == "preprocess")
 			result = data;

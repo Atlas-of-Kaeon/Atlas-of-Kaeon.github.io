@@ -1,0 +1,67 @@
+{
+	"modules": [
+		{
+			"path": ["general", "services", "githubUtils"],
+			"implementations": [
+				{
+					"environment": "javascript",
+					"reference": ""
+				}
+			]
+		},
+		{
+			"path": ["general", "services", "googleUtils"],
+			"implementations": [
+				{
+					"environment": "javascript",
+					"reference": ""
+				}
+			]
+		},
+		{
+			"path": ["general", "services", "youtubeUtils"],
+			"implementations": [
+				{
+					"environment": "javascript",
+					"reference": ""
+				}
+			]
+		},
+		{
+			"path": ["general", "services", "wikipediaUtils"],
+			"implementations": [
+				{
+					"environment": "javascript",
+					"reference": ""
+				}
+			]
+		},
+		{
+			"path": ["general", "angaian", "langauge", "angaianGenerator"],
+			"implementations": [
+				{
+					"environment": "javascript",
+					"reference": ""
+				}
+			]
+		},
+		{
+			"path": ["general", "angaian", "langauge", "angaianConverter"],
+			"implementations": [
+				{
+					"environment": "javascript",
+					"reference": ""
+				}
+			]
+		},
+		{
+			"path": ["general", "angaian", "langauge", "angaianRenderer"],
+			"implementations": [
+				{
+					"environment": "javascript",
+					"reference": ""
+				}
+			]
+		}
+	]
+}
