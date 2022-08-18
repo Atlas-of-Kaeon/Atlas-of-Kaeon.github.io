@@ -1,3 +1,8 @@
+var moduleDependencies = {
+	bootstrap: "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css",
+	cors: "https://ghost-cors.herokuapp.com/"
+};
+
 var io = require("kaeon-united")("io");
 var one = require("kaeon-united")("one");
 var override = require("kaeon-united")("override");
