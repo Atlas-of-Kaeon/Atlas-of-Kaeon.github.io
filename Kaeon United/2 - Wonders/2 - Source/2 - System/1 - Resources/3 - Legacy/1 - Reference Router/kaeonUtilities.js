@@ -29,7 +29,7 @@ var moduleDependencies = {
 			one: {
 				fusion: root + "1%20-%20APIs/1%20-%20Core/1%20-%20ONE/2%20-%20FUSION/FUSION.js",
 				kaeonFUSION: root + "1%20-%20APIs/1%20-%20Core/1%20-%20ONE/3%20-%20Kaeon%20FUSION/KaeonFUSION.js",
-				kaeonFUSION: root + "1%20-%20APIs/1%20-%20Core/1%20-%20ONE/3%20-%20Kaeon%20Library%20Manager/kaeonLibraryManager.js",
+				kaeonLibraryManager: root + "1%20-%20APIs/1%20-%20Core/1%20-%20ONE/7%20-%20Kaeon%20Library%20Manager/kaeonLibraryManager.js",
 				one: root + "1%20-%20APIs/1%20-%20Core/1%20-%20ONE/1%20-%20ONE/ONE.js",
 				onePlus: root + "1%20-%20APIs/1%20-%20Core/1%20-%20ONE/4%20-%20ONE%2B/ONEPlus.js",
 				oneSuite: root + "1%20-%20APIs/1%20-%20Core/1%20-%20ONE/6%20-%20ONE%20Suite/ONESuite.js",
