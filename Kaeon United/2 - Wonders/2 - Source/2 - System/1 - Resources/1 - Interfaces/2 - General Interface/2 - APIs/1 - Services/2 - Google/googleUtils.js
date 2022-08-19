@@ -1,6 +1,22 @@
 var io = require("kaeon-united")("io");
 var vision = require("kaeon-united")("vision");
 
+function flatten(array, type) {
+
+	let result = [];
+
+	for(let i = 0; i < array.length; i++) {
+
+		if(Array.isArray(array[i]))
+			result = result.concat(flatten(array[i], type));
+
+		else
+			result.push(array[i]);
+	}
+
+	return result;
+}
+
 function searchGoogle(query, limit) {
 
 	limit = Math.ceil((limit != null ? limit : 10) / 10);
@@ -49,15 +65,47 @@ function searchGoogle(query, limit) {
 	});
 }
 
+function searchImagesGoogle(query) {
+
+	let data = io.open(
+		"https://www.google.com/search?tbm=isch&q=" +
+			query.split(" ").join("+")
+	);
+	
+	data = data.substring(data.indexOf("data:[") + 6);
+
+	data = JSON.parse(data.substring(
+		data.indexOf("data:[") + 5,
+		data.lastIndexOf(", sideChannel: {}});</script>")
+	));
+
+	return flatten(data).filter((item) => {
+
+		if(typeof item != "string")
+			return false;
+
+		if(!(item.startsWith("http") &&
+			!item.startsWith("https://encrypted-tbn0.gstatic.com"))) {
+
+			return false;
+		}
+
+		return item.substring(item.lastIndexOf("/")).includes(".");
+	});
+}
+
 module.exports = {
 	methods: {
-		searchGoogle
+		flatten,
+		searchGoogle,
+		searchImagesGoogle
 	},
 	interfaces: {
 		search: {
 			name: "google",
 			methods: {
-				search: searchGoogle
+				search: searchGoogle,
+				searchImages: searchImagesGoogle
 			}
 		}
 	}
