@@ -17,6 +17,35 @@ function flatten(array, type) {
 	return result;
 }
 
+function getLanguageGoogle(query) {
+
+	try {
+
+		let data = io.open(
+			"https://www.google.com/search?q=translate+" +
+			query.split(" ").join("+") +
+			"+language"
+		);
+	
+		let div = vision.create({
+			fields: {
+				innerHTML: data
+			},
+			style: {
+				display: "none"
+			}
+		});
+	
+		let result = div.querySelector("#tw-sl > span.source-language").innerHTML;
+	
+		return result.substring(0, result.indexOf(" "));
+	}
+
+	catch(error) {
+		return "";
+	}
+}
+
 function searchGoogle(query, limit) {
 
 	limit = Math.ceil((limit != null ? limit : 10) / 10);
@@ -41,8 +70,6 @@ function searchGoogle(query, limit) {
 			}
 		});
 	
-		vision.extend(div);
-	
 		results = results.concat(
 			Array.from(div.querySelectorAll("a")).map((item) => {
 				return item.href;
@@ -56,8 +83,6 @@ function searchGoogle(query, limit) {
 				) && item.length > 0;
 			})
 		);
-
-		vision.remove(div);
 	}
 
 	return results.filter(function(item, pos) {
@@ -94,18 +119,53 @@ function searchImagesGoogle(query) {
 	});
 }
 
+function translateGoogle(query, targetLanguage, sourceLanguage) {
+
+	try {
+
+		let data = io.open(
+			"https://www.google.com/search?q=translate+" +
+			query.split(" ").join("+") +
+			(sourceLanguage != null ?
+				"+from+" + sourceLanguage :
+				"") +
+			"+to+" +
+			targetLanguage
+		);
+	
+		let div = vision.create({
+			fields: {
+				innerHTML: data
+			},
+			style: {
+				display: "none"
+			}
+		});
+	
+		return div.querySelector("#tw-target-text > span").innerHTML;
+	}
+
+	catch(error) {
+		return "";
+	}
+}
+
 module.exports = {
 	methods: {
 		flatten,
+		getLanguageGoogle,
 		searchGoogle,
-		searchImagesGoogle
+		searchImagesGoogle,
+		translateGoogle
 	},
 	interfaces: {
 		search: {
 			name: "google",
 			methods: {
+				getLanguage: getLanguageGoogle,
 				search: searchGoogle,
-				searchImages: searchImagesGoogle
+				searchImages: searchImagesGoogle,
+				translate: translateGoogle
 			}
 		}
 	}
