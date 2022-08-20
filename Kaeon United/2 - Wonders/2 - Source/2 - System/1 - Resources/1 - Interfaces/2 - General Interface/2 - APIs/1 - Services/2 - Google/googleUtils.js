@@ -36,7 +36,9 @@ function getLanguageGoogle(query) {
 			}
 		});
 	
-		let result = div.querySelector("#tw-sl > span.source-language").innerHTML;
+		let result = div.querySelector(
+			"#tw-sl > span.source-language"
+		).innerHTML;
 	
 		return result.substring(0, result.indexOf(" "));
 	}
