@@ -29,21 +29,6 @@ widgets.createStartScreen(document.documentElement, "Start", () => {
  
 	openFullscreen(document.documentElement);
  
-	vision.extend({
-		style: {
-			position: "absolute",
-			left: "0%",
-			top: "0%",
-			width: "100%",
-			height: "100%"
-		},
-		fields: {
-			onclick: () => {
-				openFullscreen(document.documentElement);
-			}
-		}
-	});
- 
 	io.open(moduleDependencies.cache +
 		"?key=" +
 		http.getURLArguments(window.location.href)["key"] +
@@ -87,6 +72,8 @@ widgets.createStartScreen(document.documentElement, "Start", () => {
 								}
 							}
 						);
+
+						openFullscreen(document.documentElement);
 					}
 				}
 			}
