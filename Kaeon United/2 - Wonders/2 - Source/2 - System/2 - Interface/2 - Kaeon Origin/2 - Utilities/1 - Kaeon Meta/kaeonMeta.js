@@ -169,6 +169,15 @@ if(window.fileSystem == null)
 
 			if(arguments[0].toLowerCase().startsWith("stop"))
 				fileSystem.executeCommand("Storage://User/Applications/Processes/kaeonMeta/Apps/stopMediaSong.js");
+				
+			if(arguments[0].toLowerCase().startsWith("cast ")) {
+
+				fileSystem.executeCommand(
+					"Storage://User/Applications/Processes/kaeonMeta/Apps/castMediaVideo.js \\"" +
+						arguments[0].substring(5) +
+						"\\""
+				);
+			}
 		`
 	],
 	[
@@ -213,6 +222,25 @@ if(window.fileSystem == null)
 
 			if(results.length > 0)
 				require("kaeon-united")("speech").speak(article.getSummary(results[0]));
+		`
+	],
+	[
+		"Storage://User/Applications/Processes/kaeonMeta/Apps/castMediaVideo.js",
+		`
+			let data = arguments[0].toLowerCase();
+
+			if(data.includes("to")) {
+
+				data = data.split("to");
+
+				let media = require("kaeon-united")("generalReference")("media");
+				let results = media.search(data[0].trim());
+
+				fileSystem.executeCommand("Storage://User/Applications/Apps/cast.js \\"" + data[1].trim() + "\\" " + results[0]);
+			}
+
+			else
+				fileSystem.executeCommand("Storage://User/Applications/Apps/cast.js \\"" + data.trim() + "\\"");
 		`
 	]
 ].forEach((item) => {
