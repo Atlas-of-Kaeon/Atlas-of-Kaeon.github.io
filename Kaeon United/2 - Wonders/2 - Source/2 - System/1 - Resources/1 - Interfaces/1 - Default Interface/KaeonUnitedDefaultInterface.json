@@ -261,6 +261,15 @@
 			]
 		},
 		{
+			"path": ["philosophersStone", "soul", "utilities", "stringComparer"],
+			"implementations": [
+				{
+					"environment": "javascript",
+					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20APIs/1%20-%20Core/2%20-%20Philosopher's%20Stone/2%20-%20SOUL/1%20-%20Utilities/4%20-%20String%20Comparer/stringComparer.js"
+				}
+			]
+		},
+		{
 			"path": ["philosophersStone", "soul", "utilities", "vectorConverter"],
 			"implementations": [
 				{

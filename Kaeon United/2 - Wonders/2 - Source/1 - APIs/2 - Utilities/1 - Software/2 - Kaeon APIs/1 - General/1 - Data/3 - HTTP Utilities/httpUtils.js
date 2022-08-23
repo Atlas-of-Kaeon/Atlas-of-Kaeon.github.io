@@ -19,6 +19,9 @@ function getPlatform() {
 
 function getURLArguments(url) {
 
+	if(url == null)
+		url = window.location.href;
+
 	let vars = {};
 
 	url.replace(

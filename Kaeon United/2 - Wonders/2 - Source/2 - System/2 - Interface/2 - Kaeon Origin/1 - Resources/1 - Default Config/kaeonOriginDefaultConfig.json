@@ -19,6 +19,10 @@
 		{
 			"path": "Storage://User/Applications/Apps/code.js",
 			"content": "window.open(\"https://atlas-of-kaeon.github.io/?unitedjs=https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/2%20-%20System/2%20-%20Interface/1%20-%20Applications/1%20-%20Apps/1%20-%20Kaeon%20Code/kaeonCode.js\", \"_blank\");"
+		},
+		{
+			"path": "Storage://User/Applications/Apps/cast.js",
+			"content": "window.open(\"https://atlas-of-kaeon.github.io/?unitedjs=https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/2%20-%20System/2%20-%20Interface/1%20-%20Applications/1%20-%20Apps/2%20-%20Kaeon%20Cast/kaeonCast.js&key=\" + arguments[0], \"_blank\");"
 		}
 	],
 	"commands": [
