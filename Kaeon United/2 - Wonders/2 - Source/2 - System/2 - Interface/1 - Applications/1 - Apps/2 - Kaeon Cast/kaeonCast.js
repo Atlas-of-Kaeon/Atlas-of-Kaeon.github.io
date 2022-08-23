@@ -5,7 +5,6 @@ var moduleDependencies = {
 var http = require("kaeon-united")("httpUtils");
 var io = require("kaeon-united")("io");
 var media = require("kaeon-united")("generalReference")("media");
-var vision = require("kaeon-united")("vision");
 var widgets = require("kaeon-united")("widgets");
  
 function openFullscreen(element) {
