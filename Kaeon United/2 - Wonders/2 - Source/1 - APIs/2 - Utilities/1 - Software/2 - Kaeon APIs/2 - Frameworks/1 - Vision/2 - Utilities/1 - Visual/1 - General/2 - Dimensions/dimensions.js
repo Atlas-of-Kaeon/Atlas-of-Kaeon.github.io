@@ -21,6 +21,21 @@ function isHTMLNode(element) {
 	return element.ENTITY_NODE != null;
 }
 
+function fullscreen(element) {
+
+	if(element.requestFullscreen)
+		element.requestFullscreen();
+	
+	else if(element.mozRequestFullScreen)
+		element.mozRequestFullScreen();
+	
+	else if(element.webkitRequestFullscreen)
+		element.webkitRequestFullscreen();
+	
+	else if(element.msRequestFullscreen)
+		element.msRequestFullscreen();
+}
+
 function getDimensions(element, aspect) {
 
 	if(!isHTMLNode(element)) {
@@ -300,6 +315,7 @@ function multiplyVectors() {
 
 module.exports = {
 	isHTMLNode,
+	fullscreen,
 	getDimensions,
 	initialize,
 	getAbsoluteTransforms,

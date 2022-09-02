@@ -3,6 +3,7 @@ var moduleDependencies = {
 	cors: "https://ghost-cors.herokuapp.com/"
 };
 
+var dimensions = require("kaeon-united")("dimensions");
 var io = require("kaeon-united")("io");
 var one = require("kaeon-united")("one");
 var override = require("kaeon-united")("override");
@@ -492,21 +493,6 @@ function onRun(type) {
 
 	outItem.button.style.background = "green";
 	outItem.frame.style.display = "block";
-}
-
-function openFullscreen(element) {
-
-	if(element.requestFullscreen)
-		element.requestFullscreen();
-	
-	else if(element.mozRequestFullScreen)
-		element.mozRequestFullScreen();
-	
-	else if(element.webkitRequestFullscreen)
-		element.webkitRequestFullscreen();
-	
-	else if(element.msRequestFullscreen)
-		element.msRequestFullscreen();
 }
 
 function saveData() {
@@ -1025,7 +1011,7 @@ vision.extend(outputPanel, [
 			top: "0%",
 			left: "0%"
 		},
-		fields: { onclick: () => { openFullscreen(vision.get("#display")[0]); } }
+		fields: { onclick: () => { dimensions.fullscreen(vision.get("#display")[0]); } }
 	},	
 	{
 		tag: "button",

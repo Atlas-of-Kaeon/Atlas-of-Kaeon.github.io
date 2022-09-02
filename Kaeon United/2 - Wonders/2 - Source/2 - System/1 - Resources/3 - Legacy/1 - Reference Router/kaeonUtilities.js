@@ -102,7 +102,7 @@ var moduleDependencies = {
 								},
 								visual: {
 									general: {
-										dimensions: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/2%20-%20Frameworks/1%20-%20Vision/2%20-%20Utilities/1%20-%20Visual/1%20-%20General/2%20-%20Dimensions/Dimensions.js",
+										dimensions: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/2%20-%20Frameworks/1%20-%20Vision/2%20-%20Utilities/1%20-%20Visual/1%20-%20General/2%20-%20Dimensions/dimensions.js",
 										input: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/2%20-%20Frameworks/1%20-%20Vision/2%20-%20Utilities/1%20-%20Visual/1%20-%20General/1%20-%20Input/input.js"
 									},
 									widgets: {

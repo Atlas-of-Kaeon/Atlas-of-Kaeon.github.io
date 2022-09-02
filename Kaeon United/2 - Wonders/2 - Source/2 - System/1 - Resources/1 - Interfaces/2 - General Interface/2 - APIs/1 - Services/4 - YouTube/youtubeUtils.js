@@ -12,8 +12,6 @@ function getPlaying() {
 
 function play(id, options, element) {
 
-	options = options != null ? options : { };
-
 	play.index =
 		play.index != null ?
 			play.index : -1;
@@ -23,6 +21,16 @@ function play(id, options, element) {
 			play.state : { };
 
 	play.index++;
+
+	options = options != null ? options : { };
+
+	options.style = options.style != null ? options.style : {
+		position: "absolute",
+		left: "0%",
+		top: "0%",
+		width: "100%",
+		height: "100%"
+	};
 
 	let player = vision.create({
 		tag: "iframe",

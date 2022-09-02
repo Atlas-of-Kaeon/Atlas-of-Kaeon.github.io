@@ -2,25 +2,11 @@ var moduleDependencies = {
 	cache: "https://ghost-cache.herokuapp.com/"
 };
 
+var dimensions = require("kaeon-united")("dimensions");
 var http = require("kaeon-united")("httpUtils");
 var io = require("kaeon-united")("io");
 var media = require("kaeon-united")("generalReference")("media");
 var widgets = require("kaeon-united")("widgets");
- 
-function openFullscreen(element) {
- 
-	if(element.requestFullscreen)
-		element.requestFullscreen();
- 
-	else if(element.mozRequestFullScreen)
-		element.mozRequestFullScreen();
- 
-	else if(element.webkitRequestFullscreen)
-		element.webkitRequestFullscreen();
- 
-	else if(element.msRequestFullscreen)
-		element.msRequestFullscreen();
-}
 
 document.title = "Kaeon Cast";
  
@@ -72,7 +58,7 @@ widgets.createStartScreen(document.documentElement, "Start", () => {
 							}
 						);
 
-						openFullscreen(document.documentElement);
+						dimensions.fullscreen(document.documentElement);
 					}
 				}
 			}
