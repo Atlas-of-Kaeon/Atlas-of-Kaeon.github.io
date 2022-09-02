@@ -44,19 +44,7 @@ widgets.createStartScreen(document.documentElement, "Start", () => {
  
 					if(ping.value != "") {
  
-						playing = media.play(
-							ping.value,
-							{
-								style: {
-									position: "absolute",
-									left: "0%",
-									top: "0%",
-									width: "100%",
-									height: "100%",
-									border: "none"
-								}
-							}
-						);
+						playing = media.play(ping.value);
 
 						dimensions.fullscreen(document.documentElement);
 					}
