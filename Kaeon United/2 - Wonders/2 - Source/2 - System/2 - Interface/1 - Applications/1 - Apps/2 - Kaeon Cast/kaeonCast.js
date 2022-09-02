@@ -12,7 +12,7 @@ document.title = "Kaeon Cast";
  
 widgets.createStartScreen(document.documentElement, "Start", () => {
  
-	openFullscreen(document.documentElement);
+	dimensions.fullscreen(document.documentElement);
  
 	io.open(moduleDependencies.cache +
 		"?key=" +
