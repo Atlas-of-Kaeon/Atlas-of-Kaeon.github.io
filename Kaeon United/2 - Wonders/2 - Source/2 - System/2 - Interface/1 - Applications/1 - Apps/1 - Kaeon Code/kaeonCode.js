@@ -104,8 +104,6 @@ if(urlArgs.kaeoncodejs != null ||
 		if(uri.startsWith("http") && uri.includes("://"))
 			return null;
 
-		console.log("URI", uri);
-
 		uri = decodeURIComponent(uri)
 			.split("%2520").join(" ")
 			.split("%20").join(" ");
