@@ -93,8 +93,12 @@ if(urlArgs.kaeoncodejs != null ||
 
 		let uri = request.request.uri;
 
-		if(uri.includes(moduleDependencies.cors))
-			uri = uri.substring(moduleDependencies.cors.length);
+		if(uri.includes(moduleDependencies.cors)) {
+
+			uri = decodeURIComponent(
+				uri.substring(moduleDependencies.cors.length)
+			);
+		}
 
 		if(uri.startsWith("http") && uri.includes("://"))
 			return null;
