@@ -62,7 +62,7 @@ we've uploaded an example site to this repository, located at the following URL:
 
 <a href="https://Atlas-of-Kaeon.github.io/?html=https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/1%20-%20Documentation/2%20-%20Samples/2%20-%20Websites/1%20-%20Sample/Sample.html">https://Atlas-of-Kaeon.github.io/?html=https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/1%20-%20Documentation/2%20-%20Samples/2%20-%20Websites/1%20-%20Sample/Sample.html</a>
 
-<h2 align="center">Why use GhostHost over GitLab pages, or other similar services?</h2>
+<h2 align="center">Why use GhostHost over GitHub pages, or other similar services?</h2>
 
 Other platforms used for free hosting usually require the creation of some sort of account,
 require an intermediate knowledge of IT related topics,
