@@ -405,7 +405,7 @@ function fetchOnlineResource(path) {
 
 	try {
 
-		path = moduleDependencies.cors + path;
+		path = moduleDependencies.cors + encodeURIComponent(path);
 		
 		let rawFile = new XMLHttpRequest();
 

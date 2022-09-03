@@ -74,7 +74,7 @@ function makeOnlineRequest(path, cors) {
 	try {
 
 		if(cors)
-			path = moduleDependencies.cors + path;
+			path = moduleDependencies.cors + encodeURIComponent(path);
 		
 		let rawFile = new XMLHttpRequest();
 
