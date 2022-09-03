@@ -96,7 +96,8 @@ if(urlArgs.kaeoncodejs != null ||
 		if(uri.includes(moduleDependencies.cors)) {
 
 			uri = decodeURIComponent(
-				uri.substring(moduleDependencies.cors.length)
+				uri.substring(moduleDependencies.cors.length).
+					split("%2520").join("%20")
 			);
 		}
 
