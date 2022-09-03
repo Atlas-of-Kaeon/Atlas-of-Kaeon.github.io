@@ -1,6 +1,6 @@
 var moduleDependencies = {
 	bootstrap: "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css",
-	cors: "https://ghost-cors.herokuapp.com/"
+	cors: "https://corsproxy.io/?"
 };
 
 var dimensions = require("kaeon-united")("dimensions");

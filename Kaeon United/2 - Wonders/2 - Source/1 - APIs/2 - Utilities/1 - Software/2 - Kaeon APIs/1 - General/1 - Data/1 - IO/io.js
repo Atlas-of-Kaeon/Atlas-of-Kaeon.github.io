@@ -1,5 +1,5 @@
 var moduleDependencies = {
-	cors: "https://ghost-cors.herokuapp.com/"
+	cors: "https://corsproxy.io/?"
 };
 
 var platform = "browser";

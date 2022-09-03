@@ -3,7 +3,7 @@
 // <script> document.documentElement.innerHTML = "";
 
 var moduleDependencies = {
-	cors: "https://ghost-cors.herokuapp.com/",
+	cors: "https://corsproxy.io/?",
 	defaultInterface: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/2%20-%20System/1%20-%20Resources/1%20-%20Interfaces/1%20-%20Default%20Interface/KaeonUnitedDefaultInterface.json",
 	ONESuite: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20APIs/1%20-%20Core/1%20-%20ONE/6%20-%20ONE%20Suite/ONESuite.js",
 };
