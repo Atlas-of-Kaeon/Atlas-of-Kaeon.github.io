@@ -134,7 +134,11 @@ if(platform == "browser") {
 			else {
 		
 				try {
-					return getXMLHTTP(module.exports.cors + encodeURIComponent(file));
+
+					return getXMLHTTP(module.exports.cors.length > 0 ?
+						(module.exports.cors +
+							encodeURIComponent(file).split("%20").join("%2520")) :
+						file);
 				}
 		
 				catch(error) {
