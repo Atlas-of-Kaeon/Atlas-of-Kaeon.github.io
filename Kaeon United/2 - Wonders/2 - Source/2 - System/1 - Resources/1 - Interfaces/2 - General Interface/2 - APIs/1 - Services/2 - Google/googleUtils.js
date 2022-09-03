@@ -1,4 +1,7 @@
-var io = require("kaeon-united")("io");
+var moduleDependencies = {
+	cors: "https://ghost-cors.herokuapp.com/"
+};
+
 var vision = require("kaeon-united")("vision");
 
 function flatten(array, type) {
@@ -21,7 +24,7 @@ function getLanguageGoogle(query) {
 
 	try {
 
-		let data = io.open(
+		let data = open(
 			"https://www.google.com/search?q=translate+" +
 			query.split(" ").join("+") +
 			"+language"
@@ -48,6 +51,37 @@ function getLanguageGoogle(query) {
 	}
 }
 
+function open(path) {
+
+	try {
+
+		path = moduleDependencies.cors + path;
+		
+		let rawFile = new XMLHttpRequest();
+
+		rawFile.open("GET", path, false);
+
+		let allText = "";
+
+		rawFile.onreadystatechange = function() {
+
+			if(rawFile.readyState === 4) {
+
+				if(rawFile.status === 200 || rawFile.status == 0)
+					allText = rawFile.responseText;
+			}
+		}
+
+		rawFile.send(null);
+
+		return allText;
+	}
+
+	catch(error) {
+		return "";
+	}
+}
+
 function searchGoogle(query, limit) {
 
 	limit = Math.ceil((limit != null ? limit : 10) / 10);
@@ -56,7 +90,7 @@ function searchGoogle(query, limit) {
 
 	for(let i = 0; i < limit; i++) {
 
-		let data = io.open(
+		let data = open(
 			"https://www.google.com/search?q=" +
 			query.split(" ").join("+") +
 			"&start=" +
@@ -94,7 +128,7 @@ function searchGoogle(query, limit) {
 
 function searchImagesGoogle(query) {
 
-	let data = io.open(
+	let data = open(
 		"https://www.google.com/search?tbm=isch&q=" +
 			query.split(" ").join("+")
 	);
@@ -125,7 +159,7 @@ function translateGoogle(query, targetLanguage, sourceLanguage) {
 
 	try {
 
-		let data = io.open(
+		let data = open(
 			"https://www.google.com/search?q=translate+" +
 			query.split(" ").join("+") +
 			(sourceLanguage != null ?
