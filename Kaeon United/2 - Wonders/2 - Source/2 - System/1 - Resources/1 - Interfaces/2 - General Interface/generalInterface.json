@@ -19,7 +19,7 @@
 			]
 		},
 		{
-			"path": ["general", "services", "youtubeUtils"],
+			"path": ["general", "services", "wikipediaUtils"],
 			"implementations": [
 				{
 					"environment": "javascript",
@@ -28,7 +28,7 @@
 			]
 		},
 		{
-			"path": ["general", "services", "wikipediaUtils"],
+			"path": ["general", "services", "youtubeUtils"],
 			"implementations": [
 				{
 					"environment": "javascript",
