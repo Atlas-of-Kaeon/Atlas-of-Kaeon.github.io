@@ -2,7 +2,11 @@ var io = require("kaeon-united")("io");
 var httpUtils = require("kaeon-united")("httpUtils");
 
 function getFromNEARPaste(id) {
-	return io.open("https://nearpaste.vercel.app/" + id + "/raw");
+
+	return {
+		content: io.open("https://nearpaste.vercel.app/" + id + "/raw"),
+		location: "https://nearpaste.vercel.app/" + id + "/raw"
+	};
 }
 
 function pasteToNEARPaste(text, title, callback) {
