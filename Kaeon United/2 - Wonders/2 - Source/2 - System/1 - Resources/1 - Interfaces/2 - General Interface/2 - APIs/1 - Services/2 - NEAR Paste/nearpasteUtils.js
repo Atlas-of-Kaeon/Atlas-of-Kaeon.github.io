@@ -1,15 +1,6 @@
-var io = require("kaeon-united")("io");
 var httpUtils = require("kaeon-united")("httpUtils");
 
-function getFromNEARPaste(id) {
-
-	return {
-		content: io.open("https://nearpaste.vercel.app/" + id + "/raw"),
-		location: "https://nearpaste.vercel.app/" + id + "/raw"
-	};
-}
-
-function pasteToNEARPaste(text, title, callback) {
+function paste(text, title, callback) {
 
 	let response = httpUtils.sendRequest({
 		request: {
@@ -27,24 +18,29 @@ function pasteToNEARPaste(text, title, callback) {
 			isEncrypted: false
 		})
 	}, callback == null ? null : (response) => {
-		callback(JSON.parse(response.body).data.id);
+		callback(
+			"https://nearpaste.vercel.app/" +
+				JSON.parse(response.body).data.id +
+				"/raw");
 	});
 
-	if(callback == null)
-		return JSON.parse(response.body).data.id;
+	if(callback == null) {
+
+		return "https://nearpaste.vercel.app/" +
+			JSON.parse(response.body).data.id +
+			"/raw";
+	}
 }
 
 module.exports = {
 	methods: {
-		getFromNEARPaste,
-		pasteToNEARPaste
+		paste
 	},
 	interfaces: {
 		paste: {
 			name: "nearpaste",
 			methods: {
-				get: getFromNEARPaste,
-				paste: pasteToNEARPaste
+				paste
 			}
 		}
 	}
