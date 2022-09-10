@@ -18,6 +18,7 @@ function paste(text, title, callback) {
 			isEncrypted: false
 		})
 	}, callback == null ? null : (response) => {
+		
 		callback(
 			"https://nearpaste.vercel.app/" +
 				JSON.parse(response.body).data.id +
