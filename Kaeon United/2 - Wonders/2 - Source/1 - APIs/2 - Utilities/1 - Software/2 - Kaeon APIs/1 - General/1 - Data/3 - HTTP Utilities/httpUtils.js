@@ -1,5 +1,5 @@
 var moduleDependencies = {
-	cors: "https://ghost-cors.herokuapp.com/"
+	cors: "https://corsproxy.io/?"
 };
 
 function getPlatform() {
@@ -150,7 +150,9 @@ function sendRequest(request, callback) {
 			request.request.uri.startsWith("http://127.0.0.1") ||
 			request.request.uri.startsWith("https://127.0.0.1"))) {
 
-			request.request.uri = module.exports.cors + request.request.uri;
+			request.request.uri = module.exports.cors +
+				encodeURIComponent(request.request.uri).
+					split("%20").join("%2520");
 
 			if(request.headers == null)
 				request.headers = { };
