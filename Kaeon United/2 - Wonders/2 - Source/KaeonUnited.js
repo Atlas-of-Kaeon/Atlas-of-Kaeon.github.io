@@ -12,9 +12,6 @@ function appendInterface(main, resource) {
 
 	["components", "modules", "extensions"].forEach((field) => {
 
-		if(resource[field] == null)
-			return;
-
 		if(resource[field] != null) {
 
 			main[field] = main[field].concat(resource[field]).map((item) => {
@@ -83,7 +80,7 @@ function executeCommand(args, intervals) {
 					if(!item.startsWith("http://") &&
 						!item.startsWith("https://")) {
 						
-						execSync("npm install " + item);
+						execSync("npm install \"" + item + "\"");
 					}
 						
 					onDependency(item, "install");
@@ -111,7 +108,7 @@ function executeCommand(args, intervals) {
 					if(!item.startsWith("http://") &&
 						!item.startsWith("https://")) {
 						
-						execSync("npm uninstall " + item);
+						execSync("npm uninstall \"" + item + "\"");
 					}
 
 					interfaces.splice(interfaces.indexOf(item), 1);
@@ -646,10 +643,17 @@ function openResource(path) {
 						__dirname + "/kaeonUnited.json", "{}"
 					);
 				}
-				
-				openResource.cache = JSON.parse(require("fs").readFileSync(
-					__dirname + "/kaeonUnited.json", 'utf-8'
-				));
+
+				try {
+					
+					openResource.cache = JSON.parse(require("fs").readFileSync(
+						__dirname + "/kaeonUnited.json", 'utf-8'
+					));
+				}
+
+				catch(error) {
+					openResource.cache = { };
+				}
 			}
 
 			let requestClass = environment == "browser" ?
@@ -697,7 +701,7 @@ function openResource(path) {
 					}
 
 					catch(error) {
-
+						
 					}
 				}
 
@@ -853,7 +857,7 @@ if(environment == "node" && !united) {
 			
 					try {
 
-						execSync('npm install ' + path);
+						execSync("npm install \"" + path + "\"");
 
 						installedModules.push(path);
 					}
@@ -871,10 +875,13 @@ if(environment == "node" && !united) {
 						item = requireDefault(path);
 
 					else {
+			
+						data =
+							"require = arguments[0];var module={exports:{}};" +
+							openResource(path) +
+							";return module.exports;";
 
-						item = requireDefault("module").
-							prototype.
-							require(path);
+						item = (new Function(data))(require);
 					}
 
 					require.cache[path] = item;
