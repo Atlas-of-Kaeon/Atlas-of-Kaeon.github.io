@@ -12,6 +12,9 @@ function appendInterface(main, resource) {
 
 	["components", "modules", "extensions"].forEach((field) => {
 
+		if(resource[field] == null)
+			return;
+
 		if(resource[field] != null) {
 
 			main[field] = main[field].concat(resource[field]).map((item) => {
@@ -154,25 +157,36 @@ function executeCommand(args, intervals) {
 
 function executeCommandOperation(interface, args, intervals) {
 
-	let matched = false;
-
-	interface.components.forEach((item) => {
+	let components = interface.components.filter((item) => {
 		
-		if(item.environment.toLowerCase() == "javascript" ||
-			item.environment.toLowerCase() == "js") {
-
-			matched = true;
-
-			require(item.reference)(args, intervals);
-		}
+		return item.environment.toLowerCase() == "javascript" ||
+			item.environment.toLowerCase() == "js";
 	});
 
-	if(!matched && intervals != null) {
+	let open = components.length;
 
-		intervals.forEach((interval) => {
-			clearInterval(interval);
-		});
-	}
+	let callback = () => {
+
+		open--;
+
+		if(open == 0) {
+
+			intervals.forEach((interval) => {
+				clearInterval(interval);
+			});
+		}
+	};
+
+	components.forEach((item) => {
+
+		try {
+			require(item.reference)(args, callback);
+		}
+
+		catch(error) {
+			callback();
+		}
+	});
 }
 
 function executeModule(utility) {
@@ -325,7 +339,7 @@ function executeScript() {
 			
 			if(!options.dynamic) {
 				
-				allText = fetchOnlineResource(path);
+				allText = openResource(path);
 
 				require.cache[lowerPath] = newModule;
 			}
@@ -401,38 +415,6 @@ function executeScript() {
 	}
 }
 
-function fetchOnlineResource(path) {
-
-	try {
-
-		path = moduleDependencies.cors +
-			encodeURIComponent(path).split("%20").join("%2520");
-		
-		let rawFile = new XMLHttpRequest();
-
-		rawFile.open("GET", path, false);
-
-		let allText = "";
-
-		rawFile.onreadystatechange = function() {
-
-			if(rawFile.readyState === 4) {
-
-				if(rawFile.status === 200 || rawFile.status == 0)
-					allText = rawFile.responseText;
-			}
-		}
-
-		rawFile.send(null);
-
-		return allText;
-	}
-
-	catch(error) {
-		return "";
-	}
-}
-
 function fileExists(file) {
 
 	try {
@@ -476,7 +458,7 @@ function getInterface(environment) {
 		interface = Object.assign(
 			interface,
 			JSON.parse(
-				fetchOnlineResource(
+				openResource(
 					moduleDependencies.defaultInterface
 				)
 			)
@@ -494,7 +476,7 @@ function getInterface(environment) {
 					appendInterface(
 						interface,
 						JSON.parse(
-							fetchOnlineResource(item)
+							openResource(item)
 						)
 					);
 				}
@@ -648,6 +630,100 @@ function onDependency(item, command) {
 	});
 }
 
+function openResource(path) {
+
+	try {
+
+		let environment = getEnvironment();
+
+		if(path.startsWith("http://") || path.startsWith("https://")) {
+
+			if(environment == "node" && openResource.cache == null) {
+
+				if(!require("fs").existsSync("kaeonUnited.json")) {
+
+					require("fs").writeFileSync(
+						__dirname + "/kaeonUnited.json", "{}"
+					);
+				}
+				
+				openResource.cache = JSON.parse(require("fs").readFileSync(
+					__dirname + "/kaeonUnited.json", 'utf-8'
+				));
+			}
+
+			let requestClass = environment == "browser" ?
+				XMLHttpRequest :
+				require('xmlhttprequest').XMLHttpRequest;
+
+			if(environment == "browser" &&
+				(path.startsWith("http://") || path.startsWith("https://"))) {
+
+				path = moduleDependencies.cors +
+					encodeURIComponent(path).split("%20").join("%2520");
+			}
+
+			if(connected != -1) {
+				
+				let request = new requestClass();
+				request.open("GET", path, false);
+
+				let text = "";
+
+				request.onreadystatechange = function() {
+
+					if(request.readyState === 4) {
+
+						if(request.status === 200 || request.status == 0)
+							text = request.responseText;
+					}
+				}
+
+				request.send(null);
+
+				if(environment == "node") {
+
+					openResource.cache[path] = text;
+					
+					try {
+
+						require("fs").writeFile(
+							__dirname + "/kaeonUnited.json",
+							JSON.stringify(openResource.cache),
+							() => {
+
+							}
+						);
+					}
+
+					catch(error) {
+
+					}
+				}
+
+				return text;
+			}
+
+			else if(environment == "node") {
+
+				let text = openResource.cache[path];
+
+				return text != null ? text : "";
+			}
+		}
+
+		else if(environment == "node")
+			return require("fs").readFileSync(path, 'utf-8');
+	}
+
+	catch(error) {
+		
+	}
+
+	return "";
+}
+
+var connected = 1;
 var environment = getEnvironment();
 var intervals = [];
 var platform = getPlatform(environment);
@@ -663,7 +739,6 @@ if(typeof require != typeof undefined) {
 
 if(environment == "node" && !united) {
 
-	var connected = 1;
 	var dns = require("dns");
 	var execSync = require('child_process').execSync;
 	var fs = require('fs');
@@ -716,11 +791,6 @@ if(environment == "node" && !united) {
 		
 	}
 
-	if(!installedModules.includes("xmlhttprequest"))
-		execSync('npm install xmlhttprequest');
-
-	var xhr = require('xmlhttprequest');
-
 	require = function(path, options) {
 
 		if(typeof options != "object")
@@ -759,9 +829,6 @@ if(environment == "node" && !united) {
 			split("-").join("").split(" ").join("");
 
 		if(!options.dynamic) {
-
-			if(lowerPath == "xmlhttprequest")
-				return xhr;
 
 			if(lowerPath.endsWith("kaeonunited") ||
 				lowerPath.endsWith("kaeonunited.js")) {
@@ -821,7 +888,7 @@ if(environment == "node" && !united) {
 			}
 		}
 
-		let data = options.dynamic ? path : require.open(path);
+		let data = options.dynamic ? path : openResource(path);
 
 		if(require.oneSuite != null)
 			data = require.oneSuite.preprocess(data);
@@ -858,91 +925,6 @@ if(environment == "node" && !united) {
 			require.cache[path] = result;
 
 		return result;
-	}
-
-	require.open = function(path) {
-
-		if(require.open.cache == null) {
-
-			if(!fs.existsSync("kaeonUnited.json"))
-				fs.writeFileSync("kaeonUnited.json", "{}");
-
-			require.open.cache = JSON.parse(
-				fs.readFileSync("kaeonUnited.json", 'utf-8')
-			);
-		}
-
-		try {
-
-			if(!(path.toLowerCase().startsWith("http://") ||
-				path.toLowerCase().startsWith("https://"))) {
-				
-				return fs.readFileSync(path, 'utf-8');
-			}
-
-			else {
-
-				if(connected != -1) {
-
-					try {
-
-						let data = "";
-						let rawFile = new xhr.XMLHttpRequest();
-						
-						rawFile.open("GET", path, false);
-		
-						rawFile.onreadystatechange = function() {
-		
-							if(rawFile.readyState === 4) {
-		
-								if(rawFile.status === 200 ||
-									rawFile.status == 0) {
-
-									data = rawFile.responseText;
-
-									require.open.cache[path] = data;
-								}
-							}
-						}
-		
-						rawFile.send(null);
-
-						try {
-
-							fs.writeFile(
-								"kaeonUnited.json",
-								JSON.stringify(require.open.cache),
-								() => { }
-							);
-						}
-
-						catch(error) {
-							
-						}
-		
-						return data;
-					}
-
-					catch(error) {
-
-						let data = require.open.cache[path]
-
-						return data != null ? data : "";
-					}
-				}
-
-				else {
-
-					let data = require.open.cache[path]
-
-					return data != null ? data : "";
-				}
-			}
-		}
-
-		catch(error) {
-			return "";
-		}
 	}
 
 	try {
