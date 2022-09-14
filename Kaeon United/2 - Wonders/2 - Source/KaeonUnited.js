@@ -875,13 +875,22 @@ if(environment == "node" && !united) {
 						item = requireDefault(path);
 
 					else {
-			
-						data =
-							"require = arguments[0];var module={exports:{}};" +
-							openResource(path) +
-							";return module.exports;";
 
-						item = (new Function(data))(require);
+						let text = openResource(path);
+
+						try {
+							item = JSON.parse(text);
+						}
+
+						catch(error) {
+						
+							item = (new Function(
+								"require = arguments[0];" +
+									"var module={exports:{}};" +
+									text +
+									";return module.exports;"
+							))(require);
+						}
 					}
 
 					require.cache[path] = item;
