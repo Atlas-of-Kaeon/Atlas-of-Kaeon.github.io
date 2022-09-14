@@ -198,7 +198,7 @@ function executeModule(utility) {
 		for(let i = 0; i < interface.modules.length; i++) {
 
 			if(interface.modules[i].path.join(".").
-				toLowerCase().endsWith(utility)) {
+				toLowerCase().endsWith(utility.toLowerCase())) {
 				
 				let match = interface.
 					modules[i].
