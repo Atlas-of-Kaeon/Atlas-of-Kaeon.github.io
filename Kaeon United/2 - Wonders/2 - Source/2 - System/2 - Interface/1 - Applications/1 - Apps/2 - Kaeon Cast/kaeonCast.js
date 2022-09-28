@@ -1,5 +1,5 @@
 var moduleDependencies = {
-	cache: "https://ghost-cache.herokuapp.com/"
+	cache: "https://ghost-cache.vercel.app/"
 };
 
 var dimensions = require("kaeon-united")("dimensions");
