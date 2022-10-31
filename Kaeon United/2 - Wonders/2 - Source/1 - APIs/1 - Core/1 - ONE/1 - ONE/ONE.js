@@ -43,7 +43,7 @@ function create(content, parent) {
 
 	for(let i = 2; i < arguments.length; i++) {
 
-		child = child.concat(
+		children = children.concat(
 			Array.isArray(arguments[i]) ?
 				arguments[i] :
 				[arguments[i]]
