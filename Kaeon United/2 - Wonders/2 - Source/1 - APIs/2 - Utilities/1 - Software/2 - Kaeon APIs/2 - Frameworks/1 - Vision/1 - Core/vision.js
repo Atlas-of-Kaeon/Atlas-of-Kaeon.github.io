@@ -365,8 +365,22 @@ function stopScriptEngine() {
 	scriptEngine = null;
 }
 
-module.exports = {
+function setFavicon(src) {
 
+	vision.get("link[rel=\"shortcut icon\"]").forEach(vision.remove);
+
+	let link = vision.create({
+		tag: "link",
+		attributes: {
+			rel: "shortcut icon",
+			href: "" + src
+		}
+	});
+
+	document.head.appendChild(link);
+}
+
+module.exports = {
 	selectorRules,
 	load,
 	loadStyle,
@@ -384,4 +398,5 @@ module.exports = {
 	isVisible,
 	startScriptEngine,
 	stopScriptEngine,
+	setFavicon
 };

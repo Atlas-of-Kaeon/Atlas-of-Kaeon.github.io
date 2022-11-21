@@ -1,6 +1,7 @@
 var moduleDependencies = {
 	bootstrap: "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css",
-	cors: "https://corsproxy.io/?"
+	cors: "https://corsproxy.io/?",
+	icon: "https://raw.githubusercontent.com/Atlas-of-Kaeon/The-Principles-Library-of-Kaeon/master/The%20Principles%20Library%20of%20Kaeon/3%20-%20Wonders/1%20-%20Angaian/2%20-%20Images/2%20-%20Angaian%20Crest/Angaian%20Crest.png"
 };
 
 var dimensions = require("kaeon-united")("dimensions");
@@ -577,6 +578,8 @@ function showText(mode) {
 		oneText.value = "ERROR: INVALID ONE+";
 	}
 }
+
+vision.setFavicon(moduleDependencies.icon);
 
 document.title = "Kaeon Code";
 
