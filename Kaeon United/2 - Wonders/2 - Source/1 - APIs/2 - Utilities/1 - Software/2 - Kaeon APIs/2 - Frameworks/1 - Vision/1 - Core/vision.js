@@ -367,9 +367,9 @@ function stopScriptEngine() {
 
 function setFavicon(src) {
 
-	vision.get("link[rel=\"shortcut icon\"]").forEach(vision.remove);
+	get("link[rel=\"shortcut icon\"]").forEach(remove);
 
-	let link = vision.create({
+	let link = create({
 		tag: "link",
 		attributes: {
 			rel: "shortcut icon",
