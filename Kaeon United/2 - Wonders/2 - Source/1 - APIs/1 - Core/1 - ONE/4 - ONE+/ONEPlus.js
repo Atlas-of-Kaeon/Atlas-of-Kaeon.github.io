@@ -13,7 +13,7 @@ function clear(source) {
 		if(!inComment && lines[i].trim() == "-") {
 			
 			let length = getElementLength(lines, indent, i);
-			i += length != -1 ? length : 0;
+			i += length != -1 ? length + 1 : 0;
 
 			continue;
 		}
