@@ -1,569 +1,320 @@
 var one = require("kaeon-united")("one");
 var tokenizer = require("kaeon-united")("tokenizer");
 
-function read(data) {
+function clear(source) {
 
-	tokens = getTokens(data);
-	tokenize = tokenizer.tokenize(tokens, data);
-	nestToken = getIndentToken(data);
+	let indent = getIndent(source);
+	let lines = source.split("\n");
 
-	return process(tokens, preprocess(tokens, tokenize, nestToken), nestToken);
-}
+	let inComment = false;
 
-function getTokens(string) {
+	for(let i = 0; i < lines.length; i++) {
 
-	return [
-		"-",
-		"\n",
-		",",
-		":",
-		";",
-		"(",
-		")",
-		"{",
-		"}",
-		"~",
-		"\"",
-		"\'",
-		"[",
-		"]",
-		"#",
-		"#[",
-		"]#",
-		getIndentToken(string)
-	];
-}
-
-function getIndentToken(string) {
-
-	try {
-
-		var newLine = true;
-
-		for(var i = 0; i < string.length; i++) {
-
-			if(!newLine && string.charAt(i) != '\n')
-				continue;
-
-			if(string.charAt(i) == ' ' || string.charAt(i) == '\t') {
-
-				var token = "" + string.charAt(i);
-				i++;
-
-				while(i < string.length) {
-
-					if(string.charAt(i) == token.charAt(0))
-						token += string.charAt(i);
-
-					else
-						break;
-
-					i++;
-				}
-
-				if(i == string.length - 1)
-					continue;
-
-				if(string.charAt(i) != '\n' && string.charAt(i) != ' ' && string.charAt(i) != '\t')
-					return token;
-			}
-
-			else
-				newLine = string.charAt(i) == '\n';
-		}
-	}
-
-	catch(error) {
-
-	}
-
-	return "\t";
-}
-
-function preprocess(tokens, tokenize, data) {
-
-	var preprocess = [];
-
-	var inLiteralBlock = -1;
-	var inCommentBlock = false;
-
-	for(var i = 0; i < tokenize.length;) {
-
-		var line = getLine(tokenize, i);
-
-		var shift = line.length + 1;
-		var nest = getNest(line, nestToken);
-
-		if(isLiteralBlock(line, nest) && !inCommentBlock) {
-
-			if(inLiteralBlock == -1)
-				inLiteralBlock = nest;
-
-			else if(inLiteralBlock == nest)
-				inLiteralBlock = -1;
-		}
-
-		else if(isBlankLine(line) && inLiteralBlock == -1) {
-
-			i += shift;
+		if(!inComment && lines[i].trim() == "-") {
+			
+			let length = getElementLength(lines, indent, i);
+			i += length != -1 ? length : 0;
 
 			continue;
 		}
 
-		if(inLiteralBlock > -1) {
+		let line = "";
 
-			preprocess = preprocess.concat(line);
-			preprocess.push("\n");
+		let tokens = escape(tokenizer.tokenize([
+			"#", "#[", "]#", "~", "\'", "\""
+		], lines[i]));
 
-			i += shift;
+		for(let j = 0; j < tokens.length; j++) {
 
-			continue;
-		}
+			if(!inComment && tokens[j] == "#")
+				break;
 
-		var inLiteral = false;
-		var inLiteralQuote = false;
-		var inComment = false;
-
-		for(var j = 0; j < line.length; j++) {
-
-			if(inLiteral && !line[j] == "\'")
-				continue;
-
-			if(inLiteralQuote && !line[j] == "\"")
-				continue;
-
-			if(line[j] == "]#") {
-
-				inCommentBlock = false;
-
-				line.splice(j, 1);
-				j--;
-
-				continue;
-			}
-
-			if(inComment || inCommentBlock) {
-
-				line.splice(j, 1);
-				j--;
-
-				continue;
-			}
-
-			if(line[j] == "~") {
-
-				j++;
-
-				continue;
-			}
-
-			if(line[j] == "\"") {
-
-				inLiteralQuote = !inLiteralQuote;
-
-				continue;
-			}
-
-			if(line[j] == "\'") {
-
-				inLiteral = !inLiteral;
-
-				continue;
-			}
-
-			if(line[j] == "#") {
-
+			if(!inComment && tokens[j] == "#[")
 				inComment = true;
 
-				line.splice(j, 1);
-				j--;
-
-				continue;
-			}
-
-			if(line[j] == "#[") {
-
-				inCommentBlock = true;
-
-				line.splice(j, 1);
-				j--;
-
-				continue;
-			}
-
-			if(line[j].length == 0) {
-
-				line.splice(j, 1);
-				j--;
-
-				continue;
-			}
+			else if(inComment && tokens[j] == "]#")
+				inComment = false;
+			
+			else if(!inComment)
+				line += tokens[j];
 		}
 
-		preprocess = preprocess.concat(line);
-		preprocess.push("\n");
-
-		i += shift;
+		lines[i] = line.trim().length != 0 ? line : null;
 	}
 
-	if(preprocess.length > 0)
-		preprocess.splice(preprocess.length - 1, 1);
-
-	return preprocess;
+	return lines.filter(line => line != null).join("\n");
 }
 
-function process(tokens, tokenize, nestToken) {
+function escape(line) {
 
-	var element = one.create();
-
-	var currentElement = element;
-
-	var previousNest = 0;
-	var previousElement = element;
-
-	var baseElements = [];
-
-	var inLiteralBlock = false;
-	var literalNest = 0;
-	var literalString = "";
-
-	for(var i = 0; i < tokenize.length;) {
-
-		var line = getLine(tokenize, i);
-		var nest = getNest(line, nestToken);
-
-		if(!inLiteralBlock) {
-
-			if(nest > previousNest) {
-
-				baseElements.push(currentElement);
-
-				currentElement = previousElement;
-			}
-
-			else if(nest < previousNest) {
-
-				for(var j = nest; j < previousNest && baseElements.length > 0; j++)
-					currentElement = baseElements.splice(baseElements.length - 1, 1)[0];
-			}
-
-			previousNest = nest;
-		}
-
-		var literal =
-			isLiteralBlock(line, nest) &&
-			!(inLiteralBlock && nest != literalNest);
-
-		if(literal) {
-			inLiteralBlock = !inLiteralBlock;
-			literalNest = nest;
-		}
-
-		if(inLiteralBlock) {
-
-			if(!literal) {
-
-				for(var j = literalNest + 1; j < line.length; j++) {
-
-					literalString += line[j];
-
-					if(line[j] == "\n" && j < line.length) {
-
-						if(line[j + 1] != "\n")
-							j += literalNest + 1;
-					}
-				}
-
-				literalString += '\n';
-			}
-		}
-
-		else if(literal) {
-
-			previousElement = cropElement(getElement(literalString), true);
-			one.add(currentElement, previousElement);
-
-			literalString = "";
-		}
-
-		else if(line.length > 0)
-			previousElement = processLine(tokens, line, currentElement);
-
-		i += line.length + 1;
-	}
-
-	return element;
-}
-
-function getLine(tokenize, index) {
-
-	var line = [];
-
-	var openColon = 0;
-	var openBracket = 0;
-
-	for(var i = index; i < tokenize.length; i++) {
+	for(let i = 0; i < line.length - 1; i++) {
 		
-		if(tokenize[i] == "\n") {
+		if(line[i] == "~") {
 
-			if(i > index) {
+			line[i] += line[i + 1];
 
-				if(tokenize[i - 1] == ":")
-					openColon += 1;
-
-				if(tokenize[i - 1] == "{")
-					openBracket += 1;
-			}
-
-			if(openBracket == 0 && openColon == 0)
-				break;
+			line.splice(i + 1, 1);
 		}
+	}
 
-		else {
+	let inSingleQuote = false;
+	let inDoubleQuote = false;
 
-			if(openColon > 0 && tokenize[i] == ";")
-				openColon -= 1;
+	for(let i = 0; i < line.length - 1; i++) {
 
-			if(openBracket > 0 && tokenize[i] == "}")
-				openBracket -= 1;
+		let inQuote = inSingleQuote || inDoubleQuote;
+	
+		if(line[i] == "\'" && !inDoubleQuote)
+			inSingleQuote = !inSingleQuote;
+	
+		if(line[i] == "\"" && !inSingleQuote)
+			inDoubleQuote = !inDoubleQuote;
+
+		if(inQuote || inSingleQuote || inDoubleQuote) {
+
+			line[i] += line[i + 1];
+
+			if(inSingleQuote && line[i + 1] == "\'")
+				inSingleQuote = false;
+
+			if(inDoubleQuote && line[i + 1] == "\"")
+				inDoubleQuote = false;
+
+			line.splice(i + 1, 1);
+			i--;
 		}
-
-		line.push(tokenize[i]);
 	}
 
 	return line;
 }
 
-function getNest(line, nestToken) {
+function getActiveElement(element, nest) {
 
-	var nest = 0;
+	let current = element;
+	
+	for(let i = 0; i < nest; i++) {
 
-	for(var i = 0; i < line.length; i++) {
+		if(current.children.length > 0)
+			current = current.children[current.children.length - 1];
 
-		var token = line[i];
-
-		if(token != nestToken)
+		else
 			break;
-
-		nest++;
 	}
-
-	return nest;
+	
+	return current;
 }
 
-function isBlankLine(line) {
+function getElementContent(lines, indent, index, length) {
 
-	var blank = true;
+	let content = [];
+	let cutoff = getNest(lines[index], indent) * indent.length + 1;
 
-	for(var i = 0; i < line.length; i++) {
+	for(let i = index + 1; i < index + length + 1; i++) {
 
-		var token = line[i];
+		if(lines[i].length < cutoff)
+			content.push("");
 
-		if(token.trim().length > 0) {
+		else
+			content.push(lines[i].substring(cutoff));
+	}
 
-			blank = false;
+	return content.join("\n");
+}
 
+function getElementLength(lines, indent, index) {
+
+	let nest = getNest(lines[index], indent);
+
+	for(let i = index + 1; i < lines.length; i++) {
+
+		if(lines[i].trim() != "") {
+
+			let lineNest = getNest(lines[i], indent);
+
+			if(lines[i].trim() == "-" && nest == lineNest)
+				return i - index - 1;
+
+			else if(lineNest <= nest)
+				return -1;
+		}
+	}
+
+	return -1;
+}
+
+function getIndent(source) {
+	
+	let sample = source.split("\n").filter(line =>
+		line.trim().length > 0 && (
+			line.startsWith(" ") ||
+			line.startsWith("\t")
+		)
+	)[0];
+
+	return sample != null ?
+		sample.substring(0, sample.indexOf(sample.trim())) :
+		"\t";
+}
+
+function getNest(line, indent) {
+
+	let count = 0;
+
+	for(; count * indent.length < line.length; count++) {
+
+		if(!line.substring(count * indent.length).startsWith(indent))
 			break;
-		}
 	}
 
-	return blank;
+	return count;
 }
 
-function isLiteralBlock(line, nest) {
+function read(source) {
 
-	if(line.length != nest + 1 || line.length == 0)
-		return false;
+	let element = one.create();
 
-	return line[line.length - 1] == "-";
-}
+	let indent = getIndent(source);
+	source = clear(source).split("\n");
 
-function getElement(string) {
+	let baseElements = [element];
 
-	var element = one.create();
-	element.content = string;
+	for(let i = 0; i < source.length; i++) {
 
-	return element;
-}
+		let currentElement = element;
+		let nest = getNest(source[i], indent);
 
-function cropElement(element, literal) {
+		if(nest < baseElements.length) {
 
-	element.content = literal ?
-		element.content.substring(0, element.content.length - 1) :
-		element.content.trim();
+			currentElement = baseElements[nest];
 
-	return element;
-}
-
-function processLine(tokens, line, currentElement) {
-
-	var baseElement = currentElement;
-
-	var stack = [];
-	var nestStack = [];
-
-	var newLine = preprocessLine(tokens, line);
-
-	for(var i = 0; i < newLine.length; i++) {
-
-		var token = newLine[i];
-
-		if((!tokens.includes(token) || token == "-") && token.trim().length > 0) {
-
-			var newElement = cropElement(getElement(processContent(token)), false);
-
-			one.add(currentElement, newElement);
+			baseElements.splice(nest + 1);
 		}
 
-		if(token == ":" || token == "{") {
+		if(source[i].trim() == "-") {
+			
+			let length = getElementLength(source, indent, i);
+			
+			if(length != -1) {
 
-			if(token == "{")
-				nestStack.push(currentElement);
+				let newElement =
+					one.create(getElementContent(source, indent, i, length));
+	
+				one.add(currentElement, newElement);
 
-			if(currentElement.children.length > 0)
-				currentElement = currentElement.children[currentElement.children.length - 1];
-		}
-
-		if(token == ";" || token == "}") {
-
-			if(token == "}") {
-
-				if(nestStack.length > 0)
-					currentElement = nestStack.splice(nestStack.length - 1, 1)[0];
-			}
-
-			else if(currentElement.parent != null)
-				currentElement = currentElement.parent;
-		}
-
-		if(token == "(")
-			stack.push(currentElement);
-
-		if(token == ")" && stack.length > 0)
-			currentElement = stack.splice(stack.length - 1, 1)[0];
-	}
-
-	var previousElement = null;
-
-	if(currentElement.children.length > 0)
-		previousElement = currentElement.children[currentElement.children.length - 1];
-
-	else
-		previousElement = currentElement;
-
-	currentElement = baseElement;
-
-	return previousElement;
-}
-
-function processContent(content) {
-
-	for(var i = 0; i < content.length; i++) {
-
-		if(content.charAt(i) == '~') {
-
-			content = content.substring(0, i) + content.substring(i + 1);
-
-			if(content.length > 0) {
-
-				if(content.charAt(i) == 'n')
-					content = content.substring(0, i) + '\n' + content.substring(i + 1);
-
-				else if(content.charAt(i) == 't')
-					content = content.substring(0, i) + '\t' + content.substring(i + 1);
+				currentElement = newElement;
+				baseElements.push(currentElement);
+	
+				i += length + 1;
+	
+				continue;
 			}
 		}
-	}
 
-	return content;
-}
+		let separators = [",", ":", ";", "(", ")", "{", "}"];
 
-function preprocessLine(tokens, line) {
+		let tokens = escape(tokenizer.tokenize(
+			separators.concat(["~", "\'", "\""]),
+			source[i]
+		)).map((token) => {
+			
+			if(token.startsWith("~")) {
 
-	var newLine = line.slice();
+				if(token == "~n")
+					return "\n";
 
-	while(newLine.length > 0) {
+				if(token == "~t")
+					return "\t";
 
-		if(!tokens.includes(newLine[0]) ||
-			(newLine[0] == "~" ||
-			newLine[0] == "\"" ||
-			newLine[0] == "\'" ||
-			newLine[0] == "[") ||
-			newLine[0] == "-") {
+				return token;
+			}
+			
+			if(token.startsWith("\'")) {
 
-			break;
-		}
+				if(token.length > 1)
+					return token.substring(1, token.length - 1);
 
-		newLine.splice(0, 1);
-	}
+				return "";
+			}
 
-	for(var i = 0; i < newLine.length; i++) {
+			return token;
+		});
 
-		if(newLine[i] == "~") {
+		let parenStack = [];
+		let curlyStack = [];
 
-			if(i < newLine.length - 1)
-				newLine[i] = newLine[i] + newLine.splice(i + 1, 1)[0];
+		let root = one.create();
+		let content = null;
 
-			if(i > 0) {
+		nest = 0;
 
-				if(!tokens.includes(newLine[i - 1])) {
+		for(let i = 0; i < tokens.length; i++) {
 
-					i--;
+			if(tokens[i].trim().length == 0)
+				continue;
 
-					newLine[i] = newLine[i] + newLine.splice(i + 1, 1)[0];
+			let active = getActiveElement(root, nest);
+
+			if(!separators.includes(tokens[i])) {
+
+				let token = tokens[i].trim();
+
+				token = token.startsWith("~") ?
+					token.substring(1) :
+					token;
+
+				if(content == null) {
+					
+					content = one.create(token);
+
+					one.add(active, content);
 				}
+
+				else
+					content.content += token;
 			}
+
+			else
+				content = null;
+			
+			if(tokens[i] == ":" || tokens[i] == "{")
+				nest++;
+
+			if(tokens[i] == ";")
+				nest--;
+
+			if(tokens[i] == "(")
+				parenStack.push(nest);
+
+			if(tokens[i] == "{")
+				curlyStack.push(nest - 1);
+
+			if(tokens[i] == ")" && parenStack.length > 0)
+				nest = parenStack.pop();
+
+			if(tokens[i] == "}" && curlyStack.length > 0)
+				nest = curlyStack.pop();
+
+			if(nest < 0)
+				nest = 0;
 		}
 
-		if(newLine[i] == "\"") {
+		if(root.children.length > 0) {
+	
+			baseElements.push(getActiveElement(
+				root.children[root.children.length - 1],
+				nest
+			));
 
-			var literal = "\"";
-
-			while(i + 1 < newLine.length) {
-
-				var token = newLine.splice(i + 1, 1)[0];
-
-				if(token == "\"")
-					break;
-
-				literal += token;
-			}
-
-			newLine[i] = literal + '\"';
-		}
-
-		if(newLine[i] == "\'") {
-
-			var literal = "";
-
-			while(i + 1 < newLine.length) {
-
-				var token = newLine.splice(i + 1, 1)[0];
-
-				if(token == "\'")
-					break;
-
-				literal += token;
-			}
-
-			newLine[i] = literal;
+			root.children.forEach((item) => {
+				one.add(currentElement, item);
+			});
 		}
 	}
 
-	for(var i = 0; i < newLine.length - 1; i++) {
-
-		if((!tokens.includes(newLine[i]) || newLine[i] == "-") &&
-			(!tokens.includes(newLine[i + 1]) || newLine[i + 1] == "-")) {
-
-			newLine[i] = newLine[i] + newLine.splice(i + 1, 1)[0];
-
-			i--;
-		}
-	}
-
-	return newLine;
+	return element;
 }
 
 module.exports = {
+	clear,
 	read
 };

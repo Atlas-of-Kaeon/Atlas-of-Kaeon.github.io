@@ -53,7 +53,7 @@ the CommonJS require function shall accept dynamically generated module paths.</
 <li><p>CommonJS shall allow cross origin access to online modules via their URLs in both the browser and node.</p>
 </li>
 <li><p>The CommonJS require function shall allow for an optional second argument,
-a options object which shall allow said function to reload modules,
+an options object which shall allow said function to reload modules,
 to execute modules in the global scope,
 to load modules from strings in memory,
 and to load modules asynchronously.</p>
@@ -115,7 +115,7 @@ reference it via <a href="https://www.jsdelivr.com/">jsDelivr</a> or another sim
 
 <p>Kaeon United can be accessed through jsDelivr on <a href="https://www.npmjs.com/package/kaeon-united">its npm repository</a> via the following URL:</p>
 
-<pre><code>https://cdn.jsdelivr.net/npm/kaeon-united@1.0.84/KaeonUnited.js</code></pre>
+<pre><code>https://cdn.jsdelivr.net/npm/kaeon-united@1.0.85/KaeonUnited.js</code></pre>
 
 <p>As a script,
 Kaeon United shall provide access to the United JavaScript version of CommonJS in the browser.</p>

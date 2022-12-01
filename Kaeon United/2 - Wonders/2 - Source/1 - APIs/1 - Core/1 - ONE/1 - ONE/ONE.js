@@ -114,6 +114,21 @@ function getIndex(element) {
 	return element.parent.children.indexOf(element);
 }
 
+function getNest(element) {
+
+	let nest = 0;
+	let current = element;
+
+	while(current.parent != null) {
+
+		current = current.parent;
+
+		nest++;
+	}
+
+	return nest;
+}
+
 function getPath(element) {
 
 	let path = [];
@@ -392,6 +407,7 @@ module.exports = {
 	create,
 	get,
 	getIndex,
+	getNest,
 	getPath,
 	getRoot,
 	read,
