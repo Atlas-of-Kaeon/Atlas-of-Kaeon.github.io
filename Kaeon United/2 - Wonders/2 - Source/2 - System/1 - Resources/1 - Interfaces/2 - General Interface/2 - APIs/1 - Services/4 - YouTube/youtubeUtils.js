@@ -46,7 +46,7 @@ function play(id, options, element) {
 						"&loop=1" :
 					""
 				) +
-				(options.start ?
+				(options.start != null ?
 					"&start=" + options.start :
 					""
 				),
