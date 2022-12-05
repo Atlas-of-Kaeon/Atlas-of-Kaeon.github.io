@@ -45,6 +45,10 @@ function play(id, options, element) {
 						(options.list != null ? options.list : id) +
 						"&loop=1" :
 					""
+				) +
+				(options.start ?
+					"&start=" + options.start :
+					""
 				),
 			allow: "autoplay"
 		}
