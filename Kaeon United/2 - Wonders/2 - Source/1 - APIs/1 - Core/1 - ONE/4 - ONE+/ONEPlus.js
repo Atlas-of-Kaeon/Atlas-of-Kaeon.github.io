@@ -227,14 +227,6 @@ function read(source) {
 
 				return token;
 			}
-			
-			if(token.startsWith("\'")) {
-
-				if(token.length > 1)
-					return token.substring(1, token.length - 1);
-
-				return "";
-			}
 
 			return token;
 		});
@@ -261,6 +253,12 @@ function read(source) {
 				token = token.startsWith("~") ?
 					token.substring(1) :
 					token;
+			
+				if(token.startsWith("\'")) {
+	
+					if(token.length > 1)
+						token = token.substring(1, token.length - 1);
+				}
 
 				if(content == null) {
 					
