@@ -59,7 +59,7 @@ function getSite() {
 	getForums().forEach(forum => {
 	
 		getThreads(forum).forEach(thread => {
-			data = data.concat(getThread(thread));
+			data = data.concat(getThread(thread + ".json"));
 		});
 	});
 
