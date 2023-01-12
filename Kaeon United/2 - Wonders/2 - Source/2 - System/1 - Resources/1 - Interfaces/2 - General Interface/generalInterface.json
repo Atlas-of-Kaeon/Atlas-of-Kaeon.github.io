@@ -37,7 +37,7 @@
 			]
 		},
 		{
-			"path": ["general", "services", "youtubeUtils"],
+			"path": ["general", "services", "youUtils"],
 			"implementations": [
 				{
 					"environment": "javascript",
