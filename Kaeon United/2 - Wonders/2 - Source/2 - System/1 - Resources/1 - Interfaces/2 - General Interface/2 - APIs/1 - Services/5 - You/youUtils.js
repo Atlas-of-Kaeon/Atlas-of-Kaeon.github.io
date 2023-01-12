@@ -16,7 +16,7 @@ function chat(query) {
 
 	let chat = [];
 
-	for(let i = 0; i < query.chat.length; i++) {
+	for(let i = 0; i < query.chat.length; i += 2) {
 
 		chat.push({
 			question: query.chat[i],
