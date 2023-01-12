@@ -41,7 +41,16 @@
 			"implementations": [
 				{
 					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/2%20-%20System/1%20-%20Resources/1%20-%20Interfaces/2%20-%20General%20Interface/2%20-%20APIs/1%20-%20Services/5%20-%20YouTube/youtubeUtils.js"
+					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/2%20-%20System/1%20-%20Resources/1%20-%20Interfaces/2%20-%20General%20Interface/2%20-%20APIs/1%20-%20Services/5%20-%20You/youUtils.js"
+				}
+			]
+		},
+		{
+			"path": ["general", "services", "youtubeUtils"],
+			"implementations": [
+				{
+					"environment": "javascript",
+					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/2%20-%20System/1%20-%20Resources/1%20-%20Interfaces/2%20-%20General%20Interface/2%20-%20APIs/1%20-%20Services/6%20-%20YouTube/youtubeUtils.js"
 				}
 			]
 		},
