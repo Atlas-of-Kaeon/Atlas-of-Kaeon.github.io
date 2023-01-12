@@ -39,8 +39,6 @@ function chat(query) {
 	};
 }
 
-
-
 function open(path) {
 
 	try {
