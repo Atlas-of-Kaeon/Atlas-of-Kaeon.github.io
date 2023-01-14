@@ -1,3 +1,5 @@
+var tokenizer = require("kaeon-united")("tokenizer");
+
 function chat(query) {
 	
 	if(typeof query == "string")
@@ -37,6 +39,87 @@ function chat(query) {
 		text: text,
 		chat: query.chat.concat([query.text, text])
 	};
+}
+
+function clean(text) {
+	
+	let results = {
+		raw: text,
+		text: "",
+		items: { links: [], code: [] }
+	};
+
+	let tokens = tokenizer.tokenize([
+		"[[",
+		"]]",
+		"(",
+		")",
+		"```"
+	], text.trim());
+
+	for(let i = 0; i < tokens.length; i++) {
+		
+		if(tokens[i] == "[[") {
+			
+			let link = "";
+			let count = 1;
+
+			let j = i + 4;
+
+			for(; j < tokens.length && count > 0; j++) {
+				
+				if(tokens[j] == "(")
+					count++;
+
+				if(tokens[j] == ")")
+					count--;
+
+				if(count > 0)
+					link += tokens[j];
+			}
+
+			results.items.links.push({
+				index: results.text.length,
+				content: link
+			});
+
+			i = j - 1;
+		}
+		
+		else if(tokens[i] == "```") {
+			
+			let code = "";
+
+			let j = i + 1;
+
+			for(; j < tokens.length; j++) {
+				
+				if(tokens[j] == "```")
+					break;
+
+				code += tokens[j];
+			}
+
+			results.items.code.push({
+				index: results.text.length,
+				content: code.trim()
+			});
+
+			i = j;
+		}
+
+		else {
+
+			if(results.text.endsWith(" ") && tokens[i].startsWith(" "))
+				tokens[i] = tokens[i].substring(1);
+
+			results.text += tokens[i];
+		}
+	}
+
+	results.text = results.text.replace(/\s+([.,!":])/g, "$1");
+
+	return results;
 }
 
 function open(path) {
@@ -133,6 +216,7 @@ function searchImages(query, limit) {
 module.exports = {
 	methods: {
 		chat,
+		clean,
 		open,
 		parseResponse,
 		search,
@@ -142,7 +226,8 @@ module.exports = {
 		chat: {
 			name: "you",
 			methods: {
-				chat
+				chat,
+				clean
 			}
 		},
 		search: {
