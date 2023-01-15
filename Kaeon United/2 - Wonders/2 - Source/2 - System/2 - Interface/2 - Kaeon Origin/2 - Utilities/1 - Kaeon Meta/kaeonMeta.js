@@ -47,7 +47,7 @@ if(window.fileSystem == null)
 				"dispatch": "Storage://User/Applications/Processes/kaeonMeta/Management/metaDispatch.js",
 				"dispatchers": [
 					"Storage://User/Applications/Processes/kaeonMeta/Dispatchers/mediaDispatcher.js",
-					"Storage://User/Applications/Processes/kaeonMeta/Dispatchers/articleDispatcher.js"
+					"Storage://User/Applications/Processes/kaeonMeta/Dispatchers/chatDispatcher.js"
 				],
 				"interfaces": [
 					"Storage://User/Applications/Processes/kaeonMeta/Interfaces/metaSpeech.js"
@@ -84,7 +84,13 @@ if(window.fileSystem == null)
 					"play meda",
 					"hey medda",
 					"a medda",
-					"play medda"
+					"play medda",
+					"hey martha",
+					"a martha",
+					"play martha",
+					"hey mother",
+					"a mother",
+					"play mother"
 				];
 
 				que = (Array.isArray(que) ? que : [que]).map((item) => {
@@ -181,13 +187,15 @@ if(window.fileSystem == null)
 		`
 	],
 	[
-		"Storage://User/Applications/Processes/kaeonMeta/Dispatchers/articleDispatcher.js",
+		"Storage://User/Applications/Processes/kaeonMeta/Dispatchers/chatDispatcher.js",
 		`
-			if(arguments[0].toLowerCase().startsWith("tell me about ")) {
+			if(!arguments[0].toLowerCase().startsWith("cast ") &&
+				!arguments[0].toLowerCase().startsWith("play ") &&
+				!arguments[0].toLowerCase().startsWith("stop")) {
 
 				fileSystem.executeCommand(
-					"Storage://User/Applications/Processes/kaeonMeta/Apps/readArticleSummary.js \\"" +
-						arguments[0].substring(14).trim() +
+					"Storage://User/Applications/Processes/kaeonMeta/Apps/chatQuery.js \\"" +
+						arguments[0] +
 						"\\""
 				);
 			}
@@ -214,14 +222,13 @@ if(window.fileSystem == null)
 		`
 	],
 	[
-		"Storage://User/Applications/Processes/kaeonMeta/Apps/readArticleSummary.js",
+		"Storage://User/Applications/Processes/kaeonMeta/Apps/chatQuery.js",
 		`
-			let article = require("kaeon-united")("generalReference")("article");
+			let chat = require("kaeon-united")("generalReference")("chat");
 
-			let results = article.search(arguments[0]);
-
-			if(results.length > 0)
-				require("kaeon-united")("speech").speak(article.getSummary(results[0]));
+			require("kaeon-united")("speech").speak(
+				chat.clean(chat.chat(arguments[0]).text).text
+			);
 		`
 	],
 	[
