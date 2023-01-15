@@ -118,6 +118,8 @@ if(window.fileSystem == null)
 						terminals[0].logContent("META RECEIVED: " + text);
 
 						if(listening > 0) {
+
+							listening = 0;
 							
 							fileSystem.executeCommand(
 								config.dispatch +
