@@ -1,29 +1,31 @@
 var io = require("kaeon-united")("io");
 var vision = require("kaeon-united")("vision");
 
-function getData(array, item) {
+function getData(item) {
 
-	let newData = [];
-
-	let newArray = item.data.body != null ?
-		array.concat(item.data.body) :
-		array;
+	let data = {
+		text: item.data.body != null ?
+			item.data.body :
+			""
+	};
 
 	let replies = item.data.replies;
 
 	if(typeof replies != "object")
-		return [newArray];
+		return data;
 
 	replies = replies.data.children;
 
 	if(replies.length == 0)
-		return [newArray];
+		return data;
+
+	data.responses = [];
 
 	replies.forEach(reply => {
-		newData = newData.concat(getData(newArray, reply));
+		data.responses.push(getData(reply));
 	});
 
-	return newData;
+	return data;
 }
 
 function getForums() {
@@ -59,7 +61,7 @@ function getSite() {
 	getForums().forEach(forum => {
 	
 		getThreads(forum).forEach(thread => {
-			data = data.concat(getThread(thread + ".json"));
+			data.push(getThread(thread + ".json"));
 		});
 	});
 
@@ -70,20 +72,24 @@ function getThread(url) {
 
 	try {
 	
-		let data = [];
-	
 		let source = JSON.parse(io.open(url));
-		let array = [getPrompt(source[0])];
+
+		let data = { text: getPrompt(source[0]) };
+
+		if(source[1].data.children.length > 0) {
+
+			data.responses = [];
 		
-		source[1].data.children.forEach(item => {
-			data = data.concat(getData(array, item));
-		});
+			source[1].data.children.forEach(item => {
+				data.responses.push(getData(item));
+			});
+		}
 	
 		return data;
 	}
 
 	catch(error) {
-		return [];
+		return { text: "", responses: [] };
 	}
 }
 
