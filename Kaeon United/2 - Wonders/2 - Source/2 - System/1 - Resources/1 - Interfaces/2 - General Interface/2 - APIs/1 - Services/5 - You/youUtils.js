@@ -28,7 +28,7 @@ function chat(query) {
 
 	let text = parseResponse(
 		open(
-			"https://you.com/api/youchatStreaming?question=" +
+			"https://you.com/api/streamingSearch?domain=youchat&q=" +
 				encodeURIComponent(query.text) +
 				"&chat=" +
 				encodeURIComponent(JSON.stringify(chat))
@@ -156,17 +156,17 @@ function parseResponse(data) {
 
 		let lines = item.split("\n");
 
-		if(lines[0].trim() != "event: token")
+		if(lines[0].trim() != "event: youChatToken")
 			return "";
 
-		return JSON.parse(lines[1].trim().substring(6).trim()).token;
+		return JSON.parse(lines[1].trim().substring(6).trim()).youChatToken;
 	}).join("");
 }
 
 function search(query, limit) {
 
 	return searchExecute(
-		query, limit, 10, "search", "search", "bing_search_results"
+		query, limit, 10, "search", "search", "third_party_search_results"
 	);
 }
 
