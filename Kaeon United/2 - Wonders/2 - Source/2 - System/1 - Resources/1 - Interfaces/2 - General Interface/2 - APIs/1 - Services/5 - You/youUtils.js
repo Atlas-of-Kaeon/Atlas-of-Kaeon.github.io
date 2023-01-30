@@ -1,6 +1,6 @@
 var tokenizer = require("kaeon-united")("tokenizer");
 
-function chat(query) {
+function chat(query, callback) {
 	
 	if(typeof query == "string")
 		query = { text: query, chat: [] };
@@ -26,19 +26,31 @@ function chat(query) {
 		});
 	}
 
-	let text = parseResponse(
-		open(
-			"https://you.com/api/streamingSearch?domain=youchat&q=" +
-				encodeURIComponent(query.text) +
-				"&chat=" +
-				encodeURIComponent(JSON.stringify(chat))
-		)
+	let response = open(
+		"https://you.com/api/streamingSearch?domain=youchat&q=" +
+			encodeURIComponent(query.text) +
+			"&chat=" +
+			encodeURIComponent(JSON.stringify(chat)),
+		callback != null ? (response) => {
+
+			let text = parseResponse(response);
+
+			callback({
+				text: text,
+				chat: query.chat.concat([query.text, text])
+			});
+		} : null
 	);
 	
-	return {
-		text: text,
-		chat: query.chat.concat([query.text, text])
-	};
+	if(callback == null) {
+
+		let text = parseResponse(response);
+	
+		return {
+			text: text,
+			chat: query.chat.concat([query.text, text])
+		};
+	}
 }
 
 function clean(text) {
@@ -122,21 +134,44 @@ function clean(text) {
 	return results;
 }
 
-function open(path) {
+function concatResults(results, response, object, list) {
+
+	return results.concat(
+		response.trim().split("\n\n").map(item => {
+			
+			item = item.split("\n");
+			
+			if(item[0] != "event: thirdPartySearchResults")
+				return [];
+
+			return JSON.parse(
+				item[1].trim().substring(5).trim()
+			)[object][list].map(item => item.url);
+		}).flat()
+	);
+}
+
+function open(path, callback) {
 
 	try {
 		
 		let xhr = new XMLHttpRequest();
-		xhr.open("GET", path, false);
+		xhr.open("GET", path, callback != null);
 
-		let text = "";
+		let text = null;
 
 		xhr.onreadystatechange = function() {
 
 			if(xhr.readyState === 4) {
 
-				if(xhr.status === 200 || xhr.status == 0)
-					text = xhr.responseText;
+				if(xhr.status === 200 || xhr.status == 0) {
+
+					if(callback != null)
+						callback(xhr.responseText);
+
+					else
+						text = xhr.responseText;
+				}
 			}
 		}
 
@@ -163,53 +198,54 @@ function parseResponse(data) {
 	}).join("");
 }
 
-function search(query, limit) {
+function search(query, limit, callback) {
 
 	return searchExecute(
-		query, limit, 10, "search", "search", "third_party_search_results"
+		query, limit, callback, 10, "search", "search", "third_party_search_results"
 	);
 }
 
-function searchExecute(query, limit, increment, domain, object, list) {
+function searchExecute(query, limit, callback, increment, domain, object, list) {
 
 	let pages = Math.ceil((limit != null ? limit : increment) / increment);
 
 	let results = [];
+	let count = 0;
 
 	for(let i = 0; i < pages; i++) {
 
-		results = results.concat(
-			open(
-				"https://you.com/api/streamingSearch?q=" +
-					encodeURIComponent(query) +
-					"&page=" +
-					i +
-					"&count=" +
-					(pages * increment) +
-					"&domain=" +
-					domain
-			).trim().split("\n\n").map(item => {
-				
-				item = item.split("\n");
-				
-				if(item[0] != "event: thirdPartySearchResults")
-					return [];
-	
-				return JSON.parse(
-					item[1].trim().substring(5).trim()
-				)[object][list].map(item => item.url);
-			}).flat()
+		let response = open(
+			"https://you.com/api/streamingSearch?q=" +
+				encodeURIComponent(query) +
+				"&page=" +
+				i +
+				"&count=" +
+				(pages * increment) +
+				"&domain=" +
+				domain,
+			callback != null ? (response) => {
+
+				results = concatResults(results, response, object, list);
+				count++;
+
+				if(count == pages)
+					callback(results);
+			} : null
 		);
+
+		if(callback == null)
+			results = concatResults(results, response, object, list);
 	}
 
-	return results.slice(0, limit);
+	if(callback == null)
+		return results.slice(0, limit < results.length ? limit : results.length);
 
 }
 
-function searchImages(query, limit) {
+function searchImages(query, limit, callback) {
 
 	return searchExecute(
-		query, limit, 30, "image", "image", "results"
+		query, limit, callback, 30, "image", "image", "results"
 	);
 }
 
