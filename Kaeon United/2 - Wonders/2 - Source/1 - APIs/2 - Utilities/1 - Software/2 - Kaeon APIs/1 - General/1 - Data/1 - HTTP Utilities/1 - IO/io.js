@@ -20,8 +20,8 @@ module.exports = {
 	open: (file, callback, cors) => {
 
 		if(platform != "node" ||
-			file.toLowerCase().startWith("http://") ||
-			file.toLowerCase().startWith("https://")) {
+			file.toLowerCase().startsWith("http://") ||
+			file.toLowerCase().startsWith("https://")) {
 
 			let response = httpUtils.sendRequest(
 				{
@@ -47,7 +47,7 @@ module.exports = {
 		else {
 
 			require("fs").readFile(file, null, (error, data) => {
-				
+
 				if(error != null)
 					callback("");
 
