@@ -131,12 +131,12 @@ var moduleDependencies = {
 						},
 						management: {
 							admin: {
-								autoVersioner: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/1%20-%20Admin/2%20-%20Versions/1%20-%20Auto%20Versioner/autoVersioner.js",
+								autoVersioner: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/2%20-%20Admin/2%20-%20Versions/1%20-%20Auto%20Versioner/autoVersioner.js",
 								network: {
-									connectionMonitor: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/1%20-%20Admin/1%20-%20Network/1%20-%20Connection/connectionMonitor.js",
-									wifi: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/1%20-%20Admin/1%20-%20Network/1%20-%20WiFi/wifi.js"
+									connectionMonitor: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/2%20-%20Admin/1%20-%20Network/1%20-%20Connection/connectionMonitor.js",
+									wifi: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/2%20-%20Admin/1%20-%20Network/1%20-%20WiFi/wifi.js"
 								},
-								terminalLogger: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/1%20-%20Admin/3%20-%20Logging/1%20-%20Terminal%20Logger/terminalLogger.js"
+								terminalLogger: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/2%20-%20Admin/3%20-%20Logging/1%20-%20Terminal%20Logger/terminalLogger.js"
 							},
 							process: {
 								override: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/1%20-%20Process/2%20-%20Override/override.js",
@@ -153,10 +153,10 @@ var moduleDependencies = {
 						},
 					},
 					utilities: {
-						generalUniverse: "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/3%20-%20Utilities/4%20-%20Simulation/1%20-%20General%20Universe/generalUniverse.js",
-						generationUtils: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/3%20-%20Utilities/3%20-%20Generation/generationUtils.js",
-						kryptoX: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/3%20-%20Utilities/2%20-%20Encryption/1%20-%20Krypto%20X/kryptoX.js",
-						ticTacToe: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/3%20-%20Utilities/1%20-%20AI/1%20-%20Tic%20Tac%20Toe/ticTacToe.js"
+						generalUniverse: "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/3%20-%20Utilities/4%20-%20Simulation/1%20-%20General%20Universe/generalUniverse.js",
+						generationUtils: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/3%20-%20Utilities/3%20-%20Generation/generationUtils.js",
+						kryptoX: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/3%20-%20Utilities/2%20-%20Encryption/1%20-%20Krypto%20X/kryptoX.js",
+						ticTacToe: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/3%20-%20Utilities/1%20-%20AI/1%20-%20Tic%20Tac%20Toe/ticTacToe.js"
 					}
 				}
 			}
