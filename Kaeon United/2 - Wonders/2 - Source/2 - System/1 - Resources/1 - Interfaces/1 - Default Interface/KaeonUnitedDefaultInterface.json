@@ -459,38 +459,29 @@
 			]
 		},
 		{
-			"path": ["utilities", "software", "general", "data", "API", "httpUtils"],
+			"path": ["utilities", "software", "general", "data", "httpUtils"],
 			"implementations": [
 				{
 					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/3%20-%20HTTP%20Utilities/httpUtils.js"
+					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/1%20-%20HTTP%20Utilities/httpUtils.js"
 				}
 			]
 		},
 		{
-			"path": ["utilities", "software", "general", "data", "io"],
+			"path": ["utilities", "software", "general", "data", "httpUtils", "io"],
 			"implementations": [
 				{
 					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/1%20-%20IO/io.js"
+					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/1%20-%20HTTP%20Utilities/1%20-%20IO/io.js"
 				}
 			]
 		},
 		{
-			"path": ["utilities", "software", "general", "data", "parsing", "formatConverter"],
+			"path": ["utilities", "software", "general", "data", "parsing", "ONE", "formatConverter"],
 			"implementations": [
 				{
 					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/2%20-%20Parsing/3%20-%20Format%20Converter/formatConverter.js"
-				}
-			]
-		},
-		{
-			"path": ["utilities", "software", "general", "data", "parsing", "tokenizer"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/2%20-%20Parsing/1%20-%20Tokenizer/tokenizer.js"
+					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/2%20-%20Parsing/2%20-%20Utilities/1%20-%20ONE/3%20-%20Format%20Converter/formatConverter.js"
 				}
 			]
 		},
@@ -513,29 +504,47 @@
 			]
 		},
 		{
-			"path": ["utilities", "software", "general", "management", "network", "connectionManager"],
+			"path": ["utilities", "software", "general", "data", "parsing", "tokenizer"],
 			"implementations": [
 				{
 					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/1%20-%20Network/3%20-%20Connection/connectionMonitor.js"
+					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/2%20-%20Parsing/1%20-%20Tokenizer/tokenizer.js"
 				}
 			]
 		},
 		{
-			"path": ["utilities", "software", "general", "management", "network", "server"],
+			"path": ["utilities", "software", "general", "management", "admin", "autoVersioner"],
 			"implementations": [
 				{
 					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/1%20-%20Network/1%20-%20Server/server.js"
+					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/1%20-%20Admin/2%20-%20Versions/1%20-%20Auto%20Versioner/autoVersioner.js"
 				}
 			]
 		},
 		{
-			"path": ["utilities", "software", "general", "management", "network", "wifi"],
+			"path": ["utilities", "software", "general", "management", "admin", "network", "connectionMonitor"],
 			"implementations": [
 				{
 					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/1%20-%20Network/2%20-%20WiFi/wifi.js"
+					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/1%20-%20Admin/1%20-%20Network/1%20-%20Connection/connectionMonitor.js"
+				}
+			]
+		},
+		{
+			"path": ["utilities", "software", "general", "management", "admin", "network", "wifi"],
+			"implementations": [
+				{
+					"environment": "javascript",
+					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/1%20-%20Admin/1%20-%20Network/1%20-%20WiFi/wifi.js"
+				}
+			]
+		},
+		{
+			"path": ["utilities", "software", "general", "management", "admin", "terminalLogger"],
+			"implementations": [
+				{
+					"environment": "javascript",
+					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/1%20-%20Admin/3%20-%20Logging/1%20-%20Terminal%20Logger/terminalLogger.js"
 				}
 			]
 		},
@@ -544,7 +553,7 @@
 			"implementations": [
 				{
 					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Application/1%20-%20Management/2%20-%20Process/2%20-%20Override/override.js"
+					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/1%20-%20Process/2%20-%20Override/override.js"
 				}
 			]
 		},
@@ -553,7 +562,7 @@
 			"implementations": [
 				{
 					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/2%20-%20Process/1%20-%20Platform/platform.js"
+					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/1%20-%20Process/1%20-%20Platform/platform.js"
 				}
 			]
 		},
@@ -562,34 +571,70 @@
 			"implementations": [
 				{
 					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/3%20-%20Devices/1%20-%20Serial/serial.js"
+					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/3%20-%20Hardware/1%20-%20Serial/serial.js"
 				}
 			]
 		},
 		{
-			"path": ["utilities", "software", "general", "operations", "jsh"],
+			"path": ["utilities", "software", "general", "system", "server"],
 			"implementations": [
 				{
 					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/3%20-%20Operations/2%20-%20JSH/jsh.js"
+					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/3%20-%20System/1%20-%20Server/server.js"
 				}
 			]
 		},
 		{
-			"path": ["utilities", "software", "general", "operations", "virtualSystem"],
+			"path": ["utilities", "software", "general", "system", "server", "jsh"],
 			"implementations": [
 				{
 					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/3%20-%20Operations/1%20-%20Virtual%20System/virtualSystem.js"
+					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/3%20-%20System/1%20-%20Server/1%20-%20JSH/jsh.js"
 				}
 			]
 		},
 		{
-			"path": ["utilities", "software", "general", "processes", "generalUniverse"],
+			"path": ["utilities", "software", "general", "system", "virtualSystem"],
 			"implementations": [
 				{
 					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/4%20-%20Processes/1%20-%20Simulation/1%20-%20General%20Universe/generalUniverse.js"
+					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/3%20-%20System/2%20-%20Virtual%20System/virtualSystem.js"
+				}
+			]
+		},
+		{
+			"path": ["utilities", "software", "utilities", "generalUniverse"],
+			"implementations": [
+				{
+					"environment": "javascript",
+					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/3%20-%20Utilities/4%20-%20Simulation/1%20-%20General%20Universe/generalUniverse.js"
+				}
+			]
+		},
+		{
+			"path": ["utilities", "software", "utilities", "generationUtils"],
+			"implementations": [
+				{
+					"environment": "javascript",
+					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/3%20-%20Utilities/3%20-%20Generation/generationUtils.js"
+				}
+			]
+		},
+		{
+			"path": ["utilities", "software", "utilities", "kryptoX"],
+			"implementations": [
+				{
+					"environment": "javascript",
+					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/3%20-%20Utilities/2%20-%20Encryption/1%20-%20Krypto%20X/kryptoX.js"
+				}
+			]
+		},
+		{
+			"path": ["utilities", "software", "utilities", "ticTacToe"],
+			"implementations": [
+				{
+					"environment": "javascript",
+					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/3%20-%20Utilities/1%20-%20AI/1%20-%20Tic%20Tac%20Toe/ticTacToe.js"
 				}
 			]
 		},

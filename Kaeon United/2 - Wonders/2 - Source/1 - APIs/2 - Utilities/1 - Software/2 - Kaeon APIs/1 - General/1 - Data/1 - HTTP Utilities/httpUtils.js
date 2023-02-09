@@ -2,20 +2,7 @@ var moduleDependencies = {
 	cors: "https://corsproxy.io/?"
 };
 
-function getPlatform() {
-
-	if(typeof process === 'object') {
-
-		if(typeof process.versions === 'object') {
-
-			if(typeof process.versions.node !== 'undefined') {
-				return "node";
-			}
-		}
-	}
-
-	return "browser";
-}
+var platform = require("kaeon-united")("platform");
 
 function getURLArguments(url) {
 
@@ -130,27 +117,30 @@ function toJSON(http) {
 	return json;
 }
 
-function sendRequest(request, callback) {
+function sendRequest(request, callback, cors) {
+
+	cors = cors != false ?
+		(typeof cors == "string" ? cors : module.exports.cors) : null;
 
 	if(typeof request == "string")
 		request = toJSON(request);
 
 	let call = null;
 
-	if(getPlatform() == "node")
+	if(platform.getPlatform() == "node")
 		call = new (require("xmlhttprequest").XMLHttpRequest)();
 		
 	else {
 
 		call = new XMLHttpRequest();
 
-		if(module.exports.cors != null && !(
+		if(cors != null && !(
 			request.request.uri.startsWith("http://localhost") ||
 			request.request.uri.startsWith("https://localhost") ||
 			request.request.uri.startsWith("http://127.0.0.1") ||
 			request.request.uri.startsWith("https://127.0.0.1"))) {
 
-			request.request.uri = module.exports.cors +
+			request.request.uri = cors +
 				encodeURIComponent(request.request.uri).
 					split("%20").join("%2520");
 

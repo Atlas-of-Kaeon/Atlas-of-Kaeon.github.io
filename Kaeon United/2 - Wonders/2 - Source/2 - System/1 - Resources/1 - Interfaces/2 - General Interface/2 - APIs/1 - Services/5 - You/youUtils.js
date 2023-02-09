@@ -1,3 +1,4 @@
+var io = require("kaeon-united")("io");
 var tokenizer = require("kaeon-united")("tokenizer");
 
 function chat(query, callback) {
@@ -26,7 +27,7 @@ function chat(query, callback) {
 		});
 	}
 
-	let response = open(
+	let response = io.open(
 		"https://you.com/api/streamingSearch?domain=youchat&q=" +
 			encodeURIComponent(query.text) +
 			"&chat=" +
@@ -39,7 +40,8 @@ function chat(query, callback) {
 				text: text,
 				chat: query.chat.concat([query.text, text])
 			});
-		} : null
+		} : null,
+		false
 	);
 	
 	if(callback == null) {
@@ -151,40 +153,6 @@ function concatResults(results, response, object, list) {
 	);
 }
 
-function open(path, callback) {
-
-	try {
-		
-		let xhr = new XMLHttpRequest();
-		xhr.open("GET", path, callback != null);
-
-		let text = null;
-
-		xhr.onreadystatechange = function() {
-
-			if(xhr.readyState === 4) {
-
-				if(xhr.status === 200 || xhr.status == 0) {
-
-					if(callback != null)
-						callback(xhr.responseText);
-
-					else
-						text = xhr.responseText;
-				}
-			}
-		}
-
-		xhr.send(null);
-
-		return text;
-	}
-
-	catch(error) {
-		return "";
-	}
-}
-
 function parseResponse(data) {
 
 	return data.trim().split("\n\n").map(item => {
@@ -214,7 +182,7 @@ function searchExecute(query, limit, callback, increment, domain, object, list) 
 
 	for(let i = 0; i < pages; i++) {
 
-		let response = open(
+		let response = io.open(
 			"https://you.com/api/streamingSearch?q=" +
 				encodeURIComponent(query) +
 				"&page=" +
@@ -230,7 +198,8 @@ function searchExecute(query, limit, callback, increment, domain, object, list) 
 
 				if(count == pages)
 					callback(results);
-			} : null
+			} : null,
+			false
 		);
 
 		if(callback == null)
@@ -253,7 +222,6 @@ module.exports = {
 	methods: {
 		chat,
 		clean,
-		open,
 		parseResponse,
 		search,
 		searchImages

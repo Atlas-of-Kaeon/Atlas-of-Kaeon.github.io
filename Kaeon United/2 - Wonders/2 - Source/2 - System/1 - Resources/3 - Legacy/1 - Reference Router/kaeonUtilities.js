@@ -1,13 +1,6 @@
 var root = "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/"
 
 var moduleDependencies = {
-	applications: {
-		cors: {
-			ghostCORS: "https://ghost-cors.herokuapp.com/"
-		},
-		kaeonOrigin: root + "3%20-%20Applications/1%20-%20Kaeon%20Origin/2%20-%20Monolith/kaeonOrigin.js"
-	},
-	kaeonUnited: root + "3%20-%20Applications/1%20-%20Kaeon%20Origin/1%20-%20Legacy/kaeonOrigin.js",
 	modules: {
 		js: {
 			generalReference: root + "2%20-%20System/1%20-%20Resources/1%20-%20Interfaces/2%20-%20General%20Interface/1%20-%20Module/generalReference.js",
@@ -123,35 +116,47 @@ var moduleDependencies = {
 					},
 					general: {
 						data: {
-							httpUtils: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/3%20-%20HTTP%20Utilities/httpUtils.js",
-							io: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/1%20-%20IO/io.js",
+							httpUtilities: {
+								httpUtils: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/1%20-%20HTTP%20Utilities/httpUtils.js",
+								io: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/1%20-%20HTTP%20Utilities/1%20-%20IO/io.js",
+							},
 							parsing: {
-								formatConverter: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/2%20-%20Parsing/3%20-%20Format%20Converter/formatConverter.js",
-								tokenizer: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/2%20-%20Parsing/1%20-%20Tokenizer/tokenizer.js",
-								utilities: {
-									ONE: {
-										paperONE: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/2%20-%20Parsing/2%20-%20Utilities/1%20-%20ONE/2%20-%20Paper%20ONE/paperONE.js",
-										wrapONE: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/2%20-%20Parsing/2%20-%20Utilities/1%20-%20ONE/1%20-%20Wrap%20ONE/wrapONE.js"
-									}
-								}
+								ONE: {
+									formatConverter: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/2%20-%20Parsing/2%20-%20Utilities/1%20-%20ONE/3%20-%20Format%20Converter/formatConverter.js",
+									paperONE: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/2%20-%20Parsing/2%20-%20Utilities/1%20-%20ONE/2%20-%20Paper%20ONE/paperONE.js",
+									wrapONE: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/2%20-%20Parsing/2%20-%20Utilities/1%20-%20ONE/1%20-%20Wrap%20ONE/wrapONE.js"
+								},
+								tokenizer: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/2%20-%20Parsing/1%20-%20Tokenizer/tokenizer.js"
 							}
 						},
 						management: {
-							network: {
-								server: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/1%20-%20Network/1%20-%20Server/server.js",
-								wifi: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/1%20-%20Network/2%20-%20WiFi/wifi.js"
+							admin: {
+								autoVersioner: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/1%20-%20Admin/2%20-%20Versions/1%20-%20Auto%20Versioner/autoVersioner.js",
+								network: {
+									connectionMonitor: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/1%20-%20Admin/1%20-%20Network/1%20-%20Connection/connectionMonitor.js",
+									wifi: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/1%20-%20Admin/1%20-%20Network/1%20-%20WiFi/wifi.js"
+								},
+								terminalLogger: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/1%20-%20Admin/3%20-%20Logging/1%20-%20Terminal%20Logger/terminalLogger.js"
 							},
 							process: {
-								override: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/2%20-%20Process/2%20-%20Override/override.js",
-								platform: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/2%20-%20Process/1%20-%20Platform/platform.js"
+								override: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/1%20-%20Process/2%20-%20Override/override.js",
+								platform: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/1%20-%20Process/1%20-%20Platform/platform.js"
 							},
-							serial: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/3%20-%20Devices/1%20-%20Serial/serial.js"
+							serial: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/3%20-%20Hardware/1%20-%20Serial/serial.js"
 						},
-						operations: {
-							jsh: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/3%20-%20Operations/2%20-%20JSH/jsh.js",
-							virtualSystem: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/3%20-%20Operations/1%20-%20Virtual%20System/virtualSystem.js"
+						system: {
+							server: {
+								jsh: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/3%20-%20System/1%20-%20Server/1%20-%20JSH/jsh.js",
+								server: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/3%20-%20System/1%20-%20Server/server.js"
+							},
+							virtualSystem: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/3%20-%20System/2%20-%20Virtual%20System/virtualSystem.js"
 						},
-						generalUniverse: "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/4%20-%20Processes/1%20-%20Simulation/1%20-%20General%20Universe/generalUniverse.js"
+					},
+					utilities: {
+						generalUniverse: "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/3%20-%20Utilities/4%20-%20Simulation/1%20-%20General%20Universe/generalUniverse.js",
+						generationUtils: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/3%20-%20Utilities/3%20-%20Generation/generationUtils.js",
+						kryptoX: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/3%20-%20Utilities/2%20-%20Encryption/1%20-%20Krypto%20X/kryptoX.js",
+						ticTacToe: root + "1%20-%20APIs/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/3%20-%20Utilities/1%20-%20AI/1%20-%20Tic%20Tac%20Toe/ticTacToe.js"
 					}
 				}
 			}
@@ -206,9 +211,7 @@ module.exports = (item) => {
 
 		let path = getModule(moduleDependencies.modules, item);
 
-		return path != null ?
-			require(path) :
-			getModule(moduleDependencies.applications, item);
+		return path != null ? require(path) : null;
 	}
 
 	Object.values(
