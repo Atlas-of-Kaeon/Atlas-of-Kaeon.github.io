@@ -19,22 +19,41 @@ module.exports = {
 		},
 	open: (file, callback, cors) => {
 
-		let response = httpUtils.sendRequest(
-			{
-				request: {
-					method: "GET",
-					uri: file
-				}
-			},
-			callback != null ? (response) => {
-				callback(response.body);
-			} : null,
-			cors != false ?
-				(typeof cors == "string" ? cors : module.exports.cors) : false
-		);
+		if(platform != "node" ||
+			file.toLowerCase().startWith("http://") ||
+			file.toLowerCase().startWith("https://")) {
 
-		if(callback == null)
-			return response.body;
+			let response = httpUtils.sendRequest(
+				{
+					request: {
+						method: "GET",
+						uri: file
+					}
+				},
+				callback != null ? (response) => {
+					callback(response.body);
+				} : null,
+				cors != false ?
+					(typeof cors == "string" ? cors : module.exports.cors) : false
+			);
+
+			if(callback == null)
+				return response.body;
+		}
+
+		else if(callback == null)
+			return require("fs").readFileSync(file, "utf-8");
+
+		else {
+
+			require("fs").readFile(file, null, (error, data) => {
+				
+				if(error != null)
+					callback("");
+
+				callback(data);
+			});
+		}
 	},
 	save: platform == "node" ?
 		(content, file) => {
