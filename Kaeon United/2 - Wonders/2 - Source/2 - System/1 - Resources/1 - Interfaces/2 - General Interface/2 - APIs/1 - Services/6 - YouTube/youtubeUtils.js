@@ -33,7 +33,7 @@ function open(path) {
 
 		xhr.send(null);
 
-		return text;
+		return JSON.parse(text);
 	}
 
 	catch(error) {
