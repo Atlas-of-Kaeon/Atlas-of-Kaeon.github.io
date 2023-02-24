@@ -62,9 +62,9 @@ Any operations placed outside a function will be placed into the main function
 upon the compilation of an executable. If a main function is not already
 declared, one will be inferred.
 
-The main function, whether manually created or automatically generated, shall
-be formatted to have a return type of int, shall return zero, and shall have a
-parameter argc of type int and a parameter argv of type char pointer array.
+The main function, if automatically generated, shall be formatted to have a
+return type of int, shall return zero, and shall have a parameter argc of type
+int and a parameter argv of type char pointer array.
 
 If there is both a manually defined main function present as well as operation
 code placed outside the main function, the code within the manually defined
@@ -80,8 +80,9 @@ United C code may omit semicolons where they are otherwise required.
 
 <h3>Dynamic Type Detection</h3>
 
-The token "var" may be in lieu of the data type of a varaible, in which case
-the type of said variable shall be predicted based on the value assigned to it.
+The token "var" may be used in lieu of the data type of a variable, in which
+case the type of said variable shall be predicted based on the value assigned
+to it.
 
 <h3>The "use" Operator and Online Dependencies</h3>
 
