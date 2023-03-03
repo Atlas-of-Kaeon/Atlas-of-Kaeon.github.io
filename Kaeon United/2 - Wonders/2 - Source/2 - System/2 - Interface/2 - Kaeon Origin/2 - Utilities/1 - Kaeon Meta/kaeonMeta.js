@@ -16,7 +16,7 @@ if(window.fileSystem == null)
 						" \\"" +
 						arguments[1] +
 						"\\"" +
-						(arguments[0] != null ? " " + arguments[0] : "")
+						(arguments[2] != null ? (" " + arguments[2]) : "")
 				);
 			}).filter((item) => {
 				return item != null;
@@ -194,7 +194,7 @@ if(window.fileSystem == null)
 				!arguments[0].toLowerCase().startsWith("play ") &&
 				!arguments[0].toLowerCase().startsWith("stop")) {
 
-				if(arguments.length > 2) {
+				if(arguments.length > 1) {
 
 					fileSystem.executeCommand(
 						"Storage://User/Applications/Processes/kaeonMeta/Apps/chatSpeak.js \\"" +
