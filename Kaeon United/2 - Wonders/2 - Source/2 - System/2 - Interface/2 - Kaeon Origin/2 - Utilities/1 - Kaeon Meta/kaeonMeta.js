@@ -194,7 +194,7 @@ if(window.fileSystem == null)
 				!arguments[0].toLowerCase().startsWith("play ") &&
 				!arguments[0].toLowerCase().startsWith("stop")) {
 
-				if(arguments.length > 1) {
+				if(arguments.length > 2) {
 
 					fileSystem.executeCommand(
 						"Storage://User/Applications/Processes/kaeonMeta/Apps/chatSpeak.js \\"" +
