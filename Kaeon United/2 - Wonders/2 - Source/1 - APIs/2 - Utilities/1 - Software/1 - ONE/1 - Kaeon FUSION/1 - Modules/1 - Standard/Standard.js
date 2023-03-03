@@ -4949,7 +4949,13 @@ function kaeonMETA() {
 			virtualSystem.load(config);
 		}
 
-		return virtualSystem.executeCommand("meta " + JSON.stringify(processed[0]))[0];
+		try {
+			return virtualSystem.executeCommand("meta \"" + JSON.stringify(processed[0]) + "\"")[0];
+		}
+
+		catch(error) {
+			return null;
+		}
 	}
 }
 
