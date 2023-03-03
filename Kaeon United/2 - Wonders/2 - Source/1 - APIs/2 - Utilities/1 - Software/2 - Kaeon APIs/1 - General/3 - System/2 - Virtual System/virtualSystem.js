@@ -140,10 +140,8 @@ function executeCommand(command) {
 
 			if(file == null || typeof file == "object")
 				return;
-
-			arguments = args.slice(1);
 		
-			return eval(file);
+			return (new Function(file))(...args.slice(1));
 		}
 	}
 }
