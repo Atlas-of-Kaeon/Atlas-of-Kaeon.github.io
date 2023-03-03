@@ -4939,7 +4939,7 @@ function kaeonMETA() {
 
 	this.process = function(element, processed) {
 
-		if(window.fileSystem == null) {	
+		if(window.fileSystem == null) {
 
 			virtualSystem.initiateVirtualSystemDefault();
 
