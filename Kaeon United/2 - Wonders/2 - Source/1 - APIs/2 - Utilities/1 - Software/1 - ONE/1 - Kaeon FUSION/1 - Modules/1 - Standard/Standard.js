@@ -4952,9 +4952,8 @@ function kaeonMETA() {
 		try {
 			
 			return virtualSystem.executeCommand(
-				"Storage://User/Applications/Processes/meta \"" +
-					JSON.stringify(processed[0]) +
-					"\""
+				"Storage://User/Applications/Processes/meta " +
+					JSON.stringify(processed[0])
 			)[0];
 		}
 
