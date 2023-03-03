@@ -289,7 +289,21 @@ function load(config) {
 
 	try {
 
-		let data = JSON.parse(io.open(config));
+		let data = { };
+		
+		if(typeof config == "object")
+			data = config;
+			
+		else {
+
+			try {
+				data = JSON.parse(config);
+			}
+
+			catch(error) {
+				data = JSON.parse(io.open(config));
+			}
+		}
 
 		if(typeof data.files == "object")
 			loadFiles(data.files);

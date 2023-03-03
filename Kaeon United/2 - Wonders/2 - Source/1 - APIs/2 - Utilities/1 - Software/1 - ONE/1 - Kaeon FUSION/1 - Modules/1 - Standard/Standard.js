@@ -4939,15 +4939,14 @@ function kaeonMETA() {
 
 	this.process = function(element, processed) {
 
-		if(window.fileSystem != null) {	
+		if(window.fileSystem == null) {	
 
 			virtualSystem.initiateVirtualSystemDefault();
 
-			virtualSystem.load(
-				args.override != "true" ?
-					moduleDependencies.defaultConfig :
-					null
-			);
+			let config = JSON.parse(io.open(moduleDependencies.defaultConfig));
+			config.commands = [];
+
+			virtualSystem.load(config);
 		}
 
 		return virtualSystem.executeCommand("meta " + JSON.stringify(processed[0]))[0];
