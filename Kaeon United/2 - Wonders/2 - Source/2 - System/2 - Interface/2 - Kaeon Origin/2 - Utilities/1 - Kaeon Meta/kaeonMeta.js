@@ -7,20 +7,19 @@ if(window.fileSystem == null)
 	[
 		"Storage://User/Applications/Processes/kaeonMeta/Management/metaDispatch.js",
 		`
-			let config = { };
-			let text = "";
+			let config = JSON.parse(fileSystem.getResource(arguments[0]));
 
-			config = JSON.parse(fileSystem.getResource(arguments[0]));
-			text = arguments[1];
+			return config.dispatchers.map((item) => {
 
-			config.dispatchers.forEach((item) => {
-
-				fileSystem.executeCommand(
+				return fileSystem.executeCommand(
 					item +
 						" \\"" +
-						text +
-						"\\""
+						arguments[1] +
+						"\\"" +
+						(arguments[0] != null ? " " + arguments[0] : "")
 				);
+			}).filter((item) => {
+				return item != null;
 			});
 		`
 	],
@@ -127,7 +126,7 @@ if(window.fileSystem == null)
 									configPath +
 									"\\" \\"" +
 									text +
-									"\\""
+									"\\" speech"
 							);
 						}
 					}
@@ -195,11 +194,23 @@ if(window.fileSystem == null)
 				!arguments[0].toLowerCase().startsWith("play ") &&
 				!arguments[0].toLowerCase().startsWith("stop")) {
 
-				fileSystem.executeCommand(
-					"Storage://User/Applications/Processes/kaeonMeta/Apps/chatQuery.js \\"" +
-						arguments[0] +
-						"\\""
-				);
+				if(arguments.length > 1) {
+
+					fileSystem.executeCommand(
+						"Storage://User/Applications/Processes/kaeonMeta/Apps/chatSpeak.js \\"" +
+							arguments[0] +
+							"\\""
+					);
+				}
+
+				else {
+
+					return fileSystem.executeCommand(
+						"Storage://User/Applications/Processes/kaeonMeta/Apps/chatRelay.js \\"" +
+							arguments[0] +
+							"\\""
+					);
+				}
 			}
 		`
 	],
@@ -224,13 +235,21 @@ if(window.fileSystem == null)
 		`
 	],
 	[
-		"Storage://User/Applications/Processes/kaeonMeta/Apps/chatQuery.js",
+		"Storage://User/Applications/Processes/kaeonMeta/Apps/chatSpeak.js",
 		`
 			let chat = require("kaeon-united")("generalReference")("chat");
 
 			require("kaeon-united")("speech").speak(
 				chat.clean(chat.chat(arguments[0]).text).text
 			);
+		`
+	],
+	[
+		"Storage://User/Applications/Processes/kaeonMeta/Apps/chatRelay.js",
+		`
+			let chat = require("kaeon-united")("generalReference")("chat");
+
+			return chat.clean(chat.chat(arguments[0]).text).text;
 		`
 	],
 	[

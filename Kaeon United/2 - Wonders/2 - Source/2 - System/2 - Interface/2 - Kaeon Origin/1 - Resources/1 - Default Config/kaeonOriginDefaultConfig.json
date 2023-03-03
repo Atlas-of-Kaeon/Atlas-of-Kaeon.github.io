@@ -14,7 +14,7 @@
 		},
 		{
 			"path": "Storage://User/Applications/Processes/meta.js",
-			"content": "let dispatch = \"Storage://User/Applications/Processes/kaeonMeta/Management/metaDispatch.js\";\nlet config = \"Storage://User/Applications/Processes/kaeonMeta/Management/metaConfig.json\";\n\nfileSystem.executeCommand(\n\tdispatch +\n\t\t\" \\\"\" +\n\t\tconfig +\n\t\t\"\\\" \\\"\" +\n\t\targuments[0] +\n\t\t\"\\\"\"\n);"
+			"content": "let dispatch = \"Storage://User/Applications/Processes/kaeonMeta/Management/metaDispatch.js\";\nlet config = \"Storage://User/Applications/Processes/kaeonMeta/Management/metaConfig.json\";\n\nreturn fileSystem.executeCommand(\n\tdispatch +\n\t\t\" \\\"\" +\n\t\tconfig +\n\t\t\"\\\" \\\"\" +\n\t\targuments[0] +\n\t\t\"\\\"\"\n);"
 		},
 		{
 			"path": "Storage://User/Applications/Apps/code.js",

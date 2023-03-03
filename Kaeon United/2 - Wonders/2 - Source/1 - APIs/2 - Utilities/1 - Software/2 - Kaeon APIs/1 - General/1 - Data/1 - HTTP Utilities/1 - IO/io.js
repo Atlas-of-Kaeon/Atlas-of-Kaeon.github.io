@@ -19,6 +19,44 @@ module.exports = {
 		},
 	open: (file, callback, cors) => {
 
+		if(typeof file == "function") {
+				
+			let input = document.createElement("input");
+	
+			input.setAttribute("type", "file");
+			input.setAttribute("style", "display: none");
+	
+			let listener = function(event) {
+	
+				let upload = event.target.files[0];
+	
+				if(!upload)
+					return;
+				
+				let reader = new FileReader();
+	
+				reader.onload = function(event) {
+					file(event.target.result);
+				};
+	
+				reader.readAsText(upload);
+			}
+	
+			input.addEventListener(
+				'change',
+				listener,
+				false
+			);
+	
+			document.documentElement.appendChild(input);
+	
+			input.click();
+	
+			document.documentElement.removeChild(input);
+
+			return;
+		}
+
 		if(platform != "node" ||
 			file.toLowerCase().startsWith("http://") ||
 			file.toLowerCase().startsWith("https://")) {

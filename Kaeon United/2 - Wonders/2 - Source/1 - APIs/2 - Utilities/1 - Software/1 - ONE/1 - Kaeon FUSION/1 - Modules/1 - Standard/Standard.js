@@ -1,5 +1,9 @@
 // DEPENDENCIES
 
+var moduleDependencies = {
+	defaultConfig: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/2%20-%20System/2%20-%20Interface/2%20-%20Kaeon%20Origin/1%20-%20Resources/1%20-%20Default%20Config/kaeonOriginDefaultConfig.json",
+};
+
 var one = require("kaeon-united")("one");
 var fusion = require("kaeon-united")("fusion");
 var philosophersStone = require("kaeon-united")("philosophersStone");
@@ -7,6 +11,7 @@ var oneSuite = require("kaeon-united")("oneSuite");
 
 var io = require("kaeon-united")("io");
 var tokenizer = require("kaeon-united")("tokenizer");
+var virtualSystem = require("kaeon-united")("virtualSystem");
 
 var fs = {};
 var path = {};
@@ -2210,6 +2215,45 @@ function vanish() {
 		reference.toVanish.push(element);
 
 		return null;
+	}
+}
+
+function awaitCommand() {
+
+	philosophersStone.abide(this, new fusion.FUSIONUnit());
+
+	var reference = this;
+
+	this.verify = function(element) {
+		return element.content.toLowerCase() == "await";
+	}
+	
+	this.trickleDown = function(element) {
+		return !reference.hold;
+	}
+
+	this.process = async function(element, processed) {
+
+		if(reference.value == null) {
+
+			reference.value = processed[0];
+
+			reference.hold = true;
+		}
+
+		else if(typeof reference.value.then != "function") {
+
+			let value = reference.value;
+
+			reference.value = null;
+			reference.hold = false;
+
+			return value;
+		}
+	}
+	
+	this.jump = function(element, processed) {
+		return reference.hold ? element : null;
 	}
 }
 
@@ -4885,6 +4929,31 @@ function hexadecimalToBinary() {
 	}
 }
 
+function kaeonMETA() {
+
+	philosophersStone.abide(this, new fusion.FUSIONUnit());
+
+	this.verify = function(element) {
+		return element.content.toLowerCase() == "kaeon meta";
+	}
+
+	this.process = function(element, processed) {
+
+		if(window.fileSystem != null) {	
+
+			virtualSystem.initiateVirtualSystemDefault();
+
+			virtualSystem.load(
+				args.override != "true" ?
+					moduleDependencies.defaultConfig :
+					null
+			);
+		}
+
+		return virtualSystem.executeCommand("meta " + JSON.stringify(processed[0]))[0];
+	}
+}
+
 // COMMAND UTILITY FUNCTIONS
 
 function getStone(reference, tags) {
@@ -5107,6 +5176,7 @@ module.exports = function(fusion) {
 	philosophersStone.connect(fusion, new ternary(), [], true);
 	philosophersStone.connect(fusion, new isolate(), [], true);
 	philosophersStone.connect(fusion, new vanish(), [], true);
+	philosophersStone.connect(fusion, new awaitCommand(), [], true);
 
 	philosophersStone.connect(fusion, new log(), [], true);
 	philosophersStone.connect(fusion, new logLine(), [], true);
@@ -5235,4 +5305,6 @@ module.exports = function(fusion) {
 	philosophersStone.connect(fusion, new hexadecimalToDecimal(), [], true);
 	philosophersStone.connect(fusion, new binaryToHexadecimal(), [], true);
 	philosophersStone.connect(fusion, new hexadecimalToBinary(), [], true);
+	
+	philosophersStone.connect(fusion, new kaeonMETA(), [], true);
 };

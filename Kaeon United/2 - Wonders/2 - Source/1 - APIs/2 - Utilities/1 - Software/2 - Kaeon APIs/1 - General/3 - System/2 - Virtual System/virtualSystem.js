@@ -143,9 +143,7 @@ function executeCommand(command) {
 
 			arguments = args.slice(1);
 		
-			eval(file);
-			
-			return;
+			return eval(file);
 		}
 	}
 }
