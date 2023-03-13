@@ -11,8 +11,6 @@ var widgets = require("kaeon-united")("widgets");
 
 function save() {
 
-	console.log(path, text.value);
-
 	virtualSystem.setResource(path, text.value);
 
 	vision.set(button, {
