@@ -405,6 +405,17 @@ function getTextbox(options) {
 	
 				if(start != end)
 					text.scrollTop = scrollY;
+
+				if(options.onType != null) {
+
+					try {
+						options.onType(text.value, text, event);
+					}
+
+					catch(error) {
+						
+					}
+				}
 			},
 			false
 		);
