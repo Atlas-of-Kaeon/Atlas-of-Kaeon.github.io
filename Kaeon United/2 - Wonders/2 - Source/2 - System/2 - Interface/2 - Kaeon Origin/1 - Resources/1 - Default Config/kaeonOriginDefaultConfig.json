@@ -26,7 +26,7 @@
 		},
 		{
 			"path": "Storage://User/Applications/Apps/edit.js",
-			"content": "window.open(\"https://atlas-of-kaeon.github.io/?unitedjs=https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/2%20-%20System/2%20-%20Interface/1%20-%20Applications/1%20-%20Apps/3%20-%20Kaeon%20Edit/kaeonEdit.js&key=\" + encodeURIComponent(arguments[0]), \"_blank\");"
+			"content": "window.open(\"https://atlas-of-kaeon.github.io/?unitedjs=https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/2%20-%20System/2%20-%20Interface/1%20-%20Applications/1%20-%20Apps/3%20-%20Kaeon%20Edit/kaeonEdit.js&path=\" + encodeURIComponent(arguments[0]), \"_blank\");"
 		}
 	],
 	"commands": [
