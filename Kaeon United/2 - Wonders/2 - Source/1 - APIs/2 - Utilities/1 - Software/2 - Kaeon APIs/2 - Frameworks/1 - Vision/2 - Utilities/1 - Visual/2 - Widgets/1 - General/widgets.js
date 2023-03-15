@@ -247,11 +247,15 @@ function vsTerminalOnSubmit(command, terminal, paths) {
 	let mark = terminal.getMark();
 	mark = mark.substring(0, mark.length - 1).trim();
 
-	command = virtualSystem.getAbsolutePath(args[0], mark, paths) +
-		" " +
+	let result = virtualSystem.getAbsolutePath(args[0], mark, paths);
+
+	if(!result.includes("://"))
+		result = virtualSystem.getAbsolutePath(args[0] + ".js", mark, paths);
+
+	result += " " +
 		args.slice(1).map((item) => {
 			return "\"" + item.split("\"").join("\\\"") + "\"";
-		}).join(" ")
+		}).join(" ");
 
 	let tempLog = console.log;
 
@@ -265,7 +269,7 @@ function vsTerminalOnSubmit(command, terminal, paths) {
 		terminal.logContent(toLog);
 	}
 
-	virtualSystem.executeCommand(command);
+	virtualSystem.executeCommand(result);
 
 	console.log = tempLog;
 }
