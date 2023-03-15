@@ -249,7 +249,7 @@ function vsTerminalOnSubmit(command, terminal, paths) {
 
 	let result = virtualSystem.getAbsolutePath(args[0], mark, paths);
 
-	if(!result.includes("://"))
+	if(virtualSystem.getResource(result) == null)
 		result = virtualSystem.getAbsolutePath(args[0] + ".js", mark, paths);
 
 	result += " " +
