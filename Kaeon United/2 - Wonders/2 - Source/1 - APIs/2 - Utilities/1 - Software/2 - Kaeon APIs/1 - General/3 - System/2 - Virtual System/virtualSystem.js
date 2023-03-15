@@ -172,14 +172,18 @@ function getAbsolutePath(path, location, paths) {
 		return path;
 
 	if(path.startsWith("/"))
-		path = path.substring(0);
+		path = path.substring(1);
 
 	if(location.endsWith("/"))
 		location = location.substring(0, location.length - 1);
 
-	let absolute = location.split("://").join("/").split("/");
+	let absolute = location.trim().length > 0 ?
+		location.split("://").join("/").split("/") :
+		[];
 
-	path.split("/").forEach((directory) => {
+	path = path.split("/");
+
+	path.forEach((directory) => {
 		
 		if(directory.split(".").join("").trim().length == 0) {
 
@@ -193,6 +197,12 @@ function getAbsolutePath(path, location, paths) {
 		else
 			absolute.push(directory);
 	});
+
+	if(absolute.length == 0)
+		return "";
+
+	if(absolute.length == 1)
+		return absolute[0];
 
 	absolute[0] += ":/";
 
