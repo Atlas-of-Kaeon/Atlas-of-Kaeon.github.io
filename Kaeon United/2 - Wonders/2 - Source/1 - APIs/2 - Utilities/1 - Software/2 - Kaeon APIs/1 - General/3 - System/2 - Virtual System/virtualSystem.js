@@ -187,7 +187,7 @@ function getAbsolutePath(path, location, paths) {
 		
 		if(directory.split(".").join("").trim().length == 0) {
 
-			for(let i = 0; i < directory.length; i++) {
+			for(let i = 0; i < directory.length - 1; i++) {
 
 				if(absolute.length > 0)
 					absolute.splice(absolute.length - 1, 1);
