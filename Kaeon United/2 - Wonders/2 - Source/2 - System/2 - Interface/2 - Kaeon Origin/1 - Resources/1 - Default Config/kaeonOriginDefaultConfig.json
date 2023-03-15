@@ -5,8 +5,40 @@
 			"location": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/2%20-%20System/2%20-%20Interface/2%20-%20Kaeon%20Origin/1%20-%20Resources/1%20-%20Default%20Config/1%20-%20Components/1%20-%20Processes/1%20-%20Open%20Interface/openInterface.js"
 		},
 		{
+			"path": "Storage://Default/System/Commands/cat.js",
+			"location": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/2%20-%20System/2%20-%20Interface/2%20-%20Kaeon%20Origin/1%20-%20Resources/1%20-%20Default%20Config/1%20-%20Components/2%20-%20Commands/1%20-%20Cat/cat.js"
+		},
+		{
+			"path": "Storage://Default/System/Commands/cd.js",
+			"location": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/2%20-%20System/2%20-%20Interface/2%20-%20Kaeon%20Origin/1%20-%20Resources/1%20-%20Default%20Config/1%20-%20Components/2%20-%20Commands/2%20-%20CD/cd.js"
+		},
+		{
 			"path": "Storage://Default/System/Commands/clear.js",
-			"location": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/2%20-%20System/2%20-%20Interface/2%20-%20Kaeon%20Origin/1%20-%20Resources/1%20-%20Default%20Config/1%20-%20Components/2%20-%20Commands/1%20-%20Clear/clear.js"
+			"location": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/2%20-%20System/2%20-%20Interface/2%20-%20Kaeon%20Origin/1%20-%20Resources/1%20-%20Default%20Config/1%20-%20Components/2%20-%20Commands/3%20-%20Clear/clear.js"
+		},
+		{
+			"path": "Storage://Default/System/Commands/cp.js",
+			"location": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/2%20-%20System/2%20-%20Interface/2%20-%20Kaeon%20Origin/1%20-%20Resources/1%20-%20Default%20Config/1%20-%20Components/2%20-%20Commands/4%20-%20CP/cp.js"
+		},
+		{
+			"path": "Storage://Default/System/Commands/edit.js",
+			"location": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/2%20-%20System/2%20-%20Interface/2%20-%20Kaeon%20Origin/1%20-%20Resources/1%20-%20Default%20Config/1%20-%20Components/2%20-%20Commands/5%20-%20Edit/edit.js"
+		},
+		{
+			"path": "Storage://Default/System/Commands/ls.js",
+			"location": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/2%20-%20System/2%20-%20Interface/2%20-%20Kaeon%20Origin/1%20-%20Resources/1%20-%20Default%20Config/1%20-%20Components/2%20-%20Commands/6%20-%20LS/ls.js"
+		},
+		{
+			"path": "Storage://Default/System/Commands/mkdir.js",
+			"location": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/2%20-%20System/2%20-%20Interface/2%20-%20Kaeon%20Origin/1%20-%20Resources/1%20-%20Default%20Config/1%20-%20Components/2%20-%20Commands/7%20-%20MkDir/mkdir.js"
+		},
+		{
+			"path": "Storage://Default/System/Commands/mv.js",
+			"location": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/2%20-%20System/2%20-%20Interface/2%20-%20Kaeon%20Origin/1%20-%20Resources/1%20-%20Default%20Config/1%20-%20Components/2%20-%20Commands/8%20-%20Mv/mv.js"
+		},
+		{
+			"path": "Storage://Default/System/Commands/rm.js",
+			"location": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/2%20-%20System/2%20-%20Interface/2%20-%20Kaeon%20Origin/1%20-%20Resources/1%20-%20Default%20Config/1%20-%20Components/2%20-%20Commands/9%20-%20Rm/rm.js"
 		},
 		{
 			"path": "Storage://User/Applications/Processes/kaeonMeta/kaeonMeta.js",
@@ -23,10 +55,6 @@
 		{
 			"path": "Storage://User/Applications/Apps/cast.js",
 			"content": "if(arguments.length == 1) { window.open(\"https://atlas-of-kaeon.github.io/?unitedjs=https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/2%20-%20System/2%20-%20Interface/1%20-%20Applications/1%20-%20Apps/2%20-%20Kaeon%20Cast/kaeonCast.js&key=\" + arguments[0], \"_blank\"); } else { require(\"kaeon-united\")(\"io\").open(\"https://ghost-cache.vercel.app/?key=\" + arguments[0] + \"&value=\" + arguments[1]); }"
-		},
-		{
-			"path": "Storage://User/Applications/Apps/edit.js",
-			"content": "window.open(\"https://atlas-of-kaeon.github.io/?unitedjs=https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/2%20-%20System/2%20-%20Interface/1%20-%20Applications/1%20-%20Apps/3%20-%20Kaeon%20Edit/kaeonEdit.js&path=\" + encodeURIComponent(arguments[0]), \"_blank\");"
 		}
 	],
 	"commands": [
