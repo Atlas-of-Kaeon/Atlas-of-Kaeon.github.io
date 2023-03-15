@@ -146,6 +146,59 @@ function executeCommand(command) {
 	}
 }
 
+function getAbsolutePath(path, location, paths) {
+
+	if(paths != null) {
+
+		paths = [location].concat(paths);
+
+		let result = null;
+
+		for(let i = 0; i < paths.length; i++) {
+
+			let absolute = getAbsolutePath(path, paths[i]);
+
+			if(getResource(absolute) != null)
+				return absolute;
+
+			if(result == null)
+				result = absolute;
+		}
+
+		return result;
+	}
+
+	if(path.includes("://"))
+		return path;
+
+	if(path.startsWith("/"))
+		path = path.substring(0);
+
+	if(location.endsWith("/"))
+		location = location.substring(0, location.length - 1);
+
+	let absolute = location.split("://").join("/").split("/");
+
+	path.split("/").forEach((directory) => {
+		
+		if(directory.split(".").join("").trim().length == 0) {
+
+			for(let i = 0; i < directory.length; i++) {
+
+				if(absolute.length > 0)
+					absolute.splice(absolute.length - 1, 1);
+			}
+		}
+
+		else
+			absolute.push(directory);
+	});
+
+	absolute[0] += ":/";
+
+	return absolute.join("/");
+}
+
 function getCommandArguments(command) {
 
 	let args = [""];
@@ -450,6 +503,7 @@ function setResource(path, content) {
 module.exports = {
 	cookieDisk,
 	executeCommand,
+	getAbsolutePath,
 	getCommandArguments,
 	getFolder,
 	getResource,
