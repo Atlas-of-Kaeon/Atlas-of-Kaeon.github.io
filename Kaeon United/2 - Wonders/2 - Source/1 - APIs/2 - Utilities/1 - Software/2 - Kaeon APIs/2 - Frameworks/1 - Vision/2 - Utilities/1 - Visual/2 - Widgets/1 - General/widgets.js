@@ -170,7 +170,7 @@ function getTerminal(onSubmit) {
 
 		log.innerHTML +=
 			(log.innerHTML.length > 0 ? "<br/>" : "") +
-			content;
+			content.split("\n").join("<br/>");
 
 		terminal.scrollTop = terminal.scrollHeight;
 	}
@@ -240,43 +240,14 @@ function getVSTerminal(paths) {
 	return terminal;
 }
 
-function getVSTerminalCommand(command, paths) {
-
-	for(let i = 0; i < paths.length; i++) {
-
-		let folder = virtualSystem.getResource(paths[i]);
-
-		if(folder == null)
-			return;
-
-		if(!Array.isArray(folder))
-			return;
-
-		let index = folder[1].map((item) => {
-
-			if(item.includes("."))
-				item = item.substring(0, item.indexOf("."));
-
-			return item.toLowerCase();
-		}).indexOf(command.toLowerCase());
-
-		if(index != -1) {
-
-			return paths[i] +
-				(paths[i].endsWith("/") ? "" : "/") +
-				folder[1][index];
-		}
-	}
-
-	return null;
-}
-
 function vsTerminalOnSubmit(command, terminal, paths) {
 
 	let args = virtualSystem.getCommandArguments(command);
-	let loadedCommand = getVSTerminalCommand(args[0], paths);
 
-	command = (loadedCommand == null ? command : loadedCommand) +
+	let mark = terminal.getMark();
+	mark = mark.substring(0, mark.length - 1).trim();
+
+	command = virtualSystem.getAbsolutePath(args[0], mark, paths) +
 		" " +
 		args.slice(1).map((item) => {
 			return "\"" + item.split("\"").join("\\\"") + "\"";
@@ -294,13 +265,7 @@ function vsTerminalOnSubmit(command, terminal, paths) {
 		terminal.logContent(toLog);
 	}
 
-	virtualSystem.executeCommand(
-		(loadedCommand == null ? command : loadedCommand) +
-			" " +
-			args.slice(1).map((item) => {
-				return "\"" + item.split("\"").join("\\\"") + "\"";
-			}).join(" ")
-	);
+	virtualSystem.executeCommand(command);
 
 	console.log = tempLog;
 }
