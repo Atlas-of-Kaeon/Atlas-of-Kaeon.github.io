@@ -169,7 +169,10 @@ function getTerminal(onSubmit) {
 	terminal.history = [];
 
 	terminal.clear = () => {
+
 		log.innerHTML = "";
+		
+		log.style.height = "0px";
 	}
 
 	terminal.getContent = () => {
