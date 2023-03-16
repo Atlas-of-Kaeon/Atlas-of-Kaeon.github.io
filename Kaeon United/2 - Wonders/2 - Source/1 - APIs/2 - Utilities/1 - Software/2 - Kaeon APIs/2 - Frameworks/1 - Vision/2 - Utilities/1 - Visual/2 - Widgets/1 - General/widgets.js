@@ -81,14 +81,15 @@ function getTerminal(onSubmit) {
 
 	vision.set(log, {
 		style: {
+			width: "100%",
+			height: "0px",
 			margin: "0%",
 			padding: "0%",
 			left: "0%",
 			top: "0%",
-			width: "100%",
-			height: "0px",
 			border: "none",
-			outline: "none"
+			outline: "none",
+			overflow: "hidden"
 		}
 	});
 
@@ -100,15 +101,15 @@ function getTerminal(onSubmit) {
 			rows: "1"
 		},
 		style: {
+			"width": "100%",
+			"font-family": "monospace",
 			"border-top-style": "hidden",
 			"border-right-style": "hidden",
 			"border-left-style": "hidden",
 			"border-bottom-style": "hidden",
 			outline: "none",
-			"width": "100%",
-			"font-family": "monospace",
-			resize: "none",
-			overflow: "auto"
+			overflow: "auto",
+			resize: "none"
 		}
 	});
 
