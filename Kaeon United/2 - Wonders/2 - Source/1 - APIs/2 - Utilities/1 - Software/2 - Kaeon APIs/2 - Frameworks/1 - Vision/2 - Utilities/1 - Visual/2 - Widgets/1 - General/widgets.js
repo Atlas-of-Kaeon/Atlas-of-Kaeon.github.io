@@ -77,7 +77,21 @@ function getTerminal(onSubmit) {
 
 	onSubmit = onSubmit != null ? onSubmit : () => { };
 
-	let log = vision.create();
+	let log = getTextbox({ readOnly: true });
+
+	vision.set(log, {
+		style: {
+			margin: "0%",
+			padding: "0%",
+			left: "0%",
+			top: "0%",
+			width: "100%",
+			height: "0px",
+			border: "none",
+			outline: "none"
+		}
+	});
+
 	let mark = vision.create({ fields: { innerHTML: ">" } });
 
 	let field = vision.create({
@@ -169,10 +183,14 @@ function getTerminal(onSubmit) {
 	terminal.logContent = (content) => {
 
 		log.innerHTML +=
-			(log.innerHTML.length > 0 ? "<br/>" : "") +
-			content.split("\n").join("<br/>");
+			(log.value.length > 0 ? "\n" : "") +
+			content;
 
 		terminal.scrollTop = terminal.scrollHeight;
+
+		log.style.height =
+			(log.scrollHeight > log.clientHeight) ?
+				(log.scrollHeight) + "px" : "0px";
 	}
 
 	terminal.setContent = (content) => {
