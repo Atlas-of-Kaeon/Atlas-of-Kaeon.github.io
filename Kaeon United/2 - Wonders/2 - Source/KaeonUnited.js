@@ -542,9 +542,12 @@ function getInterfaces() {
 	}
 }
 
-function getPlatform(environment) {
+function getPlatform(environment, args) {
 
 	if(environment == "browser") {
+
+		if(args != null)
+			return "command";
 
 		if(typeof require == "function" && typeof module == "object") {
 
@@ -552,10 +555,7 @@ function getPlatform(environment) {
 				return "module";
 		}
 
-		return document.documentElement.innerHTML ==
-			"<head></head><body></body>" ?
-				"cdn" :
-				"script";
+		return document.documentElement.innerHTML == "<head></head><body></body>" ? "cdn" : "script";
 	}
 
 	else {
@@ -730,7 +730,7 @@ function openResource(path) {
 var connected = 1;
 var environment = getEnvironment();
 var intervals = [];
-var platform = getPlatform(environment);
+var platform = getPlatform(environment, arguments);
 var requireDefault = null;
 var united = false;
 
@@ -956,8 +956,14 @@ if(environment == "node" && !united) {
 	require.kaeonUnited = true;
 }
 
-if(platform == "command")
-	executeCommand(process.argv.slice(2), intervals);
+if(platform == "command") {
+	
+	if(environment == "node")
+		executeCommand(process.argv.slice(2), intervals);
+	
+	else
+		executeCommand(arguments, intervals);
+}
 
 if(platform == "script")
 	executeScript();

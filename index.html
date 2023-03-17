@@ -28,9 +28,12 @@ function getEnvironment() {
 	return environment;
 }
 
-function getPlatform(environment) {
+function getPlatform(environment, args) {
 
 	if(environment == "browser") {
+
+		if(args != null)
+			return "command";
 
 		if(typeof require == "function" && typeof module == "object") {
 
@@ -546,7 +549,7 @@ function moduleExists(file) {
 }
 
 var environment = getEnvironment();
-var platform = getPlatform(environment);
+var platform = getPlatform(environment, arguments);
 
 var requireDefault = null;
 
@@ -775,8 +778,14 @@ if(environment == "node" && !united) {
 	require.kaeonUnited = true;
 }
 
-if(platform == "command")
-	executeCommand(process.argv.slice(2));
+if(platform == "command") {
+	
+	if(environment == "node")
+		executeCommand(process.argv.slice(2));
+	
+	else
+		executeCommand(arguments);
+}
 
 if(platform == "script")
 	executeScript();

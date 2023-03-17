@@ -140,6 +140,9 @@ function executeCommand(command) {
 
 			if(file == null || typeof file == "object")
 				return;
+
+			if(file.startsWith("#!") && file.indexOf("\n") != -1)
+				file = file.substring(file.indexOf("\n"));
 		
 			return (new Function(file))(...args.slice(1));
 		}

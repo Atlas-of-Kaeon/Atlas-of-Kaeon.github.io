@@ -25,6 +25,10 @@
 			"location": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/2%20-%20System/2%20-%20Interface/2%20-%20Kaeon%20Origin/1%20-%20Resources/1%20-%20Default%20Config/1%20-%20Components/2%20-%20Commands/5%20-%20Edit/edit.js"
 		},
 		{
+			"path": "Storage://Default/System/Commands/kaeon-united.js",
+			"location": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/index.html"
+		},
+		{
 			"path": "Storage://Default/System/Commands/ls.js",
 			"location": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/2%20-%20System/2%20-%20Interface/2%20-%20Kaeon%20Origin/1%20-%20Resources/1%20-%20Default%20Config/1%20-%20Components/2%20-%20Commands/6%20-%20Ls/ls.js"
 		},
