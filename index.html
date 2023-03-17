@@ -549,7 +549,13 @@ function moduleExists(file) {
 }
 
 var environment = getEnvironment();
-var platform = getPlatform(environment, arguments);
+var platform = null;
+
+if(typeof arguments != "undefined")
+	platform = getPlatform(environment, arguments);
+
+else
+	platform = getPlatform(environment);
 
 var requireDefault = null;
 

@@ -730,9 +730,15 @@ function openResource(path) {
 var connected = 1;
 var environment = getEnvironment();
 var intervals = [];
-var platform = getPlatform(environment, arguments);
+var platform = null;
 var requireDefault = null;
 var united = false;
+
+if(typeof arguments != "undefined")
+	platform = getPlatform(environment, arguments);
+
+else
+	platform = getPlatform(environment);
 
 if(typeof require != typeof undefined) {
 
