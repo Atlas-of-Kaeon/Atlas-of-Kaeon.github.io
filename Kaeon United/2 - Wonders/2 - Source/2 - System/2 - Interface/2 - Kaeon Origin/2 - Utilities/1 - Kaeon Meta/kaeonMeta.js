@@ -113,10 +113,10 @@ if(window.fileSystem == null)
 					}
 			
 					else {
-				
-						terminals[0].logContent("META RECEIVED: " + text);
 
 						if(listening > 0) {
+				
+							terminals[0].logContent("META RECEIVED: " + text);
 
 							listening = 0;
 							
