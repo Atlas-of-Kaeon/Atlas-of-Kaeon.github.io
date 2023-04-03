@@ -1,16 +1,16 @@
 {
 	"modules": [
 		{
-			"path": ["general", "services", "githubUtils"],
+			"path": ["kaeonUnited", "general", "reference"],
 			"implementations": [
 				{
 					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/2%20-%20System/1%20-%20Resources/1%20-%20Interfaces/2%20-%20General%20Interface/2%20-%20APIs/1%20-%20Services/1%20-%20Github/githubUtils.js"
+					"reference": ""
 				}
 			]
 		},
 		{
-			"path": ["general", "services", "nearpasteUtils"],
+			"path": ["kaeonUnited", "general", "services", "nearpasteUtils"],
 			"implementations": [
 				{
 					"environment": "javascript",
@@ -19,7 +19,7 @@
 			]
 		},
 		{
-			"path": ["general", "services", "redditUtils"],
+			"path": ["kaeonUnited", "general", "services", "redditUtils"],
 			"implementations": [
 				{
 					"environment": "javascript",
@@ -28,7 +28,7 @@
 			]
 		},
 		{
-			"path": ["general", "services", "wikipediaUtils"],
+			"path": ["kaeonUnited", "general", "services", "wikipediaUtils"],
 			"implementations": [
 				{
 					"environment": "javascript",
@@ -37,7 +37,7 @@
 			]
 		},
 		{
-			"path": ["general", "services", "youUtils"],
+			"path": ["kaeonUnited", "general", "services", "youUtils"],
 			"implementations": [
 				{
 					"environment": "javascript",
@@ -46,7 +46,7 @@
 			]
 		},
 		{
-			"path": ["general", "services", "youtubeUtils"],
+			"path": ["kaeonUnited", "general", "services", "youtubeUtils"],
 			"implementations": [
 				{
 					"environment": "javascript",
@@ -55,7 +55,7 @@
 			]
 		},
 		{
-			"path": ["general", "angaian", "langauge", "angaianGenerator"],
+			"path": ["kaeonUnited", "general", "angaian", "langauge", "angaianGenerator"],
 			"implementations": [
 				{
 					"environment": "javascript",
@@ -64,7 +64,7 @@
 			]
 		},
 		{
-			"path": ["general", "angaian", "langauge", "angaianConverter"],
+			"path": ["kaeonUnited", "general", "angaian", "langauge", "angaianConverter"],
 			"implementations": [
 				{
 					"environment": "javascript",

@@ -96,7 +96,7 @@ The following code:
 Will be preprocessed to:
 
     Hello
-    6
+    INDEX: 6
     World
 
 ### Example 3
