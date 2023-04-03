@@ -1,7 +1,7 @@
 <div align="center"><h1>Kaeon United - It Just Works</h1></div>
 
 <div align="center">
-	<img height="300px" src="https://github.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/blob/master/Kaeon%20United/2%20-%20Wonders/1%20-%20Documentation/3%20-%20Iconography/2%20-%20Kaeon%20United/2%20-%20Kaeon%20United/Kaeon%20United%20Logo.png?raw=true"/>
+	<img height="300px" src="https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/2%20-%20Assets/1%20-%20Visual/1%20-%20Images/1%20-%20Iconography/2%20-%20Kaeon%20United/2%20-%20Kaeon%20United/Kaeon%20United%20Logo.png"/>
 </div>
 
 <h2 align="center">What is Kaeon United?</h2>

@@ -4,7 +4,7 @@
 <h2 align="center">A Language Without Limits!</h2>
 
 <p align="center">
-	<img src="https://github.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/blob/master/Kaeon%20United/2%20-%20Wonders/1%20-%20Documentation/3%20-%20Iconography/1%20-%20ONE/2%20-%20Kaeon%20FUSION/Kaeon%20FUSION%20Logo.png?raw=true" height="300px"/>
+	<img src="https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/2%20-%20Assets/1%20-%20Visual/1%20-%20Images/1%20-%20Iconography/1%20-%20ONE/2%20-%20Kaeon%20FUSION/Kaeon%20FUSION%20Logo.png" height="300px"/>
 </p>
 
 </div>

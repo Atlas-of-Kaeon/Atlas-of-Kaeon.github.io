@@ -5,7 +5,16 @@
 			"implementations": [
 				{
 					"environment": "javascript",
-					"reference": ""
+					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/2%20-%20General/generalReference.js"
+				}
+			]
+		},
+		{
+			"path": ["kaeonUnited", "general", "services", "githubUtils"],
+			"implementations": [
+				{
+					"environment": "javascript",
+					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/2%20-%20General/1%20-%20Services/1%20-%20Github/githubUtils.js"
 				}
 			]
 		},
@@ -14,7 +23,7 @@
 			"implementations": [
 				{
 					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/2%20-%20System/1%20-%20Resources/1%20-%20Interfaces/2%20-%20General%20Interface/2%20-%20APIs/1%20-%20Services/2%20-%20NEAR%20Paste/nearpasteUtils.js"
+					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/2%20-%20General/1%20-%20Services/2%20-%20NEAR%20Paste/nearpasteUtils.js"
 				}
 			]
 		},
@@ -23,7 +32,7 @@
 			"implementations": [
 				{
 					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/2%20-%20System/1%20-%20Resources/1%20-%20Interfaces/2%20-%20General%20Interface/2%20-%20APIs/1%20-%20Services/3%20-%20Reddit/redditUtils.js"
+					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/2%20-%20General/1%20-%20Services/3%20-%20Reddit/redditUtils.js"
 				}
 			]
 		},
@@ -32,7 +41,7 @@
 			"implementations": [
 				{
 					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/2%20-%20System/1%20-%20Resources/1%20-%20Interfaces/2%20-%20General%20Interface/2%20-%20APIs/1%20-%20Services/4%20-%20Wikipedia/wikipediaUtils.js"
+					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/2%20-%20General/1%20-%20Services/4%20-%20Wikipedia/wikipediaUtils.js"
 				}
 			]
 		},
@@ -41,7 +50,7 @@
 			"implementations": [
 				{
 					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/2%20-%20System/1%20-%20Resources/1%20-%20Interfaces/2%20-%20General%20Interface/2%20-%20APIs/1%20-%20Services/5%20-%20You/youUtils.js"
+					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/2%20-%20General/1%20-%20Services/5%20-%20You/youUtils.js"
 				}
 			]
 		},
@@ -50,7 +59,7 @@
 			"implementations": [
 				{
 					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/2%20-%20System/1%20-%20Resources/1%20-%20Interfaces/2%20-%20General%20Interface/2%20-%20APIs/1%20-%20Services/6%20-%20YouTube/youtubeUtils.js"
+					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/2%20-%20General/1%20-%20Services/6%20-%20YouTube/youtubeUtils.js"
 				}
 			]
 		},
@@ -59,7 +68,7 @@
 			"implementations": [
 				{
 					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/2%20-%20System/1%20-%20Resources/1%20-%20Interfaces/2%20-%20General%20Interface/2%20-%20APIs/2%20-%20Angaian/1%20-%20Language/1%20-%20Generator/angaianGenerator.js"
+					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/2%20-%20General/2%20-%20Angaian/1%20-%20Language/1%20-%20Generator/angaianGenerator.js"
 				}
 			]
 		},
@@ -68,7 +77,7 @@
 			"implementations": [
 				{
 					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/2%20-%20System/1%20-%20Resources/1%20-%20Interfaces/2%20-%20General%20Interface/2%20-%20APIs/2%20-%20Angaian/1%20-%20Language/2%20-%20Converter/angaianConverter.js"
+					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/2%20-%20General/2%20-%20Angaian/1%20-%20Language/2%20-%20Converter/angaianConverter.js"
 				}
 			]
 		}

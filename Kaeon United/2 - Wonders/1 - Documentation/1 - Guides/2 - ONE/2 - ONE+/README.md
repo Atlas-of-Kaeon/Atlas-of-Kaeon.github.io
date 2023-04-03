@@ -3,7 +3,7 @@
 <h1>ONE+</h1>
 
 <p align="center">
-	<img src="https://github.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/blob/master/Kaeon%20United/2%20-%20Wonders/1%20-%20Documentation/3%20-%20Iconography/1%20-%20ONE/1%20-%20ONE+/ONE+%20Logo.png?raw=true" width="300px"/>
+	<img src="https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/2%20-%20Assets/1%20-%20Visual/1%20-%20Images/1%20-%20Iconography/1%20-%20ONE/1%20-%20ONE%2B/ONE%2B%20Logo.png" width="300px"/>
 </p>
 
 </div>

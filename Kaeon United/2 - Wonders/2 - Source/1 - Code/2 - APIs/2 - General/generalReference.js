@@ -1,5 +1,5 @@
 var moduleDependencies = {
-	generalInterface: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/2%20-%20System/1%20-%20Resources/1%20-%20Interfaces/2%20-%20General%20Interface/generalInterface.json"
+	generalInterface: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/1%20-%20Interfaces/2%20-%20Packages/2%20-%20General%20Interface/kaeonUnitedGeneralInterface.json"
 };
 
 var io = require("kaeon-united")("io");
