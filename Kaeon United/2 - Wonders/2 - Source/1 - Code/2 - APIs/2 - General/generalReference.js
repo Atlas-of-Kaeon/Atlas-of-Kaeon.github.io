@@ -12,7 +12,7 @@ JSON.parse(
 
 	let path = item.path.join(".").toLowerCase();
 
-	if(!path.startsWith("kaeonUnited.general.services"))
+	if(!path.startsWith("kaeonunited.general.services"))
 		return;
 
 	data[path] = require(item.implementations[0].reference);
