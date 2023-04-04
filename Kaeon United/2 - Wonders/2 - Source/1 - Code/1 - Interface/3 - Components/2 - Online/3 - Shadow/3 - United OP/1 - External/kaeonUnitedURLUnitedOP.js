@@ -12,7 +12,7 @@ module.exports = (args) => {
 	if(arg == null)
 		return;
 
-	executeScript();
+	executeSingularity();
 
-	executeOP(fetchOnlineResource(args["unitedop"], true));
+	executeOP(openResource(args["unitedop"], true));
 };

@@ -12,7 +12,7 @@ module.exports = (args) => {
 	if(arg == null)
 		return;
 
-	executeScript();
+	executeSingularity();
 	
 	executeOP(args["unitedopraw"]);
 };

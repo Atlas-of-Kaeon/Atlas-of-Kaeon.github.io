@@ -17,7 +17,7 @@ module.exports = (args) => {
 	if(arg == null)
 		return;
 
-	executeScript();
+	executeSingularity();
 
 	executeJS(args["unitedjsraw"]);
 };

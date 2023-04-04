@@ -19,7 +19,7 @@ module.exports = (args) => {
 	if(Object.keys(args).length > 0)
 		return;
 
-	executeScript();
+	executeSingularity();
 	
-	executeJS(fetchOnlineResource(moduleDependencies.origin, true));
+	executeJS(openResource(moduleDependencies.origin, true));
 };

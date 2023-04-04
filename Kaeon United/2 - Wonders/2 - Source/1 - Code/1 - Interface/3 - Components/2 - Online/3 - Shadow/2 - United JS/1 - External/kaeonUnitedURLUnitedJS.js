@@ -17,7 +17,7 @@ module.exports = (args) => {
 	if(arg == null)
 		return;
 
-	executeScript();
+	executeSingularity();
 
-	executeJS(fetchOnlineResource(args["unitedjs"], true));
+	executeJS(openResource(args["unitedjs"], true));
 };
