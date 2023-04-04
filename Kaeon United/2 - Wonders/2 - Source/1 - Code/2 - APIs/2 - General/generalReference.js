@@ -10,8 +10,12 @@ JSON.parse(
 	io.open(moduleDependencies.generalInterface)
 ).modules.forEach((item) => {
 
-	data[item.path.join(".").toLowerCase()] =
-		require(item.implementations[0].reference);
+	let path = item.path.join(".").toLowerCase();
+
+	if(!path.startsWith("kaeonUnited.general.services"))
+		return;
+
+	data[path] = require(item.implementations[0].reference);
 });
 
 module.exports = (path) => {
