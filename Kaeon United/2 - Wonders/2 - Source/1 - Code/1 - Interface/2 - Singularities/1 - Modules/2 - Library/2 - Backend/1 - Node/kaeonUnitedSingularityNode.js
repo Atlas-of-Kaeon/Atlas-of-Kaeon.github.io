@@ -1,6 +1,6 @@
 var moduleDependencies = {
-	defaultInterface: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/2%20-%20System/1%20-%20Resources/1%20-%20Interfaces/1%20-%20Default%20Interface/KaeonUnitedDefaultInterface.json",
-	ONESuite: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20APIs/1%20-%20Core/1%20-%20ONE/6%20-%20ONE%20Suite/ONESuite.js",
+	unitedInterface: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/kaeonUnited.json",
+	ONESuite: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/1%20-%20Core/1%20-%20ONE/6%20-%20ONE%20Suite/ONESuite.js",
 };
 
 function appendInterface(main, resource, references) {
@@ -137,7 +137,7 @@ function getInterface() {
 
 			appendInterface(
 				interface,
-				require(moduleDependencies.defaultInterface)
+				require(moduleDependencies.unitedInterface)
 			);
 			
 			fs.writeFileSync(
