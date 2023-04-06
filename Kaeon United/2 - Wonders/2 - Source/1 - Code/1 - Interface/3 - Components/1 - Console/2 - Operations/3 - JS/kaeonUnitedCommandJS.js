@@ -1,4 +1,4 @@
-module.exports = (args, intervals) => {
+module.exports = (args, callback) => {
 
 	if(!Array.isArray(args))
 		return;
@@ -66,6 +66,6 @@ module.exports = (args, intervals) => {
 				io.save(result, args[3]);
 		}
 
-		intervals.forEach((item) => { clearInterval(item); });
+		callback();
 	})();
 };

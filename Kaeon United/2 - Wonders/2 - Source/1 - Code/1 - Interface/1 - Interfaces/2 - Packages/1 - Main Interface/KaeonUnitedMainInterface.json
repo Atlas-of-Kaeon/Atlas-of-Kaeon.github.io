@@ -1,31 +1,35 @@
 {
 	"components": [
 		{
-			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/1%20-%20Console/1%20-%20Assemble/kaeonUnitedCommandAssemble.js",
+			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/1%20-%20Console/1%20-%20Assemble/1%20-%20Management/kaeonUnitedCommandManagement.js",
 			"environment": "javascript"
 		},
 		{
-			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/1%20-%20Console/2%20-%20Disassemble/kaeonUnitedCommandDisassemble.js",
+			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/1%20-%20Console/1%20-%20Assemble/2%20-%20Operations/kaeonUnitedCommandAssemble.js",
 			"environment": "javascript"
 		},
 		{
-			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/1%20-%20Console/3%20-%20JS/kaeonUnitedCommandJS.js",
+			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/1%20-%20Console/2%20-%20Disassemble/2%20-%20Operations/kaeonUnitedCommandDisassemble.js",
 			"environment": "javascript"
 		},
 		{
-			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/1%20-%20Console/4%20-%20Parse/kaeonUnitedCommandParse.js",
+			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/1%20-%20Console/3%20-%20JS/2%20-%20Operations/kaeonUnitedCommandJS.js",
 			"environment": "javascript"
 		},
 		{
-			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/1%20-%20Console/5%20-%20Preprocess/kaeonUnitedCommandPreprocess.js",
+			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/1%20-%20Console/4%20-%20Parse/2%20-%20Operations/kaeonUnitedCommandParse.js",
 			"environment": "javascript"
 		},
 		{
-			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/1%20-%20Console/6%20-%20Process/kaeonUnitedCommandProcess.js",
+			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/1%20-%20Console/5%20-%20Preprocess/2%20-%20Operations/kaeonUnitedCommandPreprocess.js",
 			"environment": "javascript"
 		},
 		{
-			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/1%20-%20Console/7%20-%20UCC/kaeonUnitedCommandUCC.js",
+			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/1%20-%20Console/6%20-%20Process/2%20-%20Operations/kaeonUnitedCommandProcess.js",
+			"environment": "javascript"
+		},
+		{
+			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/1%20-%20Console/7%20-%20UCC/2%20-%20Operations/kaeonUnitedCommandUCC.js",
 			"environment": "javascript"
 		},
 		{

@@ -2,7 +2,7 @@ var moduleDependencies = {
 	ucc: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/2%20-%20System/2%20-%20Interface/1%20-%20Applications/2%20-%20Utilities/1%20-%20UCC/UCC.js"
 };
 
-module.exports = (args, intervals) => {
+module.exports = (args, callback) => {
 
 	if(!Array.isArray(args))
 		return;
@@ -46,6 +46,6 @@ module.exports = (args, intervals) => {
 			data
 		);
 
-		intervals.forEach((item) => { clearInterval(item); });
+		callback();
 	})();
 };

@@ -1,4 +1,4 @@
-module.exports = (args, intervals) => {
+module.exports = (args, callback) => {
 
 	if(!Array.isArray(args))
 		return;
@@ -6,7 +6,7 @@ module.exports = (args, intervals) => {
 	if(args.length == 0)
 		return;
 
-	if(args[0].toLowerCase() != "disassemble")
+	if(args[0].toLowerCase() != "preprocess")
 		return;
 
 	let io = require("kaeon-united")("io");
@@ -23,8 +23,16 @@ module.exports = (args, intervals) => {
 			data = ONESuite.preprocess(flag == "open" ? io.open(args[2]) : args[2]);
 		}
 
-		io.save(require("kaeon-united")("csb").disassemble(fs.readFileSync(data)), args[3]);
+		let result = (data != null ? data : "").trim();
 
-		intervals.forEach((item) => { clearInterval(item); });
+		if(result != "") {
+
+			console.log(result);
+
+			if(args[3] != null)
+				io.save(result, args[3]);
+		}
+
+		callback();
 	})();
 };

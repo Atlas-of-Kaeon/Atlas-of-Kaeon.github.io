@@ -1,4 +1,4 @@
-module.exports = (args, intervals) => {
+module.exports = (args, callback) => {
 
 	if(!Array.isArray(args))
 		return;
@@ -6,7 +6,7 @@ module.exports = (args, intervals) => {
 	if(args.length == 0)
 		return;
 
-	if(args[0].toLowerCase() != "parse")
+	if(args[0].toLowerCase() != "process")
 		return;
 
 	let io = require("kaeon-united")("io");
@@ -23,7 +23,25 @@ module.exports = (args, intervals) => {
 			data = ONESuite.preprocess(flag == "open" ? io.open(args[2]) : args[2]);
 		}
 
-		let result = ONESuite.write(ONESuite.parse(data));
+		let result = "";
+
+		if(data != null)
+			result = ONESuite.process(data);
+		
+		else {
+
+			let state = { };
+
+			while(true) {
+
+				let input = io.getInput("Enter code (Enter 'q' to quit): ");
+
+				if(input.toLowerCase() == "q")
+					return;
+
+				console.log("\n" + ONESuite.process(ONESuite.preprocess(input), state));
+			}
+		}
 
 		if(result == null)
 			result = "";
@@ -38,6 +56,6 @@ module.exports = (args, intervals) => {
 				io.save(result, args[3]);
 		}
 
-		intervals.forEach((item) => { clearInterval(item); });
+		callback();
 	})();
 };

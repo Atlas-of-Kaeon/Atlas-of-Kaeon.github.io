@@ -47,6 +47,13 @@ function appendInterface(main, resource, references) {
 	}
 }
 
+function clearIntervals() {
+
+	require.intervals.forEach((interval) => {
+		clearInterval(interval);
+	});
+}
+
 function executeModule(utility) {
 
 	executeSingularity();
@@ -100,155 +107,6 @@ function executeModule(utility) {
 			});
 		});
 	}
-}
-
-function fileExists(file) {
-
-	try {
-		return require.fs.existsSync(file);
-	}
-	
-	catch(error) {
-		return false;
-	}
-}
-
-function getInterface() {
-	
-	let interface = {
-		components: [],
-		modules: [],
-		extensions: [],
-		management: { }
-	};
-
-	let fs = require("fs");
-
-	try {
-
-		return JSON.parse(
-			fs.readFileSync(__dirname + "/interface.json", "utf-8")
-		);
-	}
-
-	catch(error) {
-
-		try {
-
-			appendInterface(
-				interface,
-				require(moduleDependencies.unitedInterface)
-			);
-			
-			fs.writeFileSync(
-				__dirname + "/interface.json",
-				JSON.stringify(interface)
-			);
-
-			return interface;
-		}
-	
-		catch(error) {
-
-		}
-	}
-
-	return interface;
-}
-
-function moduleExists(file) {
-
-	if(fileExists(file))
-		return true;
-
-	if(fileExists(file + ".js"))
-		return true;
-
-	return false;
-}
-
-function openResource(path) {
-
-	try {
-
-		if(path.startsWith("http://") || path.startsWith("https://")) {
-
-			if(openResource.cache == null) {
-
-				if(!require("fs").existsSync("kaeonUnited.json")) {
-
-					require("fs").writeFileSync(
-						__dirname + "/kaeonUnited.json", "{}"
-					);
-				}
-
-				try {
-					
-					openResource.cache = JSON.parse(require("fs").readFileSync(
-						__dirname + "/kaeonUnited.json", 'utf-8'
-					));
-				}
-
-				catch(error) {
-					openResource.cache = { };
-				}
-			}
-
-			if(require.connected != -1) {
-				
-				let request = new require('xmlhttprequest').XMLHttpRequest();
-				request.open("GET", path, false);
-
-				let text = "";
-
-				request.onreadystatechange = function() {
-
-					if(request.readyState === 4) {
-
-						if(request.status === 200 || request.status == 0)
-							text = request.responseText;
-					}
-				}
-
-				request.send(null);
-
-				openResource.cache[path] = text;
-				
-				try {
-
-					require("fs").writeFile(
-						__dirname + "/kaeonUnited.json",
-						JSON.stringify(openResource.cache),
-						() => {
-
-						}
-					);
-				}
-
-				catch(error) {
-					
-				}
-
-				return text;
-			}
-
-			else {
-
-				let text = openResource.cache[path];
-
-				return text != null ? text : "";
-			}
-		}
-
-		else
-			return require("fs").readFileSync(path, 'utf-8');
-	}
-
-	catch(error) {
-		
-	}
-
-	return "";
 }
 
 function executeSingularity() {
@@ -463,9 +321,13 @@ function executeSingularity() {
 	}
 
 	require.connected = 1;
+	
+	require.intervals = [];
 
 	require.appendInterface = appendInterface;
+	require.clearIntervals = clearIntervals;
 	require.getInterface = getInterface;
+	require.startIntervals = startIntervals;
 
 	require.execSync = require("child_process").execSync;
 	require.fs = require("fs");
@@ -481,6 +343,180 @@ function executeSingularity() {
 	require.cache = { };
 
 	require.kaeonUnited = true;
+}
+
+function fileExists(file) {
+
+	try {
+		return require.fs.existsSync(file);
+	}
+	
+	catch(error) {
+		return false;
+	}
+}
+
+function getInterface() {
+	
+	let interface = {
+		components: [],
+		modules: [],
+		extensions: [],
+		management: { }
+	};
+
+	let fs = require("fs");
+
+	try {
+
+		return JSON.parse(
+			fs.readFileSync(__dirname + "/interface.json", "utf-8")
+		);
+	}
+
+	catch(error) {
+
+		try {
+
+			appendInterface(
+				interface,
+				require(moduleDependencies.unitedInterface)
+			);
+			
+			fs.writeFileSync(
+				__dirname + "/interface.json",
+				JSON.stringify(interface)
+			);
+
+			return interface;
+		}
+	
+		catch(error) {
+
+		}
+	}
+
+	return interface;
+}
+
+function moduleExists(file) {
+
+	if(fileExists(file))
+		return true;
+
+	if(fileExists(file + ".js"))
+		return true;
+
+	return false;
+}
+
+function openResource(path) {
+
+	try {
+
+		if(path.startsWith("http://") || path.startsWith("https://")) {
+
+			if(openResource.cache == null) {
+
+				if(!require("fs").existsSync("kaeonUnited.json")) {
+
+					require("fs").writeFileSync(
+						__dirname + "/kaeonUnited.json", "{}"
+					);
+				}
+
+				try {
+					
+					openResource.cache = JSON.parse(require("fs").readFileSync(
+						__dirname + "/kaeonUnited.json", 'utf-8'
+					));
+				}
+
+				catch(error) {
+					openResource.cache = { };
+				}
+			}
+
+			if(require.connected != -1) {
+				
+				let request = new require('xmlhttprequest').XMLHttpRequest();
+				request.open("GET", path, false);
+
+				let text = "";
+
+				request.onreadystatechange = function() {
+
+					if(request.readyState === 4) {
+
+						if(request.status === 200 || request.status == 0)
+							text = request.responseText;
+					}
+				}
+
+				request.send(null);
+
+				openResource.cache[path] = text;
+				
+				try {
+
+					require("fs").writeFile(
+						__dirname + "/kaeonUnited.json",
+						JSON.stringify(openResource.cache),
+						() => {
+
+						}
+					);
+				}
+
+				catch(error) {
+					
+				}
+
+				return text;
+			}
+
+			else {
+
+				let text = openResource.cache[path];
+
+				return text != null ? text : "";
+			}
+		}
+
+		else
+			return require("fs").readFileSync(path, 'utf-8');
+	}
+
+	catch(error) {
+		
+	}
+
+	return "";
+}
+
+function startIntervals() {
+
+	require.intervals = [
+		setInterval(() => {
+					
+			require("dns").resolve('www.google.com', function(error) {
+		
+				if(error)
+					require.connected = -1;
+					
+				else
+					require.connected = (new Date()).getTime();
+			});
+		}, 1000 / 60),
+		setInterval(() => {
+			
+			if(require.connected == -1)
+				return;
+		
+			if((new Date()).getTime() - require.connected > 1000)
+				require.connected = -1;
+		}, 1000 / 60)
+	];
 }
 
 executeModule.executeSingularity = executeSingularity;

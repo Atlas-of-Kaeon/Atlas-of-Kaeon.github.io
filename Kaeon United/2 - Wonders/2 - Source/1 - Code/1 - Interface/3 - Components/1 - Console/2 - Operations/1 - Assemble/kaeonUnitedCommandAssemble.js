@@ -1,4 +1,4 @@
-module.exports = (args, intervals) => {
+module.exports = (args, callback) => {
 
 	if(!Array.isArray(args))
 		return;
@@ -28,6 +28,6 @@ module.exports = (args, intervals) => {
 		
 		fs.writeFileSync(args[3], new Uint8Array(Buffer.from(data)));
 
-		intervals.forEach((item) => { clearInterval(item); });
+		callback();
 	})();
 };
