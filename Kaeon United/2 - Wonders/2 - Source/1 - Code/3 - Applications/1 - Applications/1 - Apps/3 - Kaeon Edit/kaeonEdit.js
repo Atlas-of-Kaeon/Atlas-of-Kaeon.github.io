@@ -19,6 +19,7 @@ function save() {
 }
 
 var path = http.getURLArguments(window.location.href)["path"];
+path = path != null ? path : "";
 
 var text = vision.set(
 	widgets.getTextbox({
