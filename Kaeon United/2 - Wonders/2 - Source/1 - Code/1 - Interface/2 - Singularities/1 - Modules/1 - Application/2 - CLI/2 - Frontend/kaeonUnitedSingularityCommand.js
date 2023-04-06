@@ -16,4 +16,4 @@ function executeCommand(args) {
 	});
 }
 
-executeCommand(arguments);
+executeCommand(Array.from(arguments));
