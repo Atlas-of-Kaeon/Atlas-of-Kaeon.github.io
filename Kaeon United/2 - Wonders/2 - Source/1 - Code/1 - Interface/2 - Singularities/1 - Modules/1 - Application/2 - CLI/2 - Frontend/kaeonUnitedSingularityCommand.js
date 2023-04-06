@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-function executeCommand(interface, args) {
+function executeCommand(args) {
 
-	interface.components.filter((item) => {
+	require().components.filter((item) => {
 		
 		return item.environment.toLowerCase() == "javascript" ||
 			item.environment.toLowerCase() == "js";
@@ -18,4 +18,4 @@ function executeCommand(interface, args) {
 	});
 }
 
-executeCommand(require.getInterface(), arguments);
+executeCommand(arguments);

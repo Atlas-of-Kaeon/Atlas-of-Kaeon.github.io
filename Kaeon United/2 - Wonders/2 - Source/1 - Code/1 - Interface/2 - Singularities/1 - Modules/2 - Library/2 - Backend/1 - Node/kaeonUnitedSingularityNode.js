@@ -326,7 +326,6 @@ function executeSingularity() {
 
 	require.appendInterface = appendInterface;
 	require.clearIntervals = clearIntervals;
-	require.getInterface = getInterface;
 	require.startIntervals = startIntervals;
 
 	require.execSync = require("child_process").execSync;

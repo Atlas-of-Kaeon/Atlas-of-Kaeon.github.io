@@ -264,7 +264,6 @@ function executeSingularity() {
 	require = unitedRequire;
 
 	require.kaeonUnited = true;
-	require.getInterface = getInterface;
 	
 	try {
 		require.ONESuite = require(moduleDependencies.ONESuite);

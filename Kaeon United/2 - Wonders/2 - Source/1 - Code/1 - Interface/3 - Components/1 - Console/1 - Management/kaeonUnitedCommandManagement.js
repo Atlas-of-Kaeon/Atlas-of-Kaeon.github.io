@@ -56,6 +56,7 @@ module.exports = (args, callback) => {
 		return;
 
 	let execSync = require('child_process').execSync;
+	
 	let interfaces = getInterfaces();
 
 	let operation = args[0].toLowerCase();
