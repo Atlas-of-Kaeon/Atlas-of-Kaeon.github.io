@@ -10,7 +10,8 @@ module.exports = (args) => {
 
 	/*
 
-	let redirect = "" + require(moduleDependencies.kaeonUtilities)(args["app"]);
+	let redirect = "" +
+		require(moduleDependencies.kaeonUtilities)(args["app"]);
 
 	if(redirect.includes("?") && args.length > 1)
 		redirect += "?";

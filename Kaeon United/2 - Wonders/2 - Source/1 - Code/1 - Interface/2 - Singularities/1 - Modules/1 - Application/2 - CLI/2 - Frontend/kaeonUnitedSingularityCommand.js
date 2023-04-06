@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 function executeCommand(args) {
 
 	require("kaeon-united")().components.filter((item) => {

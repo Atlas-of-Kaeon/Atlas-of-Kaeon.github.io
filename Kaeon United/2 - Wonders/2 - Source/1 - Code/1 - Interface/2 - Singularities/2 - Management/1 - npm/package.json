@@ -1,13 +1,13 @@
 {
 	"name": "kaeon-united",
 	"bin": {
-		"kaeon-united": "KaeonUnited.js"
+		"kaeon-united": "KaeonUnitedSingularityCLI.js"
 	},
-	"version": "1.0.88",
+	"version": "1.0.90",
 	"description": "It just works",
-	"main": "KaeonUnited.js",
+	"main": "KaeonUnitedSingularityNode.js",
 	"scripts": {
-		"start": "node KaeonUnited.js"
+		"start": "node KaeonUnitedSingularityCLI.js"
 	},
 	"author": "",
 	"license": "Apache-2.0",

@@ -20,10 +20,17 @@ module.exports = (args, callback) => {
 			
 			let flag = args[1].toLowerCase();
 
-			data = ONESuite.preprocess(flag == "open" ? io.open(args[2]) : args[2]);
+			data = ONESuite.preprocess(
+				flag == "open" ? io.open(args[2]) : args[2]
+			);
 		}
 
-		io.save(require("kaeon-united")("csb").disassemble(fs.readFileSync(data)), args[3]);
+		io.save(
+			require("kaeon-united")("csb").disassemble(
+				fs.readFileSync(data)
+			),
+			args[3]
+		);
 
 		callback();
 	})();

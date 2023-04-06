@@ -20,7 +20,9 @@ module.exports = (args, callback) => {
 			
 			let flag = args[1].toLowerCase();
 
-			data = ONESuite.preprocess(flag == "open" ? io.open(args[2]) : args[2]);
+			data = ONESuite.preprocess(
+				flag == "open" ? io.open(args[2]) : args[2]
+			);
 		}
 
 		let result = "";
@@ -39,7 +41,9 @@ module.exports = (args, callback) => {
 				if(input.toLowerCase() == "q")
 					return;
 
-				console.log("\n" + ONESuite.process(ONESuite.preprocess(input), state));
+				console.log(
+					"\n" + ONESuite.process(ONESuite.preprocess(input), state)
+				);
 			}
 		}
 
