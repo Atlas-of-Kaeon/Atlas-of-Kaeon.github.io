@@ -4,7 +4,7 @@ function executeCommand(args) {
 
 	require.startIntervals();
 
-	let components = require().components.filter((item) => {
+	let components = require("kaeon-united")().components.filter((item) => {
 		
 		return item.environment.toLowerCase() == "javascript" ||
 			item.environment.toLowerCase() == "js";

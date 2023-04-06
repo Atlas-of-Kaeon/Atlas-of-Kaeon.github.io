@@ -2,7 +2,7 @@
 
 function executeCommand(args) {
 
-	require().components.filter((item) => {
+	require("kaeon-united")().components.filter((item) => {
 		
 		return item.environment.toLowerCase() == "javascript" ||
 			item.environment.toLowerCase() == "js";
