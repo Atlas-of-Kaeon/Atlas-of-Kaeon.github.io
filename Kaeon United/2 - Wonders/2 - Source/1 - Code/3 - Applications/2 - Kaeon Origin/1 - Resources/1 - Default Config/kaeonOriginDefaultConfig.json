@@ -26,7 +26,7 @@
 		},
 		{
 			"path": "Storage://Default/System/Commands/kaeon-united.js",
-			"location": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/index.html"
+			"location": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/2%20-%20Singularities/1%20-%20Modules/1%20-%20Application/2%20-%20CLI/2%20-%20Frontend/kaeonUnitedSingularityCommand.js"
 		},
 		{
 			"path": "Storage://Default/System/Commands/ls.js",
