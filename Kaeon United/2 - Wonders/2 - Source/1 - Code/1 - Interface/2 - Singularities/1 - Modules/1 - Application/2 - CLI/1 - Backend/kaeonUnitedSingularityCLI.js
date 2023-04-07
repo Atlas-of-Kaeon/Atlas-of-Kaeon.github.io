@@ -2,9 +2,11 @@
 
 function executeCommand(args) {
 
+	let kaeonUnited = require("kaeon-united")();
+
 	require.startIntervals();
 
-	let components = require("kaeon-united")().components.filter((item) => {
+	let components = kaeonUnited.components.filter((item) => {
 		
 		return item.environment.toLowerCase() == "javascript" ||
 			item.environment.toLowerCase() == "js";
@@ -31,7 +33,5 @@ function executeCommand(args) {
 		}
 	});
 }
-
-require("kaeon-united")();
 
 executeCommand(process.argv.slice(2));
