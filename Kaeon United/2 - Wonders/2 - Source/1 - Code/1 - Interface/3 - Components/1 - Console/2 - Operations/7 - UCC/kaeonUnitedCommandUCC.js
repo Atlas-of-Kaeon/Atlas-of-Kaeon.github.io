@@ -4,14 +4,26 @@ var moduleDependencies = {
 
 module.exports = (args, callback) => {
 
-	if(!Array.isArray(args))
-		return;
+	if(!Array.isArray(args)) {
 
-	if(args.length == 0)
-		return;
+		callback();
 
-	if(args[0].toLowerCase() != "ucc")
 		return;
+	}
+
+	if(args.length == 0) {
+
+		callback();
+
+		return;
+	}
+
+	if(args[0].toLowerCase() != "ucc") {
+
+		callback();
+
+		return;
+	}
 
 	let io = require("kaeon-united")("io");
 	let ONESuite = require("kaeon-united")("ONESuite");

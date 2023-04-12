@@ -4,39 +4,23 @@
 
 	function executeCDN() {
 		executeSingularity();
-		executeCommandOperation(getInterface(), getURLArguments());
+		executeCommand(getURLArguments());
 	}
 
-	function executeCommandOperation(interface, args, intervals) {
+	function executeCommand(args) {
 
-		let components = interface.components.filter((item) => {
+		require("kaeon-united")().components.filter((item) => {
 			
 			return item.environment.toLowerCase() == "javascript" ||
 				item.environment.toLowerCase() == "js";
-		});
-
-		let open = components.length;
-
-		let callback = () => {
-
-			open--;
-
-			if(open == 0) {
-
-				intervals.forEach((interval) => {
-					clearInterval(interval);
-				});
-			}
-		};
-
-		components.forEach((item) => {
+		}).forEach((item) => {
 
 			try {
-				require(item.reference)(args, callback);
+				require(item.reference)(args, () => { });
 			}
 
 			catch(error) {
-				callback();
+
 			}
 		});
 	}

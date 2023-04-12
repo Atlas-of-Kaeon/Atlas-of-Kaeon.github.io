@@ -46,14 +46,28 @@ function onDependency(item, command) {
 
 module.exports = (args, callback) => {
 
-	if(!Array.isArray(args))
-		return;
+	if(!Array.isArray(args)) {
 
-	if(args.length == 0)
-		return;
+		callback();
 
-	if(args[0].toLowerCase() != "install")
 		return;
+	}
+
+	if(args.length == 0) {
+
+		callback();
+
+		return;
+	}
+
+	if(args[0].toLowerCase() != "install" &&
+		args[0].toLowerCase() != "uninstall" &&
+		args[0].toLowerCase() != "list") {
+
+		callback();
+
+		return;
+	}
 
 	let execSync = require('child_process').execSync;
 	
