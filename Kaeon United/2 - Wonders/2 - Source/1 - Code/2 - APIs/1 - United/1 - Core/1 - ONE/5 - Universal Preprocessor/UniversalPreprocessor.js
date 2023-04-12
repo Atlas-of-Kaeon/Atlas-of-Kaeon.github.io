@@ -15,7 +15,7 @@ function getLangauge(language) {
 	return language.trim().toLowerCase();
 }
 
-function processKaeonFUSIONDirective(state, directive, text, index) {
+function processKaeonFUSIONDirective(args, state, directive, text, index) {
 
 	state.kaeonFUSIONInterpreter =
 		state.kaeonFUSIONInterpreter ?
@@ -29,7 +29,7 @@ function processKaeonFUSIONDirective(state, directive, text, index) {
 
 		tempArgs = process.argv;
 
-		process.argv = [null, null, text, index, tempArgs];
+		process.argv = [null, null, text, index, args];
 	}
 
 	console.log = function() {
@@ -73,7 +73,7 @@ function processKaeonFUSIONDirective(state, directive, text, index) {
 	}
 }
 
-function processJavaScriptDirective(state, directive, text, index) {
+function processJavaScriptDirective(args, state, directive, text, index) {
 
 	var tempWrite = console.log;
 
@@ -112,22 +112,24 @@ function processJavaScriptDirective(state, directive, text, index) {
 	}
 }
 
-function processDirective(state, language, directive, text, index) {
+function processDirective(args, state, language, directive, text, index) {
 
 	let directiveLanguage = getLangauge(language);
 
 	if(directiveLanguage == "kaeon fusion" || directiveLanguage == "kf")
-		return processKaeonFUSIONDirective(state, directive, text, index);
+		return processKaeonFUSIONDirective(args, state, directive, text, index);
 
 	if(directiveLanguage == "javascript" || directiveLanguage == "js")
-		return processJavaScriptDirective(state, directive, text, index);
+		return processJavaScriptDirective(args, state, directive, text, index);
 
 	// STUB - ADD OTHER LANGUAGES
 
 	return text;
 }
 
-function preprocess(text) {
+function preprocess(text, args) {
+
+	args = args != null ? args : [];
 
 	text = text.split("\r").join("");
 
@@ -177,6 +179,7 @@ function preprocess(text) {
 
 		newText =
 			processDirective(
+				args,
 				state,
 				directives[i].language,
 				directives[i].content,
