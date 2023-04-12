@@ -2,17 +2,18 @@
 
 function executeCommand(args) {
 
-	let kaeonUnited = require("kaeon-united")();
+	require = require("./kaeonUnitedSingularityNode.js").executeSingularity();
 
-	require.startIntervals();
-
-	let components = kaeonUnited.components.filter((item) => {
+	let components = require("kaeon-united")().components.filter((item) => {
 		
 		return item.environment.toLowerCase() == "javascript" ||
 			item.environment.toLowerCase() == "js";
 	});
 
 	let open = components.length;
+
+	if(open == 0)
+		return;
 
 	let callback = () => {
 
@@ -21,6 +22,8 @@ function executeCommand(args) {
 		if(open == 0)
 			require.clearIntervals();
 	};
+
+	require.startIntervals();
 
 	components.forEach((item) => {
 

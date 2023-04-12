@@ -124,6 +124,14 @@ function executeSingularity() {
 	if(united)
 		return;
 
+	try {
+		require("xmlhttprequest");
+	}
+
+	catch(error) {
+		require("child_process").execSync('npm install xmlhttprequest');
+	}
+
 	var installedModules = [
 		"assert",
 		"buffer",
@@ -163,7 +171,11 @@ function executeSingularity() {
 
 		installedModules = installedModules.concat(
 			Object.keys(
-				JSON.parse(execSync('npm ls --json').toString()).dependencies
+				JSON.parse(
+					require("child_process").
+						execSync('npm ls --json').
+						toString()
+				).dependencies
 			)
 		);
 	}
@@ -234,7 +246,7 @@ function executeSingularity() {
 			
 					try {
 
-						execSync("npm install \"" + path + "\"");
+						require.execSync("npm install \"" + path + "\"");
 
 						installedModules.push(path);
 					}
@@ -321,7 +333,9 @@ function executeSingularity() {
 	}
 
 	require.connected = 1;
+	require.kaeonUnited = true;
 	
+	require.cache = { };
 	require.intervals = [];
 
 	require.appendInterface = appendInterface;
@@ -336,12 +350,10 @@ function executeSingularity() {
 	}
 
 	catch(error) {
-
+		
 	}
-	
-	require.cache = { };
 
-	require.kaeonUnited = true;
+	return require;
 }
 
 function fileExists(file) {
@@ -391,7 +403,7 @@ function getInterface() {
 		}
 	
 		catch(error) {
-
+			
 		}
 	}
 
@@ -437,8 +449,10 @@ function openResource(path) {
 			}
 
 			if(require.connected != -1) {
+
+				let xhr = require('xmlhttprequest').XMLHttpRequest;
 				
-				let request = new require('xmlhttprequest').XMLHttpRequest();
+				let request = new xhr();
 				request.open("GET", path, false);
 
 				let text = "";
