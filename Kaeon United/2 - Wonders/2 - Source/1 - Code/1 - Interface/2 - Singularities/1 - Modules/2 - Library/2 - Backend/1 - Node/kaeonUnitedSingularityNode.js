@@ -332,7 +332,7 @@ function executeSingularity() {
 		return result;
 	}
 
-	require.connected = 1;
+	require.connected = 0;
 	require.kaeonUnited = true;
 	
 	require.cache = { };
@@ -523,7 +523,7 @@ function startIntervals() {
 		}, 1000 / 60),
 		setInterval(() => {
 			
-			if(require.connected == -1)
+			if(require.connected == -1 || require.connected == 0)
 				return;
 		
 			if((new Date()).getTime() - require.connected > 1000)

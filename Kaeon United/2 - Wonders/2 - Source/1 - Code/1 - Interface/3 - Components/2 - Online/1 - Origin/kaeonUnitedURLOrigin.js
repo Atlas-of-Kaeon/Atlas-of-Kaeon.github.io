@@ -11,13 +11,21 @@ function executeJS(code) {
 	);
 }
 
-module.exports = (args) => {
+module.exports = (args, callback) => {
 
-	if(Array.isArray(args))
-		return;
+	if(Array.isArray(args)) {
 
-	if(Object.keys(args).length > 0)
+		callback();
+
 		return;
+	}
+
+	if(Object.keys(args).length > 0) {
+
+		callback();
+
+		return;
+	}
 
 	executeSingularity();
 	

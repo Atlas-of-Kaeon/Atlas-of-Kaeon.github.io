@@ -13,15 +13,23 @@ function executeHTML(code) {
 	}
 }
 
-module.exports = (args) => {
+module.exports = (args, callback) => {
 
-	if(Array.isArray(args))
+	if(Array.isArray(args)) {
+
+		callback();
+
 		return;
+	}
 
 	let arg = args["html"]
 
-	if(arg == null)
+	if(arg == null) {
+
+		callback();
+
 		return;
+	}
 		
 	executeHTML(openResource(args["html"], true));
 };
