@@ -468,16 +468,20 @@ function openResource(path) {
 
 				request.send(null);
 
+				if(text == null) {
+
+					text = openResource.cache[path];
+
+					return text != null ? text : "";
+				}
+
 				openResource.cache[path] = text;
 				
 				try {
 
-					require("fs").writeFile(
+					require("fs").writeFileSync(
 						__dirname + "/kaeonUnited.json",
-						JSON.stringify(openResource.cache),
-						() => {
-
-						}
+						JSON.stringify(openResource.cache)
 					);
 				}
 
