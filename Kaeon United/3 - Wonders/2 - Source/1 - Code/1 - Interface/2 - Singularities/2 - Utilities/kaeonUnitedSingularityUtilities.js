@@ -88,7 +88,7 @@ var parseInterface = (interface) => {
 
 	try {
 
-		findONE(onePlus.read(interface), "Use").map((item) => {
+		findONE(parseInterface.onePlus.read(interface), "Use").map((item) => {
 
 			return item.children.map((element) => {
 
