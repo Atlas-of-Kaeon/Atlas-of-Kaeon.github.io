@@ -2,7 +2,7 @@
 
 Kaeon United GhostHost,
 or GhostHost for short,
-is a utility built into the [Kaeon United](https://github.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/blob/master/Kaeon%20United/2%20-%20Wonders/1%20-%20Documentation/README.md) platform that allows for free and anonymous front end hosting for serverless apps.
+is a utility built into the [Kaeon United](https://github.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/blob/master/Kaeon%20United/3%20-%20Wonders/1%20-%20Documentation/README.md) platform that allows for free and anonymous front end hosting for serverless apps.
 
 <h2 align="center">Functionality</h2>
 
@@ -19,7 +19,7 @@ If JavaScript or Kaeon FUSION is provided,
 it shall be executed as a script implictly.
 
 If JavaScript is provided,
-it shall be interpreted as [United JavaScript](https://github.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/blob/master/Kaeon%20United/2%20-%20Wonders/1%20-%20Documentation/README.md#united-javascript),
+it shall be interpreted as [United JavaScript](https://github.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/blob/master/Kaeon%20United/3%20-%20Wonders/1%20-%20Documentation/README.md#united-javascript),
 and shall thus have access to the CommonJS require function,
 through which it may import modules stored online via their URLs.
 
@@ -60,7 +60,7 @@ The URL for a Kaeon FUSION project using raw code instead of a URL project must 
 To demonstrate,
 we've uploaded an example site to this repository, located at the following URL:
 
-<a href="https://Atlas-of-Kaeon.github.io/?html=https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/1%20-%20Documentation/2%20-%20Samples/2%20-%20Websites/1%20-%20Sample/Sample.html">https://Atlas-of-Kaeon.github.io/?html=https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/2%20-%20Wonders/1%20-%20Documentation/2%20-%20Samples/2%20-%20Websites/1%20-%20Sample/Sample.html</a>
+<a href="https://Atlas-of-Kaeon.github.io/?html=https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/1%20-%20Documentation/2%20-%20Samples/2%20-%20Websites/1%20-%20Sample/Sample.html">https://Atlas-of-Kaeon.github.io/?html=https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/1%20-%20Documentation/2%20-%20Samples/2%20-%20Websites/1%20-%20Sample/Sample.html</a>
 
 <h2 align="center">Why use GhostHost over GitHub pages, or other similar services?</h2>
 
