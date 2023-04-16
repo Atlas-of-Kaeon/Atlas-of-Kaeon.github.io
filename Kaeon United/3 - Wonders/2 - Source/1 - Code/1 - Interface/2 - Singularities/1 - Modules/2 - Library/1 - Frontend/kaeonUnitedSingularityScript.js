@@ -301,7 +301,7 @@ function getInterface() {
 	sources.forEach((item) => {
 
 		try {
-			appendInterface(interface, parseInterface(openResource(item)));
+			appendInterface(interface, parseInterface(openResource(item)), []);
 		}
 	
 		catch(error) {
