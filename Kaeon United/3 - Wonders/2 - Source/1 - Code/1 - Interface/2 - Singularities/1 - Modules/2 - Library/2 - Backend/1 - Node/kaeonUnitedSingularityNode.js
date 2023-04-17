@@ -381,32 +381,23 @@ function getInterface() {
 
 	try {
 
-		return JSON.parse(
-			fs.readFileSync(__dirname + "/interface.json", "utf-8")
-		);
+		if(!fs.existsSync("./plugins.json"))
+			fs.writeFileSync("./plugins.json", "{}");
+
+		let interfaces = [
+			moduleDependencies.unitedInterface,
+			JSON.parse(fs.readFileSync("./plugins.json", "utf-8"))
+		];
+
+		interfaces.forEach((item) => {
+			appendInterface(interface, parseInterface(openResource(item)), []);
+		});
+
+		return interface;
 	}
 
 	catch(error) {
-
-		try {
-
-			appendInterface(
-				interface,
-				parseInterface(openResource(moduleDependencies.unitedInterface)),
-				[]
-			);
-			
-			fs.writeFileSync(
-				__dirname + "/interface.json",
-				JSON.stringify(interface)
-			);
-
-			return interface;
-		}
-	
-		catch(error) {
-			
-		}
+		
 	}
 
 	return interface;

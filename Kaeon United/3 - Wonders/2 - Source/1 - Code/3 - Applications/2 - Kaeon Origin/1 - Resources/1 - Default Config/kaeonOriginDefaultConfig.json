@@ -54,7 +54,7 @@
 		},
 		{
 			"path": "Storage://User/Applications/Apps/code.js",
-			"content": "window.open(\"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/3%20-%20Applications/1%20-%20Applications/1%20-%20Apps/1%20-%20Kaeon%20Code/kaeonCode.js\", \"_blank\");"
+			"content": "window.open(\"https://atlas-of-kaeon.github.io/?unitedjs=https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/3%20-%20Applications/1%20-%20Applications/1%20-%20Apps/1%20-%20Kaeon%20Code/kaeonCode.js\", \"_blank\");"
 		},
 		{
 			"path": "Storage://User/Applications/Apps/cast.js",
