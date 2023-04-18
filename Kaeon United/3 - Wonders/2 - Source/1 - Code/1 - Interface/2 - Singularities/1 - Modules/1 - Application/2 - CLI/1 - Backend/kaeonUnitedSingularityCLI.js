@@ -2,7 +2,9 @@
 
 function executeCommand(args) {
 
-	require = require("./kaeonUnitedSingularityNode.js").executeSingularity();
+	require = require(
+		__dirname + "/kaeonUnitedSingularityNode.js"
+	).executeSingularity();
 
 	let components = require("kaeon-united")().components.filter((item) => {
 		

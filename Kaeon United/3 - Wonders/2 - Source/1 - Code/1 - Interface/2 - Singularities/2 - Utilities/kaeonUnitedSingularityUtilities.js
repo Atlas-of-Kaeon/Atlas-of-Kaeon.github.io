@@ -31,7 +31,7 @@ var getNewInterface = () => {
 	return {
 		components: [],
 		modules: [],
-		extensions: [],
+		extensions: { },
 		management: { },
 		references: { }
 	};
@@ -104,8 +104,8 @@ var parseInterface = (interface) => {
 
 			result.components = result.components.concat(item.components);
 			result.modules = result.components.concat(item.modules);
-			result.extensions = result.components.concat(item.extensions);
 
+			Object.assign(result.extensions, item.extensions);
 			Object.assign(result.management, item.management);
 			Object.assign(result.references, item.references);
 		});

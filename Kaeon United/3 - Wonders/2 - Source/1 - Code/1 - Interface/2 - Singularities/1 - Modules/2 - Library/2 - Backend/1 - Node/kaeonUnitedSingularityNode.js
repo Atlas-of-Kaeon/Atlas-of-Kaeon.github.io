@@ -6,7 +6,11 @@ var moduleDependencies = {
 
 function appendInterface(main, resource, references) {
 
-	["components", "modules", "extensions"].forEach((field) => {
+	appendInterface.cache =
+		appendInterface.cache != null ?
+			appendInterface.cache : [];
+
+	["components", "modules"].forEach((field) => {
 
 		if(resource[field] != null) {
 
@@ -19,6 +23,9 @@ function appendInterface(main, resource, references) {
 			});
 		}
 	});
+
+	if(resource.extensions != null)
+		Object.assign(main.extensions, resource.extensions);
 
 	if(resource.management != null)
 		Object.assign(main.management, resource.management);
@@ -46,6 +53,31 @@ function appendInterface(main, resource, references) {
 			}
 		});
 	}
+
+	main.components.map((item) => {
+		return item.reference;
+	}).concat(main.modules.map((item) => {
+
+		return item.implementations.map((element) => {
+			return element.reference;
+		});
+	}).flat()).concat(
+		Object.values(main.extensions).flat()
+	).forEach((item) => {
+
+		if(appendInterface.cache.includes(item))
+			return;
+
+		appendInterface.cache.push(item);
+
+		try {
+			openResource(item);
+		}
+
+		catch(error) {
+
+		}
+	});
 }
 
 function clearIntervals() {
@@ -373,7 +405,7 @@ function getInterface() {
 	let interface = {
 		components: [],
 		modules: [],
-		extensions: [],
+		extensions: { },
 		management: { }
 	};
 
@@ -381,12 +413,12 @@ function getInterface() {
 
 	try {
 
-		if(!fs.existsSync("./plugins.json"))
-			fs.writeFileSync("./plugins.json", "{}");
+		if(!fs.existsSync(__dirname + "/plugins.json"))
+			fs.writeFileSync(__dirname + "/plugins.json", "{}");
 
 		let interfaces = [
 			moduleDependencies.unitedInterface,
-			JSON.parse(fs.readFileSync("./plugins.json", "utf-8"))
+			JSON.parse(fs.readFileSync(__dirname + "/plugins.json", "utf-8"))
 		];
 
 		interfaces.forEach((item) => {

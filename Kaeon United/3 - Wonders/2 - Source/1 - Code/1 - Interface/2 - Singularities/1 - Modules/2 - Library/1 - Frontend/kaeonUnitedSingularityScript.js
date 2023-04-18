@@ -7,7 +7,7 @@ var moduleDependencies = {
 
 function appendInterface(main, resource, references) {
 
-	["components", "modules", "extensions"].forEach((field) => {
+	["components", "modules"].forEach((field) => {
 
 		if(resource[field] != null) {
 
@@ -20,6 +20,9 @@ function appendInterface(main, resource, references) {
 			});
 		}
 	});
+
+	if(resource.extensions != null)
+		Object.assign(main.extensions, resource.extensions);
 
 	if(resource.management != null)
 		Object.assign(main.management, resource.management);
@@ -280,7 +283,7 @@ function getInterface() {
 	let interface = {
 		components: [],
 		modules: [],
-		extensions: [],
+		extensions: { },
 		management: { }
 	};
 
