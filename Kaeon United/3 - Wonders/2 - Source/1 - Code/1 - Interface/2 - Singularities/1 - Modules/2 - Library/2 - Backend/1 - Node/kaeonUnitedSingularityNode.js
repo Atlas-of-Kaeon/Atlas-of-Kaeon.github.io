@@ -75,7 +75,7 @@ function appendInterface(main, resource, references) {
 		}
 
 		catch(error) {
-
+			
 		}
 	});
 }
@@ -134,7 +134,7 @@ function executeModule(utility) {
 					}
 
 					catch(error) {
-
+						
 					}
 				}
 			});
@@ -156,14 +156,6 @@ function executeSingularity() {
 
 	if(united)
 		return;
-
-	try {
-		require("xmlhttprequest");
-	}
-
-	catch(error) {
-		require("child_process").execSync('npm install xmlhttprequest');
-	}
 
 	var installedModules = [
 		"assert",
@@ -279,13 +271,19 @@ function executeSingularity() {
 			
 					try {
 
-						require.execSync("npm install \"" + path + "\"");
+						let prefix =
+							!__dirname.includes(process.cwd()) ?
+								"--prefix " + __dirname + " " : "";
+
+						require.execSync(
+							"npm install " + prefix + "\"" + path + "\""
+						);
 
 						installedModules.push(path);
 					}
 		
 					catch(error) {
-
+						
 					}
 				}
 
@@ -305,7 +303,7 @@ function executeSingularity() {
 						}
 
 						catch(error) {
-						
+
 							item = (new Function(
 								"require = arguments[0];" +
 									"var module={exports:{}};" +
@@ -338,7 +336,7 @@ function executeSingularity() {
 		}
 
 		catch(error) {
-		
+			
 			if(!options.global) {
 	
 				data =
@@ -413,12 +411,14 @@ function getInterface() {
 
 	try {
 
-		if(!fs.existsSync(__dirname + "/plugins.json"))
-			fs.writeFileSync(__dirname + "/plugins.json", "{}");
+		if(!fs.existsSync(process.cwd() + "/plugins.json"))
+			fs.writeFileSync(process.cwd() + "/plugins.json", "{}");
 
 		let interfaces = [
 			moduleDependencies.unitedInterface,
-			JSON.parse(fs.readFileSync(__dirname + "/plugins.json", "utf-8"))
+			JSON.parse(
+				fs.readFileSync(process.cwd() + "/plugins.json", "utf-8")
+			)
 		];
 
 		interfaces.forEach((item) => {
@@ -457,14 +457,14 @@ function openResource(path) {
 				if(!require("fs").existsSync("kaeonUnited.json")) {
 
 					require("fs").writeFileSync(
-						__dirname + "/kaeonUnited.json", "{}"
+						process.cwd() + "/kaeonUnited.json", "{}"
 					);
 				}
 
 				try {
 					
 					openResource.cache = JSON.parse(require("fs").readFileSync(
-						__dirname + "/kaeonUnited.json", 'utf-8'
+						process.cwd() + "/kaeonUnited.json", 'utf-8'
 					));
 				}
 
@@ -474,6 +474,21 @@ function openResource(path) {
 			}
 
 			if(require.connected != -1) {
+
+				try {
+					require("xmlhttprequest");
+				}
+			
+				catch(error) {
+
+					let prefix =
+						!__dirname.includes(process.cwd()) ?
+							"--prefix " + __dirname + " " : "";
+
+					require("child_process").execSync(
+						"npm install " + prefix + "xmlhttprequest"
+					);
+				}
 
 				let xhr = require('xmlhttprequest').XMLHttpRequest;
 				
@@ -505,7 +520,7 @@ function openResource(path) {
 				try {
 
 					require("fs").writeFileSync(
-						__dirname + "/kaeonUnited.json",
+						process.cwd() + "/kaeonUnited.json",
 						JSON.stringify(openResource.cache)
 					);
 				}
