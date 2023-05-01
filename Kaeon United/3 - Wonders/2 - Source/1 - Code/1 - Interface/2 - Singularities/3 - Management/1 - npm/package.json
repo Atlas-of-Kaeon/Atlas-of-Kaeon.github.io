@@ -3,7 +3,7 @@
 	"bin": {
 		"kaeon-united": "kaeonUnitedSingularityCLI.js"
 	},
-	"version": "1.0.96",
+	"version": "1.0.0",
 	"description": "It just works",
 	"main": "kaeonUnitedSingularityNode.js",
 	"scripts": {
