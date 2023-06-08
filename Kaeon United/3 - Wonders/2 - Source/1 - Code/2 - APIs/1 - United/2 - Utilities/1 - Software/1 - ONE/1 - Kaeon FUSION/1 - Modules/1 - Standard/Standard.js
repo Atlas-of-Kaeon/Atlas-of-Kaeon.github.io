@@ -1,17 +1,12 @@
 // DEPENDENCIES
 
-var moduleDependencies = {
-	defaultConfig: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/3%20-%20Applications/2%20-%20Kaeon%20Origin/1%20-%20Resources/1%20-%20Default%20Config/kaeonOriginDefaultConfig.json",
-};
-
-var one = require("kaeon-united")("one");
 var fusion = require("kaeon-united")("fusion");
-var philosophersStone = require("kaeon-united")("philosophersStone");
-var oneSuite = require("kaeon-united")("oneSuite");
-
 var io = require("kaeon-united")("io");
+var kaeonMETA = require("kaeon-united")("kaeonMETA");
+var one = require("kaeon-united")("one");
+var oneSuite = require("kaeon-united")("oneSuite");
+var philosophersStone = require("kaeon-united")("philosophersStone");
 var tokenizer = require("kaeon-united")("tokenizer");
-var virtualSystem = require("kaeon-united")("virtualSystem");
 
 var fs = {};
 var path = {};
@@ -4929,7 +4924,7 @@ function hexadecimalToBinary() {
 	}
 }
 
-function kaeonMETA() {
+function kaeonMETACommand() {
 
 	philosophersStone.abide(this, new fusion.FUSIONUnit());
 
@@ -4938,28 +4933,7 @@ function kaeonMETA() {
 	}
 
 	this.process = function(element, processed) {
-
-		if(window.fileSystem == null) {
-
-			virtualSystem.initiateVirtualSystemDefault();
-
-			let config = JSON.parse(io.open(moduleDependencies.defaultConfig));
-			config.commands = [];
-
-			virtualSystem.load(config);
-		}
-
-		try {
-			
-			return virtualSystem.executeCommand(
-				"Storage://User/Applications/Processes/meta " +
-					JSON.stringify(processed[0])
-			)[0];
-		}
-
-		catch(error) {
-			return null;
-		}
+		kaeonMETA.kaeonMETA(processed[0]);
 	}
 }
 
@@ -5315,5 +5289,5 @@ module.exports = function(fusion) {
 	philosophersStone.connect(fusion, new binaryToHexadecimal(), [], true);
 	philosophersStone.connect(fusion, new hexadecimalToBinary(), [], true);
 	
-	philosophersStone.connect(fusion, new kaeonMETA(), [], true);
+	philosophersStone.connect(fusion, new kaeonMETACommand(), [], true);
 };

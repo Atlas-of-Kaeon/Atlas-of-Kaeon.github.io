@@ -130,6 +130,15 @@
 			]
 		},
 		{
+			"path": ["kaeonUnited", "main", "kaeonMETA"],
+			"implementations": [
+				{
+					"environment": "javascript",
+					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/1%20-%20Core/3%20-%20Kaeon%20META/kaeonMETA.js"
+				}
+			]
+		},
+		{
 			"path": ["kaeonUnited", "main", "one", "fusion"],
 			"implementations": [
 				{
@@ -261,6 +270,15 @@
 				{
 					"environment": "javascript",
 					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/1%20-%20Core/2%20-%20Philosopher's%20Stone/1%20-%20Conventions/2%20-%20Medium/1%20-%20SOUL/1%20-%20Utilities/4%20-%20String%20Comparer/stringComparer.js"
+				}
+			]
+		},
+		{
+			"path": ["kaeonUnited", "main", "philosophersStone", "conventions", "soul", "utilities", "neuralNetwork"],
+			"implementations": [
+				{
+					"environment": "javascript",
+					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/1%20-%20Core/2%20-%20Philosopher's%20Stone/1%20-%20Conventions/2%20-%20Medium/1%20-%20SOUL/1%20-%20Utilities/5%20-%20Neural%20Network/neuralNetwork.js"
 				}
 			]
 		},
@@ -490,11 +508,11 @@
 			]
 		},
 		{
-			"path": ["kaeonUnited", "main", "utilities", "software", "general", "data", "parsing", "utilities", "ONE", "paperONE"],
+			"path": ["kaeonUnited", "main", "utilities", "software", "general", "data", "parsing", "utilities", "ONE", "processONE"],
 			"implementations": [
 				{
 					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/2%20-%20Parsing/2%20-%20Utilities/1%20-%20ONE/2%20-%20Paper%20ONE/paperONE.js"
+					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/2%20-%20Parsing/2%20-%20Utilities/1%20-%20ONE/2%20-%20Process%20ONE/processONE.js"
 				}
 			]
 		},
