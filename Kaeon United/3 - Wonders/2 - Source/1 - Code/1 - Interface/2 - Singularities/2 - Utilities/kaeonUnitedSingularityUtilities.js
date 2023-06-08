@@ -29,18 +29,18 @@ var findONE = (element, child) => {
 var getNewInterface = () => {
 	
 	return {
-		utilities: [],
-		connections: {
-			references: [],
-			extensions: []
-		}
+		components: [],
+		modules: [],
+		extensions: { },
+		management: { },
+		references: { }
 	};
 }
 
 var getONEModules = (interface, element, path) => {
 
 	let packages = filterONE(document, "Packages");
-	let modules = filterONE(document, "utilities");
+	let modules = filterONE(document, "Modules");
 
 	packages.children.forEach((item) => {
 		getONEModules(interface, item, path.concat([item.content]));
@@ -102,8 +102,7 @@ var parseInterface = (interface) => {
 			});
 		}).flat().forEach((item) => {
 
-			result.utilities = result.utilities.concat(item.utilities);
-
+			result.components = result.components.concat(item.components);
 			result.modules = result.components.concat(item.modules);
 
 			Object.assign(result.extensions, item.extensions);
@@ -148,15 +147,13 @@ var parseInterfaceElement = (element) => {
 			if(section == null)
 				return;
 
-			let field = section.content.toLowerCase() == "extensions" ?
-				"extensions" : "references";
-
 			section.children.forEach((item) => {
 
 				if(item.children.length == 0)
 					return;
 
-				interface.connections[field].push(item.children[0].content);
+				interface.references[item.children[0].content] =
+					section.content.toLowerCase() == "extensions";
 			});
 		});
 	}
