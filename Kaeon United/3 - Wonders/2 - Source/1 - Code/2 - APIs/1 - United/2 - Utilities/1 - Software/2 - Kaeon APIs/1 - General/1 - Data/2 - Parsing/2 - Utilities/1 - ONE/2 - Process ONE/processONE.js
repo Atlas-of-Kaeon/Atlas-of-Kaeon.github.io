@@ -87,8 +87,9 @@ function styleMarkONE(markONE, indent) {
 
 	return `<style>
 
-	html {
+	body {
 		font-family: Georgia, serif;
+		width: 100%;
 	}
 
 	h1 {

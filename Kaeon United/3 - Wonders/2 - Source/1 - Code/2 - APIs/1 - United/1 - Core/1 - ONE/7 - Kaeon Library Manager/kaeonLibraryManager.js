@@ -5,7 +5,7 @@ function render(protocol, path, title, originalPath, child) {
 
 	originalPath = originalPath != null ? originalPath : path.join(": ");
 
-	let items = repoExplorer.getItems(protocol, path);
+	let items = repoExplorer.getItems(path);
 	let result = "";
 
 	if(items.files.length == 1) {
@@ -17,7 +17,7 @@ function render(protocol, path, title, originalPath, child) {
 
 		result =
 			"#[ " + titleLine + " ]#\n\n" +
-			repoExplorer.getItem(protocol, path.concat([items.files[0]])) +
+			repoExplorer.getItem(path.concat([items.files[0]])) +
 			"\n\n";
 	}
 
@@ -31,12 +31,13 @@ function render(protocol, path, title, originalPath, child) {
 		}
 
 		result += render(
-			protocol, path.concat([item]),
-			title, originalPath, true
+			protocol, path.concat([item]), title, originalPath, true
 		) + "\n\n";
 	});
 
-	return !child ? wrapONE.wrap(result.trim(), 99) : result.trim();
+	return !child ?
+		wrapONE.wrap("#[ " + title + " ]#\n\n" + result.trim(), 99) :
+		result.trim();
 }
 
 module.exports = {
