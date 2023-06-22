@@ -2,11 +2,6 @@
 
 <script>
 
-	function executeCDN() {
-		executeSingularity();
-		executeCommand(getURLArguments());
-	}
-
 	function executeCommand(args) {
 
 		require("kaeon-united")().components.filter((item) => {
@@ -44,6 +39,6 @@
 		return vars;
 	}
 
-	executeCDN();
+	executeCommand(getURLArguments());
 
 </script>

@@ -5,106 +5,6 @@ var moduleDependencies = {
 	utilities: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/2%20-%20Singularities/2%20-%20Utilities/kaeonUnitedSingularityUtilities.js"
 };
 
-function appendInterface(main, resource, references) {
-
-	["components", "modules"].forEach((field) => {
-
-		if(resource[field] != null) {
-
-			main[field] = main[field].concat(resource[field]).map((item) => {
-				return JSON.stringify(item);
-			}).filter((item, pos, self) => {
-				return self.indexOf(item) == pos;
-			}).map((item) => {
-				return JSON.parse(item);
-			});
-		}
-	});
-
-	if(resource.extensions != null)
-		Object.assign(main.extensions, resource.extensions);
-
-	if(resource.management != null)
-		Object.assign(main.management, resource.management);
-
-	if(resource.references != null) {
-
-		references = references != null ? references : { };
-
-		Object.keys(resource.references).forEach((item) => {
-
-			if(references.includes(item) || !resource.references[item])
-				return;
-
-			try {
-
-				appendInterface(
-					main,
-					parseInterface(openResource(item)),
-					JSON.parse(JSON.stringify(references)).concat([item])
-				);
-			}
-
-			catch(error) {
-
-			}
-		});
-	}
-}
-
-function executeModule(utility) {
-	
-	let interface = getInterface();
-
-	if(utility == null)
-		return interface;
-
-	if(typeof utility == "string") {
-
-		for(let i = 0; i < interface.modules.length; i++) {
-
-			if(interface.modules[i].path.join(".").
-				toLowerCase().endsWith(utility.toLowerCase())) {
-				
-				let match = interface.
-					modules[i].
-					implementations.
-					filter((item) => {
-
-					return item.environment.toLowerCase() == "javascript" ||
-						item.environment.toLowerCase() == "js";
-				});
-
-				return match.length > 0 ? require(match[0].reference) : null;
-			}
-		}
-
-		return null;
-	}
-
-	else {
-
-		interface.modules.forEach((item) => {
-
-			item.implementations.forEach((implementation) => {
-
-				let environment = implementation.environment.toLowerCase();
-
-				if(environment == "kaeon fusion" || environment == "kf") {
-
-					try {
-						require(implementation.reference)(utility);
-					}
-
-					catch(error) {
-
-					}
-				}
-			});
-		});
-	}
-}
-
 function executeSingularity() {
 
 	if(typeof require != typeof undefined) {
@@ -281,10 +181,7 @@ function executeSingularity() {
 function getInterface() {
 	
 	let interface = {
-		components: [],
-		modules: [],
-		extensions: { },
-		management: { }
+		utilities: { }
 	};
 
 	let args = getURLArguments();
@@ -368,3 +265,5 @@ function openResource(path) {
 }
 
 eval(openResource(moduleDependencies.utilities));
+
+executeSingularity();

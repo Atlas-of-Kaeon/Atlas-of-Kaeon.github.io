@@ -45,17 +45,9 @@ function clear(source) {
 	return lines.filter(line => line != null).join("\n");
 }
 
-function escape(line) {
+function escape(line, check) {
 
-	for(let i = 0; i < line.length - 1; i++) {
-		
-		if(line[i] == "~") {
-
-			line[i] += line[i + 1];
-
-			line.splice(i + 1, 1);
-		}
-	}
+	line = escapeTilde(line);
 
 	let inSingleQuote = false;
 	let inDoubleQuote = false;
@@ -82,6 +74,21 @@ function escape(line) {
 
 			line.splice(i + 1, 1);
 			i--;
+		}
+	}
+
+	return check ? (inSingleQuote || inDoubleQuote) : line;
+}
+
+function escapeTilde(line) {
+
+	for(let i = 0; i < line.length - 1; i++) {
+		
+		if(line[i] == "~") {
+
+			line[i] += line[i + 1];
+
+			line.splice(i + 1, 1);
 		}
 	}
 
@@ -169,7 +176,10 @@ function getNest(line, indent) {
 	return count;
 }
 
-function read(source) {
+function read(source, minus) {
+
+	if(minus)
+		source = "[>" + source + "<]";
 
 	let element = one.create();
 
@@ -212,24 +222,54 @@ function read(source) {
 
 		let separators = [",", ":", ";", "(", ")", "{", "}"];
 
-		let tokens = escape(tokenizer.tokenize(
-			separators.concat(["~", "\'", "\""]),
+		let initialTokens = tokenizer.tokenize(
+			separators.concat(["~", "\'", "\"", "[>", "<]"]),
 			source[i]
-		)).map((token) => {
-			
-			if(token.startsWith("~")) {
+		);
 
-				if(token == "~n")
-					return "\n";
+		let tokens = escape(
+			JSON.parse(JSON.stringify(initialTokens))
+		).map((token) => {
 
-				if(token == "~t")
-					return "\t";
+			if(token == "~n")
+				return "\n";
 
-				return token;
-			}
+			if(token == "~t")
+				return "\t";
 
 			return token;
 		});
+
+		if(i < source.length - 1) {
+
+			let inMinus = false;
+	
+			for(let j = 0; j < tokens.length; j++) {
+	
+				if(tokens[j] == "[>" && !inMinus)
+					inMinus = true;
+	
+				else if(tokens[j] == "<]" && inMinus)
+					inMinus = false;
+			}
+	
+			if(inMinus) {
+	
+				let next = source[i + 1];
+
+				let escaped = escape(initialTokens, true);
+	
+				while(next.startsWith(nest))
+					next = next.substring(nest.length);
+	
+				source[i] += (escaped ? "~n" : ",") + next;
+				source.splice(i + 1, 1);
+	
+				i--;
+	
+				continue;
+			}
+		}
 
 		let parenStack = [];
 		let curlyStack = [];
@@ -239,20 +279,44 @@ function read(source) {
 
 		nest = 0;
 
-		for(let i = 0; i < tokens.length; i++) {
+		for(let j = 0; j < tokens.length; j++) {
 
-			if(tokens[i].trim().length == 0)
+			if(tokens[j].trim().length == 0 ||
+				tokens[j] == "[>" || tokens[j] == "<]") {
+					
 				continue;
+			}
 
 			let active = getActiveElement(root, nest);
 
-			if(!separators.includes(tokens[i])) {
+			if(!separators.includes(tokens[j])) {
 
-				let token = tokens[i].trim();
+				let token = tokens[j].trim();
 
 				token = token.startsWith("~") ?
 					token.substring(1) :
 					token;
+			
+				if(token.startsWith("\'") || token.startsWith("\"")) {
+
+					token = escapeTilde(tokenizer.tokenize(["~"], token)).map(
+						(item) => {
+
+							if(item.startsWith("~")) {
+												
+								if(item.startsWith("~n"))
+									return "\n" + item.substring(2);
+
+								if(item.startsWith("~t"))
+									return "\t" + item.substring(2);
+
+								return item.substring(1);
+							}
+
+							return item;
+						}
+					).join("");
+				}
 			
 				if(token.startsWith("\'")) {
 	
@@ -274,22 +338,22 @@ function read(source) {
 			else
 				content = null;
 			
-			if(tokens[i] == ":" || tokens[i] == "{")
+			if(tokens[j] == ":" || tokens[j] == "{")
 				nest++;
 
-			if(tokens[i] == ";")
+			if(tokens[j] == ";")
 				nest--;
 
-			if(tokens[i] == "(")
+			if(tokens[j] == "(")
 				parenStack.push(nest);
 
-			if(tokens[i] == "{")
+			if(tokens[j] == "{")
 				curlyStack.push(nest - 1);
 
-			if(tokens[i] == ")" && parenStack.length > 0)
+			if(tokens[j] == ")" && parenStack.length > 0)
 				nest = parenStack.pop();
 
-			if(tokens[i] == "}" && curlyStack.length > 0)
+			if(tokens[j] == "}" && curlyStack.length > 0)
 				nest = curlyStack.pop();
 
 			if(nest < 0)

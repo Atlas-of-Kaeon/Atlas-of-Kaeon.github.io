@@ -1,673 +1,1505 @@
 {
-	"components": [
-		{
-			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/1%20-%20Console/1%20-%20Management/kaeonUnitedCommandManagement.js",
-			"environment": "javascript"
-		},
-		{
-			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/1%20-%20Console/2%20-%20Operations/1%20-%20Assemble/kaeonUnitedCommandAssemble.js",
-			"environment": "javascript"
-		},
-		{
-			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/1%20-%20Console/2%20-%20Operations/2%20-%20Disassemble/kaeonUnitedCommandDisassemble.js",
-			"environment": "javascript"
-		},
-		{
-			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/1%20-%20Console/2%20-%20Operations/3%20-%20JS/kaeonUnitedCommandJS.js",
-			"environment": "javascript"
-		},
-		{
-			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/1%20-%20Console/2%20-%20Operations/4%20-%20Parse/kaeonUnitedCommandParse.js",
-			"environment": "javascript"
-		},
-		{
-			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/1%20-%20Console/2%20-%20Operations/5%20-%20Preprocess/kaeonUnitedCommandPreprocess.js",
-			"environment": "javascript"
-		},
-		{
-			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/1%20-%20Console/2%20-%20Operations/6%20-%20Process/kaeonUnitedCommandProcess.js",
-			"environment": "javascript"
-		},
-		{
-			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/1%20-%20Console/2%20-%20Operations/7%20-%20UCC/kaeonUnitedCommandUCC.js",
-			"environment": "javascript"
-		},
-		{
-			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/2%20-%20Online/1%20-%20Origin/kaeonUnitedURLOrigin.js",
-			"environment": "javascript"
-		},
-		{
-			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/2%20-%20Online/2%20-%20App/kaeonUnitedURLApp.js",
-			"environment": "javascript"
-		},
-		{
-			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/2%20-%20Online/3%20-%20Shadow/1%20-%20HTML/1%20-%20External/kaeonUnitedURLHTML.js",
-			"environment": "javascript"
-		},
-		{
-			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/2%20-%20Online/3%20-%20Shadow/1%20-%20HTML/2%20-%20Raw/kaeonUnitedURLHTMLRaw.js",
-			"environment": "javascript"
-		},
-		{
-			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/2%20-%20Online/3%20-%20Shadow/2%20-%20United%20JS/1%20-%20External/kaeonUnitedURLUnitedJS.js",
-			"environment": "javascript"
-		},
-		{
-			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/2%20-%20Online/3%20-%20Shadow/2%20-%20United%20JS/2%20-%20Raw/kaeonUnitedURLUnitedJSRaw.js",
-			"environment": "javascript"
-		},
-		{
-			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/2%20-%20Online/3%20-%20Shadow/3%20-%20United%20OP/1%20-%20External/kaeonUnitedURLUnitedOP.js",
-			"environment": "javascript"
-		},
-		{
-			"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/2%20-%20Online/3%20-%20Shadow/3%20-%20United%20OP/2%20-%20Raw/kaeonUnitedURLUnitedOPRaw.js",
-			"environment": "javascript"
+	"utilities": {
+		"packages": {
+			"kaeonUnited": {
+				"packages": {
+					"main": {
+						"packages": {
+							"components": {
+								"utilities": {
+									"kaeonUnitedCommandManagement": {
+										"versions": [
+											{
+												"properties": {
+													"environment": "javascript"
+												},
+												"locations": [
+													"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/1%20-%20Console/1%20-%20Management/kaeonUnitedCommandManagement.js"
+												]
+											}
+										],
+										"properties": {
+											"type": "component"
+										}
+									},
+									"kaeonUnitedCommandAssemble": {
+										"versions": [
+											{
+												"properties": {
+													"environment": "javascript"
+												},
+												"locations": [
+													"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/1%20-%20Console/2%20-%20Operations/1%20-%20Assemble/kaeonUnitedCommandAssemble.js"
+												]
+											}
+										],
+										"properties": {
+											"type": "component"
+										}
+									},
+									"kaeonUnitedCommandDisassemble": {
+										"versions": [
+											{
+												"properties": {
+													"environment": "javascript"
+												},
+												"locations": [
+													"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/1%20-%20Console/2%20-%20Operations/2%20-%20Disassemble/kaeonUnitedCommandDisassemble.js"
+												]
+											}
+										],
+										"properties": {
+											"type": "component"
+										}
+									},
+									"kaeonUnitedCommandJS": {
+										"versions": [
+											{
+												"properties": {
+													"environment": "javascript"
+												},
+												"locations": [
+													"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/1%20-%20Console/2%20-%20Operations/3%20-%20JS/kaeonUnitedCommandJS.js"
+												]
+											}
+										],
+										"properties": {
+											"type": "component"
+										}
+									},
+									"kaeonUnitedCommandParse": {
+										"versions": [
+											{
+												"properties": {
+													"environment": "javascript"
+												},
+												"locations": [
+													"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/1%20-%20Console/2%20-%20Operations/4%20-%20Parse/kaeonUnitedCommandParse.js"
+												]
+											}
+										],
+										"properties": {
+											"type": "component"
+										}
+									},
+									"kaeonUnitedCommandPreprocess": {
+										"versions": [
+											{
+												"properties": {
+													"environment": "javascript"
+												},
+												"locations": [
+													"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/1%20-%20Console/2%20-%20Operations/5%20-%20Preprocess/kaeonUnitedCommandPreprocess.js"
+												]
+											}
+										],
+										"properties": {
+											"type": "component"
+										}
+									},
+									"kaeonUnitedCommandProcess": {
+										"versions": [
+											{
+												"properties": {
+													"environment": "javascript"
+												},
+												"locations": [
+													"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/1%20-%20Console/2%20-%20Operations/6%20-%20Process/kaeonUnitedCommandProcess.js"
+												]
+											}
+										],
+										"properties": {
+											"type": "component"
+										}
+									},
+									"kaeonUnitedCommandUCC": {
+										"versions": [
+											{
+												"properties": {
+													"environment": "javascript"
+												},
+												"locations": [
+													"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/1%20-%20Console/2%20-%20Operations/7%20-%20UCC/kaeonUnitedCommandUCC.js"
+												]
+											}
+										],
+										"properties": {
+											"type": "component"
+										}
+									},
+									"kaeonUnitedURLOrigin": {
+										"versions": [
+											{
+												"properties": {
+													"environment": "javascript"
+												},
+												"locations": [
+													"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/2%20-%20Online/1%20-%20Origin/kaeonUnitedURLOrigin.js"
+												]
+											}
+										],
+										"properties": {
+											"type": "component"
+										}
+									},
+									"kaeonUnitedURLApp": {
+										"versions": [
+											{
+												"properties": {
+													"environment": "javascript"
+												},
+												"locations": [
+													"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/2%20-%20Online/2%20-%20App/kaeonUnitedURLApp.js"
+												]
+											}
+										],
+										"properties": {
+											"type": "component"
+										}
+									},
+									"kaeonUnitedURLHTML": {
+										"versions": [
+											{
+												"properties": {
+													"environment": "javascript"
+												},
+												"locations": [
+													"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/2%20-%20Online/3%20-%20Shadow/1%20-%20HTML/1%20-%20External/kaeonUnitedURLHTML.js"
+												]
+											}
+										],
+										"properties": {
+											"type": "component"
+										}
+									},
+									"kaeonUnitedURLHTMLRaw": {
+										"versions": [
+											{
+												"properties": {
+													"environment": "javascript"
+												},
+												"locations": [
+													"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/2%20-%20Online/3%20-%20Shadow/1%20-%20HTML/2%20-%20Raw/kaeonUnitedURLHTMLRaw.js"
+												]
+											}
+										],
+										"properties": {
+											"type": "component"
+										}
+									},
+									"kaeonUnitedURLUnitedJS": {
+										"versions": [
+											{
+												"properties": {
+													"environment": "javascript"
+												},
+												"locations": [
+													"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/2%20-%20Online/3%20-%20Shadow/2%20-%20United%20JS/1%20-%20External/kaeonUnitedURLUnitedJS.js"
+												]
+											}
+										],
+										"properties": {
+											"type": "component"
+										}
+									},
+									"kaeonUnitedURLUnitedJSRaw": {
+										"versions": [
+											{
+												"properties": {
+													"environment": "javascript"
+												},
+												"locations": [
+													"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/2%20-%20Online/3%20-%20Shadow/2%20-%20United%20JS/2%20-%20Raw/kaeonUnitedURLUnitedJSRaw.js"
+												]
+											}
+										],
+										"properties": {
+											"type": "component"
+										}
+									},
+									"kaeonUnitedURLUnitedOP": {
+										"versions": [
+											{
+												"properties": {
+													"environment": "javascript"
+												},
+												"locations": [
+													"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/2%20-%20Online/3%20-%20Shadow/3%20-%20United%20OP/1%20-%20External/kaeonUnitedURLUnitedOP.js"
+												]
+											}
+										],
+										"properties": {
+											"type": "component"
+										}
+									},
+									"kaeonUnitedURLUnitedOPRaw": {
+										"versions": [
+											{
+												"properties": {
+													"environment": "javascript"
+												},
+												"locations": [
+													"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/3%20-%20Components/2%20-%20Online/3%20-%20Shadow/3%20-%20United%20OP/2%20-%20Raw/kaeonUnitedURLUnitedOPRaw.js"
+												]
+											}
+										],
+										"properties": {
+											"type": "component"
+										}
+									}
+								}
+							},
+							"libraries": {
+								"packages": {
+									"kaeonACE": {
+										"packages": {
+											"apis": {
+												"packages": {
+													"modules": {
+														"packages": {
+															"units": {
+																"utilities": {
+																	"cameraModules": {
+																		"versions": [
+																			{
+																				"properties": {
+																					"environment": "javascript"
+																				},
+																				"locations": [
+																					"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/1%20-%20ONE/3%20-%20Kaeon%20ACE/1%20-%20APIs/1%20-%20Babylon/2%20-%20Modules/1%20-%20Units/2%20-%20Camera/cameraModules.js"
+																				]
+																			}
+																		],
+																		"properties": {
+																			"type": "library"
+																		}
+																	},
+																	"geometryModules": {
+																		"versions": [
+																			{
+																				"properties": {
+																					"environment": "javascript"
+																				},
+																				"locations": [
+																					"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/1%20-%20ONE/3%20-%20Kaeon%20ACE/1%20-%20APIs/1%20-%20Babylon/2%20-%20Modules/1%20-%20Units/3%20-%20Geometry/geometryModules.js"
+																				]
+																			}
+																		],
+																		"properties": {
+																			"type": "library"
+																		}
+																	},
+																	"standardModules": {
+																		"versions": [
+																			{
+																				"properties": {
+																					"environment": "javascript"
+																				},
+																				"locations": [
+																					"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/1%20-%20ONE/3%20-%20Kaeon%20ACE/1%20-%20APIs/1%20-%20Babylon/2%20-%20Modules/1%20-%20Units/1%20-%20Standard/standardModules.js"
+																				]
+																			}
+																		],
+																		"properties": {
+																			"type": "library"
+																		}
+																	}
+																}
+															}
+														},
+														"utilities": {
+															"standardKaeonACE": {
+																"versions": [
+																	{
+																		"properties": {
+																			"environment": "javascript"
+																		},
+																		"locations": [
+																			"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/1%20-%20ONE/3%20-%20Kaeon%20ACE/1%20-%20APIs/1%20-%20Babylon/2%20-%20Modules/3%20-%20Standard%20Kaeon%20ACE/standardKaeonACE.js"
+																		]
+																	}
+																],
+																"properties": {
+																	"type": "library"
+																}
+															},
+															"moduleUtilities": {
+																"versions": [
+																	{
+																		"properties": {
+																			"environment": "javascript"
+																		},
+																		"locations": [
+																			"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/1%20-%20ONE/3%20-%20Kaeon%20ACE/1%20-%20APIs/1%20-%20Babylon/2%20-%20Modules/2%20-%20Utilities/moduleUtilities.js"
+																		]
+																	}
+																],
+																"properties": {
+																	"type": "library"
+																}
+															}
+														}
+													}
+												},
+												"utilities": {
+													"kaeonACECore": {
+														"versions": [
+															{
+																"properties": {
+																	"environment": "javascript"
+																},
+																"locations": [
+																	"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/1%20-%20ONE/3%20-%20Kaeon%20ACE/1%20-%20APIs/1%20-%20Babylon/1%20-%20Core/KaeonACECore.js"
+																]
+															}
+														],
+														"properties": {
+															"type": "library"
+														}
+													}
+												}
+											}
+										},
+										"utilities": {
+											"kaeonACE": {
+												"versions": [
+													{
+														"properties": {
+															"environment": "javascript"
+														},
+														"locations": [
+															"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/1%20-%20ONE/3%20-%20Kaeon%20ACE/3%20-%20Kaeon%20ACE/KaeonACE.js"
+														]
+													}
+												],
+												"properties": {
+													"type": "library"
+												}
+											}
+										}
+									},
+									"one": {
+										"utilities": {
+											"fusion": {
+												"versions": [
+													{
+														"properties": {
+															"environment": "javascript"
+														},
+														"locations": [
+															"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/1%20-%20Core/1%20-%20ONE/2%20-%20FUSION/FUSION.js"
+														]
+													}
+												],
+												"properties": {
+													"type": "library"
+												}
+											},
+											"kaeonFUSION": {
+												"versions": [
+													{
+														"properties": {
+															"environment": "javascript"
+														},
+														"locations": [
+															"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/1%20-%20Core/1%20-%20ONE/3%20-%20Kaeon%20FUSION/KaeonFUSION.js"
+														]
+													}
+												],
+												"properties": {
+													"type": "library"
+												}
+											},
+											"kaeonLibraryManager": {
+												"versions": [
+													{
+														"properties": {
+															"environment": "javascript"
+														},
+														"locations": [
+															"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/1%20-%20Core/1%20-%20ONE/7%20-%20Kaeon%20Library%20Manager/kaeonLibraryManager.js"
+														]
+													}
+												],
+												"properties": {
+													"type": "library"
+												}
+											},
+											"one": {
+												"versions": [
+													{
+														"properties": {
+															"environment": "javascript"
+														},
+														"locations": [
+															"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/1%20-%20Core/1%20-%20ONE/1%20-%20ONE/ONE.js"
+														]
+													}
+												],
+												"properties": {
+													"type": "library"
+												}
+											},
+											"onePlus": {
+												"versions": [
+													{
+														"properties": {
+															"environment": "javascript"
+														},
+														"locations": [
+															"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/1%20-%20Core/1%20-%20ONE/4%20-%20ONE%2B/ONEPlus.js"
+														]
+													}
+												],
+												"properties": {
+													"type": "library"
+												}
+											},
+											"oneSuite": {
+												"versions": [
+													{
+														"properties": {
+															"environment": "javascript"
+														},
+														"locations": [
+															"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/1%20-%20Core/1%20-%20ONE/6%20-%20ONE%20Suite/ONESuite.js"
+														]
+													}
+												],
+												"properties": {
+													"type": "library"
+												}
+											},
+											"universalPreprocessor": {
+												"versions": [
+													{
+														"properties": {
+															"environment": "javascript"
+														},
+														"locations": [
+															"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/1%20-%20Core/1%20-%20ONE/5%20-%20Universal%20Preprocessor/UniversalPreprocessor.js"
+														]
+													}
+												],
+												"properties": {
+													"type": "library"
+												}
+											}
+										}
+									},
+									"philosophersStone": {
+										"packages": {
+											"conventions": {
+												"packages": {
+													"soul": {
+														"packages": {
+															"soul": {
+																"utilities": {
+																	"soul": {
+																		"versions": [
+																			{
+																				"properties": {
+																					"environment": "javascript"
+																				},
+																				"locations": [
+																					"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/1%20-%20Core/2%20-%20Philosopher's%20Stone/1%20-%20Conventions/2%20-%20Medium/1%20-%20SOUL/1%20-%20Current/SOUL.js"
+																				]
+																			}
+																		],
+																		"properties": {
+																			"type": "library"
+																		}
+																	},
+																	"soulLegacy": {
+																		"versions": [
+																			{
+																				"properties": {
+																					"environment": "javascript"
+																				},
+																				"locations": [
+																					"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/1%20-%20Core/2%20-%20Philosopher's%20Stone/1%20-%20Conventions/2%20-%20Medium/1%20-%20SOUL/3%20-%20SOUL/2%20-%20Legacy/SOULLegacy.js"
+																				]
+																			}
+																		],
+																		"properties": {
+																			"type": "library"
+																		}
+																	}
+																}
+															},
+															"utilities": {
+																"utilities": {
+																	"binaryMap": {
+																		"versions": [
+																			{
+																				"properties": {
+																					"environment": "javascript"
+																				},
+																				"locations": [
+																					"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/1%20-%20Core/2%20-%20Philosopher's%20Stone/1%20-%20Conventions/2%20-%20Medium/1%20-%20SOUL/1%20-%20Utilities/1%20-%20Binary%20Map/binaryMap.js"
+																				]
+																			}
+																		],
+																		"properties": {
+																			"type": "library"
+																		}
+																	},
+																	"curveMethod": {
+																		"versions": [
+																			{
+																				"properties": {
+																					"environment": "javascript"
+																				},
+																				"locations": [
+																					"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/1%20-%20Core/2%20-%20Philosopher's%20Stone/1%20-%20Conventions/2%20-%20Medium/1%20-%20SOUL/1%20-%20Utilities/2%20-%20Data%20Map/2%20-%20Generators/1%20-%20Curve%20Method/curveMethod.js"
+																				]
+																			}
+																		],
+																		"properties": {
+																			"type": "library"
+																		}
+																	},
+																	"dataMap": {
+																		"versions": [
+																			{
+																				"properties": {
+																					"environment": "javascript"
+																				},
+																				"locations": [
+																					"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/1%20-%20Core/2%20-%20Philosopher's%20Stone/1%20-%20Conventions/2%20-%20Medium/1%20-%20SOUL/1%20-%20Utilities/2%20-%20Data%20Map/1%20-%20Data%20Map/dataMap.js"
+																				]
+																			}
+																		],
+																		"properties": {
+																			"type": "library"
+																		}
+																	},
+																	"stringComparer": {
+																		"versions": [
+																			{
+																				"properties": {
+																					"environment": "javascript"
+																				},
+																				"locations": [
+																					"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/1%20-%20Core/2%20-%20Philosopher's%20Stone/1%20-%20Conventions/2%20-%20Medium/1%20-%20SOUL/1%20-%20Utilities/4%20-%20String%20Comparer/stringComparer.js"
+																				]
+																			}
+																		],
+																		"properties": {
+																			"type": "library"
+																		}
+																	},
+																	"neuralNetwork": {
+																		"versions": [
+																			{
+																				"properties": {
+																					"environment": "javascript"
+																				},
+																				"locations": [
+																					"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/1%20-%20Core/2%20-%20Philosopher's%20Stone/1%20-%20Conventions/2%20-%20Medium/1%20-%20SOUL/1%20-%20Utilities/5%20-%20Neural%20Network/neuralNetwork.js"
+																				]
+																			}
+																		],
+																		"properties": {
+																			"type": "library"
+																		}
+																	},
+																	"vectorConverter": {
+																		"versions": [
+																			{
+																				"properties": {
+																					"environment": "javascript"
+																				},
+																				"locations": [
+																					"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/1%20-%20Core/2%20-%20Philosopher's%20Stone/1%20-%20Conventions/2%20-%20Medium/1%20-%20SOUL/1%20-%20Utilities/3%20-%20Vector%20Converter/vectorConverter.js"
+																				]
+																			}
+																		],
+																		"properties": {
+																			"type": "library"
+																		}
+																	}
+																}
+															}
+														},
+														"utilities": {
+															"soulEntity": {
+																"versions": [
+																	{
+																		"properties": {
+																			"environment": "javascript"
+																		},
+																		"locations": [
+																			"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/1%20-%20Core/2%20-%20Philosopher's%20Stone/1%20-%20Conventions/2%20-%20Medium/1%20-%20SOUL/2%20-%20SOUL%20Entity/SOULEntity.js"
+																		]
+																	}
+																],
+																"properties": {
+																	"type": "library"
+																}
+															}
+														}
+													}
+												},
+												"utilities": {
+													"philosophersStone": {
+														"versions": [
+															{
+																"properties": {
+																	"environment": "javascript"
+																},
+																"locations": [
+																	"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/1%20-%20Core/2%20-%20Philosopher's%20Stone/1%20-%20Conventions/1%20-%20Atlas/PhilosophersStone.js"
+																]
+															}
+														],
+														"properties": {
+															"type": "library"
+														}
+													}
+												}
+											},
+											"series": {
+												"utilities": {
+													"virtualSystem": {
+														"versions": [
+															{
+																"properties": {
+																	"environment": "javascript"
+																},
+																"locations": [
+																	"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/1%20-%20Core/2%20-%20Philosopher's%20Stone/2%20-%20Series/1%20-%20Virtual%20System/virtualSystem.js"
+																]
+															}
+														],
+														"properties": {
+															"type": "library"
+														}
+													}
+												}
+											}
+										}
+									},
+									"uc": {
+										"utilities": {
+											"csb": {
+												"versions": [
+													{
+														"properties": {
+															"environment": "javascript"
+														},
+														"locations": [
+															"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/3%20-%20United/1%20-%20United%20C/2%20-%20CSB/CSB.js"
+														]
+													}
+												],
+												"properties": {
+													"type": "library"
+												}
+											},
+											"uc": {
+												"versions": [
+													{
+														"properties": {
+															"environment": "javascript"
+														},
+														"locations": [
+															"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/3%20-%20United/1%20-%20United%20C/1%20-%20United%20C/UC.js"
+														]
+													}
+												],
+												"properties": {
+													"type": "library"
+												}
+											}
+										}
+									},
+									"utilities": {
+										"packages": {
+											"software": {
+												"packages": {
+													"frameworks": {
+														"packages": {
+															"control": {
+																"packages": {
+																	"commands": {
+																		"packages": {
+																			"drone": {
+																				"utilities": {
+																					"controlDroneLaunch": {
+																						"versions": [
+																							{
+																								"properties": {
+																									"environment": "javascript"
+																								},
+																								"locations": [
+																									"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/2%20-%20Toolsets/2%20-%20Frameworks/3%20-%20Control/2%20-%20Modules/1%20-%20Commands/3%20-%20Drone/1%20-%20Launch/controlDroneLaunch.js"
+																								]
+																							}
+																						],
+																						"properties": {
+																							"type": "library"
+																						}
+																					}
+																				}
+																			},
+																			"gpio": {
+																				"utilities": {
+																					"controlGPIOFlicker": {
+																						"versions": [
+																							{
+																								"properties": {
+																									"environment": "javascript"
+																								},
+																								"locations": [
+																									"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/2%20-%20Toolsets/2%20-%20Frameworks/3%20-%20Control/2%20-%20Modules/1%20-%20Commands/2%20-%20GPIO/3%20-%20Flicker/controlGPIOFlicker.js"
+																								]
+																							}
+																						],
+																						"properties": {
+																							"type": "library"
+																						}
+																					},
+																					"controlGPIOFlip": {
+																						"versions": [
+																							{
+																								"properties": {
+																									"environment": "javascript"
+																								},
+																								"locations": [
+																									"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/2%20-%20Toolsets/2%20-%20Frameworks/3%20-%20Control/2%20-%20Modules/1%20-%20Commands/2%20-%20GPIO/2%20-%20Flip/controlGPIOFlip.js"
+																								]
+																							}
+																						],
+																						"properties": {
+																							"type": "library"
+																						}
+																					},
+																					"controlGPIOSet": {
+																						"versions": [
+																							{
+																								"properties": {
+																									"environment": "javascript"
+																								},
+																								"locations": [
+																									"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/2%20-%20Toolsets/2%20-%20Frameworks/3%20-%20Control/2%20-%20Modules/1%20-%20Commands/2%20-%20GPIO/1%20-%20Set/controlGPIOSet.js"
+																								]
+																							}
+																						],
+																						"properties": {
+																							"type": "library"
+																						}
+																					}
+																				}
+																			},
+																			"receptor": {
+																				"utilities": {
+																					"controlGPIOReceptorReset": {
+																						"versions": [
+																							{
+																								"properties": {
+																									"environment": "javascript"
+																								},
+																								"locations": [
+																									"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/2%20-%20Toolsets/2%20-%20Frameworks/3%20-%20Control/2%20-%20Modules/1%20-%20Commands/1%20-%20Receptor/1%20-%20Reset/controlReceptorReset.js"
+																								]
+																							}
+																						],
+																						"properties": {
+																							"type": "library"
+																						}
+																					},
+																					"controlGPIOReceptorSet": {
+																						"versions": [
+																							{
+																								"properties": {
+																									"environment": "javascript"
+																								},
+																								"locations": [
+																									"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/2%20-%20Toolsets/2%20-%20Frameworks/3%20-%20Control/2%20-%20Modules/1%20-%20Commands/1%20-%20Receptor/2%20-%20Set/controlReceptorSet.js"
+																								]
+																							}
+																						],
+																						"properties": {
+																							"type": "library"
+																						}
+																					}
+																				}
+																			}
+																		}
+																	},
+																	"devices": {
+																		"utilities": {
+																			"controlRaspberryPi": {
+																				"versions": [
+																					{
+																						"properties": {
+																							"environment": "javascript"
+																						},
+																						"locations": [
+																							"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/2%20-%20Toolsets/2%20-%20Frameworks/3%20-%20Control/2%20-%20Modules/2%20-%20Devices/1%20-%20Raspberry%20Pi/controlRaspberryPi.js"
+																						]
+																					}
+																				],
+																				"properties": {
+																					"type": "library"
+																				}
+																			}
+																		}
+																	},
+																	"services": {
+																		"utilities": {
+																			"controlHologram": {
+																				"versions": [
+																					{
+																						"properties": {
+																							"environment": "javascript"
+																						},
+																						"locations": [
+																							"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/2%20-%20Toolsets/2%20-%20Frameworks/3%20-%20Control/2%20-%20Modules/3%20-%20Services/1%20-%20Hologram/controlHologram.js"
+																						]
+																					}
+																				],
+																				"properties": {
+																					"type": "library"
+																				}
+																			}
+																		}
+																	},
+																	"utilities": {
+																		"packages": {
+																			"drone": {
+																				"packages": {
+																					"commands": {
+																						"packages": {
+																							"tello": {
+																								"utilities": {
+																									"telloLaunch": {
+																										"versions": [
+																											{
+																												"properties": {
+																													"environment": "javascript"
+																												},
+																												"locations": [
+																													"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/2%20-%20Toolsets/2%20-%20Frameworks/3%20-%20Control/3%20-%20Utilities/1%20-%20Drones/2%20-%20Commands/1%20-%20Launch/1%20-%20Tello/telloLaunch.js"
+																												]
+																											}
+																										],
+																										"properties": {
+																											"type": "library"
+																										}
+																									}
+																								}
+																							}
+																						}
+																					}
+																				}
+																			}
+																		}
+																	},
+																	"control": {
+																		"packages": {
+																			"utilities": {
+																				"packages": {
+																					"drone": {
+																						"utilities": {
+																							"droneIdentifier": {
+																								"versions": [
+																									{
+																										"properties": {
+																											"environment": "javascript"
+																										},
+																										"locations": [
+																											"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/2%20-%20Toolsets/2%20-%20Frameworks/3%20-%20Control/3%20-%20Utilities/1%20-%20Drones/1%20-%20Identifier/droneIdentifier.js"
+																										]
+																									}
+																								],
+																								"properties": {
+																									"type": "library"
+																								}
+																							}
+																						}
+																					}
+																				}
+																			}
+																		}
+																	}
+																},
+																"utilities": {
+																	"control": {
+																		"versions": [
+																			{
+																				"properties": {
+																					"environment": "javascript"
+																				},
+																				"locations": [
+																					"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/2%20-%20Toolsets/2%20-%20Frameworks/3%20-%20Control/1%20-%20Core/control.js"
+																				]
+																			}
+																		],
+																		"properties": {
+																			"type": "library"
+																		}
+																	}
+																}
+															},
+															"vision": {
+																"packages": {
+																	"utilities": {
+																		"packages": {
+																			"audio": {
+																				"utilities": {
+																					"speech": {
+																						"versions": [
+																							{
+																								"properties": {
+																									"environment": "javascript"
+																								},
+																								"locations": [
+																									"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/2%20-%20Toolsets/2%20-%20Frameworks/1%20-%20Vision/2%20-%20Utilities/2%20-%20Audio/1%20-%20Speech/speech.js"
+																								]
+																							}
+																						],
+																						"properties": {
+																							"type": "library"
+																						}
+																					}
+																				}
+																			},
+																			"visual": {
+																				"packages": {
+																					"general": {
+																						"utilities": {
+																							"dimensions": {
+																								"versions": [
+																									{
+																										"properties": {
+																											"environment": "javascript"
+																										},
+																										"locations": [
+																											"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/2%20-%20Toolsets/2%20-%20Frameworks/1%20-%20Vision/2%20-%20Utilities/1%20-%20Visual/1%20-%20General/2%20-%20Dimensions/dimensions.js"
+																										]
+																									}
+																								],
+																								"properties": {
+																									"type": "library"
+																								}
+																							},
+																							"input": {
+																								"versions": [
+																									{
+																										"properties": {
+																											"environment": "javascript"
+																										},
+																										"locations": [
+																											"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/2%20-%20Toolsets/2%20-%20Frameworks/1%20-%20Vision/2%20-%20Utilities/1%20-%20Visual/1%20-%20General/1%20-%20Input/input.js"
+																										]
+																									}
+																								],
+																								"properties": {
+																									"type": "library"
+																								}
+																							}
+																						}
+																					},
+																					"widgets": {
+																						"packages": {
+																							"general": {
+																								"utilities": {
+																									"widgets": {
+																										"versions": [
+																											{
+																												"properties": {
+																													"environment": "javascript"
+																												},
+																												"locations": [
+																													"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/2%20-%20Toolsets/2%20-%20Frameworks/1%20-%20Vision/2%20-%20Utilities/1%20-%20Visual/2%20-%20Widgets/1%20-%20General/widgets.js"
+																												]
+																											}
+																										],
+																										"properties": {
+																											"type": "library"
+																										}
+																									}
+																								}
+																							},
+																							"miscellaneous": {
+																								"utilities": {
+																									"search": {
+																										"versions": [
+																											{
+																												"properties": {
+																													"environment": "javascript"
+																												},
+																												"locations": [
+																													"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/2%20-%20Toolsets/2%20-%20Frameworks/1%20-%20Vision/2%20-%20Utilities/1%20-%20Visual/2%20-%20Widgets/2%20-%20Misc/1%20-%20Search/search.js"
+																												]
+																											}
+																										],
+																										"properties": {
+																											"type": "library"
+																										}
+																									}
+																								}
+																							}
+																						}
+																					}
+																				}
+																			}
+																		}
+																	}
+																},
+																"utilities": {
+																	"vision": {
+																		"versions": [
+																			{
+																				"properties": {
+																					"environment": "javascript"
+																				},
+																				"locations": [
+																					"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/2%20-%20Toolsets/2%20-%20Frameworks/1%20-%20Vision/1%20-%20Core/vision.js"
+																				]
+																			}
+																		],
+																		"properties": {
+																			"type": "library"
+																		}
+																	}
+																}
+															},
+															"waypoint": {
+																"utilities": {
+																	"waypoint": {
+																		"versions": [
+																			{
+																				"properties": {
+																					"environment": "javascript"
+																				},
+																				"locations": [
+																					"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/2%20-%20Toolsets/2%20-%20Frameworks/2%20-%20Waypoint/1%20-%20Core/waypoint.js"
+																				]
+																			}
+																		],
+																		"properties": {
+																			"type": "library"
+																		}
+																	}
+																}
+															}
+														}
+													},
+													"general": {
+														"packages": {
+															"data": {
+																"packages": {
+																	"httpUtils": {
+																		"utilities": {
+																			"io": {
+																				"versions": [
+																					{
+																						"properties": {
+																							"environment": "javascript"
+																						},
+																						"locations": [
+																							"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/1%20-%20HTTP%20Utilities/1%20-%20IO/io.js"
+																						]
+																					}
+																				],
+																				"properties": {
+																					"type": "library"
+																				}
+																			}
+																		}
+																	},
+																	"parsing": {
+																		"packages": {
+																			"ONE": {
+																				"utilities": {
+																					"formatConverter": {
+																						"versions": [
+																							{
+																								"properties": {
+																									"environment": "javascript"
+																								},
+																								"locations": [
+																									"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/2%20-%20Parsing/2%20-%20Utilities/1%20-%20ONE/3%20-%20Format%20Converter/formatConverter.js"
+																								]
+																							}
+																						],
+																						"properties": {
+																							"type": "library"
+																						}
+																					}
+																				}
+																			},
+																			"utilities": {
+																				"packages": {
+																					"ONE": {
+																						"utilities": {
+																							"processONE": {
+																								"versions": [
+																									{
+																										"properties": {
+																											"environment": "javascript"
+																										},
+																										"locations": [
+																											"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/2%20-%20Parsing/2%20-%20Utilities/1%20-%20ONE/2%20-%20Process%20ONE/processONE.js"
+																										]
+																									}
+																								],
+																								"properties": {
+																									"type": "library"
+																								}
+																							},
+																							"wrapONE": {
+																								"versions": [
+																									{
+																										"properties": {
+																											"environment": "javascript"
+																										},
+																										"locations": [
+																											"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/2%20-%20Parsing/2%20-%20Utilities/1%20-%20ONE/1%20-%20Wrap%20ONE/wrapONE.js"
+																										]
+																									}
+																								],
+																								"properties": {
+																									"type": "library"
+																								}
+																							}
+																						}
+																					}
+																				}
+																			}
+																		},
+																		"utilities": {
+																			"tokenizer": {
+																				"versions": [
+																					{
+																						"properties": {
+																							"environment": "javascript"
+																						},
+																						"locations": [
+																							"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/2%20-%20Parsing/1%20-%20Tokenizer/tokenizer.js"
+																						]
+																					}
+																				],
+																				"properties": {
+																					"type": "library"
+																				}
+																			}
+																		}
+																	}
+																},
+																"utilities": {
+																	"httpUtils": {
+																		"versions": [
+																			{
+																				"properties": {
+																					"environment": "javascript"
+																				},
+																				"locations": [
+																					"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/1%20-%20HTTP%20Utilities/httpUtils.js"
+																				]
+																			}
+																		],
+																		"properties": {
+																			"type": "library"
+																		}
+																	}
+																}
+															},
+															"management": {
+																"packages": {
+																	"admin": {
+																		"packages": {
+																			"network": {
+																				"utilities": {
+																					"connectionMonitor": {
+																						"versions": [
+																							{
+																								"properties": {
+																									"environment": "javascript"
+																								},
+																								"locations": [
+																									"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/2%20-%20Admin/1%20-%20Network/1%20-%20Connection/connectionMonitor.js"
+																								]
+																							}
+																						],
+																						"properties": {
+																							"type": "library"
+																						}
+																					},
+																					"wifi": {
+																						"versions": [
+																							{
+																								"properties": {
+																									"environment": "javascript"
+																								},
+																								"locations": [
+																									"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/2%20-%20Admin/1%20-%20Network/1%20-%20WiFi/wifi.js"
+																								]
+																							}
+																						],
+																						"properties": {
+																							"type": "library"
+																						}
+																					}
+																				}
+																			}
+																		},
+																		"utilities": {
+																			"autoVersioner": {
+																				"versions": [
+																					{
+																						"properties": {
+																							"environment": "javascript"
+																						},
+																						"locations": [
+																							"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/2%20-%20Admin/2%20-%20Versions/1%20-%20Auto%20Versioner/autoVersioner.js"
+																						]
+																					}
+																				],
+																				"properties": {
+																					"type": "library"
+																				}
+																			},
+																			"terminalLogger": {
+																				"versions": [
+																					{
+																						"properties": {
+																							"environment": "javascript"
+																						},
+																						"locations": [
+																							"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/2%20-%20Admin/3%20-%20Logging/1%20-%20Terminal%20Logger/terminalLogger.js"
+																						]
+																					}
+																				],
+																				"properties": {
+																					"type": "library"
+																				}
+																			}
+																		}
+																	},
+																	"process": {
+																		"utilities": {
+																			"override": {
+																				"versions": [
+																					{
+																						"properties": {
+																							"environment": "javascript"
+																						},
+																						"locations": [
+																							"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/1%20-%20Process/2%20-%20Override/override.js"
+																						]
+																					}
+																				],
+																				"properties": {
+																					"type": "library"
+																				}
+																			},
+																			"platform": {
+																				"versions": [
+																					{
+																						"properties": {
+																							"environment": "javascript"
+																						},
+																						"locations": [
+																							"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/1%20-%20Process/1%20-%20Platform/platform.js"
+																						]
+																					}
+																				],
+																				"properties": {
+																					"type": "library"
+																				}
+																			}
+																		}
+																	}
+																},
+																"utilities": {
+																	"serial": {
+																		"versions": [
+																			{
+																				"properties": {
+																					"environment": "javascript"
+																				},
+																				"locations": [
+																					"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/3%20-%20Hardware/1%20-%20Serial/serial.js"
+																				]
+																			}
+																		],
+																		"properties": {
+																			"type": "library"
+																		}
+																	}
+																}
+															},
+															"server": {
+																"utilities": {
+																	"jsh": {
+																		"versions": [
+																			{
+																				"properties": {
+																					"environment": "javascript"
+																				},
+																				"locations": [
+																					"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/3%20-%20System/1%20-%20Server/1%20-%20JSH/jsh.js"
+																				]
+																			}
+																		],
+																		"properties": {
+																			"type": "library"
+																		}
+																	}
+																}
+															}
+														},
+														"utilities": {
+															"server": {
+																"versions": [
+																	{
+																		"properties": {
+																			"environment": "javascript"
+																		},
+																		"locations": [
+																			"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/3%20-%20System/1%20-%20Server/server.js"
+																		]
+																	}
+																],
+																"properties": {
+																	"type": "library"
+																}
+															}
+														}
+													},
+													"utilities": {
+														"utilities": {
+															"generalUniverse": {
+																"versions": [
+																	{
+																		"properties": {
+																			"environment": "javascript"
+																		},
+																		"locations": [
+																			"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/3%20-%20Utilities/4%20-%20Simulation/1%20-%20General%20Universe/generalUniverse.js"
+																		]
+																	}
+																],
+																"properties": {
+																	"type": "library"
+																}
+															},
+															"generationUtils": {
+																"versions": [
+																	{
+																		"properties": {
+																			"environment": "javascript"
+																		},
+																		"locations": [
+																			"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/3%20-%20Utilities/3%20-%20Generation/generationUtils.js"
+																		]
+																	}
+																],
+																"properties": {
+																	"type": "library"
+																}
+															},
+															"kryptoX": {
+																"versions": [
+																	{
+																		"properties": {
+																			"environment": "javascript"
+																		},
+																		"locations": [
+																			"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/3%20-%20Utilities/2%20-%20Encryption/1%20-%20Krypto%20X/kryptoX.js"
+																		]
+																	}
+																],
+																"properties": {
+																	"type": "library"
+																}
+															},
+															"ticTacToe": {
+																"versions": [
+																	{
+																		"properties": {
+																			"environment": "javascript"
+																		},
+																		"locations": [
+																			"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/3%20-%20Utilities/1%20-%20AI/1%20-%20Tic%20Tac%20Toe/ticTacToe.js"
+																		]
+																	}
+																],
+																"properties": {
+																	"type": "library"
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									},
+									"interfaces": {
+										"utilities": {
+											"standard": {
+												"versions": [
+													{
+														"properties": {
+															"environment": "kaeon fusion"
+														},
+														"locations": [
+															"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/1%20-%20ONE/1%20-%20Kaeon%20FUSION/1%20-%20Modules/1%20-%20Standard/Standard.js"
+														]
+													}
+												],
+												"properties": {
+													"type": "library"
+												}
+											}
+										}
+									},
+									"syntaxes": {
+										"utilities": {
+											"oneLISP": {
+												"versions": [
+													{
+														"properties": {
+															"environment": "universal preprocessor"
+														},
+														"locations": [
+															"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/1%20-%20ONE/2%20-%20Universal%20Preprocessor/1%20-%20Modules/1%20-%20ONE/1%20-%20ONE%20LISP/ONELisp.js"
+														]
+													}
+												],
+												"properties": {
+													"type": "library"
+												}
+											}
+										}
+									}
+								},
+								"utilities": {
+									"kaeonMETA": {
+										"versions": [
+											{
+												"properties": {
+													"environment": "javascript"
+												},
+												"locations": [
+													"https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/1%20-%20Core/3%20-%20Kaeon%20META/kaeonMETA.js"
+												]
+											}
+										],
+										"properties": {
+											"type": "library"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
 		}
-	],
-	"modules": [
-		{
-			"path": ["kaeonUnited", "main", "kaeonACE", "apis", "kaeonACECore"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/1%20-%20ONE/3%20-%20Kaeon%20ACE/1%20-%20APIs/1%20-%20Babylon/1%20-%20Core/KaeonACECore.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "kaeonACE", "apis", "modules", "standardKaeonACE"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/1%20-%20ONE/3%20-%20Kaeon%20ACE/1%20-%20APIs/1%20-%20Babylon/2%20-%20Modules/3%20-%20Standard%20Kaeon%20ACE/standardKaeonACE.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "kaeonACE", "apis", "modules", "units", "cameraModules"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/1%20-%20ONE/3%20-%20Kaeon%20ACE/1%20-%20APIs/1%20-%20Babylon/2%20-%20Modules/1%20-%20Units/2%20-%20Camera/cameraModules.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "kaeonACE", "apis", "modules", "units", "geometryModules"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/1%20-%20ONE/3%20-%20Kaeon%20ACE/1%20-%20APIs/1%20-%20Babylon/2%20-%20Modules/1%20-%20Units/3%20-%20Geometry/geometryModules.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "kaeonACE", "apis", "modules", "units", "standardModules"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/1%20-%20ONE/3%20-%20Kaeon%20ACE/1%20-%20APIs/1%20-%20Babylon/2%20-%20Modules/1%20-%20Units/1%20-%20Standard/standardModules.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "kaeonACE", "apis", "modules", "moduleUtilities"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/1%20-%20ONE/3%20-%20Kaeon%20ACE/1%20-%20APIs/1%20-%20Babylon/2%20-%20Modules/2%20-%20Utilities/moduleUtilities.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "kaeonACE", "kaeonACE"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/1%20-%20ONE/3%20-%20Kaeon%20ACE/3%20-%20Kaeon%20ACE/KaeonACE.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "kaeonMETA"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/1%20-%20Core/3%20-%20Kaeon%20META/kaeonMETA.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "one", "fusion"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/1%20-%20Core/1%20-%20ONE/2%20-%20FUSION/FUSION.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "one", "kaeonFUSION"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/1%20-%20Core/1%20-%20ONE/3%20-%20Kaeon%20FUSION/KaeonFUSION.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "one", "kaeonLibraryManager"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/1%20-%20Core/1%20-%20ONE/7%20-%20Kaeon%20Library%20Manager/kaeonLibraryManager.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "one", "one"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/1%20-%20Core/1%20-%20ONE/1%20-%20ONE/ONE.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "one", "onePlus"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/1%20-%20Core/1%20-%20ONE/4%20-%20ONE%2B/ONEPlus.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "one", "oneSuite"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/1%20-%20Core/1%20-%20ONE/6%20-%20ONE%20Suite/ONESuite.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "one", "universalPreprocessor"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/1%20-%20Core/1%20-%20ONE/5%20-%20Universal%20Preprocessor/UniversalPreprocessor.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "philosophersStone", "conventions", "philosophersStone"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/1%20-%20Core/2%20-%20Philosopher's%20Stone/1%20-%20Conventions/1%20-%20Atlas/PhilosophersStone.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "philosophersStone", "conventions", "soul", "soul", "soul"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/1%20-%20Core/2%20-%20Philosopher's%20Stone/1%20-%20Conventions/2%20-%20Medium/1%20-%20SOUL/1%20-%20Current/SOUL.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "philosophersStone", "conventions", "soul", "soul", "soulLegacy"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/1%20-%20Core/2%20-%20Philosopher's%20Stone/1%20-%20Conventions/2%20-%20Medium/1%20-%20SOUL/3%20-%20SOUL/2%20-%20Legacy/SOULLegacy.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "philosophersStone", "conventions", "soul", "soulEntity"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/1%20-%20Core/2%20-%20Philosopher's%20Stone/1%20-%20Conventions/2%20-%20Medium/1%20-%20SOUL/2%20-%20SOUL%20Entity/SOULEntity.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "philosophersStone", "conventions", "soul", "utilities", "binaryMap"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/1%20-%20Core/2%20-%20Philosopher's%20Stone/1%20-%20Conventions/2%20-%20Medium/1%20-%20SOUL/1%20-%20Utilities/1%20-%20Binary%20Map/binaryMap.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "philosophersStone", "conventions", "soul", "utilities", "curveMethod"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/1%20-%20Core/2%20-%20Philosopher's%20Stone/1%20-%20Conventions/2%20-%20Medium/1%20-%20SOUL/1%20-%20Utilities/2%20-%20Data%20Map/2%20-%20Generators/1%20-%20Curve%20Method/curveMethod.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "philosophersStone", "conventions", "soul", "utilities", "dataMap"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/1%20-%20Core/2%20-%20Philosopher's%20Stone/1%20-%20Conventions/2%20-%20Medium/1%20-%20SOUL/1%20-%20Utilities/2%20-%20Data%20Map/1%20-%20Data%20Map/dataMap.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "philosophersStone", "conventions", "soul", "utilities", "stringComparer"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/1%20-%20Core/2%20-%20Philosopher's%20Stone/1%20-%20Conventions/2%20-%20Medium/1%20-%20SOUL/1%20-%20Utilities/4%20-%20String%20Comparer/stringComparer.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "philosophersStone", "conventions", "soul", "utilities", "neuralNetwork"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/1%20-%20Core/2%20-%20Philosopher's%20Stone/1%20-%20Conventions/2%20-%20Medium/1%20-%20SOUL/1%20-%20Utilities/5%20-%20Neural%20Network/neuralNetwork.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "philosophersStone", "conventions", "soul", "utilities", "vectorConverter"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/1%20-%20Core/2%20-%20Philosopher's%20Stone/1%20-%20Conventions/2%20-%20Medium/1%20-%20SOUL/1%20-%20Utilities/3%20-%20Vector%20Converter/vectorConverter.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "philosophersStone", "series", "virtualSystem"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/1%20-%20Core/2%20-%20Philosopher's%20Stone/2%20-%20Series/1%20-%20Virtual%20System/virtualSystem.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "uc", "csb"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/3%20-%20United/1%20-%20United%20C/2%20-%20CSB/CSB.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "uc", "uc"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/3%20-%20United/1%20-%20United%20C/1%20-%20United%20C/UC.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "utilities", "software", "frameworks", "control", "commands", "drone", "controlDroneLaunch"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/2%20-%20Toolsets/2%20-%20Frameworks/3%20-%20Control/2%20-%20Modules/1%20-%20Commands/3%20-%20Drone/1%20-%20Launch/1%20-%20JavaScript/1-Source/controlDroneLaunch.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "utilities", "software", "frameworks", "control", "commands", "gpio", "controlGPIOFlicker"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/2%20-%20Toolsets/2%20-%20Frameworks/3%20-%20Control/2%20-%20Modules/1%20-%20Commands/2%20-%20GPIO/3%20-%20Flicker/controlGPIOFlicker.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "utilities", "software", "frameworks", "control", "commands", "gpio", "controlGPIOFlip"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/2%20-%20Toolsets/2%20-%20Frameworks/3%20-%20Control/2%20-%20Modules/1%20-%20Commands/2%20-%20GPIO/2%20-%20Flip/controlGPIOFlip.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "utilities", "software", "frameworks", "control", "commands", "gpio", "controlGPIOSet"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/2%20-%20Toolsets/2%20-%20Frameworks/3%20-%20Control/2%20-%20Modules/1%20-%20Commands/2%20-%20GPIO/1%20-%20Set/controlGPIOSet.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "utilities", "software", "frameworks", "control", "commands", "receptor", "controlGPIOReceptorReset"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/2%20-%20Toolsets/2%20-%20Frameworks/3%20-%20Control/2%20-%20Modules/1%20-%20Commands/1%20-%20Receptor/1%20-%20Reset/controlReceptorReset.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "utilities", "software", "frameworks", "control", "commands", "receptor", "controlGPIOReceptorSet"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/2%20-%20Toolsets/2%20-%20Frameworks/3%20-%20Control/2%20-%20Modules/1%20-%20Commands/1%20-%20Receptor/2%20-%20Set/controlReceptorSet.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "utilities", "software", "frameworks", "control", "control"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/2%20-%20Toolsets/2%20-%20Frameworks/3%20-%20Control/1%20-%20Core/control.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "utilities", "software", "frameworks", "control", "devices", "controlRaspberryPi"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/2%20-%20Toolsets/2%20-%20Frameworks/3%20-%20Control/2%20-%20Modules/2%20-%20Devices/1%20-%20Raspberry%20Pi/controlRaspberryPi.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "utilities", "software", "frameworks", "control", "services", "controlHologram"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/2%20-%20Toolsets/2%20-%20Frameworks/3%20-%20Control/2%20-%20Modules/3%20-%20Services/1%20-%20Hologram/controlHologram.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "utilities", "software", "frameworks", "control", "utilities", "drone", "commands", "tello", "telloLaunch"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/2%20-%20Toolsets/2%20-%20Frameworks/3%20-%20Control/3%20-%20Utilities/1%20-%20Drones/2%20-%20Commands/1%20-%20Launch/1%20-%20Tello/telloLaunch.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "utilities", "software", "frameworks", "control", "control", "utilities", "drone", "droneIdentifier"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/2%20-%20Toolsets/2%20-%20Frameworks/3%20-%20Control/3%20-%20Utilities/1%20-%20Drones/1%20-%20Identifier/droneIdentifier.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "utilities", "software", "frameworks", "vision", "utilities", "audio", "speech"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/2%20-%20Toolsets/2%20-%20Frameworks/1%20-%20Vision/2%20-%20Utilities/2%20-%20Audio/1%20-%20Speech/speech.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "utilities", "software", "frameworks", "vision", "utilities", "visual", "general", "dimensions"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/2%20-%20Toolsets/2%20-%20Frameworks/1%20-%20Vision/2%20-%20Utilities/1%20-%20Visual/1%20-%20General/2%20-%20Dimensions/dimensions.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "utilities", "software", "frameworks", "vision", "utilities", "visual", "general", "input"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/2%20-%20Toolsets/2%20-%20Frameworks/1%20-%20Vision/2%20-%20Utilities/1%20-%20Visual/1%20-%20General/1%20-%20Input/input.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "utilities", "software", "frameworks", "vision", "utilities", "visual", "widgets", "general", "widgets"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/2%20-%20Toolsets/2%20-%20Frameworks/1%20-%20Vision/2%20-%20Utilities/1%20-%20Visual/2%20-%20Widgets/1%20-%20General/widgets.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "utilities", "software", "frameworks", "vision", "utilities", "visual", "widgets", "miscellaneous", "search"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/2%20-%20Toolsets/2%20-%20Frameworks/1%20-%20Vision/2%20-%20Utilities/1%20-%20Visual/2%20-%20Widgets/2%20-%20Misc/1%20-%20Search/search.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "utilities", "software", "frameworks", "vision", "vision"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/2%20-%20Toolsets/2%20-%20Frameworks/1%20-%20Vision/1%20-%20Core/vision.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "utilities", "software", "frameworks", "waypoint", "waypoint"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/2%20-%20Toolsets/2%20-%20Frameworks/2%20-%20Waypoint/1%20-%20Core/waypoint.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "utilities", "software", "general", "data", "httpUtils"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/1%20-%20HTTP%20Utilities/httpUtils.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "utilities", "software", "general", "data", "httpUtils", "io"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/1%20-%20HTTP%20Utilities/1%20-%20IO/io.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "utilities", "software", "general", "data", "parsing", "ONE", "formatConverter"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/2%20-%20Parsing/2%20-%20Utilities/1%20-%20ONE/3%20-%20Format%20Converter/formatConverter.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "utilities", "software", "general", "data", "parsing", "utilities", "ONE", "processONE"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/2%20-%20Parsing/2%20-%20Utilities/1%20-%20ONE/2%20-%20Process%20ONE/processONE.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "utilities", "software", "general", "data", "parsing", "utilities", "ONE", "wrapONE"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/2%20-%20Parsing/2%20-%20Utilities/1%20-%20ONE/1%20-%20Wrap%20ONE/wrapONE.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "utilities", "software", "general", "data", "parsing", "tokenizer"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/1%20-%20Data/2%20-%20Parsing/1%20-%20Tokenizer/tokenizer.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "utilities", "software", "general", "management", "admin", "autoVersioner"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/2%20-%20Admin/2%20-%20Versions/1%20-%20Auto%20Versioner/autoVersioner.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "utilities", "software", "general", "management", "admin", "network", "connectionMonitor"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/2%20-%20Admin/1%20-%20Network/1%20-%20Connection/connectionMonitor.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "utilities", "software", "general", "management", "admin", "network", "wifi"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/2%20-%20Admin/1%20-%20Network/1%20-%20WiFi/wifi.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "utilities", "software", "general", "management", "admin", "terminalLogger"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/2%20-%20Admin/3%20-%20Logging/1%20-%20Terminal%20Logger/terminalLogger.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "utilities", "software", "general", "management", "process", "override"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/1%20-%20Process/2%20-%20Override/override.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "utilities", "software", "general", "management", "process", "platform"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/1%20-%20Process/1%20-%20Platform/platform.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "utilities", "software", "general", "management", "serial"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/2%20-%20Management/3%20-%20Hardware/1%20-%20Serial/serial.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "utilities", "software", "general", "server"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/3%20-%20System/1%20-%20Server/server.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "utilities", "software", "general", "server", "jsh"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/1%20-%20General/3%20-%20System/1%20-%20Server/1%20-%20JSH/jsh.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "utilities", "software", "utilities", "generalUniverse"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/3%20-%20Utilities/4%20-%20Simulation/1%20-%20General%20Universe/generalUniverse.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "utilities", "software", "utilities", "generationUtils"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/3%20-%20Utilities/3%20-%20Generation/generationUtils.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "utilities", "software", "utilities", "kryptoX"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/3%20-%20Utilities/2%20-%20Encryption/1%20-%20Krypto%20X/kryptoX.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "utilities", "software", "utilities", "ticTacToe"],
-			"implementations": [
-				{
-					"environment": "javascript",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/2%20-%20Kaeon%20APIs/3%20-%20Utilities/1%20-%20AI/1%20-%20Tic%20Tac%20Toe/ticTacToe.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "interfaces", "standard"],
-			"implementations": [
-				{
-					"environment": "kaeon fusion",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/1%20-%20ONE/1%20-%20Kaeon%20FUSION/1%20-%20Modules/1%20-%20Standard/Standard.js"
-				}
-			]
-		},
-		{
-			"path": ["kaeonUnited", "main", "syntaxes", "oneLISP"],
-			"implementations": [
-				{
-					"environment": "universal preprocessor",
-					"reference": "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/2%20-%20APIs/1%20-%20United/2%20-%20Utilities/1%20-%20Software/1%20-%20ONE/2%20-%20Universal%20Preprocessor/1%20-%20Modules/1%20-%20ONE/1%20-%20ONE%20LISP/ONELisp.js"
-				}
-			]
-		}
-	]
+	}
 }

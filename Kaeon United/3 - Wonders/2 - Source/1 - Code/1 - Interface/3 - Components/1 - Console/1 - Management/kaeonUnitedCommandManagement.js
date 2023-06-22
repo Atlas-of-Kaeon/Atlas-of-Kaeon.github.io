@@ -1,11 +1,11 @@
-function getInterfaces() {
+var fs = require("fs");
+
+function getPlugins() {
 
 	try {
 
-		return Object.keys(
-			JSON.parse(
-				fs.readFileSync(__dirname + "/interface.json", "utf-8")
-			).management
+		return JSON.parse(
+			fs.readFileSync(__dirname + "/plugins.json", "utf-8")
 		);
 	}
 
@@ -14,34 +14,27 @@ function getInterfaces() {
 	}
 }
 
-function onDependency(item, command) {
+function managePlugin(operation, path) {
 
-	let resource = require(item);
+	let execSync = require('child_process').execSync;
 
-	if(resource.management == null)
-		return;
+	let plugin = null;
 
-	let operations = item.management[command];
+	if(path.endsWith(".json"))
+		plugin = openResource(path);
 
-	if(operations == null)
-		return;
+	else
+		plugin = require(path);
 
-	operations.forEach((item) => {
+	if(plugin.protocols != null) {
 
-		if(!(item.environment.toLowerCase() == "js" ||
-			item.environment.toLowerCase() == "javascript")) {
+		if(plugin.protocols[operation] != null) {
 
-			return;
+			plugin.protocols[operation].forEach((item) => {
+				execSync(item);
+			});
 		}
-
-		try {
-			require(item.reference)();
-		}
-
-		catch(error) {
-
-		}
-	});
+	}
 }
 
 module.exports = (args, callback) => {
@@ -68,10 +61,8 @@ module.exports = (args, callback) => {
 
 		return;
 	}
-
-	let execSync = require('child_process').execSync;
 	
-	let interfaces = getInterfaces();
+	let plugins = getPlugins();
 
 	let operation = args[0].toLowerCase();
 	let arguments = args.slice(1);
@@ -82,24 +73,18 @@ module.exports = (args, callback) => {
 
 			arguments.forEach((item) => {
 
-				if(interfaces.includes(item))
+				if(plugins.includes(item))
 					return;
 
 				try {
 
-					if(!item.startsWith("http://") &&
-						!item.startsWith("https://")) {
-						
-						execSync("npm install \"" + item + "\"");
-					}
-						
-					onDependency(item, "install");
+					managePlugin("install", item);
 
-					interfaces.push(item);
+					plugins.push(item);
 				}
 
 				catch(error) {
-
+					console.log(error.stack);
 				}
 			});
 		}
@@ -108,42 +93,30 @@ module.exports = (args, callback) => {
 
 			arguments.forEach((item) => {
 
-				if(!interfaces.includes(item))
+				if(!plugins.includes(item))
 					return;
 
 				try {
 
-					onDependency(item, "uninstall");
-					
-					if(!item.startsWith("http://") &&
-						!item.startsWith("https://")) {
-						
-						execSync("npm uninstall \"" + item + "\"");
-					}
+					managePlugin("uninstall", item);
 
-					interfaces.splice(interfaces.indexOf(item), 1);
+					plugins.splice(plugins.indexOf(item), 1);
 				}
 
 				catch(error) {
-
+					console.log(error.stack);
 				}
 			});
 		}
 	
 		else if(operation == "list")
-			console.log(Object.keys(interface.management).join("\n"));
+			console.log(plugins.join("\n"));
 
 		if(operation == "install" || operation == "uninstall") {
-
-			let interface = require(moduleDependencies.defaultInterface);
-
-			interfaces.forEach((item) => {
-				require.appendInterface(interface, require(item));
-			});
 			
 			fs.writeFileSync(
-				__dirname + "/interface.json",
-				JSON.stringify(interface)
+				__dirname + "/plugins.json",
+				JSON.stringify(plugins)
 			);
 		}
 

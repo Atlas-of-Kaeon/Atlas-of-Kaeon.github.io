@@ -1,13 +1,15 @@
 function executeCommand(args) {
 
-	require("kaeon-united")().components.filter((item) => {
-		
-		return item.environment.toLowerCase() == "javascript" ||
-			item.environment.toLowerCase() == "js";
-	}).forEach((item) => {
+	getUtilities(
+		require("kaeon-united")(),
+		{
+			type: "component",
+			environment: "javascript"
+		}
+	).forEach((item) => {
 
 		try {
-			require(item.reference)(args, () => { });
+			item(args, () => { });
 		}
 
 		catch(error) {

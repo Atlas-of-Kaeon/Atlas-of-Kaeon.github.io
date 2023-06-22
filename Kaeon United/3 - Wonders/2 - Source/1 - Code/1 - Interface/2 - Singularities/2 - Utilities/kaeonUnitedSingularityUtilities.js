@@ -10,6 +10,92 @@ Object.assign(
 	}
 );
 
+function appendInterface(main, resource, extensions) {
+
+	appendPackage(main.utilities, resource.utilities);
+
+	if(resource.connections == null)
+		return;
+		
+	if(resource.connections.extensions == null)
+		return;
+
+	resource.connections.extensions.forEach((item) => {
+
+		if(extensions.includes(item))
+			return;
+
+		try {
+
+			appendInterface(
+				main,
+				parseInterface(openResource(item)),
+				JSON.parse(JSON.stringify(extensions)).concat([item])
+			);
+		}
+
+		catch(error) {
+
+		}
+	});
+}
+
+function appendPackage(main, package) {
+
+	if(package == null)
+		return;
+
+	main.packages = main.packages != null ? main.packages : { };
+	main.utilities = main.utilities != null ? main.utilities : { };
+
+	Object.assign(main.utilities, package.utilities);
+
+	if(package.packages != null) {
+
+		Object.keys(package.packages).forEach((key) => {
+
+			main.packages[key] =
+				main.packages[key] != null ? main.packages[key] : { };
+
+			appendPackage(main.packages[key], package.packages[key]);
+		});
+	}
+}
+
+var executeModule = (utility) => {
+	
+	let interface = getInterface();
+
+	if(utility == null)
+		return interface;
+
+	let utilities = getUtilities(
+		interface,
+		{
+			type: "library",
+			environment: typeof utility == "string" ?
+				"javascript" : "kaeon fusion",
+			path: typeof utility == "string" ? utility : null
+		}
+	);
+	
+	if(typeof utility != "string") {
+
+		utilities.forEach((item) => {
+
+			try {
+				item(utility);
+			}
+
+			catch(error) {
+				
+			}
+		});
+	}
+
+	return utilities[0];
+}
+
 var filterONE = (element, child) => {
 
 	return element.children.filter((item) => {
@@ -26,32 +112,171 @@ var findONE = (element, child) => {
 		}).flat();
 }
 
+function getUtilities(utilities, options, path) {
+
+	options = options != null ? options : { };
+	path = path != null ? path : "";
+
+	let result = [];
+
+	Object.keys(utilities.utilities).forEach((key) => {
+
+		let item = utilities.utilities[key];
+
+		if(options.path != null) {
+
+			if(!(path + "." + key).endsWith("" + options.path))
+				return;
+		}
+
+		if(options.type != null) {
+
+			if(item.properties == null)
+				return;
+
+			if(("" + item.properties.type).toLowerCase() !=
+				("" + options.type).toLowerCase()) {
+
+				return;
+			}
+		}
+
+		if(item.versions != null) {
+
+			item.versions.forEach((item) => {
+
+				if(options.environment != null) {
+
+					if(item.properties == null)
+						return;
+
+					if(("" + item.properties.environment).toLowerCase() !=
+						("" + options.environment).toLowerCase()) {
+
+						return;
+					}
+				}
+
+				if(item.locations != null) {
+
+					if(item.locations.length == 0)
+						return;
+
+					result.push(require("" + item.locations[0]));
+				}
+
+				else if(item.source != null)
+					result.push(require("" + item.source, { dynamic: true }));
+			});
+		}
+	});
+
+	Object.keys(utilities.packages).forEach((key) => {
+
+		result = result.concat(
+			utilities.packages[key],
+			options,
+			path + "." + key
+		);
+	});
+
+	return result;
+}
+
 var getNewInterface = () => {
 	
 	return {
-		components: [],
-		modules: [],
-		extensions: { },
-		management: { },
-		references: { }
+		utilities: { },
+		connections: { }
 	};
 }
 
-var getONEModules = (interface, element, path) => {
+var getONEUtilities = (utilities, element) => {
 
 	let packages = filterONE(document, "Packages");
-	let modules = filterONE(document, "Modules");
+	let utilityItems = filterONE(document, "Utilities");
 
-	packages.children.forEach((item) => {
-		getONEModules(interface, item, path.concat([item.content]));
-	});
+	if(packages != null) {
 
-	modules.forEach((item) => {
+		packages.children.forEach((item) => {
 
-		let modulePath = path.concat([item.content]);
+			if(utilities.packages[item.content] == null)
+				utilities.packages[item.content] = { };
 
-		// STUB
-	});
+			getONEUtilities(utilities.packages[item.content], item);
+		});
+	}
+
+	if(utilityItems != null) {
+
+		utilityItems.forEach((item) => {
+
+			let utility = {
+				versions: [],
+				properties: { }
+			};
+
+			let versions = filterONE(item, "Versions");
+			let properties = filterONE(item, "Properties");
+
+			if(versions != null) {
+
+				versions.children.forEach((item) => {
+
+					let version = {
+						properties: { }
+					};
+
+					let properties = filterONE(item, "Properties");
+
+					if(properties != null) {
+						
+						properties.children.forEach((item) => {
+
+							if(item.children.length > 0) {
+
+								version.properties[item.content] =
+									item.children[0].content;
+							}
+						});
+					}
+
+					let locations = filterONE(item, "Locations");
+					let source = filterONE(item, "Source");
+
+					if(locations != null) {
+
+						version.locations =
+							locations.children.map((item) => {
+								return item.content;
+							});
+					}
+
+					else if(source != null) {
+
+						if(source.children.length > 0)
+							version.source = source.children[0].content;
+					}
+
+					utility.versions.push(version);
+				});
+			}
+
+			if(properties != null) {
+				
+				properties.children.forEach((item) => {
+
+					if(item.children.length > 0) {
+
+						utility.properties[item.content] =
+							item.children[0].content;
+					}
+				});
+			}
+
+			utilities[item.content] = utility;
+		});
+	}
 }
 
 var parseInterface = (interface) => {
@@ -103,11 +328,8 @@ var parseInterface = (interface) => {
 		}).flat().forEach((item) => {
 
 			result.components = result.components.concat(item.components);
-			result.modules = result.components.concat(item.modules);
 
-			Object.assign(result.extensions, item.extensions);
-			Object.assign(result.management, item.management);
-			Object.assign(result.references, item.references);
+			appendPackage(result.utilities, item.utilities);
 		});
 
 		return result;
@@ -123,13 +345,15 @@ var parseInterface = (interface) => {
 var parseInterfaceElement = (element) => {
 
 	let connections = filterONE(element, "Connections");
-	let modules = filterONE(element, "Modules");
+	let utilities = filterONE(element, "Utilities");
 
 	let interface = getNewInterface();
 
-	if(connections == null && modules == null) {
+	if(connections == null && utilities == null) {
 
-		let reference = moduleDependencies.aliases[element.content.split(" ").join("-").toLowerCase()];
+		let reference = moduleDependencies.aliases[
+			element.content.split(" ").join("-").toLowerCase()
+		];
 
 		if(reference != null)
 			interface.references[reference] = true;
@@ -147,19 +371,15 @@ var parseInterfaceElement = (element) => {
 			if(section == null)
 				return;
 
-			section.children.forEach((item) => {
-
-				if(item.children.length == 0)
-					return;
-
-				interface.references[item.children[0].content] =
-					section.content.toLowerCase() == "extensions";
-			});
+			interface.references[item.children[0].content] =
+				section.children.map((item) => {
+					return item.content;
+				});
 		});
 	}
 
-	if(modules != null)
-		getONEModules(interface, modules, []);
+	if(utilities != null)
+		getONEUtilities(interface.utilities, utilities);
 
 	return interface;
 }

@@ -2,13 +2,15 @@
 
 function executeCommand(args) {
 
-	require = require("./kaeonUnitedSingularityNode.js").executeSingularity();
+	require("./kaeonUnitedSingularityNode.js");
 
-	let components = require("kaeon-united")().components.filter((item) => {
-		
-		return item.environment.toLowerCase() == "javascript" ||
-			item.environment.toLowerCase() == "js";
-	});
+	let components = getUtilities(
+		require("kaeon-united")(),
+		{
+			type: "component",
+			environment: "javascript"
+		}
+	);
 
 	let open = components.length;
 
@@ -28,7 +30,7 @@ function executeCommand(args) {
 	components.forEach((item) => {
 
 		try {
-			require(item.reference)(args, callback);
+			item(args, callback);
 		}
 
 		catch(error) {

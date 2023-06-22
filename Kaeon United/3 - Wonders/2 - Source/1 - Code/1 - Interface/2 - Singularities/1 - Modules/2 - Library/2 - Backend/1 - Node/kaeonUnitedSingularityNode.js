@@ -4,142 +4,11 @@ var moduleDependencies = {
 	utilities: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/2%20-%20Singularities/2%20-%20Utilities/kaeonUnitedSingularityUtilities.js"
 };
 
-function appendInterface(main, resource, references) {
-
-	appendInterface.cache =
-		appendInterface.cache != null ?
-			appendInterface.cache : [];
-
-	["components", "modules"].forEach((field) => {
-
-		if(resource[field] != null) {
-
-			main[field] = main[field].concat(resource[field]).map((item) => {
-				return JSON.stringify(item);
-			}).filter((item, pos, self) => {
-				return self.indexOf(item) == pos;
-			}).map((item) => {
-				return JSON.parse(item);
-			});
-		}
-	});
-
-	if(resource.extensions != null)
-		Object.assign(main.extensions, resource.extensions);
-
-	if(resource.management != null)
-		Object.assign(main.management, resource.management);
-
-	if(resource.references != null) {
-
-		references = references != null ? references : { };
-
-		Object.keys(resource.references).forEach((item) => {
-
-			if(references.includes(item) || !resource.references[item])
-				return;
-
-			try {
-
-				appendInterface(
-					main,
-					parseInterface(openResource(item)),
-					JSON.parse(JSON.stringify(references)).concat([item])
-				);
-			}
-
-			catch(error) {
-
-			}
-		});
-	}
-
-	main.components.map((item) => {
-		return item.reference;
-	}).concat(main.modules.map((item) => {
-
-		return item.implementations.map((element) => {
-			return element.reference;
-		});
-	}).flat()).concat(
-		Object.values(main.extensions).flat()
-	).forEach((item) => {
-
-		if(appendInterface.cache.includes(item))
-			return;
-
-		appendInterface.cache.push(item);
-
-		try {
-			openResource(item);
-		}
-
-		catch(error) {
-			
-		}
-	});
-}
-
 function clearIntervals() {
 
 	require.intervals.forEach((interval) => {
 		clearInterval(interval);
 	});
-}
-
-function executeModule(utility) {
-
-	executeSingularity();
-	
-	let interface = getInterface();
-
-	if(utility == null)
-		return interface;
-
-	if(typeof utility == "string") {
-
-		for(let i = 0; i < interface.modules.length; i++) {
-
-			if(interface.modules[i].path.join(".").
-				toLowerCase().endsWith(utility.toLowerCase())) {
-				
-				let match = interface.
-					modules[i].
-					implementations.
-					filter((item) => {
-
-					return item.environment.toLowerCase() == "javascript" ||
-						item.environment.toLowerCase() == "js";
-				});
-
-				return match.length > 0 ? require(match[0].reference) : null;
-			}
-		}
-
-		return null;
-	}
-
-	else {
-
-		interface.modules.forEach((item) => {
-
-			item.implementations.forEach((implementation) => {
-
-				let environment = implementation.environment.toLowerCase();
-
-				if(environment == "kaeon fusion" || environment == "kf") {
-
-					try {
-						require(implementation.reference)(utility);
-					}
-
-					catch(error) {
-						
-					}
-				}
-			});
-		});
-	}
 }
 
 function executeSingularity() {
@@ -209,7 +78,7 @@ function executeSingularity() {
 		
 	}
 
-	require = function(path, options) {
+	let require = function(path, options) {
 
 		if(typeof options != "object")
 			options = { };
@@ -384,7 +253,7 @@ function executeSingularity() {
 		
 	}
 
-	return require;
+	requireDefault('module').prototype.require = require;
 }
 
 function fileExists(file) {
@@ -401,10 +270,7 @@ function fileExists(file) {
 function getInterface() {
 	
 	let interface = {
-		components: [],
-		modules: [],
-		extensions: { },
-		management: { }
+		utilities: { }
 	};
 
 	let fs = require("fs");
@@ -412,17 +278,43 @@ function getInterface() {
 	try {
 
 		if(!fs.existsSync(process.cwd() + "/plugins.json"))
-			fs.writeFileSync(process.cwd() + "/plugins.json", "{}");
+			fs.writeFileSync(process.cwd() + "/plugins.json", "[]");
 
 		let interfaces = [
-			moduleDependencies.unitedInterface,
-			JSON.parse(
-				fs.readFileSync(process.cwd() + "/plugins.json", "utf-8")
-			)
+			parseInterface(openResource(moduleDependencies.unitedInterface))
 		];
 
+		JSON.parse(
+			fs.readFileSync(process.cwd() + "/plugins.json", "utf-8")
+		).forEach((item) => {
+
+			if(item.endsWith(".json")) {
+
+				let plugin = JSON.parse(openResource(item));
+
+				if(plugin.module != null)
+					interfaces.push(plugin.module);
+
+				else if(plugin.locations != null) {
+
+					if(plugin.locations.length > 0) {
+
+						interfaces.push(
+							parseInterface(openResource(plugin.locations[0]))
+						);
+					}
+				}
+
+				else if(plugin.utilities != null || plugin.connections != null)
+					interfaces.push(plugin);
+			}
+
+			else
+				interfaces.push(require(item));
+		});
+
 		interfaces.forEach((item) => {
-			appendInterface(interface, parseInterface(openResource(item)), []);
+			appendInterface(interface, item, []);
 		});
 
 		return interface;
@@ -454,17 +346,17 @@ function openResource(path) {
 
 			if(openResource.cache == null) {
 
-				if(!require("fs").existsSync("kaeonUnited.json")) {
+				if(!require("fs").existsSync("localCache.json")) {
 
 					require("fs").writeFileSync(
-						process.cwd() + "/kaeonUnited.json", "{}"
+						process.cwd() + "/localCache.json", "{}"
 					);
 				}
 
 				try {
 					
 					openResource.cache = JSON.parse(require("fs").readFileSync(
-						process.cwd() + "/kaeonUnited.json", 'utf-8'
+						process.cwd() + "/localCache.json", 'utf-8'
 					));
 				}
 
@@ -520,7 +412,7 @@ function openResource(path) {
 				try {
 
 					require("fs").writeFileSync(
-						process.cwd() + "/kaeonUnited.json",
+						process.cwd() + "/localCache.json",
 						JSON.stringify(openResource.cache)
 					);
 				}
@@ -578,6 +470,6 @@ function startIntervals() {
 
 eval(openResource(moduleDependencies.utilities));
 
-executeModule.executeSingularity = executeSingularity;
+executeSingularity();
 
 module.exports = executeModule;
