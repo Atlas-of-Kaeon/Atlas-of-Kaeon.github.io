@@ -20,7 +20,7 @@ function appendInterface(main, resource, extensions) {
 	if(resource.connections.extensions == null)
 		return;
 
-	resource.connections.extensions.forEach((item) => {
+	Object.values(resource.connections.extensions).forEach((item) => {
 
 		if(extensions.includes(item))
 			return;
@@ -187,7 +187,10 @@ var getNewInterface = () => {
 	
 	return {
 		utilities: { },
-		connections: { }
+		connections: {
+			extensions: { },
+			references: { }
+		}
 	};
 }
 
@@ -327,9 +330,17 @@ var parseInterface = (interface) => {
 			});
 		}).flat().forEach((item) => {
 
-			result.components = result.components.concat(item.components);
-
 			appendPackage(result.utilities, item.utilities);
+
+			Object.assign(
+				result.connections.extensions,
+				item.connections.extensions
+			);
+
+			Object.assign(
+				result.connections.references,
+				item.connections.references
+			);
 		});
 
 		return result;
@@ -351,12 +362,15 @@ var parseInterfaceElement = (element) => {
 
 	if(connections == null && utilities == null) {
 
-		let reference = moduleDependencies.aliases[
-			element.content.split(" ").join("-").toLowerCase()
-		];
+		let id = element.content.split(" ").join("-").toLowerCase();
+		let reference = moduleDependencies.aliases[id];
 
-		if(reference != null)
-			interface.references[reference] = true;
+		if(reference != null) {
+
+			interface.connections.extensions = { };
+
+			interface.connections.extensions[id] = reference;
+		}
 
 		return interface;
 	}
@@ -371,10 +385,13 @@ var parseInterfaceElement = (element) => {
 			if(section == null)
 				return;
 
-			interface.references[item.children[0].content] =
-				section.children.map((item) => {
-					return item.content;
-				});
+			let id = section.content.toLowerCase();
+
+			section.children.forEach((item) => {
+
+				interface.connections[id][item.content] =
+					item.children[0].content;
+			});
 		});
 	}
 
