@@ -22,15 +22,18 @@ function appendInterface(main, resource, extensions) {
 
 	Object.values(resource.connections.extensions).forEach((item) => {
 
-		if(extensions.includes(item))
+		if(item.length == 0)
+			return;
+
+		if(extensions.includes(item[0]))
 			return;
 
 		try {
 
 			appendInterface(
 				main,
-				parseInterface(openResource(item)),
-				JSON.parse(JSON.stringify(extensions)).concat([item])
+				parseInterface(openResource(item[0])),
+				JSON.parse(JSON.stringify(extensions)).concat([item[0]])
 			);
 		}
 
@@ -369,7 +372,7 @@ var parseInterfaceElement = (element) => {
 
 			interface.connections.extensions = { };
 
-			interface.connections.extensions[id] = reference;
+			interface.connections.extensions[id] = [reference];
 		}
 
 		return interface;
@@ -390,7 +393,9 @@ var parseInterfaceElement = (element) => {
 			section.children.forEach((item) => {
 
 				interface.connections[id][item.content] =
-					item.children[0].content;
+					item.children.map((child) => {
+						return child.content;
+					});
 			});
 		});
 	}
