@@ -4,19 +4,58 @@ var moduleDependencies = {
 
 var io = require("kaeon-united")("io");
 
-let data = { };
+function getUtilities(utilities, path) {
 
-JSON.parse(
-	io.open(moduleDependencies.generalInterface)
-).modules.forEach((item) => {
+	path = path != null ? path : "";
 
-	let path = item.path.join(".").toLowerCase();
+	let result = { };
 
-	if(!path.startsWith("kaeonunited.general.services"))
-		return;
+	if(utilities.utilities != null) {
 
-	data[path] = require(item.implementations[0].reference);
-});
+		Object.keys(utilities.utilities).forEach((key) => {
+
+			let item = utilities.utilities[key];
+
+			if(item.versions == null)
+				return;
+
+			if(item.versions.length == 0)
+				return;
+
+			let version = item.versions[0];
+
+			if(version.locations == null)
+				return;
+
+			if(version.locations.length == 0)
+				return;
+
+			result[path + "." + key] = version.locations[0];
+		});
+	}
+
+	if(utilities.packages != null) {
+
+		Object.keys(utilities.packages).forEach((key) => {
+
+			Object.assign(
+				result,
+				getUtilities(
+					utilities.packages[key],
+					path + "." + key
+				)
+			);
+		});
+	}
+
+	return result;
+}
+
+let data = getUtilities(
+	JSON.parse(
+		io.open(moduleDependencies.generalInterface)
+	).utilities
+);
 
 module.exports = (path) => {
 
