@@ -30,7 +30,7 @@ function getUtilities(utilities, path) {
 			if(version.locations.length == 0)
 				return;
 
-			result[path + "." + key] = version.locations[0];
+			result[path + "." + key] = require(version.locations[0]);
 		});
 	}
 
