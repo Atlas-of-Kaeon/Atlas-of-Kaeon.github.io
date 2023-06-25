@@ -12,6 +12,8 @@ Object.assign(
 
 function appendInterface(main, resource, extensions) {
 
+	extensions = extensions != null ? extensions : [];
+
 	appendPackage(main.utilities, resource.utilities);
 
 	if(resource.connections == null)
@@ -117,6 +119,15 @@ var findONE = (element, child) => {
 
 function getUtilities(utilities, options, path) {
 
+	if(utilities.utilities != null) {
+
+		if(utilities.utilities.utilities != null ||
+			utilities.utilities.packages != null) {
+
+			return getUtilities(utilities.utilities, options);
+		}
+	}
+
 	options = options != null ? options : { };
 	path = path != null ? path : "";
 
@@ -186,9 +197,11 @@ function getUtilities(utilities, options, path) {
 		Object.keys(utilities.packages).forEach((key) => {
 
 			result = result.concat(
-				utilities.packages[key],
-				options,
-				path + "." + key
+				getUtilities(
+					utilities.packages[key],
+					options,
+					path + "." + key
+				)
 			);
 		});
 	}
