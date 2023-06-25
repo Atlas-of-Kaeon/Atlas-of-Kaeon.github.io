@@ -122,66 +122,76 @@ function getUtilities(utilities, options, path) {
 
 	let result = [];
 
-	Object.keys(utilities.utilities).forEach((key) => {
+	if(utilities.utilities != null) {
 
-		let item = utilities.utilities[key];
+		Object.keys(utilities.utilities).forEach((key) => {
 
-		if(options.path != null) {
+			let item = utilities.utilities[key];
 
-			if(!(path + "." + key).endsWith("" + options.path))
-				return;
-		}
+			if(options.path != null) {
 
-		if(options.type != null) {
-
-			if(item.properties == null)
-				return;
-
-			if(("" + item.properties.type).toLowerCase() !=
-				("" + options.type).toLowerCase()) {
-
-				return;
+				if(!(path + "." + key).endsWith("" + options.path))
+					return;
 			}
-		}
 
-		if(item.versions != null) {
+			if(options.type != null) {
 
-			item.versions.forEach((item) => {
+				if(item.properties == null)
+					return;
 
-				if(options.environment != null) {
+				if(("" + item.properties.type).toLowerCase() !=
+					("" + options.type).toLowerCase()) {
 
-					if(item.properties == null)
-						return;
+					return;
+				}
+			}
 
-					if(("" + item.properties.environment).toLowerCase() !=
-						("" + options.environment).toLowerCase()) {
+			if(item.versions != null) {
 
-						return;
+				item.versions.forEach((item) => {
+
+					if(options.environment != null) {
+
+						if(item.properties == null)
+							return;
+
+						if(("" + item.properties.environment).toLowerCase() !=
+							("" + options.environment).toLowerCase()) {
+
+							return;
+						}
 					}
-				}
 
-				if(item.locations != null) {
+					if(item.locations != null) {
 
-					if(item.locations.length == 0)
-						return;
+						if(item.locations.length == 0)
+							return;
 
-					result.push(require("" + item.locations[0]));
-				}
+						result.push(require("" + item.locations[0]));
+					}
 
-				else if(item.source != null)
-					result.push(require("" + item.source, { dynamic: true }));
-			});
-		}
-	});
+					else if(item.source != null) {
 
-	Object.keys(utilities.packages).forEach((key) => {
+						result.push(
+							require("" + item.source, { dynamic: true })
+						);
+					}
+				});
+			}
+		});
+	}
 
-		result = result.concat(
-			utilities.packages[key],
-			options,
-			path + "." + key
-		);
-	});
+	if(utilities.packages != null) {
+
+		Object.keys(utilities.packages).forEach((key) => {
+
+			result = result.concat(
+				utilities.packages[key],
+				options,
+				path + "." + key
+			);
+		});
+	}
 
 	return result;
 }
