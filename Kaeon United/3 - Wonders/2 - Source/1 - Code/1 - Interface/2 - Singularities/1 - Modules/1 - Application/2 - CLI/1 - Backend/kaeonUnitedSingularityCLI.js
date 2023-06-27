@@ -4,7 +4,9 @@ function executeCommand(args) {
 
 	require("./kaeonUnitedSingularityNode.js");
 
-	let components = getUtilities(
+	let utils = require(true);
+
+	let components = utils.getUtilities(
 		require("kaeon-united")(),
 		{
 			type: "component",
@@ -22,10 +24,10 @@ function executeCommand(args) {
 		open--;
 
 		if(open == 0)
-			require.clearIntervals();
+			utils.clearIntervals();
 	};
 
-	require.startIntervals();
+	utils.startIntervals();
 
 	components.forEach((item) => {
 

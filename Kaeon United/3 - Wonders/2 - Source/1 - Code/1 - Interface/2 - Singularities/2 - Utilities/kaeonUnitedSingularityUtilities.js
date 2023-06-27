@@ -117,98 +117,6 @@ var findONE = (element, child) => {
 		}).flat();
 }
 
-function getUtilities(utilities, options, path) {
-
-	if(utilities.utilities != null) {
-
-		if(utilities.utilities.utilities != null ||
-			utilities.utilities.packages != null) {
-
-			return getUtilities(utilities.utilities, options);
-		}
-	}
-
-	options = options != null ? options : { };
-	path = path != null ? path : "";
-
-	let result = [];
-
-	if(utilities.utilities != null) {
-
-		Object.keys(utilities.utilities).forEach((key) => {
-
-			let item = utilities.utilities[key];
-
-			if(options.path != null) {
-
-				if(!(path + "." + key).endsWith("" + options.path))
-					return;
-			}
-
-			if(options.type != null) {
-
-				if(item.properties == null)
-					return;
-
-				if(("" + item.properties.type).toLowerCase() !=
-					("" + options.type).toLowerCase()) {
-
-					return;
-				}
-			}
-
-			if(item.versions != null) {
-
-				item.versions.forEach((item) => {
-
-					if(options.environment != null) {
-
-						if(item.properties == null)
-							return;
-
-						if(("" + item.properties.environment).toLowerCase() !=
-							("" + options.environment).toLowerCase()) {
-
-							return;
-						}
-					}
-
-					if(item.locations != null) {
-
-						if(item.locations.length == 0)
-							return;
-
-						result.push(require("" + item.locations[0]));
-					}
-
-					else if(item.source != null) {
-
-						result.push(
-							require("" + item.source, { dynamic: true })
-						);
-					}
-				});
-			}
-		});
-	}
-
-	if(utilities.packages != null) {
-
-		Object.keys(utilities.packages).forEach((key) => {
-
-			result = result.concat(
-				getUtilities(
-					utilities.packages[key],
-					options,
-					path + "." + key
-				)
-			);
-		});
-	}
-
-	return result;
-}
-
 var getNewInterface = () => {
 	
 	return {
@@ -306,6 +214,101 @@ var getONEUtilities = (utilities, element) => {
 			utilities[item.content] = utility;
 		});
 	}
+}
+
+function getUtilities(utilities, options, path) {
+
+	if(utilities.utilities != null) {
+
+		if(utilities.utilities.utilities != null ||
+			utilities.utilities.packages != null) {
+
+			return getUtilities(utilities.utilities, options);
+		}
+	}
+
+	options = options != null ? options : { };
+	path = path != null ? path : "";
+
+	let result = [];
+
+	if(utilities.utilities != null) {
+
+		Object.keys(utilities.utilities).forEach((key) => {
+
+			let item = utilities.utilities[key];
+
+			if(options.path != null) {
+
+				if(!(path + "." + key).toLowerCase().endsWith(
+					("" + options.path).toLowerCase())) {
+					
+					return;
+				}
+			}
+
+			if(options.type != null) {
+
+				if(item.properties == null)
+					return;
+
+				if(("" + item.properties.type).toLowerCase() !=
+					("" + options.type).toLowerCase()) {
+
+					return;
+				}
+			}
+
+			if(item.versions != null) {
+
+				item.versions.forEach((item) => {
+
+					if(options.environment != null) {
+
+						if(item.properties == null)
+							return;
+
+						if(("" + item.properties.environment).toLowerCase() !=
+							("" + options.environment).toLowerCase()) {
+
+							return;
+						}
+					}
+
+					if(item.locations != null) {
+
+						if(item.locations.length == 0)
+							return;
+
+						result.push(require("" + item.locations[0]));
+					}
+
+					else if(item.source != null) {
+
+						result.push(
+							require("" + item.source, { dynamic: true })
+						);
+					}
+				});
+			}
+		});
+	}
+
+	if(utilities.packages != null) {
+
+		Object.keys(utilities.packages).forEach((key) => {
+
+			result = result.concat(
+				getUtilities(
+					utilities.packages[key],
+					options,
+					path + "." + key
+				)
+			);
+		});
+	}
+
+	return result;
 }
 
 var parseInterface = (interface) => {

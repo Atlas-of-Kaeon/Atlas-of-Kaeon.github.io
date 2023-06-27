@@ -4,27 +4,32 @@ var moduleDependencies = {
 	utilities: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/2%20-%20Singularities/2%20-%20Utilities/kaeonUnitedSingularityUtilities.js"
 };
 
+var utils = {
+	connected: 0,
+	intervals: []
+};
+
 function clearIntervals() {
 
-	require.intervals.forEach((interval) => {
+	utils.intervals.forEach((interval) => {
 		clearInterval(interval);
 	});
 }
 
 function executeSingularity() {
 
-	var requireDefault = null;
-	var united = false;
+	try {
 
-	if(typeof require != typeof undefined) {
-	
-		requireDefault = require;
-	
-		united = require.kaeonUnited;
+		require(true);
+		
+		return;
 	}
 
-	if(united)
-		return;
+	catch(error) {
+		
+	}
+
+	var requireDefault = require;
 
 	var installedModules = [
 		"assert",
@@ -78,7 +83,10 @@ function executeSingularity() {
 		
 	}
 
-	let require = function(path, options) {
+	require = function(path, options) {
+
+		if(path == true)
+			return utils;
 
 		if(typeof options != "object")
 			options = { };
@@ -125,12 +133,12 @@ function executeSingularity() {
 
 			if(options.reload) {
 
-				if(require.cache[path] != null)
-					delete require.cache[path];
+				if(utils.cache[path] != null)
+					delete utils.cache[path];
 			}
 
-			else if(require.cache[path] != null)
-				return require.cache[path];
+			else if(utils.cache[path] != null)
+				return utils.cache[path];
 
 			if(!path.startsWith("http://") &&
 				!path.startsWith("https://") &&
@@ -144,7 +152,7 @@ function executeSingularity() {
 							!__dirname.includes(process.cwd()) ?
 								"--prefix " + __dirname + " " : "";
 
-						require.execSync(
+						utils.execSync(
 							"npm install " + prefix + "\"" + path + "\""
 						);
 
@@ -182,7 +190,7 @@ function executeSingularity() {
 						}
 					}
 
-					require.cache[path] = item;
+					utils.cache[path] = item;
 		
 					return item;
 				}
@@ -195,8 +203,8 @@ function executeSingularity() {
 
 		let data = options.dynamic ? path : openResource(path);
 
-		if(require.oneSuite != null)
-			data = require.oneSuite.preprocess(data);
+		if(utils.oneSuite != null)
+			data = utils.oneSuite.preprocess(data);
 		
 		let result = null;
 
@@ -227,26 +235,24 @@ function executeSingularity() {
 		}
 		
 		if(!options.dynamic)
-			require.cache[path] = result;
+			utils.cache[path] = result;
 
 		return result;
 	}
-
-	require.connected = 0;
-	require.kaeonUnited = true;
 	
-	require.cache = { };
-	require.intervals = [];
+	utils.cache = { };
 
-	require.appendInterface = appendInterface;
-	require.clearIntervals = clearIntervals;
-	require.startIntervals = startIntervals;
+	utils.appendInterface = appendInterface;
+	utils.getUtilities = getUtilities;
 
-	require.execSync = require("child_process").execSync;
-	require.fs = require("fs");
+	utils.clearIntervals = clearIntervals;
+	utils.startIntervals = startIntervals;
+
+	utils.execSync = require("child_process").execSync;
+	utils.fs = require("fs");
 
 	try {
-		require.oneSuite = require(moduleDependencies.ONESuite);
+		utils.oneSuite = require(moduleDependencies.ONESuite);
 	}
 
 	catch(error) {
@@ -259,7 +265,7 @@ function executeSingularity() {
 function fileExists(file) {
 
 	try {
-		return require.fs.existsSync(file);
+		return require(true).utils.fs.existsSync(file);
 	}
 	
 	catch(error) {
@@ -365,7 +371,7 @@ function openResource(path) {
 				}
 			}
 
-			if(require.connected != -1) {
+			if(utils.connected != -1) {
 
 				try {
 					require("xmlhttprequest");
@@ -445,25 +451,25 @@ function openResource(path) {
 
 function startIntervals() {
 
-	require.intervals = [
+	utils.intervals = [
 		setInterval(() => {
 					
 			require("dns").resolve('www.google.com', function(error) {
 		
 				if(error)
-					require.connected = -1;
+					utils.connected = -1;
 					
 				else
-					require.connected = (new Date()).getTime();
+					utils.connected = (new Date()).getTime();
 			});
 		}, 1000 / 60),
 		setInterval(() => {
 			
-			if(require.connected == -1 || require.connected == 0)
+			if(utils.connected == -1 || utils.connected == 0)
 				return;
 		
-			if((new Date()).getTime() - require.connected > 1000)
-				require.connected = -1;
+			if((new Date()).getTime() - utils.connected > 1000)
+				utils.connected = -1;
 		}, 1000 / 60)
 	];
 }
