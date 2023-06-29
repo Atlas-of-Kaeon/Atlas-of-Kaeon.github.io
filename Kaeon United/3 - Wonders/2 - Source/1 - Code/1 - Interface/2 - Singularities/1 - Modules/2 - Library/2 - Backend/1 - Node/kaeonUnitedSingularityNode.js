@@ -4,12 +4,9 @@ var moduleDependencies = {
 	utilities: "https://raw.githubusercontent.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/master/Kaeon%20United/3%20-%20Wonders/2%20-%20Source/1%20-%20Code/1%20-%20Interface/2%20-%20Singularities/2%20-%20Utilities/kaeonUnitedSingularityUtilities.js"
 };
 
-var utils = {
-	connected: 0,
-	intervals: []
-};
-
 function clearIntervals() {
+
+	let utils = require(true);
 
 	utils.intervals.forEach((interval) => {
 		clearInterval(interval);
@@ -21,12 +18,12 @@ function executeSingularity() {
 	try {
 
 		require(true);
-		
+
 		return;
 	}
 
 	catch(error) {
-		
+
 	}
 
 	var requireDefault = require;
@@ -86,7 +83,7 @@ function executeSingularity() {
 	require = function(path, options) {
 
 		if(path == true)
-			return utils;
+			return require;
 
 		if(typeof options != "object")
 			options = { };
@@ -133,12 +130,14 @@ function executeSingularity() {
 
 			if(options.reload) {
 
-				if(utils.cache[path] != null)
-					delete utils.cache[path];
+				if(require.cache[path] != null)
+					delete require.cache[path];
 			}
 
-			else if(utils.cache[path] != null)
-				return utils.cache[path];
+			else if(require.cache[path] != null)
+				return require.cache[path];
+
+			require.cache[path] = { };
 
 			if(!path.startsWith("http://") &&
 				!path.startsWith("https://") &&
@@ -152,7 +151,7 @@ function executeSingularity() {
 							!__dirname.includes(process.cwd()) ?
 								"--prefix " + __dirname + " " : "";
 
-						utils.execSync(
+						require.execSync(
 							"npm install " + prefix + "\"" + path + "\""
 						);
 
@@ -190,12 +189,15 @@ function executeSingularity() {
 						}
 					}
 
-					utils.cache[path] = item;
+					require.cache[path] = item;
 		
 					return item;
 				}
 
 				catch(error) {
+
+					delete require.cache[path];
+
 					return { };
 				}
 			}
@@ -203,8 +205,8 @@ function executeSingularity() {
 
 		let data = options.dynamic ? path : openResource(path);
 
-		if(utils.oneSuite != null)
-			data = utils.oneSuite.preprocess(data);
+		if(require.oneSuite != null)
+			data = require.oneSuite.preprocess(data);
 		
 		let result = null;
 
@@ -235,37 +237,42 @@ function executeSingularity() {
 		}
 		
 		if(!options.dynamic)
-			utils.cache[path] = result;
+			require.cache[path] = result;
 
 		return result;
 	}
+
+	require.connected = 0;
 	
-	utils.cache = { };
+	require.cache = { };
+	require.intervals = [];
 
-	utils.appendInterface = appendInterface;
-	utils.getUtilities = getUtilities;
+	require.appendInterface = appendInterface;
+	require.getUtilities = getUtilities;
 
-	utils.clearIntervals = clearIntervals;
-	utils.startIntervals = startIntervals;
+	require.clearIntervals = clearIntervals;
+	require.startIntervals = startIntervals;
 
-	utils.execSync = require("child_process").execSync;
-	utils.fs = require("fs");
+	require.execSync = require("child_process").execSync;
+	require.fs = require("fs");
 
 	try {
-		utils.oneSuite = require(moduleDependencies.ONESuite);
+		require.oneSuite = require(moduleDependencies.ONESuite);
 	}
 
 	catch(error) {
 		
 	}
 
-	requireDefault('module').prototype.require = require;
+	requireDefault("module").prototype.require = require;
 }
 
 function fileExists(file) {
 
+	let utils = require(true);
+
 	try {
-		return require(true).utils.fs.existsSync(file);
+		return utils.fs.existsSync(file);
 	}
 	
 	catch(error) {
@@ -345,6 +352,18 @@ function moduleExists(file) {
 }
 
 function openResource(path) {
+
+	let utils = {
+		connected: 0
+	};
+
+	try {
+		utils = require(true);
+	}
+
+	catch(error) {
+
+	}
 
 	try {
 
@@ -450,6 +469,8 @@ function openResource(path) {
 }
 
 function startIntervals() {
+
+	let utils = require(true);
 
 	utils.intervals = [
 		setInterval(() => {
