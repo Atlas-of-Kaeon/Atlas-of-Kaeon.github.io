@@ -74,6 +74,16 @@ function executeSingularity() {
 				).dependencies
 			)
 		);
+
+		installedModules = installedModules.concat(
+			Object.keys(
+				JSON.parse(
+					require("child_process").
+						execSync('npm ls -g --json').
+						toString()
+				).dependencies
+			)
+		);
 	}
 	
 	catch(error) {
@@ -147,13 +157,8 @@ function executeSingularity() {
 			
 					try {
 
-						let prefix =
-							!__dirname.includes(process.cwd()) ?
-								"--prefix " + __dirname + " " : "";
-
-						require.execSync(
-							"npm install " + prefix + "\"" + path + "\""
-						);
+						require.execSync("npm install -g \"" + path + "\"");
+						require.execSync("npm link \"" + path + "\"");
 
 						installedModules.push(path);
 					}
@@ -167,8 +172,26 @@ function executeSingularity() {
 		
 					let item = null;
 					
-					if(installedModules.includes(path))
-						item = requireDefault(path);
+					if(installedModules.includes(path)) {
+
+						try {
+							item = require.requireDefault(path);
+						}
+
+						catch(error) {
+
+							try {
+
+								item = require.requireDefault(
+									process.cwd() + "/node_modules/" + path
+								);
+							}
+	
+							catch(error) {
+								item = requireDefault(path);
+							}
+						}
+					}
 
 					else {
 
@@ -241,6 +264,8 @@ function executeSingularity() {
 
 		return result;
 	}
+
+	require.requireDefault = requireDefault("module").prototype.require;
 
 	require.connected = 0;
 	
