@@ -301,7 +301,9 @@ function getInterface() {
 			fs.readFileSync(process.cwd() + "/plugins.json", "utf-8")
 		).forEach((item) => {
 
-			if(item.endsWith(".json")) {
+			if(path.startsWith("http://") ||
+				path.startsWith("https://") ||
+				item.endsWith(".json")) {
 
 				let plugin = JSON.parse(openResource(item));
 

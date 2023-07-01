@@ -20,8 +20,12 @@ function managePlugin(operation, path) {
 
 	let plugin = null;
 
-	if(path.endsWith(".json"))
+	if(path.startsWith("http://") ||
+		path.startsWith("https://") ||
+		path.endsWith(".json")) {
+		
 		plugin = openResource(path);
+	}
 
 	else
 		plugin = require(path);
