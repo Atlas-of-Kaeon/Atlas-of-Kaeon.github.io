@@ -5,7 +5,7 @@ function getPlugins() {
 	try {
 
 		return JSON.parse(
-			fs.readFileSync(__dirname + "/plugins.json", "utf-8")
+			fs.readFileSync(process.cwd() + "/plugins.json", "utf-8")
 		);
 	}
 
@@ -119,7 +119,7 @@ module.exports = (args, callback) => {
 		if(operation == "install" || operation == "uninstall") {
 			
 			fs.writeFileSync(
-				__dirname + "/plugins.json",
+				process.cwd() + "/plugins.json",
 				JSON.stringify(plugins)
 			);
 		}
