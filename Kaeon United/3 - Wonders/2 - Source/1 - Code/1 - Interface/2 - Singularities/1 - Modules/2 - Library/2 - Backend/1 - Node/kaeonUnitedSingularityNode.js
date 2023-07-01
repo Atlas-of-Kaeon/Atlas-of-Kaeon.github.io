@@ -26,40 +26,11 @@ function executeSingularity() {
 
 	}
 
-	var requireDefault = require;
-
-	var installedModules = [
-		"assert",
-		"buffer",
-		"child_process",
-		"cluster",
-		"crypto",
-		"dgram",
-		"dns",
-		"domain",
-		"events",
-		"fs",
-		"http",
-		"https",
-		"net",
-		"os",
-		"path",
-		"punycode",
-		"querystring",
-		"readline",
-		"stream",
-		"string_decoder",
-		"timers",
-		"tls",
-		"tty",
-		"url",
-		"util",
-		"v8",
-		"vm",
-		"zlib"
-	];
-
+	var moduleUtils = require("module");
 	var path = require('path');
+
+	var installedModules = moduleUtils.builtinModules;
+	var requireDefault = require;
 
 	module.paths.push(process.cwd() + path.sep + "node_modules");
 
@@ -70,16 +41,6 @@ function executeSingularity() {
 				JSON.parse(
 					require("child_process").
 						execSync('npm ls --json').
-						toString()
-				).dependencies
-			)
-		);
-
-		installedModules = installedModules.concat(
-			Object.keys(
-				JSON.parse(
-					require("child_process").
-						execSync('npm ls -g --json').
 						toString()
 				).dependencies
 			)
@@ -157,8 +118,7 @@ function executeSingularity() {
 			
 					try {
 
-						require.execSync("npm install -g \"" + path + "\"");
-						require.execSync("npm link \"" + path + "\"");
+						require.execSync("npm install \"" + path + "\"");
 
 						installedModules.push(path);
 					}
@@ -265,7 +225,7 @@ function executeSingularity() {
 		return result;
 	}
 
-	require.requireDefault = requireDefault("module").prototype.require;
+	require.requireDefault = moduleUtils.prototype.require;
 
 	require.connected = 0;
 	
@@ -289,7 +249,7 @@ function executeSingularity() {
 		
 	}
 
-	requireDefault("module").prototype.require = require;
+	moduleUtils.prototype.require = require;
 }
 
 function fileExists(file) {
