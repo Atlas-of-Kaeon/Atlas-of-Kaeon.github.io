@@ -26,12 +26,23 @@ function executeSingularity() {
 
 	}
 
+	var child_process = require("child_process");
+	var fs = require("fs");
 	var moduleUtils = require("module");
 	var path = require('path');
 
-	var installedModules = moduleUtils.builtinModules;
+	child_process.execSync("npm init -y");
+
+	if(!fs.existsSync(process.cwd() + "/plugins.json"))
+		fs.writeFileSync(process.cwd() + "/plugins.json", "[]");
+
+	if(!fs.existsSync(process.cwd() + "/localCache.json"))
+		fs.writeFileSync(process.cwd() + "/localCache.json", "{}");
+		
+	var installedModules = [].concat(moduleUtils.builtinModules);
 	var requireDefault = require;
 
+	installedModules.push("xmlhttprequest");
 	module.paths.push(process.cwd() + path.sep + "node_modules");
 
 	try {
@@ -238,8 +249,8 @@ function executeSingularity() {
 	require.clearIntervals = clearIntervals;
 	require.startIntervals = startIntervals;
 
-	require.execSync = require("child_process").execSync;
-	require.fs = require("fs");
+	require.execSync = child_process.execSync;
+	require.fs = fs;
 
 	try {
 		require.oneSuite = require(moduleDependencies.ONESuite);
@@ -254,10 +265,8 @@ function executeSingularity() {
 
 function fileExists(file) {
 
-	let utils = require(true);
-
 	try {
-		return utils.fs.existsSync(file);
+		return require(true).fs.existsSync(file);
 	}
 	
 	catch(error) {
@@ -274,9 +283,6 @@ function getInterface() {
 	let fs = require("fs");
 
 	try {
-
-		if(!fs.existsSync(process.cwd() + "/plugins.json"))
-			fs.writeFileSync(process.cwd() + "/plugins.json", "[]");
 
 		let interfaces = [
 			parseInterface(openResource(moduleDependencies.unitedInterface))
@@ -327,6 +333,32 @@ function getInterface() {
 	return interface;
 }
 
+function init() {
+
+	var child_process = require("child_process");
+	var fs = require("fs");
+	
+	if(!fs.existsSync(process.cwd() + "/package.json"))
+		child_process.execSync("npm init -y");
+
+	try {
+		require("xmlhttprequest");
+	}
+	
+	catch(error) {
+	
+		child_process.execSync(
+			"npm install xmlhttprequest"
+		);
+	}
+
+	if(!fs.existsSync(process.cwd() + "/plugins.json"))
+		fs.writeFileSync(process.cwd() + "/plugins.json", "[]");
+
+	if(!fs.existsSync(process.cwd() + "/localCache.json"))
+		fs.writeFileSync(process.cwd() + "/localCache.json", "{}");
+}
+
 function moduleExists(file) {
 
 	if(fileExists(file))
@@ -358,13 +390,6 @@ function openResource(path) {
 
 			if(openResource.cache == null) {
 
-				if(!require("fs").existsSync("localCache.json")) {
-
-					require("fs").writeFileSync(
-						process.cwd() + "/localCache.json", "{}"
-					);
-				}
-
 				try {
 					
 					openResource.cache = JSON.parse(require("fs").readFileSync(
@@ -378,21 +403,6 @@ function openResource(path) {
 			}
 
 			if(utils.connected != -1) {
-
-				try {
-					require("xmlhttprequest");
-				}
-			
-				catch(error) {
-
-					let prefix =
-						!__dirname.includes(process.cwd()) ?
-							"--prefix " + __dirname + " " : "";
-
-					require("child_process").execSync(
-						"npm install " + prefix + "xmlhttprequest"
-					);
-				}
 
 				let xhr = require('xmlhttprequest').XMLHttpRequest;
 				
@@ -482,8 +492,8 @@ function startIntervals() {
 	];
 }
 
+init();
 eval(openResource(moduleDependencies.utilities));
-
 executeSingularity();
 
 module.exports = executeModule;
