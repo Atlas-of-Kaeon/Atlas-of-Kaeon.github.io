@@ -24,7 +24,7 @@ function managePlugin(operation, path) {
 		path.startsWith("https://") ||
 		path.endsWith(".json")) {
 		
-		plugin = require("kaeon-united")("io").open(path);
+		plugin = JSON.parse(require("kaeon-united")("io").open(path));
 	}
 
 	else

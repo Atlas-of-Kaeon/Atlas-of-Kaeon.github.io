@@ -292,31 +292,33 @@ function getInterface() {
 			fs.readFileSync(process.cwd() + "/plugins.json", "utf-8")
 		).forEach((item) => {
 
+			let plugin = null;
+
 			if(item.startsWith("http://") ||
 				item.startsWith("https://") ||
 				item.endsWith(".json")) {
 
-				let plugin = JSON.parse(openResource(item));
-
-				if(plugin.module != null)
-					interfaces.push(plugin.module);
-
-				else if(plugin.locations != null) {
-
-					if(plugin.locations.length > 0) {
-
-						interfaces.push(
-							parseInterface(openResource(plugin.locations[0]))
-						);
-					}
-				}
-
-				else if(plugin.utilities != null || plugin.connections != null)
-					interfaces.push(plugin);
+				plugin = JSON.parse(openResource(item));
 			}
 
 			else
-				interfaces.push(require(item));
+				plugin = require(item);
+
+			if(plugin.module != null)
+				interfaces.push(plugin.module);
+
+			else if(plugin.locations != null) {
+
+				if(plugin.locations.length > 0) {
+
+					interfaces.push(
+						parseInterface(openResource(plugin.locations[0]))
+					);
+				}
+			}
+
+			else if(plugin.utilities != null || plugin.connections != null)
+				interfaces.push(plugin);
 		});
 
 		interfaces.forEach((item) => {
