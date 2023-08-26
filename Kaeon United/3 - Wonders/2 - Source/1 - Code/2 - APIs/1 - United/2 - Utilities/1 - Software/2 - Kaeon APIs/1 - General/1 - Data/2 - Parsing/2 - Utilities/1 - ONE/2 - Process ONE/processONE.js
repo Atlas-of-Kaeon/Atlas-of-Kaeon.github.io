@@ -1,9 +1,14 @@
+var moduleDependencies = {
+	drawdown: "https://raw.githubusercontent.com/adamvleggett/drawdown/master/drawdown.js"
+};
+
+var io = require("kaeon-united")("io");
 var onePlus = require("kaeon-united")("onePlus");
 var wrapONE = require("kaeon-united")("wrapONE");
 
 function extractLibrary(source) {
 
-	return source.split("\r").join("").split(/\n#\[(.*)\]#/).filter((line) => {
+	return source.split("\r").join("").split(/#\[(.*)\]#/).filter((line) => {
 		return line.trim().length > 0;
 	}).map((line) => {
 		
@@ -19,7 +24,7 @@ function getType(element) {
 
 	let siblings = element.parent.children;
 
-	if(element.parent.parent == null && siblings.length == 0)
+	if(element.parent.parent == null && siblings.length - 1 == 0)
 		return "title";
 
 	return siblings.filter((item) => {
@@ -35,14 +40,16 @@ function isLibrary(source) {
 	) && source.includes("]#\n");
 }
 
-function labelONE(element, path) {
+function labelONE(element, options, path) {
+
+	options = options != null ? options : { };
 
 	if(Array.isArray(element)) {
 
 		element.forEach((item) => {
 
 			if(typeof item == "object")
-				labelONE(item);
+				labelONE(item, options);
 		});
 
 		return element;
@@ -54,14 +61,20 @@ function labelONE(element, path) {
 
 	if(path.length > 0 && (type == "title" || type == "section")) {
 
-		element.content = (path + " - " + element.content).
-			split(":  ").join(" ");
+		element.content = (
+			(options.flat ?
+				path.substring(path.indexOf(".") + 1) :
+				path) +
+			" - " +
+			element.content
+		).split(":  ").join(" ");
 	}
 
 	element.children.forEach((item, index) => {
 		
 		labelONE(
 			item,
+			options,
 			(path +
 				(path.length > 0 ? "." : "") +
 				(type != "root" ? index + 1 : "")
@@ -72,18 +85,24 @@ function labelONE(element, path) {
 	return element;
 }
 
-function process(source, html, indent) {
+function process(source, options) {
 
-	let markONE = toMarkONE(labelONE(
-		isLibrary(source) ?
-			extractLibrary(source) :
-			onePlus.read(source)
-	));
+	options = options != null ? options : { };
 
-	return html ? styleMarkONE(markONE, indent) : markONE;
+	let markONE = toMarkONE(
+		labelONE(
+			isLibrary(source) ?
+				extractLibrary(source) :
+				onePlus.read(source),
+			options
+		),
+		options
+	);
+
+	return options.html ? styleMarkONE(markONE, options) : markONE;
 }
 
-function styleMarkONE(markONE, indent) {
+function styleMarkONE(markONE, options) {
 
 	return `<style>
 
@@ -115,7 +134,7 @@ function styleMarkONE(markONE, indent) {
 
 	h6 {
 		font-size: 14pt;
-	}` + (indent ? `
+	}` + (options.indent ? `
 
 	p {
 		font-size: 12pt;
@@ -126,29 +145,21 @@ function styleMarkONE(markONE, indent) {
 ` + toHTML(markONE);
 }
 
-function toHTML(markdown) {
+function toHTML(source) {
 
-	return markdown.
-		split("<").join("&lt;").
-		split(">").join("&gt;").
-		replace(/^###### (.*$)/gim, '<h6>$1</h6>').
-		replace(/^##### (.*$)/gim, '<h5>$1</h5>').
-		replace(/^#### (.*$)/gim, '<h4>$1</h4>').
-		replace(/^### (.*$)/gim, '<h3>$1</h3>').
-		replace(/^## (.*$)/gim, '<h2>$1</h2>').
-		replace(/^# (.*$)/gim, '<h1>$1</h1>').
-		replace(/\*\*(.*)\*\*/gim, '<b>$1</b>').
-		replace(/\*(.*)\*/gim, '<i>$1</i>').
-		replace(/\_\_(.*)\_\_/gim, '<b>$1</b>').
-		replace(/\_(.*)\_/gim, '<i>$1</i>').
-		trim().split("\n").filter((line) => {
-			return line.trim().length > 0;
-		}).map((line) => {
-			return line.startsWith("<") ? line : "<p>" + line + "</p>";
-		}).join("\n").split("</i>\n<i>").join("</i>\n<br/>\n<i>");
+	if(this.markdown == null) {
+
+		eval(io.open(moduleDependencies.drawdown));
+
+		this.markdown = markdown;
+	}
+
+	return this.markdown(source);
 }
 
-function toMarkONE(element, nest) {
+function toMarkONE(element, options, nest) {
+
+	options = options != null ? options : { };
 
 	if(Array.isArray(element)) {
 
@@ -156,7 +167,7 @@ function toMarkONE(element, nest) {
 
 			return typeof item == "string" ?
 				"_" + item + "_" :
-				toMarkONE(item);
+				toMarkONE(item, options);
 		}).join("\n\n");
 	}
 
@@ -169,7 +180,7 @@ function toMarkONE(element, nest) {
 	let result = "";
 	let type = getType(element);
 
-	if(type == "title" || type == "section") {
+	if(type == "title" || (!options.flat && type == "section")) {
 
 		let heading = "";
 
@@ -179,17 +190,36 @@ function toMarkONE(element, nest) {
 		result += heading + " ";
 	}
 
-	result += element.content;
+	if(!(options.flat && nest == 2)) {
+
+		if(options.flat && type == "section")
+			result += "**[";
+	
+		result += options.flat ? (element.content.split("\n\n").join(" **|** ")) : element.content;
+	
+		if(options.flat && type == "section")
+			result += "]**";
+	}
 
 	element.children.forEach((item, index) => {
 		
-		let child = toMarkONE(item, nest + 1);
+		let child = toMarkONE(item, options, nest + 1);
 
 		if(child != "")
-			result += "\n" + child;
+			result += (
+				options.flat && type != "title" ?
+					" " :
+					(nest == 1 && index > 0 && options.flat ?
+						"\n\n---\n\n" :
+						"\n\n"
+					)
+			) + child;
 	});
 
-	return result;
+	while(result.includes("  "))
+		result = result.split("  ").join(" ");
+
+	return result.trim();
 }
 
 module.exports = {
