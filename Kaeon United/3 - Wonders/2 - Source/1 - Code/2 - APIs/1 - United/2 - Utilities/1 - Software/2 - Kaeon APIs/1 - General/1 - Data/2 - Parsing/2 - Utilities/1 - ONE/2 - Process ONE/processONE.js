@@ -221,13 +221,13 @@ function toMarkONE(element, options, nest) {
 			) + child;
 	});
 
+	while(result.includes("**|**" + temp + "**["))
+		result = result.split("**|**" + temp + "**[").join(temp + "**[");
+
 	while(result.includes(temp + temp))
 		result = result.split(temp + temp).join(temp);
 
 	result = result.split(temp).join(" ");
-
-	while(result.includes("**|** **["))
-		result = result.split("**|** **[").join(" **[");
 
 	return result.trim();
 }
