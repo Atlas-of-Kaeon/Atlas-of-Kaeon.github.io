@@ -201,6 +201,8 @@ function toMarkONE(element, options, nest) {
 			result += "]**";
 	}
 
+	let temp = "\n\n#[ STUB ]#\n\n";
+
 	element.children.forEach((item, index) => {
 		
 		let child = toMarkONE(item, options, nest + 1);
@@ -208,7 +210,10 @@ function toMarkONE(element, options, nest) {
 		if(child != "")
 			result += (
 				options.flat && type != "title" ?
-					" " :
+					(index > 0 && options.flat ?
+						temp + "**|**" +  temp :
+						temp
+					) :
 					(nest == 1 && index > 0 && options.flat ?
 						"\n\n---\n\n" :
 						"\n\n"
@@ -216,8 +221,13 @@ function toMarkONE(element, options, nest) {
 			) + child;
 	});
 
-	while(result.includes("  "))
-		result = result.split("  ").join(" ");
+	while(result.includes(temp + temp))
+		result = result.split(temp + temp).join(temp);
+
+	result = result.split(temp).join(" ");
+
+	while(result.includes("**|** **["))
+		result = result.split("**|** **[").join(" **[");
 
 	return result.trim();
 }
