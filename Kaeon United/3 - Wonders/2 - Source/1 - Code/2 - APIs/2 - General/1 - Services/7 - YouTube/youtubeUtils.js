@@ -114,7 +114,7 @@ function search(query) {
 			open(
 				"https://www.youtube.com/results?search_query=" +
 					query.toLowerCase().split(" ").join("+")
-			).split("\"videoId\":\"").map((item, index) => {
+			).split("Endpoint\":{\"videoId\":\"").map((item, index) => {
 		
 				return index > 0 && index % 2 == 0 ?
 					item.substring(0, item.indexOf("\"")) :
