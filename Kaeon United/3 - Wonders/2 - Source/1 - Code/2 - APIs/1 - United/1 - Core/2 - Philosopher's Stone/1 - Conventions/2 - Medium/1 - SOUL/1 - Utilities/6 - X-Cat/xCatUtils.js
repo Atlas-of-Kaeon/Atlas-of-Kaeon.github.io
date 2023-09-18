@@ -2,7 +2,7 @@ function activation(x) {
 	return ((1 / (1 + Math.pow(Math.E, -x))) * 2) - 1;
 }
 
-function create(degree, random) {
+function createModel(degree, zero) {
 
 	let matrix = [];
 
@@ -12,18 +12,34 @@ function create(degree, random) {
 		matrix.push(vector);
 		
 		for(let j = 0; j < degree; j++)
-			vector.push({ weight: random ? ((Math.random() * 2 - 1)) : 0 });
+			vector.push({ weight: zero ? 0 : ((Math.random() * 2 - 1)) });
 	}
 
 	let vector = [];
 	
 	for(let j = 0; j < degree; j++)
-		vector.push({ state: random ? ((Math.random() * 2 - 1)) : 0 });
+		vector.push({ state: zero ? 0 : ((Math.random() * 2 - 1)) });
 
 	return { matrix, vector };
 }
 
+function create(degree, zero) {
+
+	let model = createModel(degree, zero);
+
+	return {
+		model,
+		metadata: {
+			previous: JSON.parse(JSON.stringify(model)),
+			score: 0
+		}
+	};
+}
+
 function expand(model, degree) {
+
+	if(model.model != null)
+		model = model.model;
 
 	degree += model.matrix.length;
 
@@ -40,6 +56,9 @@ function expand(model, degree) {
 }
 
 function scatter(model, degree) {
+
+	if(model.model != null)
+		model = model.model;
 
 	for(let i = 0; i < model.matrix.length; i++) {
 
@@ -58,6 +77,11 @@ function scatter(model, degree) {
 
 function step(model) {
 
+	let context = model.model != null ? model : null;
+
+	if(context != null)
+		model = model.model;
+
 	let result = [];
 
 	for(let i = 0; i < model.vector.length; i++) {
@@ -67,19 +91,40 @@ function step(model) {
 
 		result[i].state = 0;
 
-		for(let j = 0; j < model.vector.length; j++)
-			result[i].state += model.vector[j].state * model.matrix[j][i].weight;
+		for(let j = 0; j < model.vector.length; j++) {
+			
+			result[i].state +=
+				model.vector[j].state * model.matrix[j][i].weight;
+		}
 
 		result[i].state = activation(result[i].state);
 	}
 
-	return { matrix: model.matrix, vector: result };
+	let data = { matrix: model.matrix, vector: result };
+
+	return context != null ?
+		{ model: data, metadata: context.metadata } : result;
+}
+
+function train(context, score) {
+
+	if(score > context.metadata.score) {
+		context.metadata.previous = JSON.parse(JSON.stringify(context.model));
+		context.metadata.score = score;
+	}
+
+	else {
+		context.model = JSON.parse(JSON.stringify(context.metadata.previous));
+		scatter(context, 1 - context.metadata.score);
+	}
 }
 
 module.exports = {
 	activation,
+	createModel,
 	create,
 	expand,
 	scatter,
-	step
+	step,
+	train
 };
