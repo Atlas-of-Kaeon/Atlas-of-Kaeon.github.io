@@ -1,4 +1,5 @@
-var oneSuite = require("kaeon-united")("oneSuite");
+var one = require("kaeon-united")("one");
+var onePlus = require("kaeon-united")("onePlus");
 
 function dynamicListToJSON(data, child) {
 
@@ -162,7 +163,7 @@ function jsonToONE(json) {
 function oneToJSON(element, map) {
 
 	if(map)
-		return JSON.stringify(getObject(oneSuite.read(element)));
+		return JSON.stringify(getObject(onePlus.read(element)));
 
 	if(typeof element == "string")
 		element = onePlus.read(element);
