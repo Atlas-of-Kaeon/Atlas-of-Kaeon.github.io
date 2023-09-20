@@ -1,5 +1,38 @@
 var oneSuite = require("kaeon-united")("oneSuite");
 
+function dynamicListToJSON(data, child) {
+
+	if(typeof data == "object") {
+
+		if(data.dynamicAliases != null) {
+			
+			let object = data;
+	
+			let data = { };
+	
+			Object.values(object).forEach((value, index) => {
+	
+				let alias = index < object.dynamicAliases.length ?
+					(object.dynamicAliases[index] != null ?
+						"" + object.dynamicAliases[index] :
+						"" + index) :
+					"" + index;
+				
+				data[alias] = dynamicListToJSON(value, true);
+			});
+		}
+
+		else {
+
+			data.forEach((value, index) => {
+				data[index] = dynamicListToJSON(value, true);
+			});
+		}
+	}
+
+	return child ? data : JSON.stringify(data);
+}
+
 function getContent(content) {
 
 	return content.startsWith("\"") &&
@@ -60,10 +93,6 @@ function getObject(element) {
 	return getContent(element.content);
 }
 
-function oneToJSON(data) {
-	return JSON.stringify(getObject(oneSuite.read(data)));
-}
-
 function jsonToDynamicList(data, child) {
 
 	if(!child)
@@ -91,41 +120,65 @@ function jsonToDynamicList(data, child) {
 	return data;
 }
 
-function dynamicListToJSON(data, child) {
+function jsonToONE(json) {
+	
+	let root = one.create();
 
-	if(typeof data == "object") {
+	if(typeof json == "object") {
 
-		if(data.dynamicAliases != null) {
-			
-			let object = data;
+		if(Array.isArray(json)) {
 	
-			let data = { };
-	
-			Object.values(object).forEach((value, index) => {
-	
-				let alias = index < object.dynamicAliases.length ?
-					(object.dynamicAliases[index] != null ?
-						"" + object.dynamicAliases[index] :
-						"" + index) :
-					"" + index;
-				
-				data[alias] = dynamicListToJSON(value, true);
+			json.forEach((item) => {
+
+				if(item == null)
+					return;
+
+				jsonToONE(item).children.forEach((element) => {
+					one.add(root, element);
+				});
 			});
 		}
 
 		else {
 
-			data.forEach((value, index) => {
-				data[index] = dynamicListToJSON(value, true);
+			Object.keys(json).forEach((key) => {
+	
+				let element =
+					json[key] != null ? jsonToONE(json[key]) : one.create();
+
+				element.content = key;
+	
+				one.add(root, element);
 			});
 		}
 	}
 
-	return child ? data : JSON.stringify(data);
+	else if(json != null)
+		one.add(root, one.create("" + json));
+
+	return root;
+}
+
+function oneToJSON(element, map) {
+
+	if(map)
+		return JSON.stringify(getObject(oneSuite.read(element)));
+
+	if(typeof element == "string")
+		element = onePlus.read(element);
+
+	let json = { };
+
+	element.children.forEach((child) => {
+		json[child.content] = oneToJSON(child);
+	});
+
+	return json;
 }
 
 module.exports = {
-	oneToJSON,
+	dynamicListToJSON,
 	jsonToDynamicList,
-	dynamicListToJSON
-}
+	jsonToONE,
+	oneToJSON
+};
