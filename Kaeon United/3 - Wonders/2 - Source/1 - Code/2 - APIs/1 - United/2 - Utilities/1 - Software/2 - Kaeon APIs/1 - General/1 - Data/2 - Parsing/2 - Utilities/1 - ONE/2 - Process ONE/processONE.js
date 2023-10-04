@@ -6,14 +6,23 @@ var io = require("kaeon-united")("io");
 var onePlus = require("kaeon-united")("onePlus");
 var wrapONE = require("kaeon-united")("wrapONE");
 
-function extractLibrary(source) {
+function escapeMark(element) {
 
-	return source.split("\r").join("").split(/#\[(.*)\]#/).filter((line) => {
-		return line.trim().length > 0;
-	}).map((line) => {
-		
-		return line.startsWith(" ") && line.endsWith(" ") ?
-			line.trim() : onePlus.read(line.trim());
+	element.content = element.content.
+		split("*").join("\\*").
+		split("_").join("\\_");
+
+	element.children.forEach((child) => {
+		escapeMark(child);
+	});
+
+	return element;
+}
+
+function extractLibrary(source, options) {
+
+	return source.children.map((item) => {
+		return isKaeonDocument(item) ? item : toONEPlus(item, options);
 	});
 }
 
@@ -24,7 +33,7 @@ function getType(element) {
 
 	let siblings = element.parent.children;
 
-	if(element.parent.parent == null && siblings.length - 1 == 0)
+	if(element.parent.parent == null)
 		return "title";
 
 	return siblings.filter((item) => {
@@ -32,12 +41,24 @@ function getType(element) {
 	}).length > 0 ? "section" : "content";
 }
 
-function isLibrary(source) {
+function isKaeonDocument(element) {
 
-	return (
-		source.trim().startsWith("#[") ||
-		source.includes("\n#[")
-	) && source.includes("]#\n");
+	let isKaeon = false;
+
+	let structure = "" + element.children.map(item => item.content);
+
+	[
+		["Philosophy"],
+		["Philosophy", "Principles"],
+		["Philosophy", "Wonders"],
+		["Philosophy", "Principles", "Wonders"]
+	].forEach(item => {
+
+		if("" + item == structure)
+			isKaeon = true;
+	});
+
+	return isKaeon;
 }
 
 function labelONE(element, options, path) {
@@ -89,11 +110,19 @@ function process(source, options) {
 
 	options = options != null ? options : { };
 
+	if(typeof options.flat == "string") {
+		options.flat = true;
+		options.reduced = true;
+	}
+
+	if(typeof source == "string")
+		source = onePlus.read(source);
+
 	let markONE = toMarkONE(
 		labelONE(
-			isLibrary(source) ?
+			source.children.length > 1 ?
 				extractLibrary(source) :
-				onePlus.read(source),
+				source,
 			options
 		),
 		options
@@ -141,6 +170,10 @@ function styleMarkONE(markONE, options) {
 		margin-left: 36pt;
 	}
 
+	p:has(em) {
+		margin-left: 0pt;
+	}
+
 ` : "\n\n") + `</style>
 ` + toHTML(markONE);
 }
@@ -171,18 +204,22 @@ function toMarkONE(element, options, nest) {
 		}).join("\n\n");
 	}
 
-	if(nest == null)
+	if(nest == null) {
+
 		wrapONE.unwrapONE(element);
 
+		escapeMark(element);
+	}
+
 	nest = nest != null ? nest : 0;
-	nest = nest <= 6 ? nest : 6;
+	nest = nest <= 5 ? nest : 5;
 
 	let result = "";
 	let type = getType(element);
 
 	if(type == "title" || (!options.flat && type == "section")) {
 
-		let heading = "";
+		let heading = "#";
 
 		for(let i = 0; i < nest; i++)
 			heading += "#";
@@ -190,7 +227,7 @@ function toMarkONE(element, options, nest) {
 		result += heading + " ";
 	}
 
-	if(!(options.flat && nest == 2)) {
+	if(!(options.flat && nest == 1)) {
 
 		if(options.flat && type == "section")
 			result += "**[";
@@ -214,7 +251,7 @@ function toMarkONE(element, options, nest) {
 						temp + "**|**" +  temp :
 						temp
 					) :
-					(nest == 1 && index > 0 && options.flat ?
+					(nest == 0 && index > 0 && options.flat ?
 						"\n\n---\n\n" :
 						"\n\n"
 					)
@@ -232,13 +269,55 @@ function toMarkONE(element, options, nest) {
 	return result.trim();
 }
 
+function toONEPlus(element, options, nest) {
+
+	let result = element.content;
+
+	let escape = [
+		",",
+		":",
+		";",
+		"\'",
+		"\"",
+		"~",
+		"{",
+		"}",
+		"(",
+		")",
+		"#"
+	].map(item => element.content.includes(item)).includes(true);
+	
+	if(escape) {
+	
+		result = "\'" +
+			element.content.
+				split("~").join("~~").
+				split("\'").join("~\'") +
+			"\'";
+	}
+
+	if(element.children.length > 0) {
+
+		result += ": " +
+			element.children.map(item => toONEPlus(item, options, true)).join(", ") +
+			";";
+	}
+
+	while(!nest && result.endsWith(";"))
+		result = result.substring(0, result.length - 1);
+
+	return result;
+}
+
 module.exports = {
+	escapeMark,
 	extractLibrary,
 	getType,
-	isLibrary,
+	isKaeonDocument,
 	labelONE,
 	process,
 	styleMarkONE,
 	toHTML,
-	toMarkONE
+	toMarkONE,
+	toONEPlus
 };
