@@ -214,21 +214,64 @@ function getTerminal(onSubmit) {
 
 	terminal.onSubmit = onSubmit;
 
-	field.onkeypress = (event) => {
+	field.onkeydown = (event) => {
 		
 		if(event.keyCode == 13) {
 
 			if(field.value.trim().length > 0) {
 
+				terminal.history =
+					terminal.history.filter(item => item != field.value);
+
 				terminal.history.push(field.value);
+
 				terminal.logContent(terminal.getMark() + " " + field.value);
 
 				terminal.onSubmit(field.value);
 
 				terminal.scrollTop = terminal.scrollHeight;
+
+				field.value = "";
+
+				terminal.current == null;
+				terminal.index = null;
+			}
+		}
+
+		if(event.keyCode == 38) {
+
+			if(terminal.index == 0 || terminal.history.length == 0)
+				return;
+
+			if(terminal.index == null) {
+				terminal.current = field.value;
+				terminal.index = terminal.history.length;
 			}
 
-			field.value = "";
+			terminal.index--;
+
+			field.value = terminal.history[terminal.index];
+		}
+
+		if(event.keyCode == 40) {
+
+			if(terminal.index == null)
+				return;
+
+			if(terminal.index == terminal.history.length - 1) {
+
+				field.value = terminal.current;
+
+				terminal.current == null;
+				terminal.index = null;
+			}
+
+			else {
+
+				terminal.index++;
+
+				field.value = terminal.history[terminal.index];
+			}
 		}
 	};
 
@@ -291,7 +334,13 @@ function vsTerminalOnSubmit(command, terminal, paths) {
 		terminal.logContent(toLog);
 	}
 
-	virtualSystem.executeCommand(result);
+	try {
+		virtualSystem.executeCommand(result);
+	}
+
+	catch(error) {
+		console.log(error.stack);
+	}
 
 	console.log = tempLog;
 }
