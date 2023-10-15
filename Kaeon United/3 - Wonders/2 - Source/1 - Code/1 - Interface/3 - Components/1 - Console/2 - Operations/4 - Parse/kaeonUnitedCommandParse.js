@@ -37,7 +37,7 @@ module.exports = (args, callback) => {
 			);
 		}
 
-		let result = ONESuite.write(ONESuite.parse(data));
+		let result = ONESuite.write(ONESuite.read(data));
 
 		if(result == null)
 			result = "";

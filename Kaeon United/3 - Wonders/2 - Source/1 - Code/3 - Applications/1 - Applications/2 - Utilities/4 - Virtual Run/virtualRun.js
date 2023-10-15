@@ -7,24 +7,27 @@ virtualSystem.initiateVirtualSystemDefault();
 
 let urlArgs = http.getURLArguments();
 
-let content = virtualSystem.getResource(
-	urlArgs["path"] != null ? urlArgs["path"] : "");
+let path = urlArgs["path"] != null ? urlArgs["path"] : "";
+let content = virtualSystem.getResource(path);
 
-let type = (urlArgs["type"] != null ? urlArgs["type"] : "js").toLowerCase();
+let type = urlArgs["type"];
 
-if(type == "js")
-	eval(content);
+if(type == null && path.includes("."))
+	type = path.substring(path.lastIndexOf(".") + 1);
 
-if(type == "kf")
+if(urlArgs["console"] == "true") {
+	consoleWidget.createConsole();
+}
+
+if(type == "op" || type == "one")
 	oneSuite.process(content);
 
-if(type == "html") {
+else if(type == "html") {
 
 	document.documentElement.innerHTML = "";
 
 	document.write(content);
 }
 
-if(urlArgs["consoleOn"] == "true") {
-	consoleWidget.createConsole();
-}
+else
+	eval(content);

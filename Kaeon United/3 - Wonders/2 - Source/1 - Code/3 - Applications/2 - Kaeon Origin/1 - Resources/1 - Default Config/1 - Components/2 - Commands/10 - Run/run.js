@@ -5,9 +5,10 @@ var moduleDependencies = {
 var virtualSystem = require("kaeon-united")("virtualSystem");
 
 let opCodes = {
-	"-c": "&consoleOn=true",
+	"-c": "&console=true",
 	"-js": "&type=js",
-	"-kf": "&type=kf",
+	"-op": "&type=op",
+	"-one": "&type=one",
 	"-html": "&type=html",
 };
 
@@ -23,6 +24,6 @@ window.open(
 	moduleDependencies.virtualRun +
 		"&path=" +
 		encodeURIComponent(virtualSystem.getAbsolutePath(path, mark)) +
-		options.map(option => encodeURIComponent(opCodes[option])).join(""),
+		options.map(option => opCodes[option]).join(""),
 	"_blank"
 );
