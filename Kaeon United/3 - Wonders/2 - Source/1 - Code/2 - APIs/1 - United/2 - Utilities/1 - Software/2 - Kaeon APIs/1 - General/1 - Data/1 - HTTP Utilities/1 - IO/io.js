@@ -36,7 +36,7 @@ module.exports = {
 				let reader = new FileReader();
 	
 				reader.onload = function(event) {
-					file(event.target.result);
+					file(event.target.result, upload.name);
 				};
 	
 				reader.readAsText(upload);

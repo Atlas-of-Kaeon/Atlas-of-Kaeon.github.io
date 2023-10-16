@@ -3,12 +3,11 @@ var virtualSystem = require("kaeon-united")("virtualSystem");
 
 function load(content, path, all) {
 
-	JSON.parse(content);
-
 	if(all) {
 
-		window.localStorage.setItem("Storage", content);
+		JSON.parse(content);
 
+		window.localStorage.setItem("Storage", content);
 		window.terminals[0].setMark("");
 	}
 
@@ -28,8 +27,8 @@ let args = Array.from(arguments);
 let options = args.filter(arg => arg.startsWith("-"));
 let path = args.filter(arg => !arg.startsWith("-"))[0];
 
-if(path != null)
+if(path.trim().length > 0)
 	load(io.open(path), path, options.includes("-a"));
 
 else
-	io.open((text) => { load(text, path, options.includes("-a")); });
+	io.open((text, name) => { load(text, name, options.includes("-a")); });
