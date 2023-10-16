@@ -9,7 +9,12 @@ mark = mark.substring(0, mark.length - 1).trim();
 
 window.open(
 	moduleDependencies.kaeonEdit +
-		"&path=" +
-		encodeURIComponent(virtualSystem.getAbsolutePath(arguments[0], mark)),
+		(arguments[0].trim() != "" ?
+			("&path=" +
+				encodeURIComponent(
+					virtualSystem.getAbsolutePath(arguments[0], mark)
+				)) :
+			""
+		),
 	"_blank"
 );

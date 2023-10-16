@@ -20,7 +20,7 @@ function createConsole(options) {
 			left: "0%",
 			top: options.top + "%",
 			width: "100%",
-			height: (100 - options.top) + "30%",
+			height: (100 - options.top) + "%",
 			"z-index": "2147483647",
 			background: "white",
 			"border-top": "solid black",

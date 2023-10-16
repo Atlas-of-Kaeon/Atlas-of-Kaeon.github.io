@@ -11,6 +11,9 @@ var widgets = require("kaeon-united")("widgets");
 
 function save() {
 
+	if(path == null)
+		return;
+
 	virtualSystem.setResource(path, text.value);
 
 	vision.set(button, {
@@ -19,11 +22,13 @@ function save() {
 }
 
 var path = http.getURLArguments(window.location.href)["path"];
-path = path != null ? path : "";
 
 var text = vision.set(
 	widgets.getTextbox({
 		onType: (value, text, event) => {
+
+			if(path == null)
+				return;
 
 			if(event.ctrlKey && event.key == 's') {
 
@@ -50,57 +55,61 @@ var text = vision.set(
 			left: "5%",
 			top: "5%",
 			width: "90%",
-			height: "85%"
+			height: path != null ? "85%" : "90%"
 		}
 	}
 );
 
-var button = vision.create({
-	tag: "button",
-	content: "Save",
-	attributes: {
-		"class": "form-control btn btn-primary"
-	},
-	fields: {
-		onclick: () => {
-			save();
+if(path != null) {
+
+	var button = vision.create({
+		tag: "button",
+		content: "Save",
+		attributes: {
+			"class": "form-control btn btn-primary"
+		},
+		fields: {
+			onclick: () => {
+				save();
+			}
+		},
+		style: {
+			"font-family": "monospace",
+			position: "absolute",
+			left: "5%",
+			top: "92.5%",
+			width: "90%",
+			height: "5%"
 		}
-	},
-	style: {
-		"font-family": "monospace",
-		position: "absolute",
-		left: "5%",
-		top: "92.5%",
-		width: "90%",
-		height: "5%"
-	}
-});
+	});
 
-virtualSystem.initiateVirtualSystemDefault();
+	virtualSystem.initiateVirtualSystemDefault();
 
-vision.extend({
-	content: path,
-	style: {
-		"font-family": "monospace",
-		"text-align": "center",
-		position: "absolute",
-		left: "5%",
-		top: "1.5%",
-		width: "90%",
-		height: "5%"
-	}
-});
+	vision.extend({
+		content: path,
+		style: {
+			"font-family": "monospace",
+			"text-align": "center",
+			position: "absolute",
+			left: "5%",
+			top: "1.5%",
+			width: "90%",
+			height: "5%"
+		}
+	});
+
+	vision.extend(button);
+
+	let content = virtualSystem.getResource(path);
+
+	text.value = content != null ? content : "";
+}
 
 vision.extend(text);
-vision.extend(button);
-
-let content = virtualSystem.getResource(path);
-
-text.value = content != null ? content : "";
 
 vision.load(moduleDependencies.bootstrapCSS);
 vision.load(moduleDependencies.bootstrapJS);
 
 vision.setFavicon(moduleDependencies.icon);
 
-document.title = "Kaeon Edit - " + path;
+document.title = "Kaeon Edit" + (path != null ? " - " + path : "");
