@@ -328,8 +328,15 @@ function vsTerminalOnSubmit(command, terminal, paths) {
 
 		let toLog = "";
 
-		for(let i = 0; i < arguments.length; i++)
-			toLog += (i > 0 ? " " : "") + arguments[i];
+		for(let i = 0; i < arguments.length; i++) {
+			
+			toLog +=
+				(i > 0 ? " " : "") +
+				(typeof arguments[i] == "object" ?
+					JSON.stringify(arguments[i], null, "\t") :
+					arguments[i]
+				);
+		}
 
 		terminal.logContent(toLog);
 	}
@@ -343,6 +350,12 @@ function vsTerminalOnSubmit(command, terminal, paths) {
 	}
 
 	console.log = tempLog;
+
+	Object.keys(require.cache).forEach((key) => {
+
+		if(!(key.startsWith("http://") || key.startsWith("https://")))
+			delete require.cache[key];
+	});
 }
 
 function getTextbox(options) {
