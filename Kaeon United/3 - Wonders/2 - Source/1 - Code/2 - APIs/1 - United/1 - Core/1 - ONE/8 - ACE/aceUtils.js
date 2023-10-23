@@ -167,7 +167,7 @@ function overlayComponents(target, source, clone, priority) {
 	return target;
 }
 
-function overlayEntity(target, source, clone) {
+function overlayEntity(target, source, clone, extra) {
 
 	if(clone) {
 		target = JSON.parse(JSON.stringify(target));
@@ -183,17 +183,34 @@ function overlayEntity(target, source, clone) {
 		getValue(target, "components"),
 		getValue(source, "components")
 	);
+
+	let entities = { };
+
+	Object.assign(entities, sourceEntities);
+
+	if(extra) {
+		
+		Object.keys(source).forEach((key) => {
 			
-	Object.keys(sourceEntities).forEach((key) => {
+			if(entities[key] == null &&
+				key.toLowerCase().trim() != "entities" &&
+				key.toLowerCase().trim() != "components") {
+
+				entities[key] = source[key];
+			}
+		});
+	}
+			
+	Object.keys(entities).forEach((key) => {
 
 		if(getValue(targetEntities, key) == null)
-			targetEntities[key] = getValue(sourceEntities, key);
+			targetEntities[key] = getValue(entities, key);
 
 		else {
 
 			overlayEntity(
 				getValue(targetEntities, key),
-				getValue(sourceEntities, key)
+				getValue(entities, key)
 			);
 		}
 	});
@@ -205,7 +222,24 @@ function queryKaeonACE(entity, open) {
 
 	open = open != null ? open : io.open;
 
-	// STUB
+	let components = getValue(document, "components");
+	let entities = getValue(document, "entities");
+
+	let multiselect = getValue(components, "multiselect") != null;
+
+	let locations = getValue(components, "locations");
+	locations = locations != null ? locations.children.map(child => child.content) : [];
+
+	if(locations.length > 0) {
+
+		let document = formatDocument(open(locations[0]));
+
+		overlayEntities(entity, document, false, true);
+	}
+
+	// STUB - Path / Multiselect
+
+	Object.values(entities).forEach(entity => queryKaeonACE(entity, open));
 
 	return entity;
 }
