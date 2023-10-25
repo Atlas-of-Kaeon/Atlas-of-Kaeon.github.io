@@ -53,9 +53,11 @@ override.onSend((request) => {
 	return virtualSystem.getResource(virtualSystem.getAbsolutePath(uri, mark));
 });
 
-if(urlArgs["console"] == "true") {
+if(urlArgs["console"] == "true")
 	consoleWidget.createConsole();
-}
+
+if(urlArgs["args"] != "null")
+	arguments = JSON.parse(urlArgs["args"]);
 
 if(type == "op" || type == "one")
 	oneSuite.process(content);

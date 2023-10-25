@@ -17,13 +17,17 @@ mark = mark.substring(0, mark.length - 1).trim();
 
 let args = Array.from(arguments);
 
-let options = args.filter(arg => arg.startsWith("-"));
-let path = args.filter(arg => !arg.startsWith("-"))[0];
+let options = args.filter(arg => Object.keys(opCodes).includes(arg));
+let path = args.filter(arg => !Object.keys(opCodes).includes(arg))[0];
+
+args = args.filter(arg => !Object.keys(opCodes).includes(arg)).slice(1);
 
 window.open(
 	moduleDependencies.virtualRun +
 		"&path=" +
 		encodeURIComponent(virtualSystem.getAbsolutePath(path, mark)) +
-		options.map(option => opCodes[option]).join(""),
+		options.map(option => opCodes[option]).join("") +
+		"&args=" +
+		encodeURIComponent(JSON.stringify(args)),
 	"_blank"
 );
