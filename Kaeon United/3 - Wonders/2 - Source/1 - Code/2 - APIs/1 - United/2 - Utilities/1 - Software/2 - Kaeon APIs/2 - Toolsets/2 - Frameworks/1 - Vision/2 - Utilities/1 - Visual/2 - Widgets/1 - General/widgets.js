@@ -140,7 +140,7 @@ function getTerminal(onSubmit) {
 								tag: "td",
 								content: [mark],
 								style: {
-									width: "1%",
+									width: "0%",
 									"white-space": "nowrap",
 									"font-size": "13.333px"
 								}
