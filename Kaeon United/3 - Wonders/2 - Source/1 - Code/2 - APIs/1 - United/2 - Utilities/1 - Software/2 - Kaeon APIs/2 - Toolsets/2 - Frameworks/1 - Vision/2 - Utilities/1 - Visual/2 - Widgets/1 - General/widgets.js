@@ -141,15 +141,23 @@ function getTerminal(onSubmit) {
 								content: [mark],
 								style: {
 									width: "1%",
-									"white-space": "nowrap"
+									"white-space": "nowrap",
+									"font-size": "13.333px"
 								}
 							},
-							{ tag: "td", content: [field] }
+							{
+								tag: "td",
+								content: [field],
+								style: {
+									"padding-left": "4.333px"
+								}
+							}
 						]
 					}
 				],
 				style: {
 					width: "100%",
+					"margin-top": "-3.333px",
 					"border-collapse": "collapse"
 				}
 			}
