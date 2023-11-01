@@ -36,7 +36,7 @@ function createStartScreen(callback, element, text) {
 				background: "white",
 				color: "black",
 				"border-radius": "500px",
-				font: "7.5vmin helvetica"
+				font: "6vmin helvetica"
 			},
 			content: [
 				text
