@@ -1,7 +1,9 @@
 var virtualSystem = require("kaeon-united")("virtualSystem");
 var vision = require("kaeon-united")("vision");
 
-function createStartScreen(element, text, callback) {
+function createStartScreen(callback, element, text) {
+
+	text = text != null ? text : "Start";
 
 	let newScreen = element == null;
 
@@ -26,14 +28,15 @@ function createStartScreen(element, text, callback) {
 			tag: "button",
 			style: {
 				position: "absolute",
-				left: "40%",
-				top: "45%",
-				width: "20%",
-				height: "10%",
+				left: "50%",
+				top: "50%",
+				width: "30vmin",
+				height: "10vmin",
+				transform: "translate(-50%, -50%)",
 				background: "white",
 				color: "black",
-				"border-radius": "25px",
-				font: "bold 100% arial"
+				"border-radius": "500px",
+				font: "7.5vmin helvetica"
 			},
 			content: [
 				text

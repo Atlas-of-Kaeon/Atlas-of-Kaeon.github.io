@@ -14,7 +14,7 @@ vision.setFavicon(moduleDependencies.icon);
 
 document.title = "Kaeon Cast";
  
-widgets.createStartScreen(document.documentElement, "Start", () => {
+widgets.createStartScreen(() => {
  
 	dimensions.fullscreen(document.documentElement);
  

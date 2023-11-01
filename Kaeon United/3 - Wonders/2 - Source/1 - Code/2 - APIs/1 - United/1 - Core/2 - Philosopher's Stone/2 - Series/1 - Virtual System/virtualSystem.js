@@ -1,20 +1,20 @@
 /*
 
-	disk = { alias, setResource(path, content), getResource(path) }
-	fileSystem = [disk 1, disk 2, ..., disk n]
+disk = { alias, setResource(path, content), getResource(path) }
+fileSystem = [disk 1, disk 2, ..., disk n]
 
-	command =
+command =
 
-		(path/)alias arg1 "arg 2" "\"arg \\2\""
+	(path/)alias arg1 "arg 2" "\"arg \\2\""
 
-		Notes
+	Notes
 
-			default path includes "Origin://"
-			default command = execute(.js) "code"
+		default path includes "Origin://"
+		default command = execute(.js) "code"
 
-	startup = path in fileSystem to JSON file: [command 1, ...]
+startup = path in fileSystem to JSON file: [command 1, ...]
 
- */
+*/
 
 var io = require("kaeon-united")("io");
 var tokenizer = require("kaeon-united")("tokenizer");
@@ -260,9 +260,11 @@ function getFolder(data) {
 
 function getResource(path, content) {
 
-	return window.fileSystem != null ?
+	let result = window.fileSystem != null ?
 		window.fileSystem.getResource(path, content) :
 		null;
+
+	return Array.isArray(result) ? result.map(item => item.sort()) : result;
 }
 
 function httpDisk() {

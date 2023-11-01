@@ -21,8 +21,6 @@ let ACEModule = function() {
 	this.process = function(element, processed) {
 
 		widgets.createStartScreen(
-			document.documentElement,
-			"Start",
 			getACECallback(this.fusion, element)
 		);
 	}

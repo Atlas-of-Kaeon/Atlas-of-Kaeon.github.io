@@ -157,7 +157,7 @@ if(window.fileSystem == null)
 				interval = null;
 			}
 
-			widgets.createStartScreen(null, "Start", () => {
+			widgets.createStartScreen(() => {
 				startAssistant();
 			});
 		`

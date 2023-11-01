@@ -43,7 +43,7 @@ function run(ace, element) {
 
 	var core = { };
 
-	widgets.createStartScreen(element, "Start", () => {
+	widgets.createStartScreen(() => {
 
 		standardKaeonACE(core);
 		
@@ -52,7 +52,7 @@ function run(ace, element) {
 			oneSuite.read(ace),
 			element
 		);
-	});
+	}, element);
 
 	return core;
 }
