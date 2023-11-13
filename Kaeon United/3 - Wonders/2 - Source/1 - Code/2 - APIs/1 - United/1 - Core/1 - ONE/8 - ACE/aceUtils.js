@@ -111,6 +111,52 @@ function formatKaeonACE(document, open, globalMap, meta, alias) {
 	return document;
 }
 
+function getReferenceACE(document, alias) {
+
+	let reference = { };
+
+	if(document == null)
+		return reference;
+
+	let entities = getValue(document, "entities", { });
+
+	Object.keys(entities).forEach((key) => {
+		Object.assign(reference, getReferenceACE(entities[key], key));
+	});
+
+	let locations =
+		getValue(getValue(document, "components", { }), "locations");
+
+	if(locations != null) {
+
+		if(Object.keys(locations).length > 0)
+			reference[alias] = Object.keys(locations)[0];
+	}
+
+	return reference;
+}
+
+function getReference(document, nest) {
+
+	let reference = { };
+
+	if(!nest)
+		document = useACE(document);
+
+	Object.values(getValue(document, "entities", { })).forEach((value) => {
+		Object.assign(reference, getReference(value, true));
+	});
+
+	Object.assign(
+		reference,
+		getReferenceACE(
+			getValue(getValue(document, "components", { }), "ace")
+		)
+	);
+
+	return reference;
+}
+
 function getUsage(document) {
 
 	let usage = [];
@@ -127,11 +173,13 @@ function getUsage(document) {
 	return usage;
 }
 
-function getValue(object, key) {
+function getValue(object, key, standard) {
 
-	return object[Object.keys(object).filter(
+	let value = object[Object.keys(object).filter(
 		item => item.toLowerCase().trim() == key.toLowerCase().trim()
 	)[0]];
+
+	return value != null ? value : standard;
 }
 
 function isONE(element) {
@@ -228,7 +276,9 @@ function queryKaeonACE(entity, open) {
 	let multiselect = getValue(components, "multiselect") != null;
 
 	let locations = getValue(components, "locations");
-	locations = locations != null ? locations.children.map(child => child.content) : [];
+	
+	locations = locations != null ?
+		locations.children.map(child => child.content) : [];
 
 	if(locations.length > 0) {
 
@@ -307,6 +357,8 @@ function useACE() {
 module.exports = {
 	formatDocument,
 	formatKaeonACE,
+	getReferenceACE,
+	getReference,
 	getValue,
 	isONE,
 	traceKaeonACE,
