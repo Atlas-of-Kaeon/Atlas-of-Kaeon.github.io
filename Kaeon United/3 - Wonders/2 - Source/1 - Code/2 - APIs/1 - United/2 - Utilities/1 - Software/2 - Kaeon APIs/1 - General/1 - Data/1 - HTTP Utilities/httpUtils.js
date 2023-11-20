@@ -1,5 +1,31 @@
 var moduleDependencies = {
-	cors: "https://corsproxy.io/?"
+	cors: {
+		proxies: {
+			"https://corsproxy.io/": (request) => {
+
+				request = JSON.parse(JSON.stringify(request));
+				
+				request.request.uri =
+					"https://corsproxy.io/?" +
+						encodeURIComponent(
+							request.request.uri
+						).split("%20").join("%2520");
+
+				return request;
+			},
+			"https://nextjs-cors-anywhere.vercel.app/": (request) => {
+
+				request = JSON.parse(JSON.stringify(request));
+				
+				request.request.uri =
+					"https://nextjs-cors-anywhere.vercel.app/api?endpoint=" +
+						request.request.uri;
+
+				return request;
+			}
+		},
+		proxy: "https://corsproxy.io/"
+	}
 };
 
 var platform = require("kaeon-united")("platform");
@@ -120,7 +146,7 @@ function toJSON(http) {
 function sendRequest(request, callback, cors) {
 
 	cors = cors != false ?
-		(typeof cors == "string" ? cors : module.exports.cors) : null;
+		(typeof cors == "function" ? cors : module.exports.cors) : null;
 
 	if(typeof request == "string")
 		request = toJSON(request);
@@ -140,9 +166,7 @@ function sendRequest(request, callback, cors) {
 			request.request.uri.startsWith("http://127.0.0.1") ||
 			request.request.uri.startsWith("https://127.0.0.1"))) {
 
-			request.request.uri = cors +
-				encodeURIComponent(request.request.uri).
-					split("%20").join("%2520");
+			request = cors(request);
 
 			if(request.headers == null)
 				request.headers = { };
@@ -203,7 +227,8 @@ function sendRequest(request, callback, cors) {
 }
 
 module.exports = {
-	cors: moduleDependencies.cors,
+	cors: moduleDependencies.cors.proxies[moduleDependencies.cors.proxy],
+	corsOptions: moduleDependencies.cors,
 	getURLArguments,
 	toHTTP,
 	toJSON,

@@ -1,7 +1,4 @@
-var moduleDependencies = {
-	cors: "https://nextjs-cors-anywhere.vercel.app/api?endpoint="
-};
-
+var io = require("kaeon-united")("io");
 var vision = require("kaeon-united")("vision");
 
 function getPlaying() {
@@ -11,34 +8,6 @@ function getPlaying() {
 			play.state : { };
 
 	return JSON.parse(JSON.stringify(play.state));
-}
-
-function open(path) {
-
-	try {
-		
-		let xhr = new XMLHttpRequest();
-		xhr.open("GET", moduleDependencies.cors + path, false);
-
-		let text = "";
-
-		xhr.onreadystatechange = function() {
-
-			if(xhr.readyState === 4) {
-
-				if(xhr.status === 200 || xhr.status == 0)
-					text = xhr.responseText;
-			}
-		}
-
-		xhr.send(null);
-
-		return JSON.parse(text);
-	}
-
-	catch(error) {
-		return "";
-	}
 }
 
 function play(id, options, element) {
@@ -111,7 +80,7 @@ function search(query) {
 
 	return [
 		...new Set(
-			open(
+			io.open(
 				"https://www.youtube.com/results?search_query=" +
 					query.toLowerCase().split(" ").join("+")
 			).split("Endpoint\":{\"videoId\":\"").map((item, index) => {
@@ -148,7 +117,6 @@ function stop(index) {
 module.exports = {
 	methods: {
 		getPlaying,
-		open,
 		play,
 		playAudio,
 		search,

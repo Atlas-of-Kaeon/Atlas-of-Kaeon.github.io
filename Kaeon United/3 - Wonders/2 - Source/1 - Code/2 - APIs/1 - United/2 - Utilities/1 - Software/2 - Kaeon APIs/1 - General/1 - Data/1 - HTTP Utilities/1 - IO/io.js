@@ -1,12 +1,8 @@
-var moduleDependencies = {
-	cors: "https://corsproxy.io/?"
-};
-
 var httpUtils = require("kaeon-united")("httpUtils");
 var platform = require("kaeon-united")("platform").getPlatform();
 
 module.exports = {
-	cors: moduleDependencies.cors,
+	cors: httpUtils.cors,
 	getInput: platform == "node" ?
 		(query) => {
 
@@ -72,7 +68,9 @@ module.exports = {
 					callback(response.body);
 				} : null,
 				cors != false ?
-					(typeof cors == "string" ? cors : module.exports.cors) : false
+					(typeof cors == "function" ?
+						cors : module.exports.cors
+					) : false
 			);
 
 			if(callback == null)
