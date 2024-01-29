@@ -19,7 +19,7 @@
 <h3>What can Kaeon United do?</h3>
 <p>Kaeon United, being an "everything engine", provides such a vast array of functionality, that it would be simpler to describe what it doesn't do.</p>
 <p>The full scope of the ever growing set of features provided by Kaeon United are detailed in the Kaeon United Specification.</p>
-<p>That said, here are some key highlights at the time of writing:</p>
+<div align="center"><p><b>That said, here are some key highlights at the time of writing:</b></p></div>
 <h4><a href="https://github.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/blob/master/Kaeon%20United/3%20-%20Wonders/1%20-%20Documentation/1%20-%20Guides/1%20-%20Kaeon%20United%20GhostHost/README.md">GhostHost</a></h4>
 <p>GhostHost is a platform built into Kaeon United which allows users to render code stored in plain text on external sources as live websites.</p>
 <h4><a href="https://github.com/Atlas-of-Kaeon/Atlas-of-Kaeon.github.io/blob/master/Kaeon%20United/3%20-%20Wonders/1%20-%20Documentation/1%20-%20Guides/3%20-%20Kaeon%20FUSION/README.md">Kaeon FUSION</a></h4>
@@ -39,7 +39,7 @@
 <p>United C is a backwards-compatible hybrid of C and C++ with several modernized syntax features, such as code outside the main function, optional semicolons, optional inferred typing, and more, plus a streamlined build process.</p>
 <h4>United JS</h4>
 <p>United JS is a variant of JS which allows CommonJS to be used inside the browser, which causes node to automatically install any uninstalled packages at runtime, and which allows CommonJS to fetch code from CDNs, which uses CORS proxies to nullify the same origin policy in the browser, and which allows for top-level awaits.</p>
-<p>And here are some features which are in development:</p>
+<div align="center"><p><b>And here are some features which are in development:</b></p></div>
 <h4>Kaeon ACE</h4>
 <p>Kaeon ACE is a game and visualization framework which allows the content of a scripted game or scene to be specified in ONE+ such that it may be built to various game and visualization engines.</p>
 <p>In a nutshell, it is to game engines what HTML is to browsers.</p>
