@@ -9,7 +9,7 @@
 <p>Kaeon United is, in short, a cross-environment, setup-free "everything engine".</p>
 <h3>Details</h3>
 <h4>Why Kaeon United?</h4>
-<p>Kaeon United was created to solve what has been coined the problem of "migration corruption", that being the issue where engineers are forced to abandon utilities and techniques they have grown reliant upon when switching tools or environments, which derives from a series of other issues referred to as the Seven Sins of Software, these being payment, signup, setup, decay, rigor, excess, and the worst of all, limits.</p>
+<p>Kaeon United was created to solve what has been coined the problem of "suite corruption", that being the issue where engineers are forced to abandon utilities and techniques they have grown reliant upon, which derives from a series of other issues referred to as the Seven Deadly Sins, these being payment, signup, setup, decay, rigor, excess, and the worst of all, limits.</p>
 <p>Maintaining the spirit of its inception while also growing beyond it, Kaeon United grants access to a vast array of utilities that a developer might need in their initial environment, while allowing much of their acquired knowledge and work to follow them into new environments, helping them hit the ground running when transitioning.</p>
 <h4>How does Kaeon United Work?</h4>
 <p>The way Kaeon United actually works can be summed up as "an interface of interfaces to a library of libraries".</p>
