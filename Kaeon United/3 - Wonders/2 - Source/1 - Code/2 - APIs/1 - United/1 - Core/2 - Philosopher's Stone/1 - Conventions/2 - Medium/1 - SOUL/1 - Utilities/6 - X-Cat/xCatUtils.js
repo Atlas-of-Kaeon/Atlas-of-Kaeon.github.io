@@ -9,16 +9,29 @@ function createModel(degree, zero) {
 	for(let i = 0; i < degree; i++) {
 
 		let vector = [];
+
 		matrix.push(vector);
 		
-		for(let j = 0; j < degree; j++)
-			vector.push({ weight: zero ? 0 : ((Math.random() * 2 - 1)) });
+		for(let j = 0; j < degree; j++) {
+
+			vector.push({
+				weight: zero ? 0 : ((Math.random() * 2 - 1)),
+				props: {
+					heat: 0
+				}
+			});
+		}
 	}
 
 	let vector = [];
 	
-	for(let j = 0; j < degree; j++)
-		vector.push({ state: zero ? 0 : ((Math.random() * 2 - 1)) });
+	for(let j = 0; j < degree; j++) {
+
+		vector.push({
+			state: zero ? 0 : ((Math.random() * 2 - 1)),
+			props: { }
+		});
+	}
 
 	return { matrix, vector };
 }
@@ -106,7 +119,27 @@ function step(model) {
 		{ model: data, metadata: context.metadata } : result;
 }
 
-function train(context, score) {
+function train(context, data) {
+
+	data = typeof data == "number" ? { score: data } : data;
+
+	data.props = data.props != null ? data.props : { };
+
+	data.props.method =
+		data.props.method != null ? data.props.method : "scatter";
+
+	if(data.props.method == "backburn")
+		trainBackburn(context, data.props.score, data.props.endPoints);
+
+	if(data.props.method == "scatter")
+		trainScatter(context, data.props.score);
+}
+
+function trainBackburn(context, score, endPoints) {
+	// STUB
+}
+
+function trainScatter(context, score) {
 
 	if(score > context.metadata.score) {
 		context.metadata.previous = JSON.parse(JSON.stringify(context.model));
@@ -114,7 +147,9 @@ function train(context, score) {
 	}
 
 	else {
+
 		context.model = JSON.parse(JSON.stringify(context.metadata.previous));
+
 		scatter(context, 1 - context.metadata.score);
 	}
 }
@@ -126,5 +161,7 @@ module.exports = {
 	expand,
 	scatter,
 	step,
-	train
+	train,
+	trainBackburn,
+	trainScatter
 };
